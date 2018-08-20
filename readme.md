@@ -1,3 +1,2 @@
 ## INSTALLATION
-composer install
-npm install
+composer install & npm install
