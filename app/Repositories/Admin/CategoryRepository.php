@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Category;
+use App\Models\Category;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**

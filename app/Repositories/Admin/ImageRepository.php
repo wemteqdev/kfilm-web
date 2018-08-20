@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Image;
+use App\Models\Image;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**

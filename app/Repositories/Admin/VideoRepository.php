@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Video;
+use App\Models\Video;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Group;
+use App\Models\Group;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
