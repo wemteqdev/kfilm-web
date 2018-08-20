@@ -5,18 +5,18 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
-                     alt="User Image"/>
-            </div>
-            <div class="pull-left info">
+            <div class="info">
                 @if (Auth::guest())
                 <p>InfyOm</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
+                
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">
+                    <i class="fa fa-circle text-success"></i> 
+                    <span>Authorize Vimeo</span>
+                </a>
             </div>
         </div>
 
@@ -34,17 +34,9 @@
 
         <ul class="sidebar-menu" data-widget="tree">
             @include('layouts.menu')
-
-            <li>
-                <hr/>
-                <form class="text-center">
-                    <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">Authorize Vimeo</a>
-                </form>
-            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
-
 
     <!-- /.sidebar -->
 </aside>

@@ -15,3 +15,8 @@
   flex-shrink: 0;
 }
 
+.user-panel > .info {
+  position: relative;
+  left: 0;
+}
+
