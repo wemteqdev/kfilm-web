@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/oauth2/redirect', 'HomeController@oauth2_callback');
 
 
 Auth::routes();

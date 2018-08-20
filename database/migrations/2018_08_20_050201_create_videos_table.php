@@ -28,6 +28,7 @@ class CreateVideosTable extends Migration
             $table->integer('featured_video_id')->nullable();
 
             $table->string('vimeo_video_id')->nullable();
+            $table->string('thumbnail_url')->nullable();
             $table->string('uri')->nullable();
             $table->text('embed')->nullable();
 

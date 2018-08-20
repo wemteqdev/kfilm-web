@@ -12,8 +12,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        $albums = Vimeo::request('/me/groups', ['per_page' => 100], 'GET')['body']['data'];
-        //var_dump($albums);
-        return view('home', ['albums' => $albums]);
+        return view('home');
+    }
+
+    public function oauth2_callback(Request $request){
+
+        $response = Vimeo::accessToken($request->input('code'), 'http://korfilm.loc/oauth2/redirect');
+        session(['vimeo_access_token' => $response['body']['access_token'] ]);
+        return redirect('home');
     }
 }

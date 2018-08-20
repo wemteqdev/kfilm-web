@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Admin\Image;
+use App\Models\Image;
 
 class UpdateImageRequest extends FormRequest
 {

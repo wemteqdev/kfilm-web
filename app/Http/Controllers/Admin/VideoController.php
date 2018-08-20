@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Admin\Video;
+use Vimeo\Laravel\Facades\Vimeo;
 
 class VideoController extends AppBaseController
 {
@@ -59,6 +60,7 @@ class VideoController extends AppBaseController
         $input = $request->all();
 
         // $video = $this->videoRepository->create($input);
+        Vimeo::setToken(session('vimeo_access_token'));
 
         if( $request->input('vimeo_video_id') != null)
         {

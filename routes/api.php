@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('user', 'UserController@index')->middleware('auth:api');
 Route::post('auth', 'UserController@auth');
 
-Route::get('user', 'UserController@index')->middleware('auth:api');
+
+Route::get('videos', 'VideoController@index');
+Route::get('categories', 'CategoryController@index');

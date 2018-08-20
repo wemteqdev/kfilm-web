@@ -34,8 +34,17 @@
 
         <ul class="sidebar-menu" data-widget="tree">
             @include('layouts.menu')
+
+            <li>
+                <hr/>
+                <form class="text-center">
+                    <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">Authorize Vimeo</a>
+                </form>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
+
+
     <!-- /.sidebar -->
 </aside>

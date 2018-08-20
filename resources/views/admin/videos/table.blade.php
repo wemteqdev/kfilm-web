@@ -1,7 +1,8 @@
 <table class="table table-responsive" id="videos-table">
     <thead>
         <tr>
-            <th>Name</th>
+        <th>Thumbnail</th>
+        <th>Name</th>
         <th>Description</th>
         <th>Slug</th>
         <th>Duration</th>
@@ -20,6 +21,7 @@
     <tbody>
     @foreach($videos as $video)
         <tr>
+            <td><img src="{{ $video->thumbnail_url}}"/></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
             <td>{!! $video->slug !!}</td>

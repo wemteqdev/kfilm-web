@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -165,6 +165,7 @@ class Video extends Model
     public static function create_from_vimeo($vimeo_id)
     {
         $vimeo_video = Vimeo::request('/me/videos/'. $vimeo_id, [], 'GET')['body'];
+
         $video = new Video();
         $video->name = $vimeo_video['name'];
         $video->duration = $vimeo_video['duration'];
@@ -172,7 +173,9 @@ class Video extends Model
         $video->height = $vimeo_video['height'];
         $video->vimeo_video_id = $vimeo_id;
         $video->uri = $vimeo_video['uri'];
+        $video->thumbnail_url = $vimeo_video['pictures']['sizes'][0]['link'];
         $video->embed = $vimeo_video['embed']['html'];
+
         return $video->save();
     }
     

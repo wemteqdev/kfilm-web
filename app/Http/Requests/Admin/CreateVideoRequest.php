@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Admin\Video;
+use App\Models\Video;
 
 class CreateVideoRequest extends FormRequest
 {
