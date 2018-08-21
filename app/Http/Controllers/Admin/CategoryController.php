@@ -20,7 +20,6 @@ class CategoryController extends AppBaseController
     public function __construct(CategoryRepository $categoryRepo)
     {
         $this->categoryRepository = $categoryRepo;
-        $this->layout = View::make('layouts.admin');
     }
 
     /**

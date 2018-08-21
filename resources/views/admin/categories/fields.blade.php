@@ -1,3 +1,15 @@
+<div class="form-group col-sm-6">
+    {!! Form::label('featured_image_id', 'Featured Image:') !!}
+    {!! Form::text('featured_image_id', null, ['class' => 'form-control']) !!}
+
+    <br/>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+      Select Image
+    </button>
+
+</div>
+
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
@@ -27,3 +39,5 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('admin.categories.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
+{!! view('admin.images._modal') !!}
