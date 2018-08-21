@@ -7,7 +7,7 @@
         <div class="user-panel">
             <div class="info">
                 @if (Auth::guest())
-                <p>InfyOm</p>
+                <p>K</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
