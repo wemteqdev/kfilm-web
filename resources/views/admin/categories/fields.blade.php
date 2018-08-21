@@ -1,4 +1,4 @@
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6" id="image_field_group">
     {!! Form::label('featured_image_id', 'Featured Image:') !!}
     {!! Form::text('featured_image_id', null, ['class' => 'form-control']) !!}
 
@@ -7,6 +7,8 @@
     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
       Select Image
     </button>
+
+    <example-component />
 
 </div>
 
@@ -40,4 +42,11 @@
     <a href="{!! route('admin.categories.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 
-{!! view('admin.images._modal') !!}
+<script>
+    Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+    const image_field_group = new Vue({
+        el: '#image_field_group'
+    });
+
+</script>
