@@ -14,3 +14,5 @@ yarn-error.log
 .phpunit.result.cache
 /bower_components
 /package-lock.json
+/client/node_modules
+/client/build
