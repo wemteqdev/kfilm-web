@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use View;
+use App\Models\Category;
 
 class CategoryController extends AppBaseController
 {

@@ -1,14 +1,40 @@
 <div class="form-group col-sm-6" id="image_field_group">
-    {!! Form::label('featured_image_id', 'Featured Image:') !!}
-    {!! Form::text('featured_image_id', null, ['class' => 'form-control']) !!}
+    <div id="image-list-popup">
+        {!! Form::label('featured_image_id', 'Featured Image:') !!}
+        <input name="featured_image_id" type="text" id="featured_image_id" class="form-control hidden" v-bind:value="selectedImage.id" />
+        <br/>
+        <div v-if="selectedImage.src">
+            <a href="javascript:void(0);" data-toggle="modal" data-target="#image-list-modal"><img v-bind:src="selectedImage.src" width=200/></a>
+        </div>
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div v-if="!selectedImage.src">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#image-list-modal" >
+              Select Image
+            </button>
+        </div>
+        <div class="modal fade" id="image-list-modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Image List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
 
-    <br/>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-      Select Image
-    </button>
+                <image-list-popup />
 
-    <example-component />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
 
 </div>
 
@@ -42,11 +68,23 @@
     <a href="{!! route('admin.categories.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 
-<script>
-    Vue.component('example-component', require('./components/ExampleComponent.vue'));
+@section('scripts')
+<script type="text/javascript">
 
-    const image_field_group = new Vue({
-        el: '#image_field_group'
+    const selectedImage = {!! isset($category)?$category->featured_image->toJson(): '{}'; !!};
+    selectedImage.src = selectedImage.uri;
+
+    const ImageListPopup = new Vue({ 
+        el: '#image-list-popup',
+        data: {
+            selectedImage: selectedImage 
+        },
+        methods:{
+            onSelectImage(image){
+                ImageListPopup.selectedImage = image;
+            }
+        }
     });
+</script>>
+@endsection
 
-</script>

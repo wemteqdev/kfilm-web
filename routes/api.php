@@ -19,9 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['auth:api']], function(){
 	Route::get('user', 'UserController@index');
-	Route::get('images', 'ImageController@index');
+	
 });
 
 Route::post('auth', 'UserController@auth');
 Route::get('videos', 'VideoController@index');
 Route::get('categories', 'CategoryController@index');
+Route::get('images', 'ImageController@index');

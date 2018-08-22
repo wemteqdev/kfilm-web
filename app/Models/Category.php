@@ -57,7 +57,8 @@ class Category extends Model
         'name',
         'description',
         'slug',
-        'videos_count'
+        'videos_count',
+        'featured_image_id'
     ];
 
     /**
@@ -79,7 +80,7 @@ class Category extends Model
      * @var array
      */
     public static $rules = [
-        
+       'name' => 'required' 
     ];
 
     public function sluggable()
@@ -89,6 +90,12 @@ class Category extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+
+    public function featured_image()
+    {
+        return $this->belongsTo('App\Models\Image', 'featured_image_id');
     }
 
     

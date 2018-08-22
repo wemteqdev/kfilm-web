@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Storage;
 
 class ImageController extends AppBaseController
 {
@@ -60,7 +61,7 @@ class ImageController extends AppBaseController
         list($width, $height) = getimagesize($request->file('file'));
         $path = $request->file('file')->store('images', 'public');
         
-        $input['uri'] = $path;
+        $input['uri'] = Storage::url($path);
         $input['width'] = $width;
         $input['height'] = $height;
 

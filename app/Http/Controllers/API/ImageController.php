@@ -10,6 +10,6 @@ class ImageController extends Controller
 {
 	public function index(Request $request)
 	{
-		return response()->json(Image::get());
+		return response()->json(Image::orderBy('created_at', 'desc')->paginate(9));
 	}
 }

@@ -26,6 +26,12 @@
 }
 
 .user-panel>.info{
-  position: relative;
+  position: relative!important;
   left: 0;
+}
+
+.vue-select-image__item{
+  width: 30%;
+  list-style: none;
+  display: inline-block;
 }

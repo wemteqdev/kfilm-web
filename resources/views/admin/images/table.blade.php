@@ -10,7 +10,7 @@
     <tbody>
     @foreach($images as $image)
         <tr>
-            <td><img src='{!! asset("storage/" . $image->uri) !!}' width="100"/></td>
+            <td><img src='{!! asset($image->uri) !!}' width="100"/></td>
             <td>{!! $image->width !!}</td>
             <td>{!! $image->height !!}</td>
             <td>{!! $image->uri !!}</td>

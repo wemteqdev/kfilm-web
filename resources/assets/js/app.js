@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**
@@ -14,9 +13,15 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// add stylesheet
+import Paginate from 'vuejs-paginate';
+import VueSelectImage from 'vue-select-image'
+import { VueMasonryPlugin } from 'vue-masonry';
+require('vue-select-image/dist/vue-select-image.css')
 
+Vue.use(VueMasonryPlugin)
+
+Vue.component('paginate', Paginate);
+Vue.component('vue-select-image', VueSelectImage);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+Vue.component('image-list-popup', require('./components/ImageListPopupComponent.vue'));
