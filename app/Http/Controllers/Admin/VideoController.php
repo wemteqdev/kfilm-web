@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Models\Admin\Video;
+use App\Models\Video;
 use Vimeo\Laravel\Facades\Vimeo;
 
 class VideoController extends AppBaseController

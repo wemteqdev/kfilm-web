@@ -50,7 +50,8 @@ class Group extends Model
     public $fillable = [
         'name',
         'description',
-        'slug'
+        'slug',
+        'featured_image_id',
     ];
 
     /**
@@ -71,7 +72,7 @@ class Group extends Model
      * @var array
      */
     public static $rules = [
-        
+       'name' => 'required' 
     ];
 
     public function sluggable()

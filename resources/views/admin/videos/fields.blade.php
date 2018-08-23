@@ -38,7 +38,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('type', 'Type:') !!}
     <label class="checkbox-inline">
-        {!! Form::select('type', App\Models\Admin\Video::TYPE_OPTIONS, null) !!}
+        {!! Form::select('type', App\Models\Video::TYPE_OPTIONS, null) !!}
     </label>
 </div>
 
@@ -46,7 +46,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('status', 'Status:') !!}
     <label class="checkbox-inline">
-        {!! Form::select('status', App\Models\Admin\Video::STATUS_OPTIONS, null) !!}
+        {!! Form::select('status', App\Models\Video::STATUS_OPTIONS, null) !!}
     </label>
 </div>
 
