@@ -64,7 +64,7 @@
 @section('scripts')
 <script type="text/javascript">
 
-    const selectedImage = {!! isset($group)?$group->featured_image->toJson(): '{}'; !!};
+    const selectedImage = {!! isset($group)&&isset($group->featured_image)?$group->featured_image->toJson(): '{}'; !!};
     selectedImage.src = selectedImage.uri;
 
     const ImageListPopup = new Vue({ 
