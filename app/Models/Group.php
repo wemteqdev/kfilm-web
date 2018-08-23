@@ -84,5 +84,9 @@ class Group extends Model
         ];
     }
 
+    public function featured_image()
+    {
+        return $this->belongsTo('App\Models\Image', 'featured_image_id');
+    }
     
 }

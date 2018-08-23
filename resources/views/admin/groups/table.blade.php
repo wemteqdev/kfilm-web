@@ -1,15 +1,17 @@
 <table class="table table-responsive" id="groups-table">
     <thead>
         <tr>
+            <th>Featured Image</th>
             <th>Name</th>
-        <th>Description</th>
-        <th>Slug</th>
+            <th>Description</th>
+            <th>Slug</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
     @foreach($groups as $group)
         <tr>
+            <td><img src="{!! $group->featured_image['uri'] !!}" width=200></td></td>
             <td>{!! $group->name !!}</td>
             <td>{!! $group->description !!}</td>
             <td>{!! $group->slug !!}</td>

@@ -1,10 +1,11 @@
 <table class="table table-responsive" id="categories-table">
     <thead>
         <tr>
+            <th>Featured Image</th>
             <th>Name</th>
-        <th>Description</th>
-        <th>Slug</th>
-        <th>Videos Count</th>
+            <th>Description</th>
+            <th>Slug</th>
+            <th>Videos Count</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
