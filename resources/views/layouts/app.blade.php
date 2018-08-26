@@ -38,11 +38,11 @@
                 </a>
             </nav>
         </header>
-        <div class="container-fluid">
-            <div class="content-wrapper">
-                @yield('content')
-            </div>
+
+        <div class="content-wrapper">
+            @yield('content')
         </div>
+
     </div>
     <!-- /#page-content-wrapper -->
 
