@@ -7,88 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-/**
- * @SWG\Definition(
- *      definition="Video",
- *      required={""},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="description",
- *          description="description",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="slug",
- *          description="slug",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="duration",
- *          description="duration",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="width",
- *          description="width",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="height",
- *          description="height",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="type",
- *          description="type",
- *          type="boolean"
- *      ),
- *      @SWG\Property(
- *          property="status",
- *          description="status",
- *          type="boolean"
- *      ),
- *      @SWG\Property(
- *          property="featured_image_id",
- *          description="featured_image_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="featured_video_id",
- *          description="featured_video_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="vimeo_video_id",
- *          description="vimeo_video_id",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="uri",
- *          description="uri",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="embed",
- *          description="embed",
- *          type="string"
- *      )
- * )
- */
 class Video extends Model
 {
     use SoftDeletes;
@@ -165,6 +83,21 @@ class Video extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category');
+    }
+
+    public function featured_image()
+    {
+        return $this->belongsTo('App\Models\Image', 'featured_image_id');
+    }
+
+    public function featured_image_url()
+    {
+        if ($this->featured_image)
+        {
+            return $this->featured_image->uri;
+        }
+
+        return null;
     }
 
     public static function create_from_vimeo($vimeo_id)
