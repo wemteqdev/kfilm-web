@@ -71,7 +71,7 @@
 @section('scripts')
 <script type="text/javascript">
 
-    const selectedImage = {!! isset($category)?$category->featured_image->toJson(): '{}'; !!};
+    var selectedImage = {!! (isset($category) && $category->featured_image)?$category->featured_image->toJson(): '{}'; !!};
     selectedImage.src = selectedImage.uri;
 
     const ImageListPopup = new Vue({ 

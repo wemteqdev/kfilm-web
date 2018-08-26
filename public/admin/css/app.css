@@ -16,7 +16,17 @@
 }
 
 .user-panel > .info {
-  position: relative;
+  position: relative !important;
   left: 0;
+}
+
+.vue-select-image__item {
+  width: 30%;
+  list-style: none;
+  display: inline-block;
+  margin: 0 !important;
+  padding: 12px;
+  height: 200px !important;
+  overflow: hidden;
 }
 

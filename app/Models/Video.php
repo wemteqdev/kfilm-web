@@ -135,8 +135,8 @@ class Video extends Model
         'duration' => 'integer',
         'width' => 'integer',
         'height' => 'integer',
-        'type' => 'boolean',
-        'status' => 'boolean',
+        'type' => 'integer',
+        'status' => 'integer',
         'featured_image_id' => 'integer',
         'featured_video_id' => 'integer',
         'vimeo_video_id' => 'string',
@@ -162,6 +162,11 @@ class Video extends Model
         ];
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category');
+    }
+
     public static function create_from_vimeo($vimeo_id)
     {
         $vimeo_video = Vimeo::request('/me/videos/'. $vimeo_id, [], 'GET')['body'];
@@ -177,6 +182,35 @@ class Video extends Model
         $video->embed = $vimeo_video['embed']['html'];
 
         return $video->save();
+    }
+
+    public static function create_videos_from_vimeo()
+    {
+        $payload = Vimeo::request('/me/videos', [], 'GET')['body'];
+        $vimeo_videos = $payload['data'];
+
+        foreach($vimeo_videos as $vimeo_video)
+        {
+            $vimeo_id = basename($vimeo_video['uri']);
+
+            $video = Video::where('vimeo_video_id', $vimeo_id)->first();
+            
+            if($video == null)
+            {
+                $video = new Video();
+            }
+
+            $video->name = $vimeo_video['name'];
+            $video->duration = $vimeo_video['duration'];
+            $video->width = $vimeo_video['width'];
+            $video->height = $vimeo_video['height'];
+            $video->vimeo_video_id = $vimeo_id;
+            $video->uri = $vimeo_video['uri'];
+            $video->thumbnail_url = $vimeo_video['pictures']['sizes'][0]['link'];
+            $video->embed = $vimeo_video['embed']['html'];
+
+            $video->save();
+        }
     }
     
 }

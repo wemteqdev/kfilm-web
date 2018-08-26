@@ -98,5 +98,19 @@ class Category extends Model
         return $this->belongsTo('App\Models\Image', 'featured_image_id');
     }
 
+    public function featured_image_url()
+    {
+        if ($this->featured_image)
+        {
+            return $this->featured_image->uri;
+        }
+
+        return null;
+    }
+
+    public function videos()
+    {
+        return $this->belongsToMany('App\Models\Video');
+    }
     
 }

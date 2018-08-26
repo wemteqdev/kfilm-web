@@ -1,19 +1,25 @@
 <table class="table table-responsive" id="images-table">
     <thead>
         <tr>
-            <th>Width</th>
+        <th>Image</th>
+        <th>Width</th>
         <th>Height</th>
         <th>Uri</th>
-            <th colspan="3">Action</th>
+        <th>Alt</th>
+        <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
     @foreach($images as $image)
         <tr>
-            <td><img src='{!! asset($image->uri) !!}' width="100"/></td>
+            <td>
+                <img src='{!! asset($image->uri) !!}' width="100"/>
+                {!! $image->name !!}
+            </td>
             <td>{!! $image->width !!}</td>
             <td>{!! $image->height !!}</td>
             <td>{!! $image->uri !!}</td>
+            <td>{!! $image->alt !!}</td>
             <td>
                 {!! Form::open(['route' => ['admin.images.destroy', $image->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

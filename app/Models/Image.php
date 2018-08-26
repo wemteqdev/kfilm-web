@@ -48,6 +48,8 @@ class Image extends Model
 
 
     public $fillable = [
+        'name',
+        'alt',
         'width',
         'height',
         'uri'

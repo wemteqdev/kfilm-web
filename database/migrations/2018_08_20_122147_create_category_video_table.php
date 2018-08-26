@@ -15,6 +15,8 @@ class CreateCategoryVideoTable extends Migration
     {
         Schema::create('category_video', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id');
+            $table->integer('video_id');
             $table->timestamps();
         });
     }

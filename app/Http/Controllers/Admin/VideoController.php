@@ -15,7 +15,6 @@ use Vimeo\Laravel\Facades\Vimeo;
 
 class VideoController extends AppBaseController
 {
-    /** @var  VideoRepository */
     private $videoRepository;
 
     public function __construct(VideoRepository $videoRepo)
@@ -23,12 +22,6 @@ class VideoController extends AppBaseController
         $this->videoRepository = $videoRepo;
     }
 
-    /**
-     * Display a listing of the Video.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->videoRepository->pushCriteria(new RequestCriteria($request));
@@ -38,28 +31,15 @@ class VideoController extends AppBaseController
             ->with('videos', $videos);
     }
 
-    /**
-     * Show the form for creating a new Video.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('admin.videos.create');
     }
 
-    /**
-     * Store a newly created Video in storage.
-     *
-     * @param CreateVideoRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateVideoRequest $request)
     {
         $input = $request->all();
 
-        // $video = $this->videoRepository->create($input);
         Vimeo::setToken(session('vimeo_access_token'));
 
         if( $request->input('vimeo_video_id') != null)
@@ -72,13 +52,6 @@ class VideoController extends AppBaseController
         return redirect(route('admin.videos.index'));
     }
 
-    /**
-     * Display the specified Video.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show($id)
     {
         $video = $this->videoRepository->findWithoutFail($id);
@@ -92,13 +65,6 @@ class VideoController extends AppBaseController
         return view('admin.videos.show')->with('video', $video);
     }
 
-    /**
-     * Show the form for editing the specified Video.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $video = $this->videoRepository->findWithoutFail($id);
@@ -112,14 +78,6 @@ class VideoController extends AppBaseController
         return view('admin.videos.edit')->with('video', $video);
     }
 
-    /**
-     * Update the specified Video in storage.
-     *
-     * @param  int              $id
-     * @param UpdateVideoRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateVideoRequest $request)
     {
         $video = $this->videoRepository->findWithoutFail($id);
@@ -137,13 +95,15 @@ class VideoController extends AppBaseController
         return redirect(route('admin.videos.index'));
     }
 
-    /**
-     * Remove the specified Video from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+    public function sync_vimeo_videos()
+    {
+        Vimeo::setToken(session('vimeo_access_token'));
+
+        Video::create_videos_from_vimeo();
+
+        return redirect(route('admin.videos.index'));
+    }
+
     public function destroy($id)
     {
         $video = $this->videoRepository->findWithoutFail($id);
