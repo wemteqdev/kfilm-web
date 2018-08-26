@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2aa92fab96b1f5a40d1bba200c79b7b1",
+    "content-hash": "160a8adb7fbecda7b27a0892430da9a7",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2307,6 +2307,52 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "patroklo/improved-links",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Patroklo/improved-links.git",
+                "reference": "bbd6687e7201cdb03ddd2efe9d49a88bce4a422e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Patroklo/improved-links/zipball/bbd6687e7201cdb03ddd2efe9d49a88bce4a422e",
+                "reference": "bbd6687e7201cdb03ddd2efe9d49a88bce4a422e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*",
+                "laravelcollective/html": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Patroklo\\ImprovedLinks\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joseba Juániz",
+                    "email": "joseba.juaniz@gmail.com"
+                }
+            ],
+            "description": "Improved links that use HTML methods when clicked.",
+            "keywords": [
+                "delete",
+                "laravel",
+                "link",
+                "patch",
+                "post",
+                "put"
+            ],
+            "time": "2017-12-18T17:10:59+00:00"
         },
         {
             "name": "phpseclib/phpseclib",

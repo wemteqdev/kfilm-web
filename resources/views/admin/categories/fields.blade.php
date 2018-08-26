@@ -1,4 +1,4 @@
-<div class="form-group col-sm-6" id="image_field_group">
+<div class="form-group " id="image_field_group">
     <div id="image-list-popup">
         {!! Form::label('featured_image_id', 'Featured Image:') !!}
         <input name="featured_image_id" type="text" id="featured_image_id" class="form-control hidden" v-bind:value="selectedImage.id" />
@@ -39,25 +39,25 @@
 </div>
 
 <!-- Name Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('description', 'Description:') !!}
     {!! Form::text('description', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('slug', 'Slug:') !!}
     {!! Form::text('slug', null, ['class' => 'form-control', 'disabled'=>true]) !!}
 </div>
 
 <!-- Videos Count Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('videos_count', 'Videos Count:') !!}
     {!! Form::number('videos_count', null, ['class' => 'form-control', 'disabled'=>true]) !!}
 </div>
@@ -70,9 +70,7 @@
 
 @section('scripts')
 <script type="text/javascript">
-
     var selectedImage = {!! (isset($category) && $category->featured_image)?$category->featured_image->toJson(): '{}'; !!};
-    selectedImage.src = selectedImage.uri;
 
     const ImageListPopup = new Vue({ 
         el: '#image-list-popup',

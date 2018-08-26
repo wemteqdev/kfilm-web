@@ -6,17 +6,11 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
-import VueSelectImage from 'vue-select-image'
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-require('vue-select-image/dist/vue-select-image.css')
 
 Vue.use(BootstrapVue);
 
-Vue.component('vue-select-image', VueSelectImage);
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('image-list-popup', require('./components/ImageListPopupComponent.vue'));
+Vue.component('image-list-popup', require('./components/ImageListComponent.vue'));
+Vue.component('video-list-popup', require('./components/VideoListComponent.vue'));

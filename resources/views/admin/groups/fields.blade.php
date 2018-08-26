@@ -1,4 +1,4 @@
-<div class="form-group col-sm-6">
+<div class="form-group ">
   <div id="image-list-popup">
       {!! Form::label('featured_image_id', 'Featured Image:') !!}
       <input name="featured_image_id" type="text" id="featured_image_id" class="form-control hidden" v-bind:value="selectedImage.id" />
@@ -37,19 +37,19 @@
   </div>
 </div>
 <!-- Name Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('description', 'Description:') !!}
     {!! Form::text('description', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-6">
+<div class="form-group ">
     {!! Form::label('slug', 'Slug:') !!}
     {!! Form::text('slug', null, ['class' => 'form-control', 'disabled'=>true]) !!}
 </div>
@@ -63,9 +63,7 @@
 
 @section('scripts')
 <script type="text/javascript">
-
     const selectedImage = {!! isset($group)&&isset($group->featured_image)?$group->featured_image->toJson(): '{}'; !!};
-    selectedImage.src = selectedImage.uri;
 
     const ImageListPopup = new Vue({ 
         el: '#image-list-popup',
@@ -78,5 +76,6 @@
             }
         }
     });
+
 </script>>
 @endsection

@@ -12,6 +12,6 @@ class VideoController extends Controller
 {
 	public function index(Request $request)
 	{
-		return new VideoCollection(Video::all());
+		return new VideoCollection(Video::orderBy('created_at', 'desc')->paginate(9));
 	}
 }

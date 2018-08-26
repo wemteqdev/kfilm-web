@@ -46,6 +46,7 @@ class Image extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['src'];
 
     public $fillable = [
         'name',
@@ -55,11 +56,6 @@ class Image extends Model
         'uri'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'width' => 'integer',
@@ -67,14 +63,13 @@ class Image extends Model
         'uri' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
+   public static $rules = [
         
     ];
+
+    public function getSrcAttribute(){
+        return $this->uri;
+    }
 
     
 }

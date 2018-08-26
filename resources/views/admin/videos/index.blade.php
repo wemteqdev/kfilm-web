@@ -4,10 +4,8 @@
     <section class="content-header">
         <h1 class="pull-left">Videos</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" href="{!! route('admin.videos.create') !!}">Add New</a>
-           {!! Form::open(['route' => 'admin.videos.sync_vimeo_videos', 'method' => 'put']) !!}
-                {!! Form::button('<i class="glyphicon glyphicon-edit"></i> Sync From Vimeo', ['type' => 'Sync from Vimeo', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-           {!! Form::close() !!}
+           <a class="btn btn-primary" href="{!! route('admin.videos.create') !!}">Add New</a>
+           {{ Html::methodLink("PUT", route('admin.videos.sync_vimeo_videos'), 'Sync From Vimeo', [ 'class'=> 'btn btn-warning']) }}
         </h1>
     </section>
     <div class="content">

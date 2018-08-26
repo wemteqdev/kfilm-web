@@ -46,7 +46,7 @@
 
             <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name">
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <span class="fa fa-user form-control-feedback"></span>
 
                 @if ($errors->has('name'))
                     <span class="help-block">
@@ -57,7 +57,7 @@
 
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <span class="fa fa-envelope form-control-feedback"></span>
 
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -68,7 +68,7 @@
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
                 <input type="password" class="form-control" name="password" placeholder="Password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <span class="fa fa-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -79,7 +79,7 @@
 
             <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                 <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <span class="fa fa-lock form-control-feedback"></span>
 
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
