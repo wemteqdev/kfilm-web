@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="groups-table">
+<table class="table" id="groups-table">
     <thead>
         <tr>
             <th>Featured Image</th>
@@ -11,7 +11,7 @@
     <tbody>
     @foreach($groups as $group)
         <tr>
-            <td><img src="{!! $group->featured_image['uri'] !!}" width=200></td></td>
+            <td><img src="{!! $group->featured_image['uri'] !!}" height=150></td></td>
             <td>{!! $group->name !!}</td>
             <td>{!! $group->description !!}</td>
             <td>{!! $group->slug !!}</td>

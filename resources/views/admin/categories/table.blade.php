@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="categories-table">
+<table class="table" id="categories-table">
     <thead>
         <tr>
             <th>Featured Image</th>
@@ -12,7 +12,7 @@
     <tbody>
     @foreach($categories as $category)
         <tr>
-            <td><img src="{!! $category->featured_image['uri'] !!}" width=200></td></td>
+            <td><img src="{!! $category->featured_image['uri'] !!}" height=150></td></td>
             <td>{!! $category->name !!}</td>
             <td>{!! $category->description !!}</td>
             <td>{!! $category->slug !!}</td>

@@ -1,9 +1,9 @@
 <template>
     <div class="image-list">
-				<b-container fluid class="p-4 bg-dark">
+				<b-container fluid class="p-4 bg-light clearfix">
 
-				    <b-col v-for="video in videos">
-				      <b-img thumbnail fluid :src="video.src" alt="" v-on:click="onSelectVideo(video)"/>
+				    <b-col v-for="video in videos" class="col-sm-4 float-left">
+				      <b-img thumbnail fluid :src="video.featured_image_url" alt="" v-on:click="onSelectVideo(video)"/>
 				    </b-col>
 
 				</b-container>
@@ -35,6 +35,7 @@
         },
         methods: {
 			    onSelectVideo(video){
+			    	console.log(video);
 			    	if(this.$parent.$parent.$options.methods.onSelectVideo)
 			    	{
 			    		this.$parent.$parent.$options.methods.onSelectVideo(video)
@@ -44,9 +45,7 @@
 			    	axios.get('/api/videos?page=' + this.currentPage).then(function(response){
 	    				return response.data;
 	    			}).then((payload)=>{
-	    				this.videos = _.map(payload.data, function(video){
-	    					return { id: video.id, src: video.featured_image_url };
-	    				});
+	    				this.videos = payload.data;
 	    				this.last_page = payload.meta.last_page;
 	    				this.perPage = payload.meta.per_page;
 	    				this.totalRows = payload.meta.total;

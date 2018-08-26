@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($category, ['route' => ['admin.categories.update', $category->id], 'method' => 'patch']) !!}
+                   {!! Form::model($category, ['route' => ['admin.categories.update', $category->id], 'method' => 'patch', 'class'=>'container-fluid']) !!}
 
                         @include('admin.categories.fields')
 

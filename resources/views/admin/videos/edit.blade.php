@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($video, ['route' => ['admin.videos.update', $video->id], 'method' => 'patch']) !!}
+                   {!! Form::model($video, ['route' => ['admin.videos.update', $video->id], 'method' => 'patch', 'class'=>'container-fluid']) !!}
 
                         @include('admin.videos.fields')
 

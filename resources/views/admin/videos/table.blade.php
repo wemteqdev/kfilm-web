@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="videos-table">
+<table class="table" id="videos-table">
     <thead>
         <tr>
         <th>Featured Image</th>
@@ -22,7 +22,7 @@
     <tbody>
     @foreach($videos as $video)
         <tr>
-            <td><img src="{{ $video->featured_image['uri'] }}" width=200></td></td>
+            <td><img src="{{ $video->featured_image['uri'] }}" height=150 ></td></td>
             <td><img src="{{ $video->thumbnail_url}}"/></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>

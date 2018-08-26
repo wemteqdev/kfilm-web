@@ -50138,10 +50138,11 @@ var render = function() {
     [
       _c(
         "b-container",
-        { staticClass: "p-4 bg-dark", attrs: { fluid: "" } },
-        _vm._l(_vm.images, function(image) {
+        { staticClass: "p-4 bg-light clearfix", attrs: { fluid: "" } },
+        _vm._l(_vm.images, function(image, index) {
           return _c(
             "b-col",
+            { staticClass: "col-sm-4 float-left" },
             [
               _c("b-img", {
                 attrs: { thumbnail: "", fluid: "", src: image.src, alt: "" },
@@ -50277,6 +50278,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		methods: {
 				onSelectVideo: function onSelectVideo(video) {
+						console.log(video);
 						if (this.$parent.$parent.$options.methods.onSelectVideo) {
 								this.$parent.$parent.$options.methods.onSelectVideo(video);
 						}
@@ -50287,9 +50289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						axios.get('/api/videos?page=' + this.currentPage).then(function (response) {
 								return response.data;
 						}).then(function (payload) {
-								_this.videos = _.map(payload.data, function (video) {
-										return { id: video.id, src: video.featured_image_url };
-								});
+								_this.videos = payload.data;
 								_this.last_page = payload.meta.last_page;
 								_this.perPage = payload.meta.per_page;
 								_this.totalRows = payload.meta.total;
@@ -50312,13 +50312,19 @@ var render = function() {
     [
       _c(
         "b-container",
-        { staticClass: "p-4 bg-dark", attrs: { fluid: "" } },
+        { staticClass: "p-4 bg-light clearfix", attrs: { fluid: "" } },
         _vm._l(_vm.videos, function(video) {
           return _c(
             "b-col",
+            { staticClass: "col-sm-4 float-left" },
             [
               _c("b-img", {
-                attrs: { thumbnail: "", fluid: "", src: video.src, alt: "" },
+                attrs: {
+                  thumbnail: "",
+                  fluid: "",
+                  src: video.featured_image_url,
+                  alt: ""
+                },
                 on: {
                   click: function($event) {
                     _vm.onSelectVideo(video)

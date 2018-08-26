@@ -1,8 +1,8 @@
 <template>
     <div class="image-list">
-    		<b-container fluid class="p-4 bg-dark">
+    		<b-container fluid class="p-4 bg-light clearfix">
 
-				    <b-col v-for="image in images">
+				    <b-col v-for="(image, index) in images" class="col-sm-4 float-left">
 				      <b-img thumbnail fluid :src="image.src" alt="" v-on:click="onSelectImage(image)"/>
 				    </b-col>
 

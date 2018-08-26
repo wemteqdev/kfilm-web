@@ -26,7 +26,7 @@
     <div id="page-content-wrapper">
          <header class="main-header">
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" id="sidebar-toggle" data-toggle="push-menu" role="button">
                     <i class="fa fa-bars"></i>

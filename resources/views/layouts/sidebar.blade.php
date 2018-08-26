@@ -2,7 +2,6 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar-nav">
-
         <div class="logo">
             <a href="/">KORFILM</a>
         </div>

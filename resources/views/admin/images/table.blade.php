@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="images-table">
+<table class="table" id="images-table">
     <thead>
         <tr>
         <th>Image</th>
