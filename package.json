@@ -20,7 +20,11 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "Slidebars": "^2.0.0",
+        "bootstrap-vue": "^2.0.0-rc.11",
+        "jQuery": "^1.7.4",
         "masonry-layout": "^4.2.2",
+        "metismenu": "^2.7.9",
         "vue-masonry": "^0.11.6",
         "vue-select-image": "^1.5.0",
         "vuejs-paginate": "^2.0.1"

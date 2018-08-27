@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2aa92fab96b1f5a40d1bba200c79b7b1",
+    "content-hash": "905bbe64fe0c9defefa9d7ab59a214a1",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2309,6 +2309,52 @@
             "time": "2018-07-02T15:55:56+00:00"
         },
         {
+            "name": "patroklo/improved-links",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Patroklo/improved-links.git",
+                "reference": "bbd6687e7201cdb03ddd2efe9d49a88bce4a422e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Patroklo/improved-links/zipball/bbd6687e7201cdb03ddd2efe9d49a88bce4a422e",
+                "reference": "bbd6687e7201cdb03ddd2efe9d49a88bce4a422e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*",
+                "laravelcollective/html": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Patroklo\\ImprovedLinks\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joseba Juániz",
+                    "email": "joseba.juaniz@gmail.com"
+                }
+            ],
+            "description": "Improved links that use HTML methods when clicked.",
+            "keywords": [
+                "delete",
+                "laravel",
+                "link",
+                "patch",
+                "post",
+                "put"
+            ],
+            "time": "2017-12-18T17:10:59+00:00"
+        },
+        {
             "name": "phpseclib/phpseclib",
             "version": "2.0.11",
             "source": {
@@ -2852,6 +2898,70 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "2.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f",
+                "reference": "32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.3.0|~3.4.2|^3.5.0",
+                "phpunit/phpunit": "^5.7|6.2|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2018-08-24T13:39:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'admin.categories.store']) !!}
+                    {!! Form::open(['route' => 'admin.categories.store', 'class'=>'container-fluid']) !!}
 
                         @include('admin.categories.fields')
 

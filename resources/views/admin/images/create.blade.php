@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'admin.images.store', 'enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'admin.images.store', 'enctype'=>'multipart/form-data', 'class'=>'container-fluid']) !!}
 
                         @include('admin.images.fields')
 

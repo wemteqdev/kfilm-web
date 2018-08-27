@@ -4,12 +4,13 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-	 return $request->user();
+		return $request->user();
 	}
 
   public function auth(Request $request)
@@ -19,8 +20,9 @@ class UserController extends Controller
 	 	$username = $params['email'];
 	 	$password = $params['password'];
 
-	 	if(\Auth::attempt(['email' => $username, 'password' => $password])){
-		 	return \Auth::user()->createToken('User Token', ['admin']);
+	 	if(Auth::attempt(['email' => $username, 'password' => $password])){
+	 		$user =	Auth::user(); 
+		 	return $user->createToken('user', $user->getRoleNames()->toArray());
 	 	}
 
 	 	return response()->json(['error' => 'Invalid username or Password']);

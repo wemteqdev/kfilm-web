@@ -1,6 +1,7 @@
-<table class="table table-responsive" id="videos-table">
+<table class="table" id="videos-table">
     <thead>
         <tr>
+        <th>Featured Image</th>
         <th>Thumbnail</th>
         <th>Name</th>
         <th>Description</th>
@@ -21,6 +22,7 @@
     <tbody>
     @foreach($videos as $video)
         <tr>
+            <td><img src="{{ $video->featured_image['uri'] }}" height=150 ></td></td>
             <td><img src="{{ $video->thumbnail_url}}"/></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
@@ -38,9 +40,9 @@
             <td>
                 {!! Form::open(['route' => ['admin.videos.destroy', $video->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('admin.videos.show', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('admin.videos.edit', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    <a href="{!! route('admin.videos.show', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-eye"></i></a>
+                    <a href="{!! route('admin.videos.edit', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-edit"></i></a>
+                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

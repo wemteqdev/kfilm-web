@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'admin.videos.store']) !!}
+                    {!! Form::open(['route' => 'admin.videos.store', 'class'=>'container-fluid']) !!}
 
                         @include('admin.videos.fields')
 

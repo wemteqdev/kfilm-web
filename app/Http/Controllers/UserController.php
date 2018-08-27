@@ -19,7 +19,7 @@ class UserController extends Controller
 	 $password = $params['password'];
 
 	 if(\Auth::attempt(['email' => $username, 'password' => $password])){
-		 return \Auth::user()->createToken('my_user', []);
+		 return \Auth::user()->createToken('user', []);
 	 }
 
 	 return response()->json(['error' => 'Invalid username or Password']);

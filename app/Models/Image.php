@@ -5,35 +5,6 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @SWG\Definition(
- *      definition="Image",
- *      required={""},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="width",
- *          description="width",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="height",
- *          description="height",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="uri",
- *          description="uri",
- *          type="string"
- *      )
- * )
- */
 class Image extends Model
 {
     use SoftDeletes;
@@ -46,18 +17,16 @@ class Image extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['src'];
 
     public $fillable = [
+        'name',
+        'alt',
         'width',
         'height',
         'uri'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'width' => 'integer',
@@ -65,14 +34,13 @@ class Image extends Model
         'uri' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
+   public static $rules = [
         
     ];
+
+    public function getSrcAttribute(){
+        return $this->uri;
+    }
 
     
 }

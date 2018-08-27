@@ -20,6 +20,7 @@ class ImageRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'name',
         'width',
         'height',
         'uri'

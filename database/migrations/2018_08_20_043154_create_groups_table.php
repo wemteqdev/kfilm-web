@@ -19,6 +19,8 @@ class CreateGroupsTable extends Migration
             $table->string('description')->nullable();
             $table->string('slug');
             $table->integer('featured_image_id')->nullable();
+            $table->integer('videos_count')->nullable()->default(0);
+            
             $table->softDeletes();
             $table->timestamps();
         });
