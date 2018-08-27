@@ -15,37 +15,37 @@
         <!-- Slug Field -->
         <div class="form-group ">
             {!! Form::label('slug', 'Slug:') !!}
-            {!! Form::text('slug', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::text('slug', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Duration Field -->
         <div class="form-group ">
             {!! Form::label('duration', 'Duration:') !!}
-            {!! Form::number('duration', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::number('duration', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Width Field -->
         <div class="form-group ">
             {!! Form::label('width', 'Width:') !!}
-            {!! Form::number('width', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::number('width', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Height Field -->
         <div class="form-group ">
             {!! Form::label('height', 'Height:') !!}
-            {!! Form::number('height', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::number('height', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Vimeo Video Id Field -->
         <div class="form-group ">
             {!! Form::label('vimeo_video_id', 'Vimeo Video Id:') !!}
-            {!! Form::text('vimeo_video_id', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::text('vimeo_video_id', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Uri Field -->
         <div class="form-group ">
             {!! Form::label('uri', 'Uri:') !!}
-            {!! Form::text('uri', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+            {!! Form::text('uri', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
         <!-- Embed Field -->
@@ -119,6 +119,16 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="video-categories">
+                    <video-category-list />
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -136,7 +146,10 @@
 
 @section('scripts')
 <script type="text/javascript">
-    var selectedImage = {!! (isset($video) && $video->featured_image)?$video->featured_image->toJson(): '{}'; !!};
+
+    var Video = {!! $video->toJson() !!};
+
+    var selectedImage = Video.featured_image || {};
 
     const ImageListPopup = new Vue({ 
         el: '#image-list-popup',
@@ -150,7 +163,7 @@
         }
     });
 
-    var selectedVideo = {!! (isset($video) && $video->featured_video)?$video->featured_video->toJson(): '{}'; !!};
+    var selectedVideo = Video.featured_video || {};
 
     const VideoListPopup = new Vue({ 
         el: '#video-list-popup',
@@ -165,7 +178,12 @@
     });
 
 
-
-
+    const VideoCategories = new Vue({
+        el: '#video-categories',
+        data: {
+            categories: [],
+            available_categories: [],
+        }
+    });
 </script>>
 @endsection

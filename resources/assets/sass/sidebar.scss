@@ -3,7 +3,7 @@ body {
 }
 
 #wrapper {
-  padding-left: 0;
+  padding-left: 60px;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -18,7 +18,7 @@ body {
   z-index: 1000;
   position: fixed;
   left: 250px;
-  width: 0;
+  width: 60px;
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
@@ -27,6 +27,17 @@ body {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+
+  #menu{
+    li{
+      a > span{
+        display: none;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+      }
+    }
+  }
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -93,16 +104,25 @@ body {
 
 @media(min-width:768px) {
   #wrapper {
-    padding-left: 0;
+    padding-left: 60px
   }
   #wrapper.toggled {
     padding-left: 250px;
   }
   #sidebar-wrapper {
-    width: 0;
+    width: 60px;
   }
   #wrapper.toggled #sidebar-wrapper {
     width: 250px;
+    #menu{
+      li{
+        a > span{
+          display: inline-block;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+        }
+      }
+    }
   }
   #page-content-wrapper {
     position: relative;

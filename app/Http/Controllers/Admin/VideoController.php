@@ -80,6 +80,7 @@ class VideoController extends AppBaseController
 
     public function update($id, UpdateVideoRequest $request)
     {
+
         $video = $this->videoRepository->findWithoutFail($id);
 
         if (empty($video)) {

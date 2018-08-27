@@ -20,12 +20,9 @@ class Video extends Model
     const TYPE_OPTIONS = array(0 => 'Normal', 1 => 'Featured');
     const STATUS_OPTIONS = array(0 => 'Draft', 1 => 'Active');
 
-
     protected $dates = ['deleted_at'];
 
-
-    protected $appends = ['featured_image_url'];
-
+    protected $appends = ['featured_image_url', 'featured_video'];
 
     public $fillable = [
         'name',
@@ -43,11 +40,6 @@ class Video extends Model
         'embed'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
@@ -65,13 +57,8 @@ class Video extends Model
         'embed' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
     public function sluggable()
@@ -105,12 +92,17 @@ class Video extends Model
             return $this->featured_image->uri;
         }
 
-        return null;
+        return $this->thumbnail_url;
     }
 
     public function getFeaturedImageUrlAttribute()
     {
         return $this->featured_image_url();
+    }
+
+    public function getFeaturedVideoAttribute()
+    {
+        return $this->featured_video()->first();
     }
 
     public static function create_from_vimeo($vimeo_id)

@@ -14,4 +14,33 @@ class VideoController extends Controller
 	{
 		return new VideoCollection(Video::orderBy('created_at', 'desc')->paginate(9));
 	}
+
+	public function add_category($id, Request $request)
+	{
+		$category_id = $request->category_id;
+
+		$video = Video::find($id);
+		$category = Category::find($category_id);
+
+		if ($video->categories()->find($category_id) == null)
+		{
+			$video->categories()->attach($category_id);
+		}
+		
+		return new VideoResource($video);
+	}
+
+	public function remove_category($id, Request $request)
+	{
+		$category_id = $request->category_id;
+		$video = Video::find($id);
+		$category = Category::find($category_id);
+
+		if ($video->categories()->find($category_id) != null)
+		{
+			$video->categories()->detach($category_id);
+		}
+		
+		return new VideoResource($video);
+	}
 }

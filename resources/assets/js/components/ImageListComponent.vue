@@ -4,6 +4,7 @@
 
 				    <b-col v-for="(image, index) in images" class="col-sm-4 float-left">
 				      <b-img thumbnail fluid :src="image.src" alt="" v-on:click="onSelectImage(image)"/>
+				      <div> {{ image.name }}</div>
 				    </b-col>
 
 				</b-container>

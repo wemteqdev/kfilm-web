@@ -166,6 +166,7 @@ return [
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
         Vimeo\Laravel\VimeoServiceProvider::class,
         Patroklo\ImprovedLinks\Providers\ImprovedLinksProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*

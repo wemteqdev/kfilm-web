@@ -9860,13 +9860,6 @@ module.exports = __webpack_require__(220);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__ = __webpack_require__(100);
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(75);
 window.Vue = __webpack_require__(97);
 
@@ -9876,6 +9869,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
 
 Vue.component('image-list-popup', __webpack_require__(214));
 Vue.component('video-list-popup', __webpack_require__(217));
+Vue.component('video-category-list', __webpack_require__(226));
 
 /***/ }),
 /* 75 */
@@ -9898,9 +9892,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+var passport_token = document.head.querySelector('meta[name="passport-token"]');
+
+if (passport_token) {
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + passport_token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -50087,6 +50089,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 		data: function data() {
@@ -50151,7 +50154,9 @@ var render = function() {
                     _vm.onSelectImage(image)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("div", [_vm._v(" " + _vm._s(image.name))])
             ],
             1
           )
@@ -50240,6 +50245,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api__ = __webpack_require__(222);
 //
 //
 //
@@ -50256,6 +50262,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 		data: function data() {
@@ -50270,15 +50278,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		created: function created() {
 				this.load_page();
 		},
-		mounted: function mounted() {
-				if (typeof this.$redrawVueMasonry === 'function') {
-						this.$redrawVueMasonry();
-				}
-		},
+		mounted: function mounted() {},
 
 		methods: {
 				onSelectVideo: function onSelectVideo(video) {
-						console.log(video);
 						if (this.$parent.$parent.$options.methods.onSelectVideo) {
 								this.$parent.$parent.$options.methods.onSelectVideo(video);
 						}
@@ -50286,7 +50289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				load_page: function load_page() {
 						var _this = this;
 
-						axios.get('/api/videos?page=' + this.currentPage).then(function (response) {
+						__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].videos.index(this.currentPage).then(function (response) {
 								return response.data;
 						}).then(function (payload) {
 								_this.videos = payload.data;
@@ -50308,7 +50311,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "image-list" },
+    { staticClass: "video-list" },
     [
       _c(
         "b-container",
@@ -50330,7 +50333,9 @@ var render = function() {
                     _vm.onSelectVideo(video)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("div", [_vm._v(" " + _vm._s(video.name))])
             ],
             1
           )
@@ -50371,6 +50376,223 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 221 */,
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Api = function Api() {
+    _classCallCheck(this, Api);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Api);
+
+
+Api.images = {
+    index: function index(page) {
+        return axios.get("/api/images?page=" + page);
+    }
+};
+
+Api.group = {
+    add_video: function add_video(group_id, video_id) {
+        return axios.post("/api/groups/" + group_id + "/add_video?video_id=" + video_id);
+    },
+    remove_image: function remove_image(group_id, image_id) {
+        return axios.delete("/api/groups/" + group_id + "/remove_image?image_id=" + image_id);
+    },
+    add_image: function add_image(group_id, image_id) {
+        return axios.post("/api/groups/" + group_id + "/add_image?image_id=" + image_id);
+    },
+    update_featured_image: function update_featured_image(group_id, image_id) {
+        return axios.post("/api/groups/" + group_id + "/update_featured_image?image_id=" + image_id);
+    },
+    remove_video: function remove_video(group_id, video_id) {
+        return axios.delete("/api/groups/" + group_id + "/remove_video?video_id=" + video_id);
+    }
+};
+
+Api.videos = {
+    index: function index(page) {
+        return axios.get("/api/videos?page=" + page);
+    },
+    add_image: function add_image(video_id, image_id) {
+        return axios.post("/api/videos/" + video_id + "/add_image?image_id=" + image_id);
+    },
+    remove_image: function remove_image(video_id, image_id) {
+        return axios.delete("/api/videos/" + video_id + "/remove_image?image_id=" + image_id);
+    },
+    update_featured_image: function update_featured_image(video_id, image_id) {
+        return axios.post("/api/videos/" + video_id + "/update_featured_image?image_id=" + image_id);
+    },
+    tag: function tag(video_id, _tag) {
+        return axios.post("/api/videos/" + video_id + "/tag?tag=" + _tag);
+    },
+    untag: function untag(video_id, tag) {
+        return axios.delete("/api/videos/" + video_id + "/untag?tag=" + tag);
+    },
+    add_category: function add_category(video_id, category_slug) {
+        return axios.post("/api/videos/" + video_id + "/add_category?category_slug=" + category_slug);
+    },
+    remove_category: function remove_category(video_id, category_slug) {
+        return axios.delete("/api/videos/" + video_id + "/remove_category?category_slug=" + category_slug);
+    },
+    add_plan: function add_plan(video_id, plan_id) {
+        return axios.post("/api/videos/" + video_id + "/add_plan?plan_id=" + plan_id);
+    },
+    add_tagged_plans: function add_tagged_plans(video_id, tag) {
+        return axios.post("/api/videos/" + video_id + "/add_tagged_plans?tag=" + tag);
+    },
+    remove_plan: function remove_plan(video_id, plan_id) {
+        return axios.delete("/api/videos/" + video_id + "/remove_plan?plan_id=" + plan_id);
+    }
+};
+
+Api.categories = {
+    add_video: function add_video(category_id, video_id) {
+        return axios.post("/api/categories/" + category_id + "/add_video?video_id=" + video_id);
+    },
+    remove_video: function remove_video(category_id, video_id) {
+        return axios.delete("/api/categories/" + category_id + "/remove_video?video_id=" + video_id);
+    },
+    update_position: function update_position(category_id, target_category_id) {
+        return axios.patch("/api/categories/" + category_id + "/update_position?target_category_id=" + target_category_id);
+    },
+    update_featured_image: function update_featured_image(category_id, image_id) {
+        return axios.patch("/api/categories/" + category_id + "/update_featured_image?image_id=" + image_id);
+    }
+};
+
+/***/ }),
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(72)
+/* script */
+var __vue_script__ = __webpack_require__(227)
+/* template */
+var __vue_template__ = __webpack_require__(228)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/video/CategoryListComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7b47bb4", Component.options)
+  } else {
+    hotAPI.reload("data-v-a7b47bb4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 227 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      video_id: null,
+      categories: []
+    };
+  },
+  methods: {
+    add_category: function add_category(category_slug) {
+      var _this = this;
+
+      axios.get("/api/videos/" + video_id + "/add_category?category_slug=" + category_id).then(function (response) {
+        return response.data;
+      }).then(function (payload) {
+        _this.categories = payload.data.categories;
+      });
+    },
+    remove_category: function remove_category() {
+      var _this2 = this;
+
+      axios.get("/api/videos/" + video_id + "/remove_category?category_slug=" + category_id).then(function (response) {
+        return response.data;
+      }).then(function (payload) {
+        _this2.categories = payload.data.categories;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "clearfix" },
+    _vm._l(_vm.categories, function(category, index) {
+      return _c("b-badge", { attrs: { variant: "success" } }, [
+        _vm._v("\n\t\t\t\t" + _vm._s(category.name) + "\n\t\t\t\t"),
+        _c("a", { attrs: { href: "javascript:void(0)" } }, [
+          _c("i", { staticClass: "fa fa-close" })
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a7b47bb4", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

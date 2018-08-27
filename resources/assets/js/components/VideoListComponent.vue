@@ -1,9 +1,10 @@
 <template>
-    <div class="image-list">
+    <div class="video-list">
 				<b-container fluid class="p-4 bg-light clearfix">
 
 				    <b-col v-for="video in videos" class="col-sm-4 float-left">
 				      <b-img thumbnail fluid :src="video.featured_image_url" alt="" v-on:click="onSelectVideo(video)"/>
+				      <div> {{ video.name }}</div>
 				    </b-col>
 
 				</b-container>
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+		import Api from '../api';
     export default {
     	  data: function(){
 			  	return {
@@ -29,20 +31,18 @@
     			this.load_page();
     		},
         mounted() {
-        	if (typeof this.$redrawVueMasonry === 'function') {
-		        this.$redrawVueMasonry()
-		      }
+
         },
         methods: {
 			    onSelectVideo(video){
-			    	console.log(video);
 			    	if(this.$parent.$parent.$options.methods.onSelectVideo)
 			    	{
 			    		this.$parent.$parent.$options.methods.onSelectVideo(video)
 			    	}
 			    },
 			    load_page(){
-			    	axios.get('/api/videos?page=' + this.currentPage).then(function(response){
+
+			    	Api.videos.index(this.currentPage).then(function(response){
 	    				return response.data;
 	    			}).then((payload)=>{
 	    				this.videos = payload.data;
@@ -50,6 +50,7 @@
 	    				this.perPage = payload.meta.per_page;
 	    				this.totalRows = payload.meta.total;
 	    			});
+
 			    }
 			  }
     }
