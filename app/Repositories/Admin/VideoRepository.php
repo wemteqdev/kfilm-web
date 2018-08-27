@@ -32,7 +32,8 @@ class VideoRepository extends BaseRepository
         'featured_video_id',
         'vimeo_video_id',
         'uri',
-        'embed'
+        'embed',
+        'series_id'
     ];
 
     /**

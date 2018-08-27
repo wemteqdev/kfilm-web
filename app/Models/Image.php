@@ -5,35 +5,6 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @SWG\Definition(
- *      definition="Image",
- *      required={""},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="width",
- *          description="width",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="height",
- *          description="height",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="uri",
- *          description="uri",
- *          type="string"
- *      )
- * )
- */
 class Image extends Model
 {
     use SoftDeletes;

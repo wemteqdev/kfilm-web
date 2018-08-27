@@ -74,13 +74,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-group" id="image_field_group">
-                    <div class="blockquote alert-warning">
+                    <div class="blockquote alert-info">
                     <div id="image-list-popup">
                         {!! Form::label('featured_image_id', 'Featured Image:') !!}
                         <input name="featured_image_id" type="hidden" id="featured_image_id" class="form-control hidden" v-bind:value="selectedImage.id" />
 
                         <div v-if="selectedImage.src">
                             <img v-bind:src="selectedImage.src" width=200/>
+                            <div>@{{ selectedImage.name }}</div>
                         </div>
 
                         <br/>
@@ -95,6 +96,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-12">
                 <div class="form-group" id="video_field_group">
                     <div class="blockquote alert-warning">
@@ -104,6 +106,7 @@
 
                         <div v-if="selectedVideo.featured_image_url">
                             <img v-bind:src="selectedVideo.featured_image_url" width=200/>
+                            <div>@{{ selectedVideo.name }}</div>
                         </div>
 
                         <br/>
@@ -112,6 +115,31 @@
                         <div>
                           <b-modal id="video-list-modal" size="lg" title="Select Video">
                             <video-list-popup />
+                          </b-modal>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group" id="series_field_group">
+                    <div class="blockquote alert-danger">
+                    <div id="series-list-popup">
+                        {!! Form::label('featured_series_id', 'Series:') !!}
+                        <input name="series_id" type="hidden" id="series_id" class="form-control hidden" v-bind:value="selectedSeries.id" />
+
+                        <div v-if="selectedSeries.featured_image_url">
+                            <img v-bind:src="selectedSeries.featured_image_url" width=200/>
+                            <div>@{{ selectedSeries.name }}</div>
+                        </div>
+
+                        <br/>
+                        <b-btn v-b-modal.series-list-modal variant="primary">Select Series</b-btn>
+
+                        <div>
+                          <b-modal id="series-list-modal" size="lg" title="Select Series">
+                            <series-list-popup />
                           </b-modal>
                         </div>
                     </div>
@@ -201,5 +229,19 @@
             available_groups: {!! \App\Models\Group::all()->pluck('slug') !!},
         }
     });
-</script>>
+
+
+    var selectedSeries = Video.series || {};
+    const VideoSeriesPopup = new Vue({
+        el: '#series-list-popup',
+        data: {
+            selectedSeries: selectedSeries,
+        },
+        methods:{
+            onSelectSeries(series){
+                VideoSeriesPopup.selectedSeries = series;
+            }
+        }
+    });
+</script>
 @endsection

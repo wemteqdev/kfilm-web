@@ -9869,6 +9869,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
 
 Vue.component('image-list-popup', __webpack_require__(214));
 Vue.component('video-list-popup', __webpack_require__(217));
+Vue.component('series-list-popup', __webpack_require__(232));
+
 Vue.component('video-category-list', __webpack_require__(226));
 Vue.component('video-group-list', __webpack_require__(229));
 
@@ -50826,6 +50828,181 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-16e7a50b", module.exports)
+  }
+}
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(72)
+/* script */
+var __vue_script__ = __webpack_require__(233)
+/* template */
+var __vue_template__ = __webpack_require__(234)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/SeriesListComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1d684761", Component.options)
+  } else {
+    hotAPI.reload("data-v-1d684761", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api__ = __webpack_require__(222);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+		data: function data() {
+				return {
+						last_page: 1,
+						totalRows: 0,
+						currentPage: 1,
+						perPage: 9,
+						series: []
+				};
+		},
+		created: function created() {
+				this.load_page();
+		},
+
+		methods: {
+				onSelectSeries: function onSelectSeries(series) {
+						if (this.$parent.$parent.$options.methods.onSelectSeries) {
+								this.$parent.$parent.$options.methods.onSelectSeries(series);
+						}
+				},
+				load_page: function load_page() {
+						var _this = this;
+
+						axios.get('/api/series?page=' + this.currentPage).then(function (response) {
+								return response.data;
+						}).then(function (payload) {
+								_this.series = payload.data;
+								_this.last_page = payload.meta.last_page;
+								_this.perPage = payload.meta.per_page;
+								_this.totalRows = payload.meta.total;
+						});
+				}
+		}
+});
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "series-list" },
+    [
+      _c(
+        "b-container",
+        { staticClass: "p-4 bg-light clearfix", attrs: { fluid: "" } },
+        _vm._l(_vm.series, function(aseries) {
+          return _c(
+            "b-col",
+            { staticClass: "col-sm-4 float-left" },
+            [
+              _c("b-img", {
+                attrs: {
+                  thumbnail: "",
+                  fluid: "",
+                  src: aseries.featured_image_url,
+                  alt: ""
+                },
+                on: {
+                  click: function($event) {
+                    _vm.onSelectSeries(aseries)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", [_vm._v(" " + _vm._s(aseries.name))])
+            ],
+            1
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("b-pagination", {
+        attrs: {
+          size: "md",
+          "total-rows": _vm.totalRows,
+          "per-page": _vm.perPage
+        },
+        on: { input: _vm.load_page },
+        model: {
+          value: _vm.currentPage,
+          callback: function($$v) {
+            _vm.currentPage = $$v
+          },
+          expression: "currentPage"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1d684761", module.exports)
   }
 }
 

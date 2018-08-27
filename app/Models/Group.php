@@ -19,6 +19,8 @@ class Group extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['featured_image_url'];
+
 
     public $fillable = [
         'name',
@@ -51,6 +53,21 @@ class Group extends Model
     public function featured_image()
     {
         return $this->belongsTo('App\Models\Image', 'featured_image_id');
+    }
+
+    public function featured_image_url()
+    {
+        if ($this->featured_image)
+        {
+            return $this->featured_image->uri;
+        }
+
+        return null;
+    }
+
+    public function getFeaturedImageUrlAttribute()
+    {
+        return $this->featured_image_url();
     }
     
     public function videos()

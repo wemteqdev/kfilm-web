@@ -22,7 +22,7 @@ class Video extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups'];
+    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series'];
 
     public $fillable = [
         'name',
@@ -37,7 +37,8 @@ class Video extends Model
         'featured_video_id',
         'vimeo_video_id',
         'uri',
-        'embed'
+        'embed',
+        'series_id',
     ];
 
     protected $casts = [
@@ -123,6 +124,11 @@ class Video extends Model
     public function getGroupsAttribute()
     {
         return $this->groups()->pluck('slug');
+    }
+
+    public function getSeriesAttribute()
+    {
+        return $this->series()->first();
     }
 
 
