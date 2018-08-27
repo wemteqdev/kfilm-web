@@ -47,6 +47,15 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('admin/groups/{groups}', ['as'=> 'admin.groups.show', 'uses' => 'Admin\GroupController@show']);
 	Route::get('admin/groups/{groups}/edit', ['as'=> 'admin.groups.edit', 'uses' => 'Admin\GroupController@edit']);
 
+	Route::get('admin/series', ['as'=> 'admin.series.index', 'uses' => 'Admin\SeriesController@index']);
+	Route::post('admin/series', ['as'=> 'admin.series.store', 'uses' => 'Admin\SeriesController@store']);
+	Route::get('admin/series/create', ['as'=> 'admin.series.create', 'uses' => 'Admin\SeriesController@create']);
+	Route::put('admin/series/{series}', ['as'=> 'admin.series.update', 'uses' => 'Admin\SeriesController@update']);
+	Route::patch('admin/series/{series}', ['as'=> 'admin.series.update', 'uses' => 'Admin\SeriesController@update']);
+	Route::delete('admin/series/{series}', ['as'=> 'admin.series.destroy', 'uses' => 'Admin\SeriesController@destroy']);
+	Route::get('admin/series/{series}', ['as'=> 'admin.series.show', 'uses' => 'Admin\SeriesController@show']);
+	Route::get('admin/series/{series}/edit', ['as'=> 'admin.series.edit', 'uses' => 'Admin\SeriesController@edit']);
+
 
 	Route::get('admin/images', ['as'=> 'admin.images.index', 'uses' => 'Admin\ImageController@index']);
 	Route::post('admin/images', ['as'=> 'admin.images.store', 'uses' => 'Admin\ImageController@store']);

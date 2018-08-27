@@ -80,6 +80,11 @@ class Video extends Model
         return $this->belongsToMany('App\Models\Group');
     }
 
+    public function series()
+    {
+        return $this->belongsTo('App\Models\Series');
+    }
+
     public function featured_video()
     {
         return $this->belongsTo('App\Models\Video', 'featured_video_id');

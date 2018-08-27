@@ -6,6 +6,11 @@
     <a href="{!! route('admin.groups.index') !!}"><i class="fa fa-group"></i> <span>Groups</span></a>
 </li>
 
+
+<li class="{{ Request::is('admin/series*') ? 'active' : '' }}">
+    <a href="{!! route('admin.series.index') !!}"><i class="fa fa-group"></i> <span>Series</span></a>
+</li>
+
 <li class="{{ Request::is('admin/images*') ? 'active' : '' }}">
     <a href="{!! route('admin.images.index') !!}"><i class="fa fa-camera"></i> <span>Images</span></a>
 </li>

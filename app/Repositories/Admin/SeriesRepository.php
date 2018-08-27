@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Group;
+use App\Models\Series;
 use InfyOm\Generator\Common\BaseRepository;
 
-class GroupRepository extends BaseRepository
+class SeriesRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'name',
@@ -15,6 +15,6 @@ class GroupRepository extends BaseRepository
 
     public function model()
     {
-        return Group::class;
+        return Series::class;
     }
 }

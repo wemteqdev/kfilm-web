@@ -3,17 +3,17 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Group;
+use App\Models\Series;
 
-class CreateGroupRequest extends FormRequest
+class UpdateSeriesRequest extends FormRequest
 {
-    function authorize()
+    public function authorize()
     {
         return true;
     }
 
     public function rules()
     {
-        return Group::$rules;
+        return Series::$rules;
     }
 }

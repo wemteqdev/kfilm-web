@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupsTable extends Migration
+class CreateSeriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('series', function (Blueprint $table) {
             $table->increments('id');
+            
+            $table->integer('featured_image_id')->nullable();
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('slug');
-            $table->integer('featured_image_id')->nullable();
             $table->integer('videos_count')->nullable()->default(0);
-            
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('series');
     }
 }
