@@ -9870,6 +9870,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__["a" /* default */]);
 Vue.component('image-list-popup', __webpack_require__(214));
 Vue.component('video-list-popup', __webpack_require__(217));
 Vue.component('video-category-list', __webpack_require__(226));
+Vue.component('video-group-list', __webpack_require__(229));
 
 /***/ }),
 /* 75 */
@@ -50533,34 +50534,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      video_id: null,
-      categories: []
-    };
-  },
-  methods: {
-    add_category: function add_category(category_slug) {
-      var _this = this;
+		data: function data() {
+				return {
+						video_id: null,
+						categories: [],
+						available_categories: []
+				};
+		},
+		mounted: function mounted() {
+				this.video_id = this.$parent.video.id;
+				this.categories = this.$parent.video.categories;
+				this.available_categories = this.$parent.available_categories;
+		},
+		methods: {
+				add_category: function add_category(category_slug) {
+						var _this = this;
 
-      axios.get("/api/videos/" + video_id + "/add_category?category_slug=" + category_id).then(function (response) {
-        return response.data;
-      }).then(function (payload) {
-        _this.categories = payload.data.categories;
-      });
-    },
-    remove_category: function remove_category() {
-      var _this2 = this;
+						axios.post("/api/videos/" + this.video_id + "/add_category?category_slug=" + category_slug).then(function (response) {
+								return response.data;
+						}).then(function (payload) {
+								console.log(payload);
+								_this.categories = payload.data.categories;
+						});
+				},
+				remove_category: function remove_category(category_slug) {
+						var _this2 = this;
 
-      axios.get("/api/videos/" + video_id + "/remove_category?category_slug=" + category_id).then(function (response) {
-        return response.data;
-      }).then(function (payload) {
-        _this2.categories = payload.data.categories;
-      });
-    }
-  }
+						axios.delete("/api/videos/" + this.video_id + "/remove_category?category_slug=" + category_slug).then(function (response) {
+								return response.data;
+						}).then(function (payload) {
+								_this2.categories = payload.data.categories;
+						});
+				}
+		}
 });
 
 /***/ }),
@@ -50574,14 +50591,53 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "clearfix" },
-    _vm._l(_vm.categories, function(category, index) {
-      return _c("b-badge", { attrs: { variant: "success" } }, [
-        _vm._v("\n\t\t\t\t" + _vm._s(category.name) + "\n\t\t\t\t"),
-        _c("a", { attrs: { href: "javascript:void(0)" } }, [
-          _c("i", { staticClass: "fa fa-close" })
+    [
+      _c(
+        "div",
+        [
+          _vm._v("\n    \t\tAdd Categories\n    \t\t"),
+          _vm._l(_vm.available_categories, function(category, index) {
+            return _c("span", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: {
+                    click: function($event) {
+                      _vm.add_category(category)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(category))]
+              ),
+              _vm._v(",\n    \t\t")
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.categories, function(category, index) {
+        return _c("div", { attrs: { variant: "success" } }, [
+          _vm._v("\n\t\t\t\t" + _vm._s(category) + "\n\t\t\t\t"),
+          _c(
+            "a",
+            {
+              attrs: { href: "javascript:void(0)" },
+              on: {
+                click: function($event) {
+                  _vm.remove_category(category)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-close" })]
+          )
         ])
-      ])
-    })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -50591,6 +50647,185 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-a7b47bb4", module.exports)
+  }
+}
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(72)
+/* script */
+var __vue_script__ = __webpack_require__(230)
+/* template */
+var __vue_template__ = __webpack_require__(231)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/video/GroupListComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-16e7a50b", Component.options)
+  } else {
+    hotAPI.reload("data-v-16e7a50b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+		data: function data() {
+				return {
+						video_id: null,
+						groups: [],
+						available_groups: []
+				};
+		},
+		mounted: function mounted() {
+				this.video_id = this.$parent.video.id;
+				this.groups = this.$parent.video.groups;
+				this.available_groups = this.$parent.available_groups;
+		},
+		methods: {
+				add_group: function add_group(group_slug) {
+						var _this = this;
+
+						axios.post("/api/videos/" + this.video_id + "/add_group?group_slug=" + group_slug).then(function (response) {
+								return response.data;
+						}).then(function (payload) {
+								console.log(payload);
+								_this.groups = payload.data.groups;
+						});
+				},
+				remove_group: function remove_group(group_slug) {
+						var _this2 = this;
+
+						axios.delete("/api/videos/" + this.video_id + "/remove_group?group_slug=" + group_slug).then(function (response) {
+								return response.data;
+						}).then(function (payload) {
+								_this2.groups = payload.data.groups;
+						});
+				}
+		}
+});
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "clearfix" },
+    [
+      _c(
+        "div",
+        [
+          _vm._v("\n    \t\tAdd Groups\n    \t\t"),
+          _vm._l(_vm.available_groups, function(group, index) {
+            return _c("span", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: {
+                    click: function($event) {
+                      _vm.add_group(group)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(group))]
+              ),
+              _vm._v(",\n    \t\t")
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.groups, function(group, index) {
+        return _c("div", { attrs: { variant: "success" } }, [
+          _vm._v("\n\t\t\t\t" + _vm._s(group) + "\n\t\t\t\t"),
+          _c(
+            "a",
+            {
+              attrs: { href: "javascript:void(0)" },
+              on: {
+                click: function($event) {
+                  _vm.remove_group(group)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-close" })]
+          )
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-16e7a50b", module.exports)
   }
 }
 

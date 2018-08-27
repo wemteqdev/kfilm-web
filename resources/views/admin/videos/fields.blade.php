@@ -51,7 +51,7 @@
         <!-- Embed Field -->
         <div class="form-group ">
             {!! Form::label('embed', 'Embed:') !!}
-            {!! Form::text('embed', null, ['class' => 'form-control']) !!}
+            {!! Form::text('embed', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
          <!-- Type Field -->
@@ -72,7 +72,7 @@
     </div>
     <div class="col-lg-6">
         <div class="row">
-            <div class="col-xl-6">
+            <div class="col-lg-12">
                 <div class="form-group" id="image_field_group">
                     <div class="blockquote alert-warning">
                     <div id="image-list-popup">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6">
+            <div class="col-lg-12">
                 <div class="form-group" id="video_field_group">
                     <div class="blockquote alert-warning">
                     <div id="video-list-popup">
@@ -122,9 +122,17 @@
 
 
         <div class="row">
-            <div class="col-lg-6">
-                <div id="video-categories">
+            <div class="col-lg-12">
+                <div id="video-categories" class="blockquote alert-primary">
+                    <h5>CATEGORIES</h3>
                     <video-category-list />
+
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div id="video-groups" class="blockquote alert-primary">
+                    <h5>GROUPS</h3>
+                    <video-group-list />
 
                 </div>
             </div>
@@ -181,8 +189,16 @@
     const VideoCategories = new Vue({
         el: '#video-categories',
         data: {
-            categories: [],
-            available_categories: [],
+            video: Video,
+            available_categories: {!! \App\Models\Category::all()->pluck('slug') !!},
+        }
+    });
+
+    const VideoGroups = new Vue({
+        el: '#video-groups',
+        data: {
+            video: Video,
+            available_groups: {!! \App\Models\Group::all()->pluck('slug') !!},
         }
     });
 </script>>

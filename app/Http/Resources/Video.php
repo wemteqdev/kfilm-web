@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Video as VideoResource;
+use App\Http\Resources\Category as CategoryResource;
+
 class Video extends JsonResource
 {
     public function toArray($request)
@@ -23,7 +25,9 @@ class Video extends JsonResource
 						"vimeo_video_id"=> $this->vimeo_video_id,
 						"thumbnail_url"=> $this->thumbnail_url,
 						"uri"=> $this->uri,
-						"embed"=> $this->embed
+						"embed"=> $this->embed,
+						"categories" => $this->categories()->pluck('slug'),
+						"groups" => $this->groups()->pluck('slug')
         ];
     }
 }

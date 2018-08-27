@@ -22,7 +22,7 @@ class Video extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['featured_image_url', 'featured_video'];
+    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups'];
 
     public $fillable = [
         'name',
@@ -75,6 +75,11 @@ class Video extends Model
         return $this->belongsToMany('App\Models\Category');
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany('App\Models\Group');
+    }
+
     public function featured_video()
     {
         return $this->belongsTo('App\Models\Video', 'featured_video_id');
@@ -104,6 +109,17 @@ class Video extends Model
     {
         return $this->featured_video()->first();
     }
+
+    public function getCategoriesAttribute()
+    {
+        return $this->categories()->pluck('slug');
+    }
+
+    public function getGroupsAttribute()
+    {
+        return $this->groups()->pluck('slug');
+    }
+
 
     public static function create_from_vimeo($vimeo_id)
     {

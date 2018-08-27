@@ -33,4 +33,7 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 
 	Route::post('videos/{video_id}/add_category', ['as'=> 'admin.categories.add_video', 'uses' => 'VideoController@add_category']);
 	Route::delete('videos/{video_id}/remove_category', ['as'=> 'admin.categories.remove_video', 'uses' => 'VideoController@remove_category']);
+
+	Route::post('videos/{video_id}/add_group', ['as'=> 'admin.categories.add_group', 'uses' => 'VideoController@add_group']);
+	Route::delete('videos/{video_id}/remove_group', ['as'=> 'admin.categories.remove_group', 'uses' => 'VideoController@remove_group']);
 });
