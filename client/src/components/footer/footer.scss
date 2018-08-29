@@ -1,0 +1,146 @@
+footer {
+    background: #444444;
+    padding-top: 80px;
+  
+    .widgetBox {
+        .widgetTitle {
+            margin-bottom: 40px;
+            h5 {
+                color: #ececec;
+                margin: 0;
+                text-transform: capitalize;
+            }
+        }
+        .textwidget {
+            color: #aaaaaa;
+            font-size: 13px;
+        }
+        .widgetContent {
+            .media-object {
+                margin-bottom: 0;
+                display: block;
+                .media-object-section {
+                    .recent-img {
+                        overflow: hidden;
+                        width: 80px;
+                        height: 80px;
+                        position: relative;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            -o-object-fit: cover;
+                        }
+                        a.hover-posts span svg {
+                            font-size: 18px;
+                        }
+                    }
+                    .media-content {
+                        h6 a {
+                            font-size: 13px;
+                            font-weight: 600;
+                            color: #aaaaaa;
+                        }
+                        p {
+                            svg {
+                                color: #aaaaaa;
+                                font-size: 11px;
+                                display: inline-block;
+                                margin-right: 5px;
+                            }
+                            span {
+                                color: #aaaaaa;
+                                font-size: 11px;
+                                display: inline-block;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+  
+            form {
+                margin-bottom: 25px;
+                p {
+                    font-size: 13px;
+                    color: #aaaaaa;
+                }
+                .input {
+                    width: 100%;
+                    margin-bottom: 10px;
+                    input {
+                        background: #6c6c6c;
+                        color: #aaaaaa;
+                        margin: 0;
+                        border: 1px solid #6c6c6c;
+                        border-radius: 3px;
+                        font-size: 13px;
+                        &::placeholder {
+                            color: #aaaaaa;
+                        }
+                    }
+                }
+                button[type="submit"] {
+                    width: 100%;
+                    text-align: center;
+                    text-transform: uppercase;
+                    background: #2e2e2e;
+                    color: #aaaaaa;
+                    padding: 12px 0;
+                }
+            }
+            .social-links h5 {
+                margin-bottom: 20px;
+            }
+            .secondary-button {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                margin-right: 4px;
+                background: #6c6c6c;
+                svg {
+                    font-size: 13px;
+                    color: #aaaaaa;
+                    line-height: 13px;
+                }
+            }
+            h5 {
+                color: #ececec;
+                margin: 0;
+                text-transform: capitalize;
+            }
+        }
+        .tagcloud a {
+            display: inline-block;
+            background: #6c6c6c;
+            color: #aaaaaa;
+            font-size: 13px;
+            text-transform: capitalize;
+            padding: 10px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            line-height: 13px;
+            margin-left: 3px;
+            &:hover {
+                background-color: #e96969;
+                color: #ececec;
+            }
+        }
+    }
+    #footer-bottom {
+        background: #2e2e2e;
+        padding: 25px 0;
+        margin-top: 80px;
+        .logo {
+            margin-bottom: 10px;
+        }
+        .btm-footer-text p {
+            font-size: 13px;
+            color: #aaaaaa;
+            margin: 0;
+            line-height: 14px;
+        }
+    }
+}

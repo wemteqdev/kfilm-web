@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './left-sidebar-content.scss'
+import './content.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, ButtonGroup } from 'reactstrap';
-import VideoPost from './video-post';
+import VideoPosts from './video-posts';
 
 class VideoContent extends Component {
   constructor (props) {
@@ -43,10 +43,8 @@ class VideoContent extends Component {
               </div>
             </div>
             <div className="tab-content">
-              <div className="row">
-                <div className="item col-6 group-item-secondary-button grid-medium">
-                  <VideoPost/>
-                </div>        
+              <div>
+                <VideoPosts/>    
               </div>
             </div>
             <div className="text-center row-btn">

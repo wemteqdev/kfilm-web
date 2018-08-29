@@ -22,7 +22,7 @@ class Premium extends Component {
   render() {
     return (
       <section id="premium" className="m-0">
-        <div className="row heading">
+        <div className="row heading bgWhite">
           <div className="col-11">
             <h4><FontAwesomeIcon icon="play-circle"/>Premium Videos</h4>
           </div>
@@ -33,20 +33,22 @@ class Premium extends Component {
             </div>
           </div>
         </div>
-        <OwlCarousel ref={this.owlCarousel} id="owl-carousel" className="owl-theme" autoplay autoplayTimeout="3000" loop dots={false} margin={10} items={5} >
-          <div className="item"><img src="premium1.png" alt="1"></img></div>
-          <div className="item"><img src="premium2.png" alt="1"></img></div>
-          <div className="item"><img src="premium3.png" alt="1"></img></div>
-          <div className="item"><img src="premium4.png" alt="1"></img></div>
-          <div className="item"><img src="premium1.png" alt="1"></img></div>
-          <div className="item"><img src="premium2.png" alt="1"></img></div>
-          <div className="item"><img src="premium3.png" alt="1"></img></div>
-          <div className="item"><img src="premium4.png" alt="1"></img></div>
-          <div className="item"><img src="premium1.png" alt="1"></img></div>
-          <div className="item"><img src="premium2.png" alt="1"></img></div>
-          <div className="item"><img src="premium3.png" alt="1"></img></div>
-          <div className="item"><img src="premium4.png" alt="1"></img></div>
-        </OwlCarousel>
+        <div className="row bgWhite">
+          <OwlCarousel ref={this.owlCarousel} id="owl-carousel" className="owl-theme" autoplay autoplayTimeout="3000" loop dots={false} margin={10} items={5} >
+            <div className="item"><img src="images/premium1.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium2.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium3.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium4.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium1.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium2.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium3.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium4.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium1.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium2.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium3.png" alt="1"></img></div>
+            <div className="item"><img src="images/premium4.png" alt="1"></img></div>
+          </OwlCarousel>
+        </div>
       </section>
     );
   }
