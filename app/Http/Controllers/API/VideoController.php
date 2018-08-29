@@ -24,7 +24,8 @@ class VideoController extends Controller
 
 		if( isset($tags) )
 		{
-			$videos = Video::withAllTags($tags);
+			$videos = Video::withAnyTags($tags);
+
 		}
 
 		if( isset($keyword) )
