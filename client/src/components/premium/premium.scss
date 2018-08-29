@@ -1,0 +1,26 @@
+#premium {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+
+    .heading {
+        padding: 18px 0;
+
+        .navText {
+            margin-top: 3px;
+        }
+
+        h4 {
+            margin: 0;
+            font-size: 1.125rem;
+
+            svg {
+                display: inline-block;
+                margin-right: 11px;
+                color: #e96969;
+                font-size: 18px;
+            }
+        }
+    }
+    
+}
