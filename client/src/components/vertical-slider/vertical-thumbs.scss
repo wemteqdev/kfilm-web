@@ -71,21 +71,3 @@
 .thumbs .thumbnails a.down {
     bottom: 0;
 }
-
-#carouselControls .vert .carousel-item-next.carousel-item-left,
-#carouselControls .vert .carousel-item-prev.carousel-item-right {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-}
-
-#carouselControls .vert .carousel-item-next,
-#carouselControls .vert .active.carousel-item-right {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100% 0);
-}
-
-#carouselControls .vert .carousel-item-prev,
-#carouselControls .vert .active.carousel-item-left {
--webkit-transform: translate3d(0,-100%, 0);
-        transform: translate3d(0,-100%, 0);
-}

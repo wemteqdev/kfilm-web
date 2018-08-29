@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
-export default class VideoBox extends Component {
-  render() {
+const VideoBox = (props) => {
     return (
-      <div className="video-box thumb-border">
-        <div className="video-img-thumb">
-          <img src="2.jpg" alt="most viewed videos"/>
-          <a className="hover-posts">
-            <span><FontAwesomeIcon icon="play" />Watch Video</span>
-          </a>
+        <div className="video-box thumb-border">
+            <div className="video-img-thumb">
+                <img src={props.image} alt="most viewed videos"/>
+                <a className="hover-posts">
+                    <span><FontAwesomeIcon icon="play" />Watch Video</span>
+                </a>
+            </div>
+            <div className="video-box-content">
+            <h6><Link to={props.link}>{props.title}</Link></h6>
+            <p>
+                <span><FontAwesomeIcon icon="user" /><Link to={props.authorLink}>{props.author}</Link></span>
+                <span><FontAwesomeIcon icon="clock" />{props.date}</span>
+                <span><FontAwesomeIcon icon="eye" />{props.views}</span>
+            </p>
+            </div>
         </div>
-        <div className="video-box-content">
-          <h6><a>There are many variations of passage. </a></h6>
-          <p>
-            <span><FontAwesomeIcon icon="user" /><a>admin</a></span>
-            <span><FontAwesomeIcon icon="clock" />5 January 16</span>
-            <span><FontAwesomeIcon icon="eye" />1,862K</span>
-          </p>
-        </div>
-      </div>
     );
-  }
 }
 
+export default VideoBox;

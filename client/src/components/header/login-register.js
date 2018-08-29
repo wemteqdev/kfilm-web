@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import './topbar.scss';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class LoginRegister extends Component {
-  render() {
+const LoginRegister = () => {
     return (
-      <div className="top-button">
-        <ul className="menu float-right">
-          <li>
-              <a href="login-register.html">Register</a>
-          </li>
-          <li className="dropdown-login">
-              <a className="loginReg" href="login.html">login</a>
-          </li>
-        </ul>
-      </div>
+        <div className="top-button">
+            <ul className="menu float-right">
+            <li>
+                <Link to="/register">
+                    Register
+                </Link>
+            </li>
+            <li className="dropdown-login">
+                <Link to="/login" className="loginReg">
+                    Log in
+                </Link>
+            </li>
+            </ul>
+        </div>
     );
-  }
 }
 
 export default LoginRegister;

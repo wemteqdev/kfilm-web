@@ -8,7 +8,7 @@ import Tags from './sidebar/tags';
 class Sidebar extends Component {
   render() {
     return ( 
-      <aside className="sidebar">
+      <aside className="sidebar bgWhite">
         <div className="sidebarBg"></div>
         <div className="row">
           <div className="col-12 px-0">

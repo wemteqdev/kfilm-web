@@ -7,7 +7,7 @@ export default class MediaObject extends Component {
       <div className="media-object">
         <div className="media-object-section">
           <div className="recent-img">
-            <img src="1.jpg" alt="recent"/>
+            <img src="images/1.jpg" alt="recent"/>
             <a className="hover-posts">
               <span><FontAwesomeIcon icon="play"/></span>
             </a>

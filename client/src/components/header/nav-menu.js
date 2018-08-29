@@ -1,38 +1,48 @@
-import React, { Component } from 'react';
-import 'bootstrap/scss/bootstrap.scss'
-import './navbar.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
-class NavMenu extends Component {
-  render() {
+const NavMenu = () => {
+
+    const items = [
+        {
+            icon: 'home',
+            text: 'Home',
+            link: '/'
+        },
+        {
+            icon: 'th',
+            text: 'Category',
+            link: '/category'
+        },
+        {
+            icon: 'user',
+            text: 'About',
+            link: '/about-us'
+        },
+        {
+            icon: 'envelope',
+            text: 'Contact',
+            link: '/contact-us'
+        }
+    ]
+
+    const showItems = () => {
+        return items.map( (item, i) => {
+            return (
+                <li key={i} className='nav-item'>
+                    <Link to={item.link}><FontAwesomeIcon icon={item.icon}/> {item.text}</Link>
+                </li>
+            )
+        } )
+    }
     return (
-      <div className="top-bar-middle">
-        <ul className="menu">
-          <li className="selected">
-            <a href="" tabIndex="0"><FontAwesomeIcon icon='home' /> Home</a>
-          </li>
-          <li>
-            <a href="" tabIndex="1"><FontAwesomeIcon icon='film' /> Videos</a>
-          </li>
-          <li>
-            <a href="" tabIndex="2"><FontAwesomeIcon icon='th' /> Category</a>
-          </li>
-          <li>
-            <a href="" tabIndex="3"><FontAwesomeIcon icon='edit' /> Blog</a>
-          </li>
-          <li>
-            <a href="" tabIndex="4"><FontAwesomeIcon icon='magic' /> Features</a>
-          </li>
-          <li>
-            <a href="" tabIndex="5"><FontAwesomeIcon icon='user' /> About</a>
-          </li>
-          <li>
-            <a href="" tabIndex="6"><FontAwesomeIcon icon='envelope' /> Contact</a>
-          </li>
-        </ul>
-      </div>
+        <div className="top-bar-middle">
+            <ul className="menu">
+                { showItems() }
+            </ul>
+        </div>
     );
-  }
 }
 
 export default NavMenu;

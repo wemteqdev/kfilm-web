@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './navbar.scss';
 
 class TopBarRight extends Component {
   render() {
     return (
       <div className="top-bar-right">
-        <div className="upl-btn">
-          <a href="">UPLOAD VIDEO</a>
-        </div>
         <div className="search">
-          <a href=""><FontAwesomeIcon icon='search' /></a>
+          <Link to="search"><FontAwesomeIcon icon='search' /></Link>
         </div>
       </div>
     );
