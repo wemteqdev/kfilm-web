@@ -36,12 +36,12 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 	Route::post('categories/{category_id}/add_video', ['as'=> 'admin.categories.add_video', 'uses' => 'CategoryController@add_video']);
 	Route::delete('categories/{category_id}/remove_video', ['as'=> 'admin.categories.remove_video', 'uses' => 'CategoryController@remove_video']);
 
-	Route::post('videos/{video_id}/add_category', ['as'=> 'admin.categories.add_video', 'uses' => 'VideoController@add_category']);
-	Route::delete('videos/{video_id}/remove_category', ['as'=> 'admin.categories.remove_video', 'uses' => 'VideoController@remove_category']);
+	Route::post('videos/{video_id}/add_category', ['as'=> 'admin.videos.add_category', 'uses' => 'VideoController@add_category']);
+	Route::delete('videos/{video_id}/remove_category', ['as'=> 'admin.videos.remove_category', 'uses' => 'VideoController@remove_category']);
 
-	Route::post('videos/{video_id}/add_group', ['as'=> 'admin.categories.add_group', 'uses' => 'VideoController@add_group']);
-	Route::delete('videos/{video_id}/remove_group', ['as'=> 'admin.categories.remove_group', 'uses' => 'VideoController@remove_group']);
+	Route::post('videos/{video_id}/add_group', ['as'=> 'admin.videos.add_group', 'uses' => 'VideoController@add_group']);
+	Route::delete('videos/{video_id}/remove_group', ['as'=> 'admin.videos.remove_group', 'uses' => 'VideoController@remove_group']);
 
-	Route::post('videos/{video_id}/add_tag', ['as'=> 'admin.categories.add_tag', 'uses' => 'VideoController@add_tag']);
-	Route::delete('videos/{video_id}/remove_tag', ['as'=> 'admin.categories.remove_tag', 'uses' => 'VideoController@remove_tag']);
+	Route::post('videos/{video_id}/add_tag', ['as'=> 'admin.videos.add_tag', 'uses' => 'VideoController@add_tag']);
+	Route::delete('videos/{video_id}/remove_tag', ['as'=> 'admin.videos.remove_tag', 'uses' => 'VideoController@remove_tag']);
 });

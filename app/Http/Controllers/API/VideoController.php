@@ -55,7 +55,7 @@ class VideoController extends Controller
 
 	public function add_category($id, Request $request)
 	{
-		$category_slug = $request->category_slug;
+		$category_slug = $request->category;
 
 		$video = Video::find($id);
 		$category = Category::where('slug', $category_slug)->first();
@@ -70,7 +70,7 @@ class VideoController extends Controller
 
 	public function remove_category($id, Request $request)
 	{
-		$category_slug = $request->category_slug;
+		$category_slug = $request->category;
 		$video = Video::find($id);
 		$category = Category::where('slug', $category_slug)->first();
 
@@ -81,7 +81,7 @@ class VideoController extends Controller
 
 	public function add_group($id, Request $request)
 	{
-		$group_slug = $request->group_slug;
+		$group_slug = $request->group;
 
 		$video = Video::find($id);
 		$group = Group::where('slug', $group_slug)->first();
@@ -96,7 +96,7 @@ class VideoController extends Controller
 
 	public function remove_group($id, Request $request)
 	{
-		$group_slug = $request->group_slug;
+		$group_slug = $request->group;
 		$video = Video::find($id);
 		$group = Group::where('slug', $group_slug)->first();
 
@@ -108,10 +108,10 @@ class VideoController extends Controller
 	public function add_tag($id, Request $request)
     {
         $video = Video::findOrFail($id);
-        
+		
         if(isset($request->tag))
         {
-            $video->tag($request->tag);
+            $video->attachTag($request->tag);
         }
         
         return new VideoResource($video);
@@ -120,7 +120,7 @@ class VideoController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $video = Video::findOrFail($id);
-        $video->untag($request->tag);
+        $video->detachTag($request->tag);
 
         return new VideoResource($video);
     }

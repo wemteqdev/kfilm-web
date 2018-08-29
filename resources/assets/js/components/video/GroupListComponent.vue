@@ -32,16 +32,16 @@
 		  	this.available_groups = this.$parent.available_groups;
 		  },
       methods: {
-		    add_group(group_slug){
-		    	axios.post(`/api/videos/${this.video_id}/add_group?group_slug=${group_slug}`).then(function(response){
+		    add_group(group){
+		    	axios.post(`/api/videos/${this.video_id}/add_group?group=${group}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
     				console.log(payload);
     				this.groups = payload.data.groups;
     			});
 		    },
-		    remove_group(group_slug){
-		    	axios.delete(`/api/videos/${this.video_id}/remove_group?group_slug=${group_slug}`).then(function(response){
+		    remove_group(group){
+		    	axios.delete(`/api/videos/${this.video_id}/remove_group?group=${group}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
     				this.groups = payload.data.groups;

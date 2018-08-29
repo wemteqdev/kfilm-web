@@ -6,13 +6,12 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Cviebrock\EloquentTaggable\Taggable;
-
+use Spatie\Tags\HasTags;
 class Video extends Model
 {
     use SoftDeletes;
     use Sluggable;
-    use Taggable;
+    use HasTags;
 
     public $table = 'videos';
     
@@ -24,7 +23,7 @@ class Video extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series'];
+    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags'];
 
     public $fillable = [
         'name',
@@ -136,6 +135,11 @@ class Video extends Model
     public function getSeriesAttribute()
     {
         return $this->series()->first();
+    }
+
+    public function getTagsAttribute()
+    {
+        return $this->tags()->pluck('slug');
     }
 
     public static function create_from_vimeo($vimeo_id)

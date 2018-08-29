@@ -11,3 +11,4 @@ Vue.component('series-list-popup', require('./components/SeriesListComponent.vue
 
 Vue.component('video-category-list', require('./components/video/CategoryListComponent.vue'));
 Vue.component('video-group-list', require('./components/video/GroupListComponent.vue'));
+Vue.component('video-tag-list', require('./components/video/TagListComponent.vue'));

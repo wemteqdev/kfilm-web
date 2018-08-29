@@ -157,14 +157,18 @@
                 <div id="video-categories" class="blockquote alert-primary">
                     <h5>CATEGORIES</h3>
                     <video-category-list />
-
                 </div>
             </div>
             <div class="col-lg-12">
                 <div id="video-groups" class="blockquote alert-primary">
                     <h5>GROUPS</h3>
                     <video-group-list />
-
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div id="video-tags" class="blockquote alert-primary">
+                    <h5>Tags</h3>
+                    <video-tag-list />
                 </div>
             </div>
         </div>
@@ -233,6 +237,13 @@
         }
     });
 
+    const VideoTags = new Vue({
+        el: '#video-tags',
+        data: {
+            video: Video,
+            available_tags: {!! json_encode(\Spatie\Tags\Tag::all()->pluck('slug')) !!},
+        }
+    });
 
     var selectedSeries = Video.series || {};
     const VideoSeriesPopup = new Vue({

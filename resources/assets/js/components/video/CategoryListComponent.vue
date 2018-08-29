@@ -32,16 +32,16 @@
 		  	this.available_categories = this.$parent.available_categories;
 		  },
       methods: {
-		    add_category(category_slug){
-		    	axios.post(`/api/videos/${this.video_id}/add_category?category_slug=${category_slug}`).then(function(response){
+		    add_category(category){
+		    	axios.post(`/api/videos/${this.video_id}/add_category?category=${category}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
     				console.log(payload);
     				this.categories = payload.data.categories;
     			});
 		    },
-		    remove_category(category_slug){
-		    	axios.delete(`/api/videos/${this.video_id}/remove_category?category_slug=${category_slug}`).then(function(response){
+		    remove_category(category){
+		    	axios.delete(`/api/videos/${this.video_id}/remove_category?category=${category}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
     				this.categories = payload.data.categories;
