@@ -16,9 +16,15 @@ class CategoryController extends Controller
 		return new CategoryCollection(Category::all());
 	}
 
-	public function show($id)
+	public function show($id_or_slug)
 	{
-		return new CategoryResource(Category::find($id));
+		$category = Category::find($id_or_slug);
+
+		if($category==null){
+			$category = Category::where('slug', $id_or_slug)->firstorfail();
+		}
+		
+		return new CategoryResource($category);
 	}
 
 	public function add_video($id, Request $request)

@@ -15,8 +15,14 @@ class SeriesController extends Controller
 		return new SeriesCollection(Series::orderBy('created_at', 'desc')->paginate(9));
 	}
 
-	public function show($id)
+	public function show($id_or_slug)
 	{
-		return new SeriesResource(Series::find($id));
+		$series = Series::find($id_or_slug);
+
+		if($series==null){
+			$series = Series::where('slug', $id_or_slug)->firstorfail();
+		}
+		
+		return new SeriesResource($series);
 	}
 }

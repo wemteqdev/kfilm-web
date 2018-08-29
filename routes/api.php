@@ -27,6 +27,9 @@ Route::get('videos', 'VideoController@index');
 Route::get('categories', 'CategoryController@index');
 Route::get('images', 'ImageController@index');
 Route::get('series', 'SeriesController@index');
+Route::get('series/{id_or_slug}', 'SeriesController@show');
+Route::get('videos/{id_or_slug}', 'VideoController@show');
+Route::get('categories/{id_or_slug}', 'CategoryController@show');
 
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 	Route::post('categories/{category_id}/add_video', ['as'=> 'admin.categories.add_video', 'uses' => 'CategoryController@add_video']);

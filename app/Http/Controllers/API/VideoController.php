@@ -37,6 +37,17 @@ class VideoController extends Controller
 		return new VideoCollection($videos->paginate(9));
 	}
 
+	public function show($id_or_slug)
+	{
+		$video = Video::find($id_or_slug);
+
+		if($video==null){
+			$video = Video::where('slug', $id_or_slug)->firstorfail();
+		}
+		
+		return new VideoResource($video);
+	}
+
 	public function add_category($id, Request $request)
 	{
 		$category_slug = $request->category_slug;
