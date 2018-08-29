@@ -51069,12 +51069,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 		data: function data() {
 				return {
 						video_id: null,
 						tags: [],
+						tag: '',
 						available_tags: []
 				};
 		},
@@ -51087,17 +51091,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				add_tag: function add_tag(tag) {
 						var _this = this;
 
-						axios.post("/api/videos/" + this.video_id + "/add_tag?tag=" + tag).then(function (response) {
+						if (tag == undefined) {
+								tag = this.tag;
+						}
+						axios.post('/api/videos/' + this.video_id + '/add_tag?tag=' + tag).then(function (response) {
 								return response.data;
 						}).then(function (payload) {
-								console.log(payload);
 								_this.tags = payload.data.tags;
+								_this.tag = '';
 						});
 				},
 				remove_tag: function remove_tag(tag) {
 						var _this2 = this;
 
-						axios.delete("/api/videos/" + this.video_id + "/remove_tag?tag=" + tag).then(function (response) {
+						axios.delete('/api/videos/' + this.video_id + '/remove_tag?tag=' + tag).then(function (response) {
 								return response.data;
 						}).then(function (payload) {
 								_this2.tags = payload.data.tags;
@@ -51138,7 +51145,45 @@ var render = function() {
               ),
               _vm._v(",\n    \t\t")
             ])
-          })
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.tag,
+                expression: "tag"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.tag },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.tag = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:void(0)" },
+              on: {
+                click: function($event) {
+                  _vm.add_tag()
+                }
+              }
+            },
+            [_vm._v("Add")]
+          ),
+          _vm._v("  \n    \t")
         ],
         2
       ),

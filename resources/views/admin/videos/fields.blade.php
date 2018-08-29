@@ -241,7 +241,7 @@
         el: '#video-tags',
         data: {
             video: Video,
-            available_tags: {!! json_encode(\Spatie\Tags\Tag::all()->pluck('slug')) !!},
+            available_tags: {!! json_encode(\App\Models\Video::existingTags()->pluck('slug')) !!},
         }
     });
 

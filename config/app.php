@@ -167,6 +167,7 @@ return [
         Vimeo\Laravel\VimeoServiceProvider::class,
         Patroklo\ImprovedLinks\Providers\ImprovedLinksProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        \Conner\Tagging\Providers\TaggingServiceProvider::class,
     ],
 
     /*

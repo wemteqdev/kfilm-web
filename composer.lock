@@ -4,8 +4,121 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3a05c10e9fe5e9a39a0c4624d44938f",
+    "content-hash": "44794921c8060e9fab25fd47801e511a",
     "packages": [
+        {
+            "name": "asm89/stack-cors",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asm89/stack-cors.git",
+                "reference": "c163e2b614550aedcf71165db2473d936abbced6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/c163e2b614550aedcf71165db2473d936abbced6",
+                "reference": "c163e2b614550aedcf71165db2473d936abbced6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/http-foundation": "~2.7|~3.0|~4.0",
+                "symfony/http-kernel": "~2.7|~3.0|~4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0 || ^4.8.10",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Asm89\\Stack\\": "src/Asm89/Stack/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                }
+            ],
+            "description": "Cross-origin resource sharing library and stack middleware",
+            "homepage": "https://github.com/asm89/stack-cors",
+            "keywords": [
+                "cors",
+                "stack"
+            ],
+            "time": "2017-12-20T14:37:45+00:00"
+        },
+        {
+            "name": "barryvdh/laravel-cors",
+            "version": "v0.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-cors.git",
+                "reference": "6ba64a654b4258a3ecc11aba6614c932b3442e30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-cors/zipball/6ba64a654b4258a3ecc11aba6614c932b3442e30",
+                "reference": "6ba64a654b4258a3ecc11aba6614c932b3442e30",
+                "shasum": ""
+            },
+            "require": {
+                "asm89/stack-cors": "^1.2",
+                "illuminate/support": "5.3.x|5.4.x|5.5.x|5.6.x",
+                "php": ">=5.5.9",
+                "symfony/http-foundation": "^3.1|^4",
+                "symfony/http-kernel": "^3.1|^4"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.x",
+                "phpunit/phpunit": "^4.8|^5.2",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.11-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Cors\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Cors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
+            "keywords": [
+                "api",
+                "cors",
+                "crossdomain",
+                "laravel"
+            ],
+            "time": "2018-01-04T06:59:27+00:00"
+        },
         {
             "name": "cocur/slugify",
             "version": "v3.1",
@@ -300,16 +413,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.7.1",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a"
+                "reference": "d768d58baee9a4862ca783840eca1b9add7a7f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/b3217d58609e9c8e661cd41357a54d926c4a2a1a",
-                "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d768d58baee9a4862ca783840eca1b9add7a7f57",
+                "reference": "d768d58baee9a4862ca783840eca1b9add7a7f57",
                 "shasum": ""
             },
             "require": {
@@ -320,8 +433,9 @@
             },
             "require-dev": {
                 "alcaeus/mongo-php-adapter": "^1.1",
+                "doctrine/coding-standard": "^4.0",
                 "mongodb/mongodb": "^1.1",
-                "phpunit/phpunit": "^5.7",
+                "phpunit/phpunit": "^7.0",
                 "predis/predis": "~1.0"
             },
             "suggest": {
@@ -330,7 +444,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7.x-dev"
+                    "dev-master": "1.8.x-dev"
                 }
             },
             "autoload": {
@@ -365,12 +479,12 @@
                 }
             ],
             "description": "Caching library offering an object-oriented API for many cache backends",
-            "homepage": "http://www.doctrine-project.org",
+            "homepage": "https://www.doctrine-project.org",
             "keywords": [
                 "cache",
                 "caching"
             ],
-            "time": "2017-08-25T07:02:50+00:00"
+            "time": "2018-08-21T18:01:43+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -900,25 +1014,25 @@
         },
         {
             "name": "graham-campbell/manager",
-            "version": "v4.0.0",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
-                "reference": "95b654ac39eae15299c6c7400249c204c8ae7bf0"
+                "reference": "9aff87cb08fa57a1b471bd74d84317c2abfc0f6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/95b654ac39eae15299c6c7400249c204c8ae7bf0",
-                "reference": "95b654ac39eae15299c6c7400249c204c8ae7bf0",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/9aff87cb08fa57a1b471bd74d84317c2abfc0f6b",
+                "reference": "9aff87cb08fa57a1b471bd74d84317c2abfc0f6b",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.5.*|5.6.*",
-                "illuminate/support": "5.5.*|5.6.*",
+                "illuminate/contracts": "5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*",
                 "php": "^7.1.3"
             },
             "require-dev": {
-                "graham-campbell/analyzer": "^2.0",
+                "graham-campbell/analyzer": "^2.1",
                 "graham-campbell/testbench-core": "^3.0",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^6.5|^7.0"
@@ -926,7 +1040,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -956,7 +1070,7 @@
                 "laravel",
                 "manager"
             ],
-            "time": "2018-02-11T14:57:19+00:00"
+            "time": "2018-08-23T10:42:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1482,16 +1596,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.33",
+            "version": "v5.6.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8a708b989adc320c451ee639d812af81f884666b"
+                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8a708b989adc320c451ee639d812af81f884666b",
-                "reference": "8a708b989adc320c451ee639d812af81f884666b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/02abbe2091404ebe032a6d5a83075031b7072ebe",
+                "reference": "02abbe2091404ebe032a6d5a83075031b7072ebe",
                 "shasum": ""
             },
             "require": {
@@ -1617,7 +1731,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-08-09T20:36:39+00:00"
+            "time": "2018-08-27T13:18:24+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1929,16 +2043,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.45",
+            "version": "1.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6"
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
                 "shasum": ""
             },
             "require": {
@@ -1950,7 +2064,7 @@
             "require-dev": {
                 "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
-                "phpunit/phpunit": "^5.7"
+                "phpunit/phpunit": "^5.7.10"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -2009,7 +2123,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-05-07T08:44:23+00:00"
+            "time": "2018-08-22T07:45:22+00:00"
         },
         {
             "name": "league/oauth2-server",
@@ -2900,32 +3014,34 @@
             "time": "2018-07-19T23:38:55+00:00"
         },
         {
-            "name": "spatie/eloquent-sortable",
-            "version": "3.4.2",
+            "name": "rtconner/laravel-tagging",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "36886c9da0500104df229b148453fd346400b146"
+                "url": "https://github.com/rtconner/laravel-tagging.git",
+                "reference": "a945f2e7ef40ece795b5dd749b3325705420a90a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/36886c9da0500104df229b148453fd346400b146",
-                "reference": "36886c9da0500104df229b148453fd346400b146",
+                "url": "https://api.github.com/repos/rtconner/laravel-tagging/zipball/a945f2e7ef40ece795b5dd749b3325705420a90a",
+                "reference": "a945f2e7ef40ece795b5dd749b3325705420a90a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "~5.5.0|~5.6.0",
-                "illuminate/support": "~5.5.0|~5.6.0",
-                "php": ">=7.0"
+                "illuminate/database": ">= 5.0",
+                "illuminate/support": ">= 5.0",
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0",
-                "phpunit/phpunit": "^6.2|^7.0"
+                "mockery/mockery": "~0.9",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~4.0",
+                "vlucas/phpdotenv": "~2.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Spatie\\EloquentSortable\\": "src/"
+                    "Conner\\Tagging\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2934,41 +3050,40 @@
             ],
             "authors": [
                 {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be"
+                    "name": "Robert Conner",
+                    "email": "rtconner@smarter.bz"
                 }
             ],
-            "description": "Sortable behaviour for eloquent models",
-            "homepage": "https://github.com/spatie/eloquent-sortable",
+            "description": "Use PHP traits to extend Laravel Eloquent Models to allow Tags. Models can be marked as Taggable.",
+            "homepage": "https://smartersoftware.net/packages/laravel-tagging-taggable",
             "keywords": [
-                "behaviour",
+                "Taggable",
                 "eloquent",
                 "laravel",
-                "model",
-                "sort",
-                "sortable"
+                "laravel5",
+                "tag",
+                "tagged",
+                "tagging",
+                "tags"
             ],
-            "time": "2018-02-07T23:13:36+00:00"
+            "time": "2017-09-06T03:49:28+00:00"
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.17.0",
+            "version": "2.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f"
+                "reference": "a0e05fd4f5729d96be20dfc768c5b1a4d2586838"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f",
-                "reference": "32d1b2a8e3cd2d68e0bc572be3d9d416b56fa07f",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/a0e05fd4f5729d96be20dfc768c5b1a4d2586838",
+                "reference": "a0e05fd4f5729d96be20dfc768c5b1a4d2586838",
                 "shasum": ""
             },
             "require": {
-                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
                 "php": ">=7.0"
             },
             "require-dev": {
@@ -3012,136 +3127,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-08-24T13:39:52+00:00"
-        },
-        {
-            "name": "spatie/laravel-tags",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-tags.git",
-                "reference": "60d075d1a871b7d4fbb9253ffda5459e239735cb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/60d075d1a871b7d4fbb9253ffda5459e239735cb",
-                "reference": "60d075d1a871b7d4fbb9253ffda5459e239735cb",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
-                "php": "^7.0",
-                "spatie/eloquent-sortable": "^3.0",
-                "spatie/laravel-translatable": "^2.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^6.2|^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Tags\\TagsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Tags\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Add tags and taggable behaviour to your Laravel app",
-            "homepage": "https://github.com/spatie/laravel-tags",
-            "keywords": [
-                "laravel-tags",
-                "spatie"
-            ],
-            "time": "2018-08-27T08:12:14+00:00"
-        },
-        {
-            "name": "spatie/laravel-translatable",
-            "version": "2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "107df7d9a75046a7552a995ed3d1971a9f98f833"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/107df7d9a75046a7552a995ed3d1971a9f98f833",
-                "reference": "107df7d9a75046a7552a995ed3d1971a9f98f833",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^6.3|^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Translatable\\TranslatableServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Translatable\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Mohamed Said",
-                    "email": "theMohamedSaid@gmail.com",
-                    "role": "Original idea"
-                }
-            ],
-            "description": "A trait to make an Eloquent model hold translations",
-            "homepage": "https://github.com/spatie/laravel-translatable",
-            "keywords": [
-                "eloquent",
-                "i8n",
-                "laravel-translatable",
-                "model",
-                "multilingual",
-                "spatie",
-                "translate"
-            ],
-            "time": "2018-08-24T09:34:12+00:00"
+            "time": "2018-08-28T14:20:07+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3204,7 +3190,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -3272,7 +3258,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3325,16 +3311,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "9316545571f079c4dd183e674721d9dc783ce196"
+                "reference": "47ead688f1f2877f3f14219670f52e4722ee7052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/9316545571f079c4dd183e674721d9dc783ce196",
-                "reference": "9316545571f079c4dd183e674721d9dc783ce196",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/47ead688f1f2877f3f14219670f52e4722ee7052",
+                "reference": "47ead688f1f2877f3f14219670f52e4722ee7052",
                 "shasum": ""
             },
             "require": {
@@ -3377,11 +3363,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-03T11:13:38+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3444,7 +3430,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -3493,16 +3479,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "7d93e3547660ec7ee3dad1428ba42e8076a0e5f1"
+                "reference": "3a5c91e133b220bb882b3cd773ba91bf39989345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/7d93e3547660ec7ee3dad1428ba42e8076a0e5f1",
-                "reference": "7d93e3547660ec7ee3dad1428ba42e8076a0e5f1",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/3a5c91e133b220bb882b3cd773ba91bf39989345",
+                "reference": "3a5c91e133b220bb882b3cd773ba91bf39989345",
                 "shasum": ""
             },
             "require": {
@@ -3543,20 +3529,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-08-01T14:07:44+00:00"
+            "time": "2018-08-27T17:47:02+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "6347be5110efb27fe45ea04bf213078b67a05036"
+                "reference": "33de0a1ff2e1720096189e3ced682d7a4e8f5e35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/6347be5110efb27fe45ea04bf213078b67a05036",
-                "reference": "6347be5110efb27fe45ea04bf213078b67a05036",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/33de0a1ff2e1720096189e3ced682d7a4e8f5e35",
+                "reference": "33de0a1ff2e1720096189e3ced682d7a4e8f5e35",
                 "shasum": ""
             },
             "require": {
@@ -3630,7 +3616,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-08-01T15:30:34+00:00"
+            "time": "2018-08-28T06:17:42+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3806,16 +3792,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "f01fc7a4493572f7f506c49dcb50ad01fb3a2f56"
+                "reference": "86cdb930a6a855b0ab35fb60c1504cb36184f843"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/f01fc7a4493572f7f506c49dcb50ad01fb3a2f56",
-                "reference": "f01fc7a4493572f7f506c49dcb50ad01fb3a2f56",
+                "url": "https://api.github.com/repos/symfony/process/zipball/86cdb930a6a855b0ab35fb60c1504cb36184f843",
+                "reference": "86cdb930a6a855b0ab35fb60c1504cb36184f843",
                 "shasum": ""
             },
             "require": {
@@ -3851,7 +3837,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-03T11:13:38+00:00"
         },
         {
             "name": "symfony/psr-http-message-bridge",
@@ -3915,16 +3901,16 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "6912cfebc0ea4e7a46fdd15c9bd1f427dd39ff1b"
+                "reference": "a5784c2ec4168018c87b38f0e4f39d2278499f51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/6912cfebc0ea4e7a46fdd15c9bd1f427dd39ff1b",
-                "reference": "6912cfebc0ea4e7a46fdd15c9bd1f427dd39ff1b",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/a5784c2ec4168018c87b38f0e4f39d2278499f51",
+                "reference": "a5784c2ec4168018c87b38f0e4f39d2278499f51",
                 "shasum": ""
             },
             "require": {
@@ -3988,20 +3974,20 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-03T07:58:40+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "6fcd1bd44fd6d7181e6ea57a6f4e08a09b29ef65"
+                "reference": "fa2182669f7983b7aa5f1a770d053f79f0ef144f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/6fcd1bd44fd6d7181e6ea57a6f4e08a09b29ef65",
-                "reference": "6fcd1bd44fd6d7181e6ea57a6f4e08a09b29ef65",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/fa2182669f7983b7aa5f1a770d053f79f0ef144f",
+                "reference": "fa2182669f7983b7aa5f1a770d053f79f0ef144f",
                 "shasum": ""
             },
             "require": {
@@ -4057,20 +4043,20 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-07T12:45:11+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "69e174f4c02ec43919380171c6f7550753299316"
+                "reference": "a05426e27294bba7b0226ffc17dd01a3c6ef9777"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/69e174f4c02ec43919380171c6f7550753299316",
-                "reference": "69e174f4c02ec43919380171c6f7550753299316",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/a05426e27294bba7b0226ffc17dd01a3c6ef9777",
+                "reference": "a05426e27294bba7b0226ffc17dd01a3c6ef9777",
                 "shasum": ""
             },
             "require": {
@@ -4132,20 +4118,20 @@
                 "debug",
                 "dump"
             ],
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-02T09:24:26+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "46bc69aa91fc4ab78a96ce67873a6b0c148fd48c"
+                "reference": "b832cc289608b6d305f62149df91529a2ab3c314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/46bc69aa91fc4ab78a96ce67873a6b0c148fd48c",
-                "reference": "46bc69aa91fc4ab78a96ce67873a6b0c148fd48c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b832cc289608b6d305f62149df91529a2ab3c314",
+                "reference": "b832cc289608b6d305f62149df91529a2ab3c314",
                 "shasum": ""
             },
             "require": {
@@ -4191,7 +4177,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-18T16:52:46+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -4307,16 +4293,16 @@
         },
         {
             "name": "vimeo/vimeo-api",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/vimeo.php.git",
-                "reference": "bba82a4297690d92b8b42783c49058567d8e9858"
+                "reference": "fe9b1aa22036da8768111cfda1902b23e516460e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/bba82a4297690d92b8b42783c49058567d8e9858",
-                "reference": "bba82a4297690d92b8b42783c49058567d8e9858",
+                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/fe9b1aa22036da8768111cfda1902b23e516460e",
+                "reference": "fe9b1aa22036da8768111cfda1902b23e516460e",
                 "shasum": ""
             },
             "require": {
@@ -4350,7 +4336,7 @@
                 "video",
                 "vimeo"
             ],
-            "time": "2018-04-24T19:36:29+00:00"
+            "time": "2018-08-27T13:36:11+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4530,67 +4516,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "cviebrock/eloquent-taggable",
-            "version": "3.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cviebrock/eloquent-taggable.git",
-                "reference": "9010df4b5577321d08edceef95b9164c5575e81c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-taggable/zipball/9010df4b5577321d08edceef95b9164c5575e81c",
-                "reference": "9010df4b5577321d08edceef95b9164c5575e81c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/config": "~5.6.0",
-                "illuminate/database": "~5.6.0",
-                "illuminate/support": "~5.6.0",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.19.6",
-                "mockery/mockery": "^0.9.4",
-                "orchestra/database": "~3.6.0",
-                "orchestra/testbench": "~3.6.0",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Cviebrock\\EloquentTaggable\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Cviebrock\\EloquentTaggable\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Colin Viebrock",
-                    "email": "colin@viebrock.ca"
-                }
-            ],
-            "description": "Easy ability to tag your Eloquent models in Laravel 5.",
-            "homepage": "https://github.com/cviebrock/eloquent-taggable",
-            "keywords": [
-                "Taggable",
-                "eloquent",
-                "laravel",
-                "tag",
-                "tagging"
-            ],
-            "time": "2018-05-22T02:39:33+00:00"
-        },
         {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
@@ -4803,39 +4728,6 @@
                 "test"
             ],
             "time": "2016-01-20T08:20:44+00:00"
-        },
-        {
-            "name": "kanazaca/counter-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kanazaca/counter-cache.git",
-                "reference": "78212cbddd444546a4647c10242dea5131a02767"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kanazaca/counter-cache/zipball/78212cbddd444546a4647c10242dea5131a02767",
-                "reference": "78212cbddd444546a4647c10242dea5131a02767",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "kanazaca\\CounterCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hugo Neto",
-                    "email": "hugo.neto@grandesplanos.com"
-                }
-            ],
-            "description": "Package for Laravel to implement counter cache",
-            "time": "2016-05-25T01:35:59+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -5582,16 +5474,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.3.1",
+            "version": "7.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f9b14c17860eccb440a0352a117a81eb754cff5a"
+                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f9b14c17860eccb440a0352a117a81eb754cff5a",
-                "reference": "f9b14c17860eccb440a0352a117a81eb754cff5a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
+                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
                 "shasum": ""
             },
             "require": {
@@ -5662,7 +5554,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-08-07T06:44:28+00:00"
+            "time": "2018-08-22T06:39:21+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

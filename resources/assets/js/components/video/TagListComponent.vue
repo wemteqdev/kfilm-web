@@ -5,6 +5,9 @@
     		<span v-for="(tag, index) in available_tags">
     			<a href="javascript:void(0)" v-on:click="add_tag(tag)">{{ tag }}</a>,
     		</span>
+    		<br />
+
+    		<input type="text" v-model="tag"> <a href="javascript:void(0)" v-on:click="add_tag()" class="btn btn-primary">Add</a> &nbsp;
     	</div>
 
     	<hr/>
@@ -23,6 +26,7 @@
 		  	return {
 		  		video_id: null,
 		  		tags: [],
+		  		tag: '',
 		  		available_tags: []
 				}
 		  },
@@ -33,11 +37,15 @@
 		  },
       methods: {
 		    add_tag(tag){
+		    	if (tag == undefined)
+		    	{
+		    		tag = this.tag;
+		    	}
 		    	axios.post(`/api/videos/${this.video_id}/add_tag?tag=${tag}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
-    				console.log(payload);
     				this.tags = payload.data.tags;
+    				this.tag = '';
     			});
 		    },
 		    remove_tag(tag){

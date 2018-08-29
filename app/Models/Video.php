@@ -6,12 +6,13 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Spatie\Tags\HasTags;
+use \Conner\Tagging\Taggable;
+
 class Video extends Model
 {
     use SoftDeletes;
     use Sluggable;
-    use HasTags;
+    use Taggable;
 
     public $table = 'videos';
     
@@ -139,7 +140,7 @@ class Video extends Model
 
     public function getTagsAttribute()
     {
-        return $this->tags()->pluck('slug');
+        return $this->tagNames();
     }
 
     public static function create_from_vimeo($vimeo_id)

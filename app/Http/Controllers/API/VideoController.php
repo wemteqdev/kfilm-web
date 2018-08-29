@@ -112,7 +112,7 @@ class VideoController extends Controller
 		
         if(isset($request->tag))
         {
-            $video->attachTag($request->tag);
+            $video->tag($request->tag);
         }
         
         return new VideoResource($video);
@@ -121,7 +121,7 @@ class VideoController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $video = Video::findOrFail($id);
-        $video->detachTag($request->tag);
+        $video->untag($request->tag);
 
         return new VideoResource($video);
     }
