@@ -71,6 +71,11 @@ class Video extends Model
         ];
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category');

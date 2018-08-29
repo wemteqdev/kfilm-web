@@ -14,7 +14,22 @@ class VideoController extends Controller
 {
 	public function index(Request $request)
 	{
-		return new VideoCollection(Video::orderBy('created_at', 'desc')->paginate(9));
+		$keyword = $request->q;
+		$videos = Video::active();
+
+		if( isset($keyword) )
+		{
+			if( strlen($keyword) >= 2 )
+			{
+				$videos = $videos->where('name', 'like', '%'.$keyword.'%')
+							 ->orWhere('description', 'like', '%'.$keyword.'%');
+			} else{
+				return response()->json(['error'=>'Query length must be greater than 2'], 403);
+			}
+		}
+
+		$videos = $videos->orderBy('created_at', 'desc');
+		return new VideoCollection($videos->paginate(9));
 	}
 
 	public function add_category($id, Request $request)
