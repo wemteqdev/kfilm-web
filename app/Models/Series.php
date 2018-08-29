@@ -26,6 +26,9 @@ class Series extends Model
         'description',
         'slug',
         'featured_image_id',
+        'views_count',
+        'views_count_last_7days',
+        'views_count_last_30days',
     ];
 
     protected $casts = [

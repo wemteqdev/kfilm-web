@@ -9,16 +9,17 @@ use App\Models\Category;
 use App\Models\Group;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
-
+use Illuminate\Support\Facades\DB;
 class VideoController extends Controller
 {
 	public function index(Request $request)
 	{
 		$keyword = $request->q;
-		$category_slug = $request->category;
-		$tags = $request->tags;
-		$group_slug = $request->group;
-		$series_slug = $request->series;
+		$tags = $request->tags; //slug
+		$category = $request->category; //slug
+		$group = $request->group; //slug
+		$series = $request->series; //slug
+		$view = $request->view; // hot, popular, trending, recent
 
 		$videos = Video::active();
 
@@ -39,7 +40,16 @@ class VideoController extends Controller
 			}
 		}
 
-		$videos = $videos->orderBy('created_at', 'desc');
+		if ($view == "recent"){
+			$videos = $videos->orderBy('created_at', 'desc');
+		}elseif($view == "hot"){
+			$videos = $videos->orderBy('views_count_last_30days', 'desc');
+		}elseif($view == "popular"){
+			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
+		}elseif($view == "trending"){
+			$videos = $videos->orderBy('views_count_last_7days', 'desc');
+		}
+		
 		return new VideoCollection($videos->paginate(9));
 	}
 

@@ -26,7 +26,10 @@ class Category extends Model
         'description',
         'slug',
         'videos_count',
-        'featured_image_id'
+        'featured_image_id',
+        'views_count',
+        'views_count_last_7days',
+        'views_count_last_30days',
     ];
 
     protected $casts = [

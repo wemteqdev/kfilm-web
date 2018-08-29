@@ -42,6 +42,9 @@ class Video extends Model
         'uri',
         'embed',
         'series_id',
+        'views_count',
+        'views_count_last_7days',
+        'views_count_last_30days',
     ];
 
     protected $casts = [
