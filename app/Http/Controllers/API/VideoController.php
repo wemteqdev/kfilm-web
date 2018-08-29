@@ -16,11 +16,16 @@ class VideoController extends Controller
 	{
 		$keyword = $request->q;
 		$category_slug = $request->category;
-		$tag_slug = $request->tag;
+		$tags = $request->tags;
 		$group_slug = $request->group;
 		$series_slug = $request->series;
 
 		$videos = Video::active();
+
+		if( isset($tags) )
+		{
+			$videos = Video::withAllTags($tags);
+		}
 
 		if( isset($keyword) )
 		{
@@ -99,4 +104,24 @@ class VideoController extends Controller
 		
 		return new VideoResource($video);
 	}
+
+	public function add_tag($id, Request $request)
+    {
+        $video = Video::findOrFail($id);
+        
+        if(isset($request->tag))
+        {
+            $video->tag($request->tag);
+        }
+        
+        return new VideoResource($video);
+	}
+	
+	public function remove_tag($id, Request $request)
+    {
+        $video = Video::findOrFail($id);
+        $video->untag($request->tag);
+
+        return new VideoResource($video);
+    }
 }

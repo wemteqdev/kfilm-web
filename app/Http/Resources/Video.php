@@ -29,7 +29,8 @@ class Video extends JsonResource
 						"embed"=> $this->embed,
 						"categories" => $this->categories()->pluck('slug'),
 						"groups" => $this->groups()->pluck('slug'),
-						"series" => new SeriesShortResource(Series::find($this->series_id))
+						"series" => new SeriesShortResource(Series::find($this->series_id)),
+						"tags" => $this->tags()->pluck('normalized')
         ];
     }
 }

@@ -6,11 +6,13 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentTaggable\Taggable;
 
 class Video extends Model
 {
     use SoftDeletes;
     use Sluggable;
+    use Taggable;
 
     public $table = 'videos';
     
@@ -175,7 +177,7 @@ class Video extends Model
             $video->height = $vimeo_video['height'];
             $video->vimeo_video_id = $vimeo_id;
             $video->uri = $vimeo_video['uri'];
-            $video->thumbnail_url = $vimeo_video['pictures']['sizes'][0]['link'];
+            $video->thumbnail_url = end($vimeo_video['pictures']['sizes'])['link'];
             $video->embed = $vimeo_video['embed']['html'];
 
             $video->save();

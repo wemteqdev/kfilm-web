@@ -30,6 +30,7 @@ Route::get('series', 'SeriesController@index');
 Route::get('series/{id_or_slug}', 'SeriesController@show');
 Route::get('videos/{id_or_slug}', 'VideoController@show');
 Route::get('categories/{id_or_slug}', 'CategoryController@show');
+Route::get('tags', 'TagController@index');
 
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 	Route::post('categories/{category_id}/add_video', ['as'=> 'admin.categories.add_video', 'uses' => 'CategoryController@add_video']);
@@ -40,4 +41,7 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 
 	Route::post('videos/{video_id}/add_group', ['as'=> 'admin.categories.add_group', 'uses' => 'VideoController@add_group']);
 	Route::delete('videos/{video_id}/remove_group', ['as'=> 'admin.categories.remove_group', 'uses' => 'VideoController@remove_group']);
+
+	Route::post('videos/{video_id}/add_tag', ['as'=> 'admin.categories.add_tag', 'uses' => 'VideoController@add_tag']);
+	Route::delete('videos/{video_id}/remove_tag', ['as'=> 'admin.categories.remove_tag', 'uses' => 'VideoController@remove_tag']);
 });

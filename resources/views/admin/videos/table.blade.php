@@ -2,7 +2,6 @@
     <thead>
         <tr>
         <th>Featured Image</th>
-        <th>Thumbnail</th>
         <th>Name</th>
         <th>Description</th>
         <th>Slug</th>
@@ -22,8 +21,7 @@
     <tbody>
     @foreach($videos as $video)
         <tr>
-            <td><img src="{{ $video->featured_image['uri'] }}" height=150 ></td></td>
-            <td><img src="{{ $video->thumbnail_url}}"/></td>
+            <td><img src="{{ $video->featured_image_url()}}" height=150 ></td></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
             <td>{!! $video->slug !!}</td>
