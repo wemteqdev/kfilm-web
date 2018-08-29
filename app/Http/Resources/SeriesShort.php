@@ -11,6 +11,7 @@ class SeriesShort extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'featured_image_url' => $this->featured_image_url(),
         ];
     }

@@ -15,6 +15,11 @@ class VideoController extends Controller
 	public function index(Request $request)
 	{
 		$keyword = $request->q;
+		$category_slug = $request->category;
+		$tag_slug = $request->tag;
+		$group_slug = $request->group;
+		$series_slug = $request->series;
+
 		$videos = Video::active();
 
 		if( isset($keyword) )
