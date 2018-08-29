@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Vimeo\Laravel\Facades\Vimeo;
 use View;
+use App\Models\Video;
+use App\Observers\VideoObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         
+        Video::observe(VideoObserver::class);
         $vimeo_authorization_url = Vimeo::buildAuthorizationEndpoint('http://korfilm.loc/oauth2/redirect');
 
         View::share('vimeo_authorization_url', $vimeo_authorization_url);

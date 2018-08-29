@@ -74,4 +74,13 @@ class Group extends Model
     {
         return $this->belongsToMany('App\Models\Video');
     }
+
+    public static function update_counter_cache()
+    {
+        foreach( Group::all() as $group )
+        {
+            $group->videos_count = $group->videos()->count();
+            $group->save();
+        }
+    }
 }

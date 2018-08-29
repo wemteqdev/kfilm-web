@@ -73,5 +73,14 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Video');
     }
+
+    public static function update_counter_cache()
+    {
+        foreach( Category::all() as $category )
+        {
+            $category->videos_count = $category->videos()->count();
+            $category->save();
+        }
+    }
     
 }

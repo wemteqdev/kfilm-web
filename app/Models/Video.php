@@ -136,7 +136,6 @@ class Video extends Model
         return $this->series()->first();
     }
 
-
     public static function create_from_vimeo($vimeo_id)
     {
         $vimeo_video = Vimeo::request('/me/videos/'. $vimeo_id, [], 'GET')['body'];

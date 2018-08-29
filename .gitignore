@@ -16,3 +16,4 @@ yarn-error.log
 /package-lock.json
 /client/node_modules
 /client/build
+/composer.lock

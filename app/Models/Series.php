@@ -72,4 +72,13 @@ class Series extends Model
     {
         return $this->hasMany('App\Models\Video');
     }
+    
+    public static function update_counter_cache()
+    {
+        foreach( Series::all() as $aseries )
+        {
+            $aseries->videos_count = $aseries->videos()->count();
+            $aseries->save();
+        }
+    }
 }
