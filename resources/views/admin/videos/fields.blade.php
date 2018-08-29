@@ -86,6 +86,7 @@
 
                         <br/>
                         <b-btn v-b-modal.image-list-modal variant="primary">Select Image</b-btn>
+                        <b-btn variant="danger" v-on:click='selectedImage={}'>Unset Image</b-btn>
 
                         <div>
                           <b-modal id="image-list-modal" size="lg" title="Select Image">
@@ -111,6 +112,7 @@
 
                         <br/>
                         <b-btn v-b-modal.video-list-modal variant="primary">Select Video</b-btn>
+                        <b-btn variant="danger" v-on:click='selectedVideo={}'>Unset Image</b-btn>
 
                         <div>
                           <b-modal id="video-list-modal" size="lg" title="Select Video">
@@ -136,6 +138,7 @@
 
                         <br/>
                         <b-btn v-b-modal.series-list-modal variant="primary">Select Series</b-btn>
+                        <b-btn variant="danger" v-on:click='selectedSeries={}'>Unset Image</b-btn>
 
                         <div>
                           <b-modal id="series-list-modal" size="lg" title="Select Series">
