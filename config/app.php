@@ -168,6 +168,7 @@ return [
         Patroklo\ImprovedLinks\Providers\ImprovedLinksProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         \Conner\Tagging\Providers\TaggingServiceProvider::class,
+        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
     ],
 
     /*

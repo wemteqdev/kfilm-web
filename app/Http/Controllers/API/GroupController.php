@@ -17,6 +17,8 @@ class GroupController extends Controller
 
 	public function show($id)
 	{
-		return new GroupResource(Group::find($id));
+		$group = Group::find($id);
+		$group->addView();
+		return new GroupResource($group);
 	}
 }

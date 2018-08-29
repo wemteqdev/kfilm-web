@@ -51,6 +51,7 @@ class VideoController extends Controller
 			$video = Video::where('slug', $id_or_slug)->firstorfail();
 		}
 		
+		$video->addView();
 		return new VideoResource($video);
 	}
 

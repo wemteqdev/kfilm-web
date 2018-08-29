@@ -24,6 +24,8 @@ class CategoryController extends Controller
 			$category = Category::where('slug', $id_or_slug)->firstorfail();
 		}
 		
+		$category->addView();
+		
 		return new CategoryResource($category);
 	}
 

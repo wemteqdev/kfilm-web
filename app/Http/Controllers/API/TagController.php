@@ -18,7 +18,7 @@ class TagController extends Controller
 
 	public function popular(Request $request)
 	{
-		$tags = Tag::where('count', '>', 2)->orderBy('count', 'desc')->limit(10)->get();
+		$tags = Tag::suggested()->get();
 		return new TagCollection($tags);
 	}
 }

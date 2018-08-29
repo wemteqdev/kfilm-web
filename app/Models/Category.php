@@ -5,11 +5,12 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use CyrildeWit\EloquentViewable\Viewable;
 class Category extends Model
 {
     use SoftDeletes;
     use Sluggable;
+    use Viewable;
 
     public $table = 'categories';
     

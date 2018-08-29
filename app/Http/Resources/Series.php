@@ -14,7 +14,8 @@ class Series extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'featured_image_url' => $this->featured_image_url(),
-            'videos' => VideoResource::collection($this->videos)
+            'videos' => VideoResource::collection($this->videos),
+            "views" => $this->getUniqueViews()
         ];
     }
 }

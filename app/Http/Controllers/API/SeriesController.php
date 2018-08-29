@@ -23,6 +23,7 @@ class SeriesController extends Controller
 			$series = Series::where('slug', $id_or_slug)->firstorfail();
 		}
 		
+		$series->addView();
 		return new SeriesResource($series);
 	}
 }

@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 use \Conner\Tagging\Taggable;
-
+use CyrildeWit\EloquentViewable\Viewable;
 class Video extends Model
 {
     use SoftDeletes;
     use Sluggable;
     use Taggable;
+    use Viewable;
 
     public $table = 'videos';
     
