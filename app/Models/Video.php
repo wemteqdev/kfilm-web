@@ -140,7 +140,7 @@ class Video extends Model
 
     public function getTagsAttribute()
     {
-        return $this->tagNames();
+        return $this->tagged->pluck('tag_slug');
     }
 
     public static function create_from_vimeo($vimeo_id)

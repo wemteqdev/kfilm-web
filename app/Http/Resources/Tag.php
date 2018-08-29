@@ -10,7 +10,7 @@ class Tag extends JsonResource
     {
         return [
             'name' => $this->name,
-            'normalized' => $this->normalized
+            'slug' => $this->slug
         ];
     }
 }
