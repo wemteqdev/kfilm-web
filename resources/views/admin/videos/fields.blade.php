@@ -51,7 +51,7 @@
         <!-- Embed Field -->
         <div class="form-group ">
             {!! Form::label('embed', 'Embed:') !!}
-            {!! Form::text('embed', null, ['class' => 'form-control', 'readonly'=>true]) !!}
+            {!! Form::text('embed', null, ['class' => 'form-control']) !!}
         </div>
 
          <!-- Type Field -->
