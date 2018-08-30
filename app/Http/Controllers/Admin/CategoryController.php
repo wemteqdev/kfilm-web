@@ -131,13 +131,18 @@ class CategoryController extends AppBaseController
         return redirect(route('admin.categories.index'));
     }
 
-    /**
-     * Remove the specified Category from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+    public function update_videos_count()
+    {
+        foreach (Category::all() as $item) {
+            $item->update([
+                'videos_count' => $item->videos()->count(),
+            ]);
+        }
+
+        Flash::success('Updated videos count successfully');
+        return redirect(route('admin.categories.index'));
+    }
+
     public function destroy($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);

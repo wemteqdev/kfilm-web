@@ -163,7 +163,7 @@ class Video extends Model
 
     public function publish()
     {
-        $this->status = Video::STATUS_PUBLISHED;
+        $this->status = VideoStatus::published;
         $this->published_at = \Carbon\Carbon::now()->toDateTimeString();
         return $this->save();
     }
