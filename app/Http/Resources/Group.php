@@ -13,8 +13,8 @@ class Group extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'featured_image_url' => $this->featured_image_url(),
-            'videos' => VideoResource::collection($this->videos),
-            "views" => $this->getUniqueViews()
+            'videos_count' => $this->videos_count,
+            "views" => $this->getUniqueViews(),
         ];
     }
 }

@@ -14,46 +14,42 @@ class VideoController extends Controller
 {
 	public function index(Request $request)
 	{
-		$keyword = $request->q;
-		$tags = $request->tags; //slug
-		$category = $request->category; //slug
-		$group = $request->group; //slug
-		$series = $request->series; //slug
-		$view = $request->view; // hot, popular, trending, recent
-		$limit = $request->limit;
+		$keyword_param = $request->q;
+		$tag_param = $request->tag; //slug
+		$view_param = $request->view; // hot, popular, trending, recent
+		$limit_param = $request->limit;
 
 		$videos = Video::published();
 
-		if( isset($tags) )
+		if( isset($tag_param) )
 		{
-			$videos = Video::withAnyTags($tags);
-
+			$videos = Video::withAnyTags($tag_param);
 		}
 
-		if( isset($keyword) )
+		if( isset($keyword_param) )
 		{
-			if( strlen($keyword) >= 2 )
+			if( strlen($keyword_param) >= 2 )
 			{
-				$videos = $videos->where('name', 'like', '%'.$keyword.'%')
-							 ->orWhere('description', 'like', '%'.$keyword.'%');
+				$videos = $videos->where('name', 'like', '%'.$keyword_param.'%')
+							 ->orWhere('description', 'like', '%'.$keyword_param.'%');
 			} else{
 				return response()->json(['error'=>'Query length must be greater than 2'], 403);
 			}
 		}
 
-		if ($view == "recent"){
+		if ($view_param == "recent"){
 			$videos = $videos->orderBy('created_at', 'desc');
-		}elseif($view == "hot"){
+		}elseif($view_param == "hot"){
 			$videos = $videos->orderBy('views_count_last_30days', 'desc');
-		}elseif($view == "popular"){
+		}elseif($view_param == "popular"){
 			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
-		}elseif($view == "trending"){
+		}elseif($view_param == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
 		}
 
-		if( isset($limit) )
+		if( isset($limit_param) )
 		{
-			$videos = $videos->take($limit)->get();
+			$videos = $videos->take($limit_param)->get();
 		}else{
 			$videos = $videos->paginate(9);
 		}
