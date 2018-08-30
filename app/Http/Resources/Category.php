@@ -13,8 +13,9 @@ class Category extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'featured_image_url' => $this->featured_image_url(),
+            'views' => $this->getUniqueViews(),
+            'slug' => $this->slug,
             'videos' => VideoResource::collection($this->videos),
-            "views" => $this->getUniqueViews()
         ];
     }
 }
