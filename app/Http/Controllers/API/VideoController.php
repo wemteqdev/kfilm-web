@@ -20,6 +20,7 @@ class VideoController extends Controller
 		$group = $request->group; //slug
 		$series = $request->series; //slug
 		$view = $request->view; // hot, popular, trending, recent
+		$limit = $request->limit;
 
 		$videos = Video::active();
 
@@ -49,8 +50,15 @@ class VideoController extends Controller
 		}elseif($view == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
 		}
-		
-		return new VideoCollection($videos->paginate(9));
+
+		if( isset($limit) )
+		{
+			$videos = $videos->take($limit)->get();
+		}else{
+			$videos = $videos->paginate(9);
+		}
+
+		return new VideoCollection($videos);
 	}
 
 	public function show($id_or_slug)
