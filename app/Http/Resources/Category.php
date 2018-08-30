@@ -15,7 +15,7 @@ class Category extends JsonResource
             'featured_image_url' => $this->featured_image_url(),
             'views' => $this->getUniqueViews(),
             'slug' => $this->slug,
-            'videos' => VideoResource::collection($this->videos),
+            'videos_count' => $this->videos_count
         ];
     }
 }
