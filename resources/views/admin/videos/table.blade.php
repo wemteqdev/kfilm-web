@@ -9,7 +9,6 @@
         <th>Width</th>
         <th>Height</th>
         <th>Type</th>
-        <th>Status</th>
         <th>Featured Image Id</th>
         <th>Featured Video Id</th>
         <th>Vimeo Video Id</th>
@@ -20,7 +19,7 @@
     </thead>
     <tbody>
     @foreach($videos as $video)
-        <tr class="{{ 'published_' . ($video->status==\App\Models\Video::STATUS_PUBLISHED) }}">
+        <tr class="{{ 'published_' . ( $video->status_name == 'published' ) }}">
             <td><img src="{{ $video->featured_image_url()}}" height=150 ></td></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
@@ -28,17 +27,16 @@
             <td>{!! $video->duration !!}</td>
             <td>{!! $video->width !!}</td>
             <td>{!! $video->height !!}</td>
-            <td>{!! $video->type !!}</td>
-            <td>{!! $video->status !!}</td>
+            <td>{!! $video->type_name !!}</td>
             <td>{!! $video->featured_image_id !!}</td>
             <td>{!! $video->featured_video_id !!}</td>
             <td>{!! $video->vimeo_video_id !!}</td>
             <td>{!! $video->uri !!}</td>
             <td>
-                {{\App\Models\Video::STATUS_OPTIONS[$video->status]}}
+                {{$video->status_name}}
                 <br />
                 <br />
-                @if($video->status == \App\Models\Video::STATUS_PUBLISHED)
+                @if($video->status_name == 'published')
                     <span>published at: {!! $video->published_at->diffForHumans(); !!}</span>
                     <br />
                     <br />

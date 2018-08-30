@@ -10,20 +10,26 @@ use App\Models\Group;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
+use App\Enums\VideoType;
 class VideoController extends Controller
 {
 	public function index(Request $request)
 	{
 		$keyword_param = $request->q;
-		$tag_param = $request->tag; //slug
+		$tag_param = $request->tag; // slug
 		$view_param = $request->view; // hot, popular, trending, recent
 		$limit_param = $request->limit;
+		$type_param = $request->type; // normal, featured, promotion, recommended
 
 		$videos = Video::published();
+		if ( isset($type_param) )
+		{
+			$videos = $videos->where('type', VideoType::getValue($type_param));
+		}
 
 		if( isset($tag_param) )
 		{
-			$videos = Video::withAnyTag($tag_param);
+			$videos = $videos->withAnyTag($tag_param);
 		}
 
 		if( isset($keyword_param) )

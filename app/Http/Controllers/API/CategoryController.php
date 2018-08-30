@@ -64,14 +64,20 @@ class CategoryController extends Controller
 		$tag_param = $request->tag; //slug
 		$view_param = $request->view; // hot, popular, trending, recent
 		$limit_param = $request->limit;
+		$type_param = $request->type; // normal, featured, promotion, recommended
 
 		$category = Category::find_by_id_or_slug($id_or_slug);
 
 		$videos = $category->videos()->published();
 
+		if ( isset($type_param) )
+		{
+			$videos = $videos->where('type', VideoType::getValue($type_param));
+		}
+
 		if( isset($tag_param) )
 		{
-			$videos = Video::withAnyTag($tag_param);
+			$videos = $videos->withAnyTag($tag_param);
 		}
 
 		if( isset($keyword_param) )

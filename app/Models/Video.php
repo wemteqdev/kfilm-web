@@ -8,6 +8,8 @@ use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
+use App\Enums\VideoType;
+use App\Enums\VideoStatus;
 class Video extends Model
 {
     use SoftDeletes;
@@ -19,20 +21,8 @@ class Video extends Model
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
-    const TYPE_NORMAL = 0;
-    const TYPE_FEATURED = 1;
-    
-    const STATUS_DRAFT = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_PUBLISHED = 2;
-
-    const TYPE_OPTIONS = array(0 => 'Normal', 1 => 'Featured');
-    const STATUS_OPTIONS = array(0 => 'Draft', 1 => 'Active', 2 => 'Published');
-
     protected $dates = ['deleted_at'];
-
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags'];
+    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags', 'status_name', 'type_name'];
 
     public $fillable = [
         'name',
@@ -88,14 +78,22 @@ class Video extends Model
         ];
     }
 
+    public function getStatusNameAttribute() {
+        return VideoStatus::getKey($this->status);
+    }
+
+    public function getTypeNameAttribute() {
+        return VideoType::getKey($this->type);
+    }
+
     public function scopePublished($query)
     {
-        return $query->where('status', Video::STATUS_PUBLISHED);
+        return $query->where('status', VideoStatus::published);
     }
 
     public function scopeActive($query)
     {
-        return $query->where('status', Video::STATUS_ACTIVE);
+        return $query->where('status', VideoStatus::active);
     }
 
     public function categories()

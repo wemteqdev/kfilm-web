@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e99d29690e747b72ed0dcf6a060f9409",
+    "content-hash": "961663625193430781c1f310806f09b1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -118,6 +118,67 @@
                 "laravel"
             ],
             "time": "2018-01-04T06:59:27+00:00"
+        },
+        {
+            "name": "bensampo/laravel-enum",
+            "version": "1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BenSampo/laravel-enum.git",
+                "reference": "0cd40c564caeb06b0c2d4d6cd280ef0b9de1bf20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/0cd40c564caeb06b0c2d4d6cd280ef0b9de1bf20",
+                "reference": "0cd40c564caeb06b0c2d4d6cd280ef0b9de1bf20",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": "~7.0"
+            },
+            "require-dev": {
+                "laravel/framework": "~5.1",
+                "phpunit/phpunit": ">=5.4.3",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "BenSampo\\Enum\\EnumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BenSampo\\Enum\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Sampson",
+                    "homepage": "https://sampo.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package adds support for creating enums in PHP and includes a generator for Laravel.",
+            "homepage": "https://github.com/bensampo/laravel-enum",
+            "keywords": [
+                "bensampo",
+                "enum",
+                "laravel",
+                "package",
+                "validation"
+            ],
+            "time": "2018-08-10T20:52:43+00:00"
         },
         {
             "name": "cocur/slugify",
