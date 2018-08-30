@@ -22,7 +22,7 @@ class VideoController extends Controller
 		$view = $request->view; // hot, popular, trending, recent
 		$limit = $request->limit;
 
-		$videos = Video::active();
+		$videos = Video::published();
 
 		if( isset($tags) )
 		{

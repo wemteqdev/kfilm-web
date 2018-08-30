@@ -31,7 +31,9 @@ class Video extends JsonResource
 						"groups" => $this->groups()->pluck('slug'),
 						"series" => new SeriesShortResource(Series::find($this->series_id)),
 						"tags" => $this->tagged->pluck('tag_slug'),
-						"views" => $this->getUniqueViews()
+						"views" => $this->getUniqueViews(),
+						"year" => $this->year,
+						"published_at" => $this->published_at,
         ];
     }
 }

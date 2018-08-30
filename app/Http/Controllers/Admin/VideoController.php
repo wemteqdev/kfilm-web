@@ -96,6 +96,20 @@ class VideoController extends AppBaseController
         return redirect(route('admin.videos.index'));
     }
 
+    public function publish($id, Request $request)
+    {
+        $video = Video::findOrFail($id);
+        
+        if( $video->publish())
+        {
+            Flash::success('Video published successfully.'); 
+        }else{
+            Flash::error('Something went wrong.'); 
+        }
+        
+        return redirect(route('admin.videos.index'));
+    }
+
     public function sync_vimeo_videos()
     {
         Vimeo::setToken(session('vimeo_access_token'));

@@ -20,8 +20,15 @@ class Video extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    const TYPE_NORMAL = 0;
+    const TYPE_FEATURED = 1;
+    
+    const STATUS_DRAFT = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_PUBLISHED = 2;
+
     const TYPE_OPTIONS = array(0 => 'Normal', 1 => 'Featured');
-    const STATUS_OPTIONS = array(0 => 'Draft', 1 => 'Active');
+    const STATUS_OPTIONS = array(0 => 'Draft', 1 => 'Active', 2 => 'Published');
 
     protected $dates = ['deleted_at'];
 
@@ -45,6 +52,8 @@ class Video extends Model
         'views_count',
         'views_count_last_7days',
         'views_count_last_30days',
+        'year',
+        'published_at',
     ];
 
     protected $casts = [
@@ -61,7 +70,9 @@ class Video extends Model
         'featured_video_id' => 'integer',
         'vimeo_video_id' => 'string',
         'uri' => 'string',
-        'embed' => 'string'
+        'embed' => 'string',
+        'year' => 'integer',
+        'published_at' => 'datetime',
     ];
 
     public static $rules = [
@@ -77,9 +88,14 @@ class Video extends Model
         ];
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('status', Video::STATUS_PUBLISHED);
+    }
+
     public function scopeActive($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', Video::STATUS_ACTIVE);
     }
 
     public function categories()
@@ -145,6 +161,13 @@ class Video extends Model
     public function getTagsAttribute()
     {
         return $this->tagged->pluck('tag_slug');
+    }
+
+    public function publish()
+    {
+        $this->status = Video::STATUS_PUBLISHED;
+        $this->published_at = \Carbon\Carbon::now()->toDateTimeString();
+        return $this->save();
     }
 
     public static function create_from_vimeo($vimeo_id)

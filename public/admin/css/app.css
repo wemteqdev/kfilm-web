@@ -10067,3 +10067,7 @@ body {
   border-left: 3px solid;
   padding: 20px;
 }
+
+.published_1 {
+  background: #eee;
+}

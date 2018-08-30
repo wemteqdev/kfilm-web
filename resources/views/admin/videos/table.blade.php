@@ -14,13 +14,13 @@
         <th>Featured Video Id</th>
         <th>Vimeo Video Id</th>
         <th>Uri</th>
-        <th>Embed</th>
+        <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
     @foreach($videos as $video)
-        <tr>
+        <tr class="{{ 'published_' . ($video->status==\App\Models\Video::STATUS_PUBLISHED) }}">
             <td><img src="{{ $video->featured_image_url()}}" height=150 ></td></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
@@ -34,7 +34,18 @@
             <td>{!! $video->featured_video_id !!}</td>
             <td>{!! $video->vimeo_video_id !!}</td>
             <td>{!! $video->uri !!}</td>
-            <td><div hidden>{{ $video->embed }}</div></td>
+            <td>
+                {{\App\Models\Video::STATUS_OPTIONS[$video->status]}}
+                <br />
+                <br />
+                @if($video->status == \App\Models\Video::STATUS_PUBLISHED)
+                    <span>published at: {!! $video->published_at->diffForHumans(); !!}</span>
+                    <br />
+                    <br />
+                @endif
+
+                <span> created at: {!! $video->created_at->diffForHumans() !!} </span>
+            </td>
             <td>
                 {!! Form::open(['route' => ['admin.videos.destroy', $video->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
