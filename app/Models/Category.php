@@ -78,6 +78,17 @@ class Category extends Model
         return $this->belongsToMany('App\Models\Video');
     }
 
+    public static function find_by_id_or_slug($id_or_slug)
+    {
+        $category = Category::find($id_or_slug);
+
+		if($category==null){
+			$category = Category::where('slug', $id_or_slug)->first();
+        }
+        
+        return $category;
+    }
+
     public static function update_counter_cache()
     {
         foreach( Category::all() as $category )

@@ -30,6 +30,7 @@ Route::get('series', 'SeriesController@index');
 Route::get('series/{id_or_slug}', 'SeriesController@show');
 Route::get('videos/{id_or_slug}', 'VideoController@show');
 Route::get('categories/{id_or_slug}', 'CategoryController@show');
+Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
 Route::get('tags', 'TagController@index');
 
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){

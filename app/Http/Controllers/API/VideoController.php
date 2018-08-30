@@ -23,7 +23,7 @@ class VideoController extends Controller
 
 		if( isset($tag_param) )
 		{
-			$videos = Video::withAnyTags($tag_param);
+			$videos = Video::withAnyTag($tag_param);
 		}
 
 		if( isset($keyword_param) )

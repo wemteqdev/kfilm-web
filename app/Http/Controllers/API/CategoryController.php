@@ -8,7 +8,8 @@ use App\Models\Category;
 use App\Models\Video;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\Category as CategoryResource;
-
+use App\Http\Resources\VideoCollection;
+use App\Http\Resources\Video as VideoResource;
 class CategoryController extends Controller
 {
 	public function index(Request $request)
@@ -55,5 +56,52 @@ class CategoryController extends Controller
 		}
 		
 		return 	new CategoryResource($category);
+	}
+
+	public function videos($id_or_slug, Request $request)
+	{
+		$keyword_param = $request->q;
+		$tag_param = $request->tag; //slug
+		$view_param = $request->view; // hot, popular, trending, recent
+		$limit_param = $request->limit;
+
+		$category = Category::find_by_id_or_slug($id_or_slug);
+
+		$videos = $category->videos()->published();
+
+		if( isset($tag_param) )
+		{
+			$videos = Video::withAnyTag($tag_param);
+		}
+
+		if( isset($keyword_param) )
+		{
+			if( strlen($keyword_param) >= 2 )
+			{
+				$videos = $videos->where('name', 'like', '%'.$keyword_param.'%')
+							 ->orWhere('description', 'like', '%'.$keyword_param.'%');
+			} else{
+				return response()->json(['error'=>'Query length must be greater than 2'], 403);
+			}
+		}
+
+		if ($view_param == "recent"){
+			$videos = $videos->orderBy('created_at', 'desc');
+		}elseif($view_param == "hot"){
+			$videos = $videos->orderBy('views_count_last_30days', 'desc');
+		}elseif($view_param == "popular"){
+			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
+		}elseif($view_param == "trending"){
+			$videos = $videos->orderBy('views_count_last_7days', 'desc');
+		}
+
+		if( isset($limit_param) )
+		{
+			$videos = $videos->take($limit_param)->get();
+		}else{
+			$videos = $videos->paginate(9);
+		}
+
+		return new VideoCollection($videos);
 	}
 }
