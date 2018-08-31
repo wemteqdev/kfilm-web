@@ -10,10 +10,10 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-		return $request->user();
+		return new UserResource($request->user());
 	}
 
-  public function auth(Request $request)
+    public function auth(Request $request)
 	{
 	 	$params = $request->only('email', 'password');
 
@@ -22,13 +22,11 @@ class UserController extends Controller
 
 	 	if(Auth::attempt(['email' => $username, 'password' => $password])){
 			$user =	Auth::user(); 
-			$success['token'] =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
-			$success['user'] =  new UserResource($user);
-		 
-			return $success;
+			$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
+			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}
 
-	 	return response()->json(['error' => 'Invalid username or Password']);
+	 	return response()->json(['error' => 'Invalid username or Password'], 401);
 	}
 
 	public function register(Request $request) 
@@ -36,8 +34,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [ 
             'name' => 'required', 
             'email' => 'required|email', 
-            'password' => 'required', 
-            'confirm_password' => 'required|same:password', 
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
         ]);
 		if ($validator->fails()) { 
 			return response()->json(['error'=>$validator->errors()], 401);            
@@ -46,11 +44,10 @@ class UserController extends Controller
 		$input['password'] = bcrypt($input['password']); 
 		
 		$user = User::create($input);
+
 		$user->assignRole('free');
+		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
 
-		$success['token'] =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
-		$success['user'] =  $user;
-
-		return response()->json(['success'=>$success], 200); 
+		return (new UserResource($user))->additional(['access_token' => $token]);
     }
 }
