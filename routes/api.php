@@ -34,10 +34,10 @@ Route::get('videos/{id_or_slug}', 'VideoController@show');
 Route::get('categories/{id_or_slug}', 'CategoryController@show');
 Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
 Route::get('tags', 'TagController@index');
+Route::get('products', 'ProductController@index');
 
-Route::get('plans', 'PlanController@index');
 Route::group(['middleware' => ['auth:api']], function(){
-	Route::post('plans/{plan_id}/subscribe', 'PlanController@subscribe');
+	Route::post('plans/{plan_id}/subscribe', ['as'=>'plans.subscribe', 'uses' => 'PlanController@subscribe']);
 });
 
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){

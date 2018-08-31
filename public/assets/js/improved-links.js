@@ -24,6 +24,7 @@ jQuery.fn.methodLink = function () {
 
         var $zelda = $('<form/>', {method: method, action: action});
         var target = $link.attr('target');
+
         if (target) {
             $zelda.attr('target', target);
         }
@@ -47,7 +48,3 @@ jQuery.fn.methodLink = function () {
     });
 
 };
-
-jQuery(document).ready(function ($) {
-    $('a.method-link').methodLink();
-});

@@ -34,12 +34,14 @@
                 </a>
 
                 <div>
-                    @if (Auth::user())
-                    @endif
-                    <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">
-                        <i class="fa fa-circle text-success"></i> 
-                        <span>Authorize Vimeo</span>
-                    </a>
+                    
+                    {!! Form::open(['method' => 'POST', 'route' => 'logout']) !!}
+                        @if (Auth::user())
+                            <button type="submit" class="btn btn-warning">Logout</button>
+                        @endif
+                    {!! Form::close() !!}
+                    
+                    
                 </div>
             </nav>
         </header>
@@ -60,22 +62,11 @@
 
     <script type="text/javascript">
         ( function ( $ ) {
-            // Initialize Slidebars
-            // var controller = new slidebars();
-            // controller.init();
-            // controller.open();
-            // $( '.sidebar-toggle' ).on( 'click', function ( event ) {
-            //   event.stopPropagation();
-            //   event.preventDefault();
-            //   controller.toggle( 'sidebar-main' );
-            // });
-
              $("#menu").metisMenu();
              $("#sidebar-toggle").click(function(e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
-
         } ) ( jQuery );
     </script>
     @yield('scripts')

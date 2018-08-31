@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Plans</h1>
+        <h1 class="pull-left">Products</h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                @include('admin.plans.table')
+                @include('admin.products.table')
             </div>
         </div>
         <div class="text-center">

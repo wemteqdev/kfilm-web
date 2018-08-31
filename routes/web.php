@@ -23,7 +23,9 @@ Route::get('/oauth2/redirect', 'HomeController@oauth2_callback');
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function(){
-	Route::get('admin/dashboard', 'Admin\DashboardController@index');
+	Route::get('admin/dashboard', ['as'=> 'admin.dashboard', 'uses' => 'Admin\DashboardController@index']);
+
+	Route::get('admin/products', ['as'=> 'admin.products.index', 'uses' => 'Admin\ProductController@index']);
 
 	Route::get('admin/plans', ['as'=> 'admin.plans.index', 'uses' => 'Admin\PlanController@index']);
 	Route::put('admin/plans/sync_stripe_plans', ['as'=> 'admin.plans.sync_stripe_plans', 'uses' => 'Admin\PlanController@sync_stripe_plans']);

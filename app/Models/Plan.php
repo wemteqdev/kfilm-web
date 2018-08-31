@@ -14,8 +14,6 @@ class Plan extends Model
 
     protected $dates = ['deleted_at'];
     
-    protected $appends = ['featured_image_url'];
-
     public $fillable = [
         'id',
         'active',
@@ -25,6 +23,7 @@ class Plan extends Model
         'interval_count',
         'livemode',
         'nickname',
+        'product',
         'trial_period_days',
         'featured_image_id'
     ];
@@ -38,19 +37,9 @@ class Plan extends Model
        'id' => 'required' 
     ];
 
-    public function featured_image()
+    public function product()
     {
-        return $this->belongsTo('App\Models\Image', 'featured_image_id');
-    }
-
-    public function featured_image_url()
-    {
-        if ($this->featured_image)
-        {
-            return $this->featured_image->uri;
-        }
-
-        return null;
+        return $this->belongsTo('App\Models\Product', 'product');
     }
 
     public static function create_plans_from_stripe()
@@ -75,6 +64,7 @@ class Plan extends Model
             $plan->interval_count = $stripe_plan->interval_count;
             $plan->livemode = $stripe_plan->livemode;
             $plan->nickname = $stripe_plan->nickname;
+            $plan->product = $stripe_plan->product;
             $plan->trial_period_days = $stripe_plan->trial_period_days;
             $plan->save();
         }

@@ -5,7 +5,6 @@
         <h1 class="pull-left">Videos</h1>
         <h1 class="pull-right">
            <a class="btn btn-primary" href="{!! route('admin.videos.create') !!}">Add New</a>
-           {{ Html::methodLink("PUT", route('admin.videos.sync_vimeo_videos'), 'Sync From Vimeo', [ 'class'=> 'btn btn-warning']) }}
         </h1>
     </section>
     <div class="content">

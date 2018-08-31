@@ -1,3 +1,6 @@
+<li class="{{ Request::is('admin/dashboard*') ? 'active' : '' }}">
+    <a href="{!! route('admin.dashboard') !!}"><i class="fa fa-film"></i> <span>Dashboard</span></a>
+</li>
 <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
     <a href="{!! route('admin.categories.index') !!}"><i class="fa fa-tag"></i> <span>Categories</span></a>
 </li>
@@ -17,4 +20,12 @@
 
 <li class="{{ Request::is('admin/videos*') ? 'active' : '' }}">
     <a href="{!! route('admin.videos.index') !!}"><i class="fa fa-film"></i> <span>Videos</span></a>
+</li>
+
+<li class="{{ Request::is('admin/products*') ? 'active' : '' }}">
+    <a href="{!! route('admin.products.index') !!}"><i class="fa fa-film"></i> <span>Products</span></a>
+</li>
+
+<li class="{{ Request::is('admin/plans*') ? 'active' : '' }}">
+    <a href="{!! route('admin.plans.index') !!}"><i class="fa fa-film"></i> <span>Plans</span></a>
 </li>
