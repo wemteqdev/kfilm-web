@@ -22,7 +22,7 @@ class CreatePlansTable extends Migration
             $table->integer('interval_count');
             $table->boolean('livemode');
             $table->string('nickname');
-            $table->string('product');
+            $table->string('product_id');
             $table->integer('status')->nullable()->default(0);
             $table->integer('trial_period_days')->nullable()->default(0);
             $table->timestamps();

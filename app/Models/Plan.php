@@ -23,7 +23,7 @@ class Plan extends Model
         'interval_count',
         'livemode',
         'nickname',
-        'product',
+        'product_id',
         'trial_period_days',
         'featured_image_id'
     ];
@@ -64,7 +64,7 @@ class Plan extends Model
             $plan->interval_count = $stripe_plan->interval_count;
             $plan->livemode = $stripe_plan->livemode;
             $plan->nickname = $stripe_plan->nickname;
-            $plan->product = $stripe_plan->product;
+            $plan->product_id = $stripe_plan->product;
             $plan->trial_period_days = $stripe_plan->trial_period_days;
             $plan->save();
         }

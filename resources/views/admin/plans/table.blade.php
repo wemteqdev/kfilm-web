@@ -41,7 +41,7 @@ var checkoutHandler = StripeCheckout.configure({
                             amount: {{ $plan->amount }},
                             token: function(token){
                                 console.log(token);
-                                axios.post("/api/plans/{{$plan->id}}/subscribe", {
+                                axios.post("/api/products/{{ $plan->product }}/plans/{{$plan->id}}/subscribe", {
                                     stripeToken: token.id,
                                 })
                                 .then(output => {
