@@ -12,9 +12,12 @@ class UsersTableSeeder extends Seeder
             'email'=> 'admin1@email.com'
         ]);
 
-
-
-			$role = Role::create(['guard_name'=>'api', 'name' => 'admin']);
-			$admin->assignRole($role);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'admin']);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'free']);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'plus']);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'pro']);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'business']);
+        $role = Role::create(['guard_name'=>'api', 'name' => 'premium']);
+        $admin->assignRole($role);
     }
 }

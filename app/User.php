@@ -26,6 +26,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'roles'
     ];
+
+    protected $appends = ['role_names'];
+
+    public function getRoleNamesAttribute()
+    {
+        return $this->getRoleNames();
+    }
+
 }

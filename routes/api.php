@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth:api']], function(){
 });
 
 Route::post('auth', 'UserController@auth');
+Route::post('register', 'API\UserController@register');
+
 Route::get('videos', 'VideoController@index');
 Route::get('categories', 'CategoryController@index');
 Route::get('images', 'ImageController@index');
