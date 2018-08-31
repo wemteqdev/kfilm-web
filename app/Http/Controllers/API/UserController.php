@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use Auth;
+use Validator;
+use App\User;
 class UserController extends Controller
 {
 	public function index(Request $request)
@@ -45,7 +47,6 @@ class UserController extends Controller
 		
 		$user = User::create($input);
 
-		$user->assignRole('free');
 		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
 
 		return (new UserResource($user))->additional(['access_token' => $token]);
