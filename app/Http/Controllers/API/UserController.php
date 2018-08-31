@@ -46,8 +46,9 @@ class UserController extends Controller
 		$input['password'] = bcrypt($input['password']); 
 		
 		$user = User::create($input);
+		$user->assignRole('free');
 
-		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
+		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken;
 
 		return (new UserResource($user))->additional(['access_token' => $token]);
     }

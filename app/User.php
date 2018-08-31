@@ -12,20 +12,13 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
     use HasRoles;
     use Billable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+    protected $guard_name = 'api';
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token', 'roles'
     ];

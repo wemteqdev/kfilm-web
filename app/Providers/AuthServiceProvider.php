@@ -32,10 +32,9 @@ class AuthServiceProvider extends ServiceProvider
         
         Passport::tokensCan([
             'admin' => 'admin',
-            'basic' => 'basic',
-            'plus' => 'plus',
+            'free' => 'free',
             'pro' => 'pro',
-            'business' => 'business'
+            'premium' => 'premium'
         ]);
 
         //
