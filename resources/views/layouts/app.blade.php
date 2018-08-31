@@ -33,10 +33,15 @@
                     <i class="fa fa-bars"></i>
                 </a>
 
-                <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">
-                    <i class="fa fa-circle text-success"></i> 
-                    <span>Authorize Vimeo</span>
-                </a>
+                <div>
+                    @if (Auth::user())
+                        {{ Html::methodLink("POST", route('logout'), 'Logout', [ 'class'=> 'btn btn-warning mr-1']) }}
+                    @endif
+                    <a href="{{ $vimeo_authorization_url }}" class="btn btn-warning">
+                        <i class="fa fa-circle text-success"></i> 
+                        <span>Authorize Vimeo</span>
+                    </a>
+                </div>
             </nav>
         </header>
 

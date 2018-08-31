@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\CreateImageRequest;
 use App\Http\Requests\Admin\UpdateImageRequest;
 use App\Repositories\Admin\ImageRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Storage;
 
-class ImageController extends AppBaseController
+class ImageController extends AdminBaseController
 {
     /** @var  ImageRepository */
     private $imageRepository;

@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\CreateGroupRequest;
 use App\Http\Requests\Admin\UpdateGroupRequest;
 use App\Repositories\Admin\GroupRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class GroupController extends AppBaseController
+class GroupController extends AdminBaseController
 {
     /** @var  GroupRepository */
     private $groupRepository;

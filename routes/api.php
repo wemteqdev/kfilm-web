@@ -35,6 +35,11 @@ Route::get('categories/{id_or_slug}', 'CategoryController@show');
 Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
 Route::get('tags', 'TagController@index');
 
+Route::get('plans', 'PlanController@index');
+Route::group(['middleware' => ['auth:api']], function(){
+	Route::post('plans/{plan_id}/subscribe', 'PlanController@subscribe');
+});
+
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 	Route::post('categories/{category_id}/add_video', ['as'=> 'admin.categories.add_video', 'uses' => 'CategoryController@add_video']);
 	Route::delete('categories/{category_id}/remove_video', ['as'=> 'admin.categories.remove_video', 'uses' => 'CategoryController@remove_video']);

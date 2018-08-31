@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\CreateSeriesRequest;
 use App\Http\Requests\Admin\UpdateSeriesRequest;
 use App\Repositories\Admin\SeriesRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class SeriesController extends AppBaseController
+class SeriesController extends AdminBaseController
 {
     private $seriesRepository;
 

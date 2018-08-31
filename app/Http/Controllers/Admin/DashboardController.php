@@ -2,9 +2,9 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Vimeo\Laravel\Facades\Vimeo;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 
-class DashboardController extends AppBaseController
+class DashboardController extends AdminBaseController
 {
 
     public function index()

@@ -17,7 +17,7 @@ use Auth;
  * This class should be parent class for other API controllers
  * Class AppBaseController
  */
-class AppBaseController extends Controller
+class AdminBaseController extends Controller
 {
     public function sendResponse($result, $message)
     {

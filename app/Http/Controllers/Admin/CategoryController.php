@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\CreateCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Repositories\Admin\CategoryRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -13,7 +13,7 @@ use Response;
 use View;
 use App\Models\Category;
 
-class CategoryController extends AppBaseController
+class CategoryController extends AdminBaseController
 {
     /** @var  CategoryRepository */
     private $categoryRepository;

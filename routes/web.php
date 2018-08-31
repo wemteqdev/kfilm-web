@@ -20,13 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/oauth2/redirect', 'HomeController@oauth2_callback');
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => ['auth']], function(){
-	Route::get('/admin', 'Admin\DashboardController@index');
+Route::group(['middleware' => ['auth', 'role:admin']], function(){
+	Route::get('/admin/dashboard', 'Admin\DashboardController@index');
 
 	Route::get('admin/categories', ['as'=> 'admin.categories.index', 'uses' => 'Admin\CategoryController@index']);
 	Route::post('admin/categories', ['as'=> 'admin.categories.store', 'uses' => 'Admin\CategoryController@store']);

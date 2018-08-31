@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\CreateVideoRequest;
 use App\Http\Requests\Admin\UpdateVideoRequest;
 use App\Repositories\Admin\VideoRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -13,7 +13,7 @@ use Response;
 use App\Models\Video;
 use Vimeo\Laravel\Facades\Vimeo;
 
-class VideoController extends AppBaseController
+class VideoController extends AdminBaseController
 {
     private $videoRepository;
 
