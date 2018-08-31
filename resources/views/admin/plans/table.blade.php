@@ -22,9 +22,6 @@
             <td>{!! $plan->interval !!}</td>
             <td>{!! $plan->interval_count !!}</td>
             <td>{!! $plan->trial_period_days !!}</td>
-            <td>
-                <span> created at: {!! $plan->trial_period_days !!} </span>
-            </td>
         </tr>
     @endforeach
     </tbody>

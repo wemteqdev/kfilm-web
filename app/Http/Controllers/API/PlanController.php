@@ -16,18 +16,19 @@ class PlanController extends Controller
 			Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 	
 			$user = User::find(1);
-			$user->newSubscription('main', $plan->name)->create($request->stripeToken);
+			$user->newSubscription('main', $plan->id)->create($request->stripeToken);
 	
 			return ['Subscription successful, you get the course!'];
 		} catch (\Exception $ex) {
 			return response_json(['error' => $ex->getMessage()], 403);
 		}
+
+		return response_json(['error' => 'something went wrong'], 403);
 	}
 
 	public function index(Request $request)
 	{
-		\Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-		$plans = \Stripe\Plan::all();
+		$plans = Plan::all();
 
 		return $plans;
 	}
