@@ -23,7 +23,7 @@ class UserController extends Controller
 	 	$password = $params['password'];
 
 	 	if(Auth::attempt(['email' => $username, 'password' => $password])){
-			$user =	Auth::user(); 
+			$user =	Auth::user();
 			$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
 			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}

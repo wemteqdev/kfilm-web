@@ -12,12 +12,26 @@ class UsersTableSeeder extends Seeder
             'email'=> 'admin1@email.com'
         ]);
 
-        $role = Role::create(['guard_name'=>'api', 'name' => 'admin']);
-        $role = Role::create(['guard_name'=>'api', 'name' => 'free']);
-        $role = Role::create(['guard_name'=>'api', 'name' => 'plus']);
-        $role = Role::create(['guard_name'=>'api', 'name' => 'pro']);
-        $role = Role::create(['guard_name'=>'api', 'name' => 'business']);
-        $role = Role::create(['guard_name'=>'api', 'name' => 'premium']);
-        $admin->assignRole($role);
+        $free = factory(App\User::class)->create([ 
+            'email'=> 'free1@email.com'
+        ]);
+
+        $pro = factory(App\User::class)->create([ 
+            'email'=> 'pro1@email.com'
+        ]);
+
+        $premium = factory(App\User::class)->create([ 
+            'email'=> 'premium1@email.com'
+        ]);
+
+        $role_admin = Role::create(['guard_name'=>'api', 'name' => 'admin']);
+        $role_free = Role::create(['guard_name'=>'api', 'name' => 'free']);
+        $role_pro = Role::create(['guard_name'=>'api', 'name' => 'pro']);
+        $role_premium = Role::create(['guard_name'=>'api', 'name' => 'business']);
+
+        $admin->assignRole($role_admin);
+        $free->assignRole($role_free);
+        $pro->assignRole($role_pro);
+        $premium->assignRole($role_premium);
     }
 }

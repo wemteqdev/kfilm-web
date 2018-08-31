@@ -54,8 +54,6 @@
 
 </div>
 
-
-
     <script src="/admin/js/vendor.js"></script>
     <script type="text/javascript" src="{{ asset('assets/js/improved-links.js') }}"></script>
 
