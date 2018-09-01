@@ -30,4 +30,11 @@ class User extends Authenticatable
         return $this->getRoleNames();
     }
 
+    public function cancelSubscriptions()
+    {
+        foreach( $this->subscriptions() as $subscription )
+        {
+            $subscription->cancel();
+        }
+    }
 }

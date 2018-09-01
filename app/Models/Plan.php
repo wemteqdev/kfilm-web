@@ -30,7 +30,8 @@ class Plan extends Model
 
     protected $casts = [
         'id' => 'string',
-        'amount' => 'integer'
+        'amount' => 'integer',
+        'product_id' => 'string',
     ];
 
     public static $rules = [
@@ -39,7 +40,7 @@ class Plan extends Model
 
     public function product()
     {
-        return $this->belongsTo('App\Models\Product', 'product');
+        return $this->belongsTo('App\Models\Product');
     }
 
     public static function create_plans_from_stripe()
