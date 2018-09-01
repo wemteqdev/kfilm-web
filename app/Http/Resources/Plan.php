@@ -17,6 +17,7 @@ class Plan extends JsonResource
             'interval' => $this->interval,
             'interval_count' => $this->interval,
             'trial_period_days' => $this->trial_period_days,
+            'product_id' => $this->product_id,
             'status' => $this->status,
         ];
     }

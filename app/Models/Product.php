@@ -50,7 +50,7 @@ class Product extends Model
 
     public function plans()
     {
-        return $this->hasMany('App\Models\Plan', 'product');
+        return $this->hasMany('App\Models\Plan');
     }
 
     public static function create_products_from_stripe()
