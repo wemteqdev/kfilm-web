@@ -1,0 +1,29 @@
+
+#premium .fixed .owl-item {
+    height: 169px;
+    overflow: hidden;
+}
+
+#premium .item-movie {
+    overflow: hidden;
+    text-align: center;
+    figure {
+        position: relative;
+        height: 169px;
+        margin: 0;
+        border: 1px solid #ececec; 
+        img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover; 
+        }
+        a.hover-posts span svg {
+            font-size: 18px; 
+        }
+    }
+    &:hover a.hover-posts {
+        visibility: visible;
+        transform: scale(1); 
+    }
+}

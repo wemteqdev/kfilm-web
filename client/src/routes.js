@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Layout from './hoc/Layout/layout';
-import Home from './components/Home/index';
-import Category from './components/Category/index';
-// import NewsArticle from './components/Articles/News/Post/index';
-// import VideoArticle from './components/Articles/Videos/Video/index'
-// import NewsMain from './components/Articles/News/Main/index';
-// import VideosMain from './components/Articles/Videos/Main/index';
+import Layout from './Layout/layout';
+import Home from './components/Home';
+import CategoriesPage from './components/CategoriesPage';
+import VideoPage from './components/VideoPage';
 
 class Routes extends Component {
     render(){
@@ -15,9 +12,9 @@ class Routes extends Component {
             <Layout>
                 <Switch>
                     <Route path="/" exact component={Home}/>
-                    <Route path="/category" exact component={Category}/>
-                    {/* <Route path="/videos/:id" exact component={VideoArticle}/>
-                    <Route path="/login" exact component={Login}/>
+                    <Route path="/categories/:slug" exact component={CategoriesPage}/>
+                    <Route path="/videos/:slug" exact component={VideoPage}/>
+                    {/* <Route path="/login" exact component={Login}/>
                     <Route path="/register" exact component={Register}/>
                     <Route path="/forgot-pass" exact component={ForgotPassword}/> */}
                 </Switch>
