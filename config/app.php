@@ -163,7 +163,6 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
         Vimeo\Laravel\VimeoServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         \Conner\Tagging\Providers\TaggingServiceProvider::class,
