@@ -179,7 +179,6 @@
     <div class="col-xs-12">
         <div class="form-group col-sm-12">
             {!! Form::submit('Save', ['class' => 'btn btn-lg btn-primary']) !!}
-            {{ Html::methodLink("PUT", route('admin.videos.publish', $video->id), 'Publish', [ 'class'=> 'btn btn-warning btn-lg']) }}
             <a href="{!! route('admin.videos.index') !!}" class="btn btn-lg btn-default">Cancel</a>
         </div>
     </div>

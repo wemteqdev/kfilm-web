@@ -49,8 +49,13 @@
                 <div class='btn-group'>
                     <a href="{!! route('admin.videos.show', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-eye"></i></a>
                     <a href="{!! route('admin.videos.edit', [$video->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-edit"></i></a>
-                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    <br/>
                 </div>
+                {!! Form::button('<i class="fa fa-trash"></i> DELETE', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                {!! Form::close() !!}
+                <br/>
+                {!! Form::open(['method' => 'PUT', 'url' => route('admin.videos.publish', $video->id)]) !!}
+                    <button type="submit" class="btn btn-warning btn-lg">Publish</button>
                 {!! Form::close() !!}
             </td>
         </tr>
