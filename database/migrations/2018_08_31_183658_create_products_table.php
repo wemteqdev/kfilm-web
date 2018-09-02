@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('status')->nullable();
             $table->integer('featured_image_id');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

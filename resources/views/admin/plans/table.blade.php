@@ -9,6 +9,7 @@ var checkoutHandler = StripeCheckout.configure({
     <thead>
         <tr>
         <th>id</th>
+        <th>product</th>
         <th>nickname</th>
         <th>active</th>
         <th>amount</th>
@@ -23,6 +24,11 @@ var checkoutHandler = StripeCheckout.configure({
     @foreach($plans as $plan)
         <tr class="{{ 'published_' . ( $plan->status_name == 'published' ) }}">
             <td>{!! $plan->id !!}</td>
+            <td>
+                {!! $plan->product->name !!}
+                
+                ( {!! $plan->product->id !!} )
+            </td> 
             <td>{!! $plan->nickname !!}</td>
             <td>{!! $plan->active !!}</td>
             <td>{!! $plan->amount !!}</td>

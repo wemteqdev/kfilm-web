@@ -18,20 +18,36 @@ class PlanController extends Controller
 			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 	
 			$user = Auth::user();
-			if ($user->subscribed($product_id)) {
-				if (!$user->subscribedToPlan($plan_id, $product_id)) {
-					$user->subscription($product_id)->swap($plan_id);
-				}
-			}else{
-				$user->cancelSubscriptions();
-				$user->newSubscription($product_id, $plan_id)->create($request->stripeToken);
-			}
+			$user->cancelSubscriptions();
+			$user->newSubscription($product_id, $plan_id)->create($request->stripeToken);
 	
-			return response()->json(['success' => 'Subscription successful']);
+			return response()->json(['success' => 'Subscription successfully']);
 		} catch (\Exception $ex) {
 			return response()->json(['error' => $ex->getMessage()], 403);
 		}
 
 		return response()->json(['error' => 'something went wrong'], 403);
+	}
+
+	public function cancel($id, Request $request)
+	{
+		$plan = Plan::find($id);
+		
+		$plan_id = $plan->id;
+		$product_id = $plan->product_id;
+
+		try {
+			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+	
+			$user = Auth::user();
+			$user->subscription($product_id)->cancelNow();
+	
+			return response()->json(['success' => 'Subscription cancelled successfully']);
+		} catch (\Exception $ex) {
+			return response()->json(['error' => $ex->getMessage()], 403);
+		}
+
+		return response()->json(['error' => 'something went wrong'], 403);
+
 	}
 }

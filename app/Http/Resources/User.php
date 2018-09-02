@@ -11,7 +11,7 @@ class User extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'role_names' => $this->getRoleNames(),
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => $this->created_at->diffForHumans()
         ];
     }
 }

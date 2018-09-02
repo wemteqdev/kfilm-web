@@ -34,7 +34,7 @@ class User extends Authenticatable
     {
         foreach( $this->subscriptions() as $subscription )
         {
-            $subscription->cancel();
+            $subscription->cancelNow();
         }
     }
 }

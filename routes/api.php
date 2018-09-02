@@ -38,6 +38,7 @@ Route::get('products', 'ProductController@index');
 
 Route::group(['middleware' => ['auth:api']], function(){
 	Route::post('plans/{plan_id}/subscribe', ['as'=>'plans.subscribe', 'uses' => 'PlanController@subscribe']);
+	Route::delete('plans/{plan_id}/cancel', ['as'=>'plans.cancel', 'uses' => 'PlanController@cancel']);
 });
 
 Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
