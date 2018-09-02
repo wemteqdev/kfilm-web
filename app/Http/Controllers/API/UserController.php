@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\SubscriptionCollection;
 use Auth;
 use Validator;
 use App\User;
@@ -51,5 +52,12 @@ class UserController extends Controller
 		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken;
 
 		return (new UserResource($user))->additional(['access_token' => $token]);
-    }
+	}
+	
+	public function subscriptions(Request $request)
+	{
+		$subscriptions = $request->user()->subscriptions()->get();
+
+		return new SubscriptionCollection($subscriptions);
+	}
 }

@@ -54,9 +54,11 @@
                 {!! Form::button('<i class="fa fa-trash"></i> DELETE', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 {!! Form::close() !!}
                 <br/>
-                {!! Form::open(['method' => 'PUT', 'url' => route('admin.videos.publish', $video->id)]) !!}
-                    <button type="submit" class="btn btn-warning btn-lg">Publish</button>
-                {!! Form::close() !!}
+                @if ($video->status_name != 'published')
+                    {!! Form::open(['method' => 'PUT', 'url' => route('admin.videos.publish', $video->id)]) !!}
+                        <button type="submit" class="btn btn-warning btn-lg">Publish</button>
+                    {!! Form::close() !!}
+                @endif
             </td>
         </tr>
     @endforeach

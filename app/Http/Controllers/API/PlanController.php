@@ -3,6 +3,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Plan;
 use Auth;
 class PlanController extends Controller
@@ -10,17 +11,17 @@ class PlanController extends Controller
 	public function subscribe($id, Request $request)
 	{
 		$plan = Plan::find($id);
-		
-		$plan_id = $plan->id;
-		$product_id = $plan->product_id;
+		$product = Product::find($plan->product_id);
 		
 		try {
 			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 	
 			$user = Auth::user();
 			$user->cancelSubscriptions();
-			$user->newSubscription($product_id, $plan_id)->create($request->stripeToken);
+			$user->newSubscription($product->id, $plan->id)->create($request->stripeToken);
 	
+			$user->assignRole($product->name);
+			
 			return response()->json(['success' => 'Subscription successfully']);
 		} catch (\Exception $ex) {
 			return response()->json(['error' => $ex->getMessage()], 403);

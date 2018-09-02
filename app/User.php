@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function cancelSubscriptions()
     {
-        foreach( $this->subscriptions() as $subscription )
+        foreach( $this->subscriptions()->get() as $subscription )
         {
             $subscription->cancelNow();
         }
