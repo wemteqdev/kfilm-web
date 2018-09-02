@@ -16,10 +16,9 @@ class Subscription extends JsonResource
             'formatted_name' => Product::find($this->name)->name,
             'stripe_id' => $this->stripe_id,
             'stripe_plan' => $this->stripe_plan,
-            'trial_ends_at' => $this->trial_ends_at,
+            'trial_ends_at' => (($this->trial_ends_at!=null)?$this->trial_ends_at->diffForHumans():null),
             'quantity' => $this->quantity,
-            'ends_at' => $this->ends_at,
-            
+            'ends_at' => (($this->ends_at!=null)?$this->ends_at->diffForHumans():null),
         ];
     }
 }
