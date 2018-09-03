@@ -1,0 +1,200 @@
+@import 'variables.scss';
+@import './Layout/header.scss';
+@import './Layout/search.scss';
+@import './videoContent.scss';
+@import './Layout/footer.scss';
+@import './login.scss';
+
+
+html {
+    font-size: 10px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: $font-primary-color;
+    background: #303030;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+    margin-top: 4.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: $text-primary-color;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+a {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+}
+
+.button {
+    font-weight: bold;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
+    border: .1rem solid transparent;
+    font-size: 1.3rem;
+    background-color: $background-secondary-color;
+
+    &:hover , &:focus {
+      background-color: $color-pink !important;
+      color: white !important;
+    }
+}
+
+.movies {
+    margin: 3rem auto;
+}
+
+.input-group {
+    display: table;
+    width: 100%;
+    margin-bottom: 1rem;
+    & > :first-child {
+      border-radius: 0 0 0 0;
+    }
+    .input-group-button {
+      display: table-cell;
+    }
+}
+
+.input-group-button {
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    height: 100%;
+    width: 1%;
+}
+
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+    width: 100%;
+    height: 4rem;
+    padding: 1rem;
+    border: .1px solid transparent;
+    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+}
+
+.hover-posts {
+    visibility: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    text-align: center;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      color: white;
+      font-size: 1.3rem;
+      text-transform: capitalize;
+      svg {
+        color: white;
+        font-size: 3.6rem;
+        display: block;
+        margin-bottom: .5rem;
+        margin: 0 auto;
+      }
+    }
+    &:hover a{
+        visibility: visible;
+        transform: scale(1); 
+    }
+}
+
+.secondary-button {
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: .3rem;
+    border: .1rem solid $background-secondary-light-color;
+    margin-left: 1rem;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.5s ease;
+    svg {
+        color: white;
+    }
+    &:hover {
+      background: #e96969;
+    }
+}
+  
+.form-error {
+    margin-top: 0 !important;
+    color: #e96969;
+    display: none;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    margin-bottom: 2rem;
+    .card-body {
+        height: 3rem;
+        padding: .5rem;
+        background-color: $background-secondary-color;
+        .card-subtitle {
+            padding: .5rem 1rem;
+            color: white;
+        }
+    }
+    &:hover a.hover-posts {
+        visibility: visible;
+        transform: scale(1); }
+    
+    .hover-posts span svg {
+        font-size: 1.8rem !important;
+    }
+}
+
+.stripe {
+    padding-top: 1.5rem;
+}
+
+@media (min-width: 576px){
+    .modal-dialog.search {
+        max-width: 100%;
+        margin: 1.75rem auto;
+        height: 100%;
+        background: #fff;
+        margin: 0;
+
+        .modal-content{
+            height:100%;
+            border: none;
+        }
+    }
+}

@@ -9,21 +9,26 @@ class VideoPage extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/videos/${this.props.match.params.slug}`)
+        this.loadVideos(this.props)
+    }
+
+    loadVideos(props) {
+        axios.get(`http://korfilm.loc/api/videos/${props.match.params.slug}`)
         .then( response => {
             this.setState({video:response.data.data});
         })
     }
+    componentWillReceiveProps(nextProps) {
+        this.loadVideos(nextProps)
+    }
 
     render (){
-        console.log(this.state.video)
         return (
             <section className="fullwidth-single-video">
                 <div className='container'>
                     <div className="row">
                     <div className="col-12">
                         <div className="flex-video widescreen">
-                            { console.log(this.state.video) }
                             <div
                                 dangerouslySetInnerHTML={{
                                 __html: this.state.video.embed

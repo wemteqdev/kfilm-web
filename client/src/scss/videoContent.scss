@@ -1,0 +1,109 @@
+.videos {
+    .main-heading {
+        margin-bottom: 1rem;
+
+        .head-title {
+            svg {
+                display: inline-block;
+                color: $color-pink;
+                margin-right: 1.1rem;
+            }
+
+            h4 {
+                display: inline-block;
+                font-size: 2.2rem;
+                margin: 0;
+            }
+
+            a {
+                color: $color-grey;
+            }
+        }
+    }
+
+    .post {
+        margin-bottom: 1rem;
+        .post-thumb {
+            position: relative;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            .video-stats {
+                position: absolute;
+                bottom: 1rem;
+                width: 100%;
+                left: 0;
+                padding: 0 1rem;
+
+                .thumb-stats {
+                    background: black;
+                    padding: 0 .8rem;
+                    height: 3rem;
+                    text-align: center;
+                    border-radius: .3rem;
+                    span {
+                        color: white;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+        
+        .post-des {
+            padding: 1.5rem 0 0 1rem;
+            h6 {
+                margin-bottom: 1.5rem ;
+                font-weight: normal;
+                line-height: 1.3rem;
+                a {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: $text-primary-color;
+                }
+                &.fixed {
+                    height: 2.3rem;
+                }
+            }
+            .post-stats {
+                p {
+                    margin-bottom: 1.5rem;
+                    margin-right: 1.5rem;
+                    line-height: 1.1rem;
+                    svg {
+                        color: $text-primary-color;
+                        font-size: 1.1rem;
+                        margin-right: .3rem;
+                    }
+                    span {
+                        font-size: 1.4rem;
+                        color: $text-primary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.post:hover .video-stats {
+    transform: translateY(7rem); 
+}
+
+.post:hover a.hover-posts {
+    visibility: visible;
+    transform: scale(1); }
+
+.post .post-thumb .hover-posts span svg {
+    font-size: 1.8rem !important;
+}
+
+
+.borderBottom {
+    border-bottom: 0.1rem solid $color-grey;
+}
+
+.even-true {
+    background-color: $background-secondary-color;
+}

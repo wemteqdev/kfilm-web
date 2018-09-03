@@ -1,0 +1,59 @@
+.category-heading {
+    padding: 1rem 0;
+    width: 100%;
+    .cat-head {
+      svg {
+        display: inline-block;
+        color: #e96969;
+        margin-right: 1.1rem;
+      }
+      h4 {
+        display: inline-block;
+        text-transform: capitalize;
+        margin: 0;
+        font-size: 2.2rem;
+      }
+    }
+}
+
+.item-movie {
+    overflow: hidden;
+    text-align: center;
+    figure {
+        position: relative;
+        height: auto;
+        margin: 0;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        a.hover-posts span svg {
+            font-size: 1.8rem; 
+        }
+
+        figcaption {
+            font-weight: bold;
+            position: absolute;
+            z-index: 3;
+            bottom: -1rem;
+            width: 100%;
+            padding: 2rem;
+            background: url(/images/gradient.png) repeat-x;
+            h3 {
+                color: white;
+                margin-bottom: 0;
+                font-size: 1.6rem;
+            }
+            p {
+                color: white;
+                font-size: 1.3rem;
+                margin: 0;
+                font-weight: 400;
+            }
+        }
+    }
+    &:hover a.hover-posts {
+        visibility: visible;
+        transform: scale(1); 
+    }
+}

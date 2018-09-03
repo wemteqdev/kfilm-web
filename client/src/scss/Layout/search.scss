@@ -1,0 +1,45 @@
+
+
+.search-dialog {
+    opacity: 0.9;
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+
+    .modal-content {
+        background-color: $background-primary-color;
+        height: 100%;
+        width: 100%;
+
+        .modal-header {
+            display: block;
+            border: none;
+            svg {
+                font-size: 3rem;
+                transition: all 0.3s ease 0s;
+                &:hover {
+                    color: white;
+                }
+            }
+            input {
+                background: transparent;
+                border-bottom: 1px solid #999;
+                margin: 3rem 0;
+                font-size: 4rem;
+                height: 5rem;
+                color: $text-secondary-color;
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .modal-body {
+            overflow: auto;
+            .card {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+}

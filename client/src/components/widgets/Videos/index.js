@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Carousel from './VideosCarousel/carousel';
+import Carousel from './Carousel';
 
 
 class Videos extends Component {

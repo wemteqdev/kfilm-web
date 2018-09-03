@@ -1,0 +1,60 @@
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+}
+
+#categories-nav {
+    background-color: $background-secondary-color;
+    height: 4.5rem;
+    li.nav-item {
+        margin-right: 2rem;
+        a {
+            padding: 1.5rem 1rem !important;
+            color: $font-nav-color;
+            &:hover {
+                background-color: $color-hover-dark;
+                border-bottom: 0.4rem solid $color-pink;
+            }
+        }
+    }
+
+    .active {
+        background-color: $color-hover-dark;
+        border-bottom: 0.4rem solid $color-hover-pink;
+    }
+}
+
+.search{
+    background-color: $background-secondary-color;
+    padding: 0.7rem 1.5rem;
+    margin-right: 1rem;
+    svg {
+        color: $font-nav-color;
+    }
+    &:hover {
+        background: $color-pink;
+    }
+}
+
+.loginReg {
+    padding: 0.7rem 0.5rem;
+    background: $color-pink;
+    border: 0.1rem solid $color-pink;
+    color: $font-nav-color;
+    &:hover {
+        background: $color-hover-pink;
+        color: white;
+    }
+}
+
+.navButton a {
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    transition-duration: 0.5s;
+    &:hover {
+        transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    }
+}

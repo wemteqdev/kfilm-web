@@ -7,17 +7,17 @@ class VideoPosts extends Component {
 
     state = {
         posts:[],
-        category:0
+        type:''
     }
 
     constructor(props) {
         super(props)
 
-        this.state.category = props.category
+        this.state.type = props.type
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/categories/${this.state.category}/videos`)
+        axios.get(`http://korfilm.loc/api/videos?view=${this.state.type}&limit=4`)
         .then( response => {
             this.setState({posts:response.data.data});
         })
@@ -32,7 +32,7 @@ class VideoPosts extends Component {
                 </Link>
                 <div className="video-stats clearfix">
                     <div className="thumb-stats float-right">
-                        <span></span>
+                        <span>{ item.duration }</span>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ class VideoPosts extends Component {
     showAll = () => {
         return this.state.posts.map( (item, i) => {
             return (
-                <div key={i} className="item col-4 group-item-secondary-button grid-medium">
+                <div key={i} className="item col-3 group-item-secondary-button grid-medium">
                     <div className="post">
                         { this.showThum(item) }
                         { this.showDesc(item) }

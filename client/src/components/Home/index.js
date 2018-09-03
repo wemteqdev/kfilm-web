@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MainContent from '../widgets/MainContent/index';
-import Videos from '../widgets/Videos/index';
-import Categories from '../widgets/Categories/index';
+import Banner from '../widgets/Banner';
+import MainContent from '../widgets/MainContent';
+import Videos from '../widgets/Videos';
+import { Fade } from 'reactstrap';
+
 
 export default class Home extends Component {
     render() {
         return (
-            <div id="home">
-                <Categories/>
-                <MainContent/>
-                <Videos/>
-            </div>
+            <Fade in={true} tag="div">
+                <div id="home">
+                    <Banner/>
+                    <MainContent/>
+                    <Videos/>
+                </div>
+            </Fade>
         )
     }
 }

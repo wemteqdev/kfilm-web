@@ -1,56 +1,61 @@
 import React, { Component } from 'react';
-import './videoContent.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import VideoPosts from './VideoPosts';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 class VideoContent extends Component {
 
-    state = {
-        categories:[],
-    }
-
-    icons = {
-        action: 'car-crash',
-        historical: 'history',
-        feature: 'landmark'
-
-    }
-    
-    componentWillMount(){
-        axios.get(`http://korfilm.loc/api/categories`)
-        .then( response => {
-            this.setState({categories:response.data.data});
-        })
-    }
+    videoTypes = [
+        {
+            slug:'hot',
+            title:'Hot',
+            icon:'burn'
+        },
+        {
+            slug:'popular',
+            title:'Popular',
+            icon:'thumbs-up'
+        },
+        {
+            slug:'trending',
+            title:'Trending',
+            icon:'signature'
+        },
+    ]
 
     showAllCategories() {
-        return this.state.categories.map((item, i) => {
+        return this.videoTypes.map((item, i) => {
             return (
-                <section key={i} className="content mb-4">
-                    <div className="main-heading mb-4">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="head-title">
-                                    <h4 className='borderBottom'>
-                                        <FontAwesomeIcon icon={this.icons[item.slug]} />{ item.name }
-                                    </h4>
-                                    <a className="radius float-right">View All ({item.videos_count})</a>
+                <div className='container-fluid' key={i}>
+                    <div className={'row even-' + (i%2 === 0)}>
+                        <div className="container">
+                            <section className="stripe videos">
+                            <div className="main-heading mb-4">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="head-title">
+                                            <h4 className='borderBottom'>
+                                                <FontAwesomeIcon icon={item.icon} />{ item.title }
+                                            </h4>
+                                            <Link to={'/' + item.slug} className="radius float-right">View All</Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="tab-content">
-                                <div>
-                                    <VideoPosts category={item.id}/>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="tab-content">
+                                        <div>
+                                            <VideoPosts type={item.slug}/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </section>
                         </div>
                     </div>
-                </section>
+                </div>
             )
         })
     }
