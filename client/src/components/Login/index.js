@@ -43,12 +43,9 @@ class Login extends Component {
                 this.setState({
                     signing: !this.state.signing,
                 })
-                let data = response.data.data
-                let token = response.data.access_token
-                axios.defaults.headers.common['Authorization'] = token
+                axios.defaults.headers.common['Authorization'] = response.data.access_token
                 
-                cookie.save('user-data', data, { path: '/' })
-                cookie.save('user-token', token, { path: '/' })
+                cookie.save('user', response.data, { path: '/' })
                 this.props.loginSuccess(response.data)
             },
             (error) => { 
