@@ -13,7 +13,7 @@
     @foreach($images as $image)
         <tr>
             <td>
-                <img src='{!! asset($image->uri) !!}' width="100"/>
+                <img src='{!! asset($image->uri) !!}' width="200"/>
                 {!! $image->name !!}
             </td>
             <td>{!! $image->width !!}</td>
