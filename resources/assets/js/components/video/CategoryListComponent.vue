@@ -1,20 +1,18 @@
 <template>
     <div class="clearfix">
+		<div>Add Categories</div>
     	<div>
-    		Add Categories
     		<span v-for="(category, index) in available_categories">
-    			<a href="javascript:void(0)" v-on:click="add_category(category)">{{ category}}</a>,
+    			<md-chip v-on:click="add_category(category)" class="md-primary" md-clickable>{{ category }}</md-chip>&nbsp;
     		</span>
+    		<br />
     	</div>
 
-    	<hr/>
-
-			<div v-for="(category, index) in categories" variant="success">
-				{{ category }}
-				<a href="javascript:void(0)" v-on:click="remove_category(category)"><i class="fa fa-close"></i></a>
-			</div>
-  </div>
-
+		<div class="clearfix">
+			<md-chips v-model="categories" md-placeholder="Add category..." v-on:md-insert="add_category" v-on:md-delete="remove_category">
+			</md-chips>
+		</div>
+   </div>
 </template>
 
 <script>
@@ -40,7 +38,7 @@
     				this.categories = payload.data.categories;
     			});
 		    },
-		    remove_category(category){
+		    remove_category(category, index){
 		    	axios.delete(`/api/videos/${this.video_id}/remove_category?category=${category}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{

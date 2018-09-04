@@ -1,23 +1,18 @@
 <template>
     <div class="clearfix">
+		<div>Add Tags</div>
     	<div>
-    		Add Tags
     		<span v-for="(tag, index) in available_tags">
-    			<a href="javascript:void(0)" v-on:click="add_tag(tag)">{{ tag }}</a>,
+    			<md-chip v-on:click="add_tag(tag)" class="md-primary" md-clickable>{{ tag }}</md-chip>&nbsp;
     		</span>
     		<br />
-
-    		<input type="text" v-model="tag"> <a href="javascript:void(0)" v-on:click="add_tag()" class="btn btn-primary">Add</a> &nbsp;
     	</div>
 
-    	<hr/>
-
-			<div v-for="(tag, index) in tags" variant="success">
-				{{ tag }}
-				<a href="javascript:void(0)" v-on:click="remove_tag(tag)"><i class="fa fa-close"></i></a>
-			</div>
+		<div class="clearfix">
+			<md-chips v-model="tags" md-placeholder="Add Tag..." v-on:md-insert="add_tag" v-on:md-delete="remove_tag">
+			</md-chips>
+		</div>
   </div>
-
 </template>
 
 <script>

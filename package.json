@@ -26,6 +26,7 @@
         "masonry-layout": "^4.2.2",
         "metismenu": "^2.7.9",
         "vue-masonry": "^0.11.6",
+        "vue-material": "^1.0.0-beta-10.2",
         "vue-select-image": "^1.5.0",
         "vuejs-paginate": "^2.0.1"
     }
