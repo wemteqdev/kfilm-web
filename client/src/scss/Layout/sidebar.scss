@@ -1,0 +1,20 @@
+.left-sidenav {
+    background: $sidebar-background-color;
+    color:white;
+}
+
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top:4.5rem;
+    bottom: 0;
+    background: $sidebar-background-color;
+    border-right: .5rem solid rgba(0, 0, 0, .1);
+    a, span {
+        color:white;
+    }
+    .rs-dropdown-item-content {
+        color: white !important;
+    }
+}

@@ -1,6 +1,7 @@
 @import 'variables.scss';
 @import './Layout/header.scss';
 @import './Layout/search.scss';
+@import './Layout/sidebar.scss';
 @import './videoContent.scss';
 @import './Layout/footer.scss';
 @import './login.scss';
@@ -18,7 +19,7 @@ body {
     font-size: 1.4rem;
     line-height: 1.5;
     color: $font-primary-color;
-    background: #303030;
+    background: #303030 !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

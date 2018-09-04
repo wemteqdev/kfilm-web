@@ -1,10 +1,13 @@
 import React from 'react';
-import 'bootstrap/scss/bootstrap.scss';
-import '../scss/layout.scss';
-
+import { Container, Content } from 'rsuite';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import SearchPage from './SearchPage';
+import LeftSidebar from './LeftSidebar';
+import 'bootstrap/scss/bootstrap.scss';
+import '../scss/layout.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faHome, faFilm, faTh, faEdit, faMagic, faUser, faEnvelope, 
@@ -20,16 +23,50 @@ library.add(faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, faYoutub
     faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faLandmark, faCarCrash, faTimes);
     
 const Layout = (props) => {
+
+    const mainContent = () => {
+        if (props.login.user != null) {
+            return (
+                <Content className="page" style={ {
+                    paddingLeft: '260px', 
+                    transition: 'padding 0.5s'
+                    } }
+                >
+                    {props.children}
+                    <Footer/>
+                </Content>
+            )
+        }
+        else {
+            return (
+                <Content className="page" style={{
+                    transition: 'padding 0.5s'
+                }}>
+                    {props.children}
+                    <Footer/>
+                </Content>
+            )
+        }
+    }
     return(
         <div>
-            <Header/>
-            <SearchPage/>
-            <div className="page">
-            {props.children}
-            </div>
-            <Footer/>
+            <Container>
+                <Header/>
+                <Container>
+                    { props.login.user != null && <LeftSidebar/> }
+                    { mainContent() }
+                </Container>
+            </Container>
+            <SearchPage/>           
         </div>
     )
 }
 
-export default Layout;
+const mapStateToProps = (state) => {
+    return {
+      login: state.login
+    }
+}
+
+  
+export default withRouter( connect(mapStateToProps, null)(Layout));

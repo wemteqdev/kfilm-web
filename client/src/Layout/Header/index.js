@@ -21,8 +21,10 @@ class Header extends Component {
     }
 
     componentWillMount(){
-        if (cookie.load('user') !== undefined) {
-            this.props.loginSuccess(cookie.load('user'))
+        let user = cookie.load('user')
+        if (user !== undefined) {
+            this.props.loginSuccess(user)
+            axios.defaults.headers.common['Authorization'] = user.access_token
         }
         axios.get(`http://korfilm.loc/api/categories`)
         .then( response => {
@@ -71,18 +73,16 @@ class Header extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    toggleSearch: () => dispatch(toggleSearchAction()),
-    logoutSuccess: () => dispatch(logoutSuccessAction()),
-    loginSuccess: (payload) => dispatch(loginSuccessAction(payload))
-})
-
-
 const mapStateToProps = (state) => {
     return {
       login: state.login
     }
 }
 
-  
+const mapDispatchToProps = dispatch => ({
+    toggleSearch: () => dispatch(toggleSearchAction()),
+    logoutSuccess: () => dispatch(logoutSuccessAction()),
+    loginSuccess: (payload) => dispatch(loginSuccessAction(payload))
+}) 
+
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Header) );

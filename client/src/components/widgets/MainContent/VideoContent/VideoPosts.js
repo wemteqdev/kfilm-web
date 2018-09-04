@@ -44,18 +44,14 @@ class VideoPosts extends Component {
             <div className="post-des">
                 <h6 className="fixed"><Link to={'/videos/' + item.slug}>{item.name}</Link></h6>
                 <div className="post-stats clearfix">
-                    <p className="float-left">
-                        <FontAwesomeIcon icon="clock" />
-                        <span>{item.duration}</span>
-                    </p>
-                    <p className="float-left">
+                    <div className="float-left">
                         <FontAwesomeIcon icon="calendar" />
                         <span>{item.published_at}</span>
-                    </p>
-                    <p className="float-left">
+                    </div>
+                    <div className="float-left">
                         <FontAwesomeIcon icon="eye" />
                         <span>{item.views}</span>
-                    </p>
+                    </div>
                 </div>
             </div>
         )
