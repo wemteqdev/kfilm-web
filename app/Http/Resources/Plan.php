@@ -12,7 +12,7 @@ class Plan extends JsonResource
             'id' => $this->id,
             'active' => $this->active,
             'amount' => $this->amount,
-            'currency' => $this->name,
+            'currency' => $this->currency,
             'nickname' => $this->nickname,
             'interval' => $this->interval,
             'interval_count' => $this->interval,
