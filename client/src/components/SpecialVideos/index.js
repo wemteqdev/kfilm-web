@@ -27,7 +27,7 @@ class SpeicalVideos extends Component {
         return this.state.videos.map( (item, i) => {
             return (
                 <div key={i} className="col-3">
-                    <Card>
+                    <Card className="video-card">
                         <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
                         <CardBody>
                             <CardSubtitle>{ item.name }</CardSubtitle>

@@ -7,6 +7,8 @@ import CategoriesPage from './components/CategoriesPage';
 import SpecialVideos from './components/SpecialVideos';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
+import Profile from './components/Profile';
+import Plan from './components/Plan';
 
 class Routes extends Component {
     render(){
@@ -22,6 +24,8 @@ class Routes extends Component {
                     <Route path="/categories/:slug" exact component={CategoriesPage}/>
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>
+                    <Route path="/profile" exact component={Profile}/>
+                    <Route path="/plan" exact component={Plan}/>
                 </Switch>
             </Layout>
            

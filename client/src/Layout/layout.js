@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Content } from 'rsuite';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
+import UserFooter from './UserFooter';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 
@@ -26,45 +26,46 @@ const Layout = (props) => {
 
     const mainContent = () => {
         if (props.login.user != null) {
+            let paddingLeft = '6.9rem'
+            if (props.sidebar.toggleSidebar){
+                paddingLeft = '24rem'
+            }
             return (
-                <Content className="page" style={ {
-                    paddingLeft: '260px', 
+                <div className="page" style={ {
+                    paddingLeft: paddingLeft, 
                     transition: 'padding 0.5s'
                     } }
                 >
                     {props.children}
-                    <Footer/>
-                </Content>
+                </div>
             )
         }
         else {
             return (
-                <Content className="page" style={{
+                <div className="page" style={{
                     transition: 'padding 0.5s'
                 }}>
                     {props.children}
-                    <Footer/>
-                </Content>
+                </div>
             )
         }
     }
     return(
         <div>
-            <Container>
-                <Header/>
-                <Container>
-                    { props.login.user != null && <LeftSidebar/> }
-                    { mainContent() }
-                </Container>
-            </Container>
-            <SearchPage/>           
+            <Header/>
+            <SearchPage/>
+                { props.login.user != null && <LeftSidebar/> }
+                { mainContent() }
+                { props.login.user == null && <Footer/> }
+                { props.login.user != null && <UserFooter/>}
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login
+      login: state.login,
+      sidebar: state.sidebar
     }
 }
 

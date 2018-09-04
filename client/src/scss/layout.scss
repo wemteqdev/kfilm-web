@@ -5,6 +5,10 @@
 @import './videoContent.scss';
 @import './Layout/footer.scss';
 @import './login.scss';
+@import './plan.scss';
+@import '~owl.carousel/dist/assets/owl.carousel.css';
+@import '~owl.carousel/dist/assets/owl.theme.default.css';
+@import '../components/widgets/Videos/Carousel/carousel.scss';
 
 
 html {
@@ -19,13 +23,14 @@ body {
     font-size: 1.4rem;
     line-height: 1.5;
     color: $font-primary-color;
-    background: #303030 !important;
+    background: white !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .page {
     margin-top: 4.5rem;
+    // margin-bottom: 12rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,10 +67,6 @@ a {
       background-color: $color-pink !important;
       color: white !important;
     }
-}
-
-.movies {
-    margin: 3rem auto;
 }
 
 .input-group {
@@ -160,7 +161,7 @@ a {
     font-weight: bold;
 }
 
-.card {
+.video-card.card {
     border: none;
     margin-bottom: 2rem;
     .card-body {
@@ -183,6 +184,10 @@ a {
 
 .stripe {
     padding-top: 1.5rem;
+}
+
+.bgWhite {
+    background-color: white !important;
 }
 
 @media (min-width: 576px){
