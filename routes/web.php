@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/oauth2/redirect', 'HomeController@oauth2_callback');
+Route::get('/oauth2/redirect', 'Gateway\VimeoController@oauth2_callback');
+Route::get('/stripe/webhook', 'Gateway\StripeController@webhook');
 
 Route::get('/home', 'HomeController@index');
 
