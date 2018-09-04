@@ -31,7 +31,7 @@ class ImageController extends AdminBaseController
     public function index(Request $request)
     {
         $this->imageRepository->pushCriteria(new RequestCriteria($request));
-        $images = $this->imageRepository->all();
+        $images = $this->imageRepository->paginate(9);
 
         return view('admin.images.index')
             ->with('images', $images);

@@ -107,6 +107,10 @@ class VideoController extends Controller
 
 		$video = Video::find($id);
 		$group = Group::where('slug', $group_slug)->first();
+		if( $group == null )
+		{
+			$group = Group::create(['name'=>$group_slug]);
+		}
 
 		if ($video->groups()->find($group->id) == null)
 		{

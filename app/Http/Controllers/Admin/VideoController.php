@@ -25,7 +25,7 @@ class VideoController extends AdminBaseController
     public function index(Request $request)
     {
         $this->videoRepository->pushCriteria(new RequestCriteria($request));
-        $videos = $this->videoRepository->all();
+        $videos = $this->videoRepository->paginate(5);
 
         return view('admin.videos.index')
             ->with('videos', $videos);

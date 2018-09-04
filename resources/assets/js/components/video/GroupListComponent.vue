@@ -1,20 +1,18 @@
 <template>
     <div class="clearfix">
+		<div>Add Groups</div>
     	<div>
-    		Add Groups
     		<span v-for="(group, index) in available_groups">
-    			<a href="javascript:void(0)" v-on:click="add_group(group)">{{ group }}</a>,
+    			<md-chip v-on:click="add_group(group)" class="md-primary" md-clickable>{{ group }}</md-chip>&nbsp;
     		</span>
+    		<br />
     	</div>
 
-    	<hr/>
-
-			<div v-for="(group, index) in groups" variant="success">
-				{{ group }}
-				<a href="javascript:void(0)" v-on:click="remove_group(group)"><i class="fa fa-close"></i></a>
-			</div>
-  </div>
-
+		<div class="clearfix">
+			<md-chips v-model="groups" md-placeholder="Add group..." v-on:md-insert="add_group" v-on:md-delete="remove_group">
+			</md-chips>
+		</div>
+   </div>
 </template>
 
 <script>
@@ -36,7 +34,6 @@
 		    	axios.post(`/api/videos/${this.video_id}/add_group?group=${group}`).then(function(response){
     				return response.data;
     			}).then((payload)=>{
-    				console.log(payload);
     				this.groups = payload.data.groups;
     			});
 		    },
