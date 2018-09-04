@@ -5,7 +5,7 @@ import { Collapse, Navbar, Nav, NavItem } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toggleSearchAction, logoutSuccessAction } from '../../actions';
+import { toggleSearchAction, logoutSuccessAction, loginSuccessAction } from '../../actions';
 import cookie from 'react-cookies';
 
 class Header extends Component {
@@ -14,8 +14,16 @@ class Header extends Component {
         categories:[]
     }
 
+    constructor(props) {
+        super(props)
+
+        this.logout = this.logout.bind(this)
+    }
+
     componentWillMount(){
-        console.log(cookie.load('user-data'))
+        if (cookie.load('user') !== undefined) {
+            this.props.loginSuccess(cookie.load('user'))
+        }
         axios.get(`http://korfilm.loc/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
@@ -34,6 +42,7 @@ class Header extends Component {
 
     logout() {
         this.props.logoutSuccess()
+        cookie.remove('user', { path: '/' })
         axios.defaults.headers.common['Authorization'] = ''
     }
 
@@ -64,7 +73,8 @@ class Header extends Component {
 
 const mapDispatchToProps = dispatch => ({
     toggleSearch: () => dispatch(toggleSearchAction()),
-    logoutSuccess: () => dispatch(logoutSuccessAction())
+    logoutSuccess: () => dispatch(logoutSuccessAction()),
+    loginSuccess: (payload) => dispatch(loginSuccessAction(payload))
 })
 
 
