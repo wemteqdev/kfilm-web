@@ -11,7 +11,7 @@
 
 
 <li class="{{ Request::is('admin/series*') ? 'active' : '' }}">
-    <a href="{!! route('admin.series.index') !!}"><i class="fa fa-group"></i> <span>Series</span></a>
+    <a href="{!! route('admin.series.index') !!}"><i class="fa fa-rss"></i> <span>Series</span></a>
 </li>
 
 <li class="{{ Request::is('admin/images*') ? 'active' : '' }}">
@@ -23,9 +23,9 @@
 </li>
 
 <li class="{{ Request::is('admin/products*') ? 'active' : '' }}">
-    <a href="{!! route('admin.products.index') !!}"><i class="fa fa-film"></i> <span>Products</span></a>
+    <a href="{!! route('admin.products.index') !!}"><i class="fa fa-gift"></i> <span>Products</span></a>
 </li>
 
 <li class="{{ Request::is('admin/plans*') ? 'active' : '' }}">
-    <a href="{!! route('admin.plans.index') !!}"><i class="fa fa-film"></i> <span>Plans</span></a>
+    <a href="{!! route('admin.plans.index') !!}"><i class="fa fa-money"></i> <span>Plans</span></a>
 </li>

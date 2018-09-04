@@ -5,6 +5,12 @@
 </div>
 
 <div class="clearfix"></div>
+<!-- Height Field -->
+<div class="form-group ">
+    {!! Form::label('alt', 'Alt:') !!}
+    {!! Form::text('alt', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Width Field -->
 <div class="form-group ">
     {!! Form::label('width', 'Width:') !!}
