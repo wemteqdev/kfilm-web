@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return File::get(public_path() . '/index.html');
 });
@@ -18,8 +6,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/oauth2/redirect', 'Gateway\VimeoController@oauth2_callback');
-Route::get('/stripe/webhook', 'Gateway\StripeController@webhook');
+Route::get('/gateway/vimeo/oauth2_callback', 'Gateway\VimeoController@oauth2_callback');
+Route::get('/gateway/stripe/webhook', 'Gateway\StripeController@webhook');
 
 Route::get('/home', 'HomeController@index');
 

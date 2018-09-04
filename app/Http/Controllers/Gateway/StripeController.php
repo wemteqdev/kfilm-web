@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Gateway;
 use Illuminate\Http\Request;
-use Vimeo\Laravel\Facades\Vimeo;
+use App\Http\Controllers\Controller;
 
 class StripeController extends Controller
 {
