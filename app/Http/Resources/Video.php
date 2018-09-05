@@ -7,8 +7,17 @@ use App\Http\Resources\Video as VideoResource;
 use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\SeriesShort as SeriesShortResource;
 use App\Models\Series;
+use Illuminate\Support\Facades\Auth;
 class Video extends JsonResource
 {
+	public function embedPro($request)
+	{
+		if(!$this->isPro())
+			return $this->embed;
+		
+		return null;
+	}
+
     public function toArray($request)
     {
         return [
@@ -24,10 +33,8 @@ class Video extends JsonResource
 				"year" => $this->year,
 				"published_at" => $this->published_at->diffForHumans(),
 				"featured_image_url"=> $this->featured_image_url(),
-				"vimeo_video_id"=> $this->vimeo_video_id,
 				"thumbnail_url"=> $this->thumbnail_url,
-				"uri"=> $this->uri,
-				"embed"=> $this->embed,
+				"embed"=> $this->embedPro($request),
 				"tags" => $this->tagged->pluck('tag_slug'),
 				"views" => $this->getUniqueViews(),
 				"categories" => $this->categories()->pluck('slug'),

@@ -10,6 +10,7 @@ use App\Http\Resources\InoviceCollection;
 use Auth;
 use Validator;
 use App\User;
+use Laravel\Passport\Passport;
 class UserController extends Controller
 {
 	public function index(Request $request)
@@ -26,6 +27,9 @@ class UserController extends Controller
 
 	 	if(Auth::attempt(['email' => $username, 'password' => $password])){
 			$user =	Auth::user();
+
+			$user->tokens()->delete();
+
 			$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
 			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}

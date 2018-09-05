@@ -78,6 +78,11 @@ class Video extends Model
         ];
     }
 
+    public function isPro()
+    {
+        return $this->type == VideoType::pro;
+    }
+
     public function getStatusNameAttribute() {
         return VideoStatus::getKey($this->status);
     }

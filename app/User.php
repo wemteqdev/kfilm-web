@@ -37,4 +37,9 @@ class User extends Authenticatable
             $subscription->cancelNow();
         }
     }
+
+    public function isPro()
+    {
+        return $this->hasAnyRole(['pro', 'admin']);
+    }
 }
