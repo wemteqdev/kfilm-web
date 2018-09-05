@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:api']], function(){
 	Route::get('user', 'UserController@index');
 	Route::get('user/subscriptions', 'UserController@subscriptions');
-	
+	Route::get('user/invoices', 'UserController@invoices');
 });
 
 Route::post('auth', 'UserController@auth');

@@ -4,7 +4,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::stripeWebhooks('/gateway/stripe/webhook');
+Route::stripeWebhooks('gateway/stripe/webhook');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/gateway/vimeo/oauth2_callback', 'Gateway\VimeoController@oauth2_callback');

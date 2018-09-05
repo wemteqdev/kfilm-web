@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\SubscriptionCollection;
+use App\Http\Resources\InoviceCollection;
 use Auth;
 use Validator;
 use App\User;
@@ -59,5 +60,19 @@ class UserController extends Controller
 		$subscriptions = $request->user()->subscriptions()->get();
 
 		return new SubscriptionCollection($subscriptions);
+	}
+
+	public function invoices(Request $request)
+	{
+		$invoices = $request->user()->invoices()->map(function($invoice) {
+			return [
+				'date' => $invoice->date()->toFormattedDateString(),
+				'total' => $invoice->total,
+				'hosted_invoice_url' => $invoice->hosted_invoice_url,
+				'invoice_pdf' => $invoice->invoice_pdf,
+			];
+		});
+
+		return response()->json([ 'data' => $invoices ]);
 	}
 }

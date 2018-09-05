@@ -6,7 +6,7 @@ return [
      * Stripe will sign each webhook using a secret. You can find the used secret at the
      * webhook configuration settings: https://dashboard.stripe.com/account/webhooks.
      */
-    'signing_secret' => 'whsec_RUh4kCTdMzRzQabwgqkxZ4hcvthxJq5w',
+    'signing_secret' => env('STRIPE_SIGNING_SECRET'),
 
     /*
      * You can define the job that should be run when a certain webhook hits your application
@@ -16,8 +16,8 @@ return [
      * https://stripe.com/docs/api#event_types.
      */
     'jobs' => [
-        'source_chargeable' => \App\Jobs\StripeWebhooks\HandleChargeableSource::class,
-        'charge_failed' => \App\Jobs\StripeWebhooks\HandleFailedCharge::class,
+        'invoice_payment_failed' => \App\Jobs\StripeWebhooks\HandlePaymentFailedInvoice::class,
+        'invoice_payment_succeeded' => \App\Jobs\StripeWebhooks\HandlePaymentSucceededInvoice::class,
     ],
 
     /*
