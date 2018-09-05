@@ -67,7 +67,7 @@
                 }
             }
             .post-stats {
-                p {
+                div {
                     margin-bottom: 1.5rem;
                     margin-right: 1.5rem;
                     line-height: 1.1rem;
@@ -106,4 +106,8 @@
 
 .even-true {
     background-color: $background-secondary-color;
+}
+
+.even-false {
+    background-color: $color-hover-dark;
 }

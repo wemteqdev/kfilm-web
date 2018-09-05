@@ -21,8 +21,10 @@ class Header extends Component {
     }
 
     componentWillMount(){
-        if (cookie.load('user') !== undefined) {
-            this.props.loginSuccess(cookie.load('user'))
+        let user = cookie.load('user')
+        if (user !== undefined) {
+            this.props.loginSuccess(user)
+            axios.defaults.headers.common['Authorization'] = user.access_token
         }
         axios.get(`http://korfilm.loc/api/categories`)
         .then( response => {
@@ -49,19 +51,28 @@ class Header extends Component {
     render () {
         return (
             <header {...this.boundActions}>
+                <div id="logo" className="text-center">
+                    <Link to="/">
+                        <div className="logo d-flex">
+                            <div className="justify-content-center align-self-center mx-auto">
+                                <h2 className="mb-0">KORFILM</h2>
+                            </div>
+                            
+                        </div>
+                    </Link>
+                </div>
                 <Navbar id='categories-nav' light expand="md">
-                    <Collapse navbar className='container'>
+                    <Collapse navbar className="d-flex justify-content-between">
                         <Nav navbar>
-                            <NavItem key={-1}>
-                                <NavLink to={"/"} exact activeClassName='active'><FontAwesomeIcon icon='home'/> Home</NavLink>
-                            </NavItem>
                             { this.showCategories() }
                         </Nav>
                         <div className="login navButton">
                             <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
                             { this.props.login.user == null
                                     ? <Link to="/login" className="loginReg">Log in / Register</Link>
-                                    : <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+                                    : <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
+                                        <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+                                        </span>
                             }
                         </div>
                     </Collapse>
@@ -71,18 +82,16 @@ class Header extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    toggleSearch: () => dispatch(toggleSearchAction()),
-    logoutSuccess: () => dispatch(logoutSuccessAction()),
-    loginSuccess: (payload) => dispatch(loginSuccessAction(payload))
-})
-
-
 const mapStateToProps = (state) => {
     return {
       login: state.login
     }
 }
 
-  
+const mapDispatchToProps = dispatch => ({
+    toggleSearch: () => dispatch(toggleSearchAction()),
+    logoutSuccess: () => dispatch(logoutSuccessAction()),
+    loginSuccess: (payload) => dispatch(loginSuccessAction(payload))
+}) 
+
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Header) );

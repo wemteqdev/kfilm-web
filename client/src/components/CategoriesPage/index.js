@@ -35,7 +35,7 @@ class CategoriesPage extends Component {
         return this.state.videos.map( (item, i) => {
             return (
                 <div key={i} className="col-3">
-                    <Card>
+                    <Card className="video-card">
                         <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
                         <Link to={'/videos/' + item.slug} className='hover-posts'>
                             <span><FontAwesomeIcon icon='play'/>Watch Video</span>
@@ -51,7 +51,6 @@ class CategoriesPage extends Component {
 
     render() {
         return (
-            <Fade in={true} tag="div">
             <div>
                 <div className="banner">
                     { (this.state.category != null) && (<div className="banner-image row align-items-center text-center" style={ {
@@ -68,7 +67,6 @@ class CategoriesPage extends Component {
                     </div>
                 </div>
             </div>
-            </Fade>
         )
     }
 };

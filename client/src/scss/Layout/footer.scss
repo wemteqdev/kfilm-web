@@ -94,3 +94,16 @@ footer {
         }
     }
 }
+
+#user-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: $sidebar-width;
+    padding: 2rem;
+    .btm-footer-text p {
+        margin: 0;
+    }
+    z-index: 10;
+    opacity: .9;
+}
