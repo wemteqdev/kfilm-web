@@ -10,9 +10,20 @@ use App\Models\Series;
 use Illuminate\Support\Facades\Auth;
 class Video extends JsonResource
 {
+	public function hasProAccess($request)
+	{
+		if($request->user()==null)
+			return false;
+
+		if(!$request->user()->isPro())
+			return false;
+
+		return true;	
+	}
+
 	public function embedPro($request)
 	{
-		if(!$this->isPro())
+		if(!$this->isPro() || $this->hasProAccess($request))
 			return $this->embed;
 		
 		return null;

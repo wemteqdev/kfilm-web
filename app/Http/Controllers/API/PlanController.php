@@ -21,9 +21,8 @@ class PlanController extends Controller
 		
 		try {
 			$user->newSubscription($product->id, $plan->id)->create($request->stripeToken);
-	
-			$user->assignRole($product->name);
-			
+			$user->syncRoles([$product->name]); 
+
 			return response()->json(['success' => 'Subscription successfully']);
 		} catch (\Exception $ex) {
 			return response()->json(['error' => $ex->getMessage()], 403);
@@ -35,7 +34,8 @@ class PlanController extends Controller
 	public function cancel($id, Request $request)
 	{
 		$plan = Plan::find($id);
-		
+		$product = Product::find($plan->product_id);
+
 		$plan_id = $plan->id;
 		$product_id = $plan->product_id;
 
@@ -44,6 +44,7 @@ class PlanController extends Controller
 	
 			$user = Auth::user();
 			$user->subscription($product_id)->cancelNow();
+			$user->removeRole($product->name);
 	
 			return response()->json(['success' => 'Subscription cancelled successfully']);
 		} catch (\Exception $ex) {

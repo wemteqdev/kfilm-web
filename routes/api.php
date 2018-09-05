@@ -38,6 +38,19 @@ Route::get('tags', 'TagController@index');
 Route::get('products', 'ProductController@index');
 
 Route::group(['middleware' => ['auth:api']], function(){
+	Route::get('pro/videos', 'VideoController@index');
+	Route::get('pro/categories', 'CategoryController@index');
+	Route::get('pro/images', 'ImageController@index');
+	Route::get('pro/series', 'SeriesController@index');
+	Route::get('pro/series/{id_or_slug}', 'SeriesController@show');
+	Route::get('pro/videos/{id_or_slug}', 'VideoController@show');
+	Route::get('pro/categories/{id_or_slug}', 'CategoryController@show');
+	Route::get('pro/categories/{id_or_slug}/videos', 'CategoryController@videos');
+	Route::get('pro/tags', 'TagController@index');
+	Route::get('pro/products', 'ProductController@index');
+});
+
+Route::group(['middleware' => ['auth:api']], function(){
 	Route::post('plans/{plan_id}/subscribe', ['as'=>'plans.subscribe', 'uses' => 'PlanController@subscribe']);
 	Route::delete('plans/{plan_id}/cancel', ['as'=>'plans.cancel', 'uses' => 'PlanController@cancel']);
 });
