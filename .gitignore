@@ -17,3 +17,4 @@ yarn-error.log
 /client/node_modules
 /client/build
 /composer.lock
+/.dump.rdb
