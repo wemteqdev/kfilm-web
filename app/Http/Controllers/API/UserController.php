@@ -18,7 +18,7 @@ class UserController extends Controller
 		return new UserResource($request->user());
 	}
 
-    public function auth(Request $request)
+    public function login(Request $request)
 	{
 	 	$params = $request->only('email', 'password');
 
@@ -37,6 +37,14 @@ class UserController extends Controller
 	 	return response()->json(['error' => 'Invalid username or Password'], 401);
 	}
 
+	public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+	}
+	
 	public function register(Request $request) 
     { 
         $validator = Validator::make($request->all(), [ 
