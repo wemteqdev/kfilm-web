@@ -4,12 +4,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::stripeWebhooks('/gateway/stripe/webhook');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/gateway/vimeo/oauth2_callback', 'Gateway\VimeoController@oauth2_callback');
-Route::get('/gateway/stripe/webhook', 'Gateway\StripeController@webhook');
-
-Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::get('admin/dashboard', ['as'=> 'admin.dashboard', 'uses' => 'Admin\DashboardController@index']);
