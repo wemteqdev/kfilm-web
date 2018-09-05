@@ -12,12 +12,14 @@ class PlanController extends Controller
 	{
 		$plan = Plan::find($id);
 		$product = Product::find($plan->product_id);
+
+		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+		$user = Auth::user();
+		try {
+			$user->cancelSubscriptions();
+		} catch(\Exception $ex){}
 		
 		try {
-			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-	
-			$user = Auth::user();
-			$user->cancelSubscriptions();
 			$user->newSubscription($product->id, $plan->id)->create($request->stripeToken);
 	
 			$user->assignRole($product->name);
