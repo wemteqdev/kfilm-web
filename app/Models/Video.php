@@ -175,6 +175,17 @@ class Video extends Model implements LikeableContract
         $this->published_at = \Carbon\Carbon::now()->toDateTimeString();
         return $this->save();
     }
+    
+    public function suggested()
+    {
+        $category_ids = $this->categories()->pluck('category_id');
+
+        $related_videos = Video::published()->whereHas('categories', function($query) use ($category_ids) {
+            $query->whereIn('category_video.category_id', $category_ids);
+        })->where('id', '<>', $this->id)->take(3)->get();
+
+        return $related_videos;
+    }
 
     public static function create_from_vimeo($vimeo_id)
     {
@@ -221,5 +232,4 @@ class Video extends Model implements LikeableContract
             $video->save();
         }
     }
-    
 }
