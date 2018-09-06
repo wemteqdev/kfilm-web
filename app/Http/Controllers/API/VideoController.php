@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
 use App\Models\Category;
+use App\Models\History;
 use App\Models\Group;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
@@ -149,5 +150,52 @@ class VideoController extends Controller
         $video->untag($request->tag);
 
         return new VideoResource($video);
-    }
+	}
+
+	public function like($id_or_slug, Request $request)
+	{
+	
+		// $user = auth('api')->user();
+		$user = $request->user();
+		$video = Video::find($id_or_slug);
+
+		if($video==null){
+			$video = Video::where('slug', $id_or_slug)->firstorfail();
+
+		}
+
+		$user->like($video);
+
+		return new VideoResource($video);
+	}
+
+	public function unlike($id_or_slug, Request $request)
+	{
+		$user = $request->user();
+		$video = Video::find($id_or_slug);
+
+		if($video==null){
+			$video = Video::where('slug', $id_or_slug)->firstorfail();
+
+		}
+
+		$user->unlike($video);
+
+		return new VideoResource($video);
+	}
+
+	public function add_history($id_or_slug, Request $request)
+	{
+		$user = $request->user();
+		$video = Video::find($id_or_slug);
+
+		if($video==null){
+			$video = Video::where('slug', $id_or_slug)->firstorfail();
+
+		}
+
+		$user->create_video_watch_history($video->id);
+
+		return new VideoResource($video);
+	}
 }

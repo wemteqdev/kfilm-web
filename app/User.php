@@ -7,11 +7,15 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Cashier\Billable;
-class User extends Authenticatable
+use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
+use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+
+class User extends Authenticatable implements LikerContract
 {
     use HasApiTokens, Notifiable;
     use HasRoles;
     use Billable;
+    use Liker;
 
     protected $guard_name = 'api';
 
@@ -24,6 +28,11 @@ class User extends Authenticatable
     ];
 
     protected $appends = ['role_names'];
+
+    public function histories()
+    {
+        return $this->hasMany('App\Models\History');
+    }
 
     public function getRoleNamesAttribute()
     {
@@ -41,5 +50,10 @@ class User extends Authenticatable
     public function isPro()
     {
         return $this->hasAnyRole(['pro', 'admin']);
+    }
+
+    public function create_video_watch_history($video)
+    {
+        return $this->histories->create($video->id);
     }
 }

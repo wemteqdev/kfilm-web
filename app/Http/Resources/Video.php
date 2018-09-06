@@ -52,6 +52,9 @@ class Video extends JsonResource
 				"groups" => $this->groups()->pluck('slug'),
 				"series" => new SeriesShortResource(Series::find($this->series_id)),
 				"featured_video"=> new VideoResource(Video::find($this->featured_video_id)),
+				"is_favorited"=>$this->liked,
+				"likes"=>$this->likesCount,
+				"is_pro" => $this->type_name == 'pro',
         ];
     }
 }

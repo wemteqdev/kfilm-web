@@ -52,6 +52,5 @@ class PlanController extends Controller
 		}
 
 		return response()->json(['error' => 'something went wrong'], 403);
-
 	}
 }

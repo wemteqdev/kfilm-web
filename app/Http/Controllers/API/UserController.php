@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\SubscriptionCollection;
 use App\Http\Resources\InoviceCollection;
+use App\Http\Resources\VideoCollection;
 use Auth;
 use Validator;
 use App\User;
 use Laravel\Passport\Passport;
+use App\Models\Video;
 class UserController extends Controller
 {
 	public function index(Request $request)
@@ -72,6 +74,12 @@ class UserController extends Controller
 		$subscriptions = $request->user()->subscriptions()->get();
 
 		return new SubscriptionCollection($subscriptions);
+	}
+	
+	public function favorite_videos(Request $request)
+	{
+		$videos = Video::published()->whereLikedBy($request->user()->id)->with('likesCounter')->get();
+		return new VideoCollection($videos);
 	}
 
 	public function invoices(Request $request)
