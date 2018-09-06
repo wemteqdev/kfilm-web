@@ -1,17 +1,34 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout';
 
 export default class Plan extends Component {
 
     state = {
         plans:[],
+        subscription:[]
     }
 
     componentWillMount(){
+        axios.get(`http://korfilm.loc/api/user/subscriptions`)
+        .then( response => {
+            this.setState({subscription:response.data.data[0].stripe_plan});
+        })
         axios.get(`http://korfilm.loc/api/products`)
         .then( response => {
             this.setState({plans:response.data.data});
         })
+    }
+
+    onToken = (plan_id) => token => {
+        axios.post(`http://korfilm.loc/api/plans/${plan_id}/subscribe`, {
+            method: 'POST',
+            stripeToken: token.id,
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+
+        });
     }
 
     showPlans() {
@@ -32,7 +49,13 @@ export default class Plan extends Component {
                                     <li>Priority email support</li>
                                     <li>Help center access</li>
                                 </ul>
-                                <button type="button" className="btn btn-lg btn-block btn-primary">Get started</button>
+                                { this.state.subscription !== plan.id && <StripeCheckout
+                                    token={this.onToken(plan.id)}
+                                    stripeKey="pk_test_ZaX66npOBaJhNzR80x8lBlS0"
+                                    amount={plan.amount}
+                                    name={plan.nickname}
+                                    description="description"
+                                />}
                             </div>
                     </div>
                 )

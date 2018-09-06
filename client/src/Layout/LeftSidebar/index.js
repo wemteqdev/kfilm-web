@@ -17,7 +17,7 @@ class LeftSidebar extends Component {
     }
 
     onNav(selected) {
-        this.props.history.push('/' + selected)
+        this.props.history.push('/user/' + selected)
     }
     render() {
         return (
@@ -54,7 +54,14 @@ class LeftSidebar extends Component {
                             History
                         </NavText>
                     </NavItem>
-                    
+                    <NavItem eventKey="pro-videos">
+                        <NavIcon>
+                            <FontAwesomeIcon icon="film"/>
+                        </NavIcon>
+                        <NavText>
+                            Pro Videos
+                        </NavText>
+                    </NavItem>
                     {
                         this.props.sidebar.toggleSidebar &&
                         <div className="d-flex text-center plan-nav-item">
@@ -62,7 +69,7 @@ class LeftSidebar extends Component {
                                 <h2>korfilm Pro</h2>
                                 <span>Powerful privacy options<br/> and advanced stats</span>
                                 <div className="plan-button">
-                                    <Link to="/plan" className="btn btn-danger btn-lg">Upgrade</Link>
+                                    <Link to="/user/plan" className="btn btn-danger btn-lg">Upgrade</Link>
                                 </div>
                             </div>
                         </div>

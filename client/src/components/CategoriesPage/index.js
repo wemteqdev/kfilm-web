@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Card, CardImg, CardBody, CardSubtitle, Fade } from 'reactstrap';
+import { Card, CardImg, CardBody, CardSubtitle } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import './categoriesPage.scss';

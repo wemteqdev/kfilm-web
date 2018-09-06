@@ -23,8 +23,17 @@ class Header extends Component {
     componentWillMount(){
         let user = cookie.load('user')
         if (user !== undefined) {
-            this.props.loginSuccess(user)
-            axios.defaults.headers.common['Authorization'] = user.access_token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
+
+            axios.get(`http://korfilm.loc/api/user`)
+            .then( (response) => {
+                this.props.loginSuccess(user)
+                },
+                (error) => {
+                    cookie.remove('user')
+                    axios.defaults.headers.common['Authorization'] = ''
+                }
+            )
         }
         axios.get(`http://korfilm.loc/api/categories`)
         .then( response => {

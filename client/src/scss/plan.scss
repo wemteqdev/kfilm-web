@@ -1,3 +1,26 @@
 .pricing-page {
     margin-top: 10rem;
+
+    .pricing-header {
+        h1 {
+            color: black;
+        }
+    }
+    .card-header {
+        h4 {
+            color: black;
+        }
+    }
+
+    .card-body {
+        h1 {
+            color: black;
+        }
+        .StripeCheckout {
+            background: $background-secondary-color !important;
+            span {
+                background: $background-secondary-light-color !important;
+            }
+        }
+    }
 }

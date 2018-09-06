@@ -190,6 +190,18 @@ a {
     background-color: white !important;
 }
 
+.bill-table {
+    margin-top: 5rem;
+    color: $color-hover-dark;
+}
+
+.page-title {
+    padding-top: 8rem;
+    h2 {
+        color: $color-hover-dark;
+    }
+}
+
 @media (min-width: 576px){
     .modal-dialog.search {
         max-width: 100%;
