@@ -10,12 +10,15 @@ use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use App\Enums\VideoType;
 use App\Enums\VideoStatus;
-class Video extends Model
+use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
+use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
+class Video extends Model implements LikeableContract
 {
     use SoftDeletes;
     use Sluggable;
     use Taggable;
     use Viewable;
+    use Likeable;
 
     public $table = 'videos';
     
@@ -76,6 +79,11 @@ class Video extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function isPro()
+    {
+        return $this->type == VideoType::pro;
     }
 
     public function getStatusNameAttribute() {

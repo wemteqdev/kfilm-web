@@ -7,9 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\SubscriptionCollection;
 use App\Http\Resources\InoviceCollection;
+use App\Http\Resources\VideoCollection;
+use App\Http\Resources\HistoryCollection;
 use Auth;
 use Validator;
 use App\User;
+use Laravel\Passport\Passport;
+use App\Models\Video;
 class UserController extends Controller
 {
 	public function index(Request $request)
@@ -17,7 +21,7 @@ class UserController extends Controller
 		return new UserResource($request->user());
 	}
 
-    public function auth(Request $request)
+    public function login(Request $request)
 	{
 	 	$params = $request->only('email', 'password');
 
@@ -26,6 +30,9 @@ class UserController extends Controller
 
 	 	if(Auth::attempt(['email' => $username, 'password' => $password])){
 			$user =	Auth::user();
+
+			$user->tokens()->delete();
+
 			$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
 			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}
@@ -33,6 +40,14 @@ class UserController extends Controller
 	 	return response()->json(['error' => 'Invalid username or Password'], 401);
 	}
 
+	public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+	}
+	
 	public function register(Request $request) 
     { 
         $validator = Validator::make($request->all(), [ 
@@ -61,6 +76,12 @@ class UserController extends Controller
 
 		return new SubscriptionCollection($subscriptions);
 	}
+	
+	public function favorite_videos(Request $request)
+	{
+		$videos = Video::published()->whereLikedBy($request->user()->id)->with('likesCounter')->get();
+		return new VideoCollection($videos);
+	}
 
 	public function invoices(Request $request)
 	{
@@ -74,5 +95,11 @@ class UserController extends Controller
 		});
 
 		return response()->json([ 'data' => $invoices ]);
+	}
+
+	public function histories(Request $request)
+	{
+		$histories = $request->user()->histories()->paginate(9);
+		return new HistoryCollection($histories);
 	}
 }

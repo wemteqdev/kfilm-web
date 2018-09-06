@@ -10,8 +10,7 @@ class Invoice extends JsonResource
     {
         return [
             'date' => $this->date()->toFormattedDateString(),
-            'total' => $this->total(),
-            'download_url' => '/user/invoice/' . $this->id
+            'total' => $this->total()
         ];
     }
 }

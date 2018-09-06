@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 	Route::get('user/invoices', 'UserController@invoices');
 });
 
-Route::post('auth', 'UserController@auth');
+Route::post('user/login', 'UserController@login');
 Route::post('user/register', 'UserController@register');
 
 Route::get('videos', 'VideoController@index');
@@ -36,6 +36,42 @@ Route::get('categories/{id_or_slug}', 'CategoryController@show');
 Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
 Route::get('tags', 'TagController@index');
 Route::get('products', 'ProductController@index');
+
+Route::group(['middleware' => ['auth:api']], function(){
+	Route::get('user/videos', 'VideoController@index');
+	Route::post('user/videos/{id_or_slug}/like', 'VideoController@like');
+	Route::delete('user/videos/{id_or_slug}/unlike', 'VideoController@unlike');
+	Route::post('user/videos/{id_or_slug}/add_history', 'VideoController@add_history');
+
+	Route::get('user/categories', 'CategoryController@index');
+	Route::get('user/images', 'ImageController@index');
+	Route::get('user/series', 'SeriesController@index');
+	Route::get('user/series/{id_or_slug}', 'SeriesController@show');
+	Route::get('user/videos/{id_or_slug}', 'VideoController@show');
+	Route::get('user/categories/{id_or_slug}', 'CategoryController@show');
+	Route::get('user/categories/{id_or_slug}/videos', 'CategoryController@videos');
+	Route::get('user/tags', 'TagController@index');
+	Route::get('user/products', 'ProductController@index');
+	Route::get('user/favorite_videos', 'UserController@favorite_videos');
+	Route::get('user/histories', 'UserController@histories');
+});
+
+Route::group(['middleware' => ['auth:api']], function(){
+	Route::get('pro/videos', 'VideoController@index');
+	Route::post('user/videos/{id_or_slug}/like', 'VideoController@like');
+	Route::delete('user/videos/{id_or_slug}/unlike', 'VideoController@unlike');
+
+	Route::get('pro/categories', 'CategoryController@index');
+	Route::get('pro/images', 'ImageController@index');
+	Route::get('pro/series', 'SeriesController@index');
+	Route::get('pro/series/{id_or_slug}', 'SeriesController@show');
+	Route::get('pro/videos/{id_or_slug}', 'VideoController@show');
+	Route::get('pro/categories/{id_or_slug}', 'CategoryController@show');
+	Route::get('pro/categories/{id_or_slug}/videos', 'CategoryController@videos');
+	Route::get('pro/tags', 'TagController@index');
+	Route::get('pro/products', 'ProductController@index');
+	Route::get('pro/favorite_videos', 'UserController@favorite_videos');
+});
 
 Route::group(['middleware' => ['auth:api']], function(){
 	Route::post('plans/{plan_id}/subscribe', ['as'=>'plans.subscribe', 'uses' => 'PlanController@subscribe']);
