@@ -8,6 +8,7 @@ use App\Http\Resources\User as UserResource;
 use App\Http\Resources\SubscriptionCollection;
 use App\Http\Resources\InoviceCollection;
 use App\Http\Resources\VideoCollection;
+use App\Http\Resources\HistoryCollection;
 use Auth;
 use Validator;
 use App\User;
@@ -94,5 +95,11 @@ class UserController extends Controller
 		});
 
 		return response()->json([ 'data' => $invoices ]);
+	}
+
+	public function histories(Request $request)
+	{
+		$histories = $request->user()->histories()->paginate(9);
+		return new HistoryCollection($histories);
 	}
 }

@@ -54,6 +54,6 @@ class User extends Authenticatable implements LikerContract
 
     public function create_video_watch_history($video)
     {
-        return $this->histories->create($video->id);
+        return $this->histories()->create(['video_id' => $video->id]);
     }
 }

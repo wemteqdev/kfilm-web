@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 	Route::get('user/tags', 'TagController@index');
 	Route::get('user/products', 'ProductController@index');
 	Route::get('user/favorite_videos', 'UserController@favorite_videos');
+	Route::get('user/histories', 'UserController@histories');
 });
 
 Route::group(['middleware' => ['auth:api']], function(){

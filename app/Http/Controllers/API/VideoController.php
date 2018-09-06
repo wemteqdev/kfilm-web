@@ -194,7 +194,7 @@ class VideoController extends Controller
 
 		}
 
-		$user->create_video_watch_history($video->id);
+		$user->create_video_watch_history($video);
 
 		return new VideoResource($video);
 	}
