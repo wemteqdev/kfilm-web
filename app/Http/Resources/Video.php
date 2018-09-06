@@ -13,10 +13,11 @@ class Video extends JsonResource
 {
 	public function hasProAccess($request)
 	{
-		if($request->user()==null)
+		$user = auth('api')->user();
+		if($user==null)
 			return false;
 
-		if(!$request->user()->isPro())
+		if(!$user->isPro())
 			return false;
 
 		return true;	
