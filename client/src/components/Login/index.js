@@ -38,7 +38,7 @@ class Login extends Component {
         this.setState({
             signing: !this.state.signing
         })
-        axios.post(`http://korfilm.loc/api/auth?email=${this.state.email}&password=${this.state.password}`)
+        axios.post(`http://korfilm.loc/api/user/login?email=${this.state.email}&password=${this.state.password}`)
         .then( (response) => {
                 this.setState({
                     signing: !this.state.signing,

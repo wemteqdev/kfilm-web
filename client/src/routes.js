@@ -10,6 +10,8 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import Plan from './components/Plan';
 import Billing from './components/Billing';
+import Histories from './components/Histories';
+import Favorites from './components/Favorites';
 
 class Routes extends Component {
     render(){
@@ -28,6 +30,8 @@ class Routes extends Component {
                     <Route path="/user/profile" exact component={Profile}/>
                     <Route path="/user/plan" exact component={Plan}/>
                     <Route path="/user/billing" exact component={Billing}/>
+                    <Route path="/user/history" exact component={Histories}/>
+                    <Route path="/user/favorites" exact component={Favorites}/>
                 </Switch>
             </Layout>
            

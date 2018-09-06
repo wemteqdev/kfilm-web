@@ -38,6 +38,14 @@ class LeftSidebar extends Component {
                                 Profile
                         </NavText>
                     </NavItem>
+                    <NavItem eventKey="favorites">
+                        <NavIcon>
+                            <FontAwesomeIcon icon="heart"/>
+                        </NavIcon>
+                        <NavText>
+                            Favorites
+                        </NavText>
+                    </NavItem>
                     <NavItem eventKey="billing">
                         <NavIcon>
                             <FontAwesomeIcon icon="home"/>
