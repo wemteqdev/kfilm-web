@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Video as VideoResource;
 use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\SeriesShort as SeriesShortResource;
+use App\Http\Resources\VideoShort as VideoShortResource;
 use App\Models\Series;
 use Illuminate\Support\Facades\Auth;
 class Video extends JsonResource
@@ -50,11 +51,12 @@ class Video extends JsonResource
 				"views" => $this->getUniqueViews(),
 				"categories" => $this->categories()->pluck('slug'),
 				"groups" => $this->groups()->pluck('slug'),
-				"series" => new SeriesShortResource(Series::find($this->series_id)),
 				"featured_video"=> new VideoResource(Video::find($this->featured_video_id)),
 				"is_favorited"=>$this->liked,
 				"likes"=>$this->likesCount,
 				"is_pro" => $this->type_name == 'pro',
+				'related'=> VideoShortResource::collection($this->suggested()),
+				"series" => new SeriesShortResource(Series::find($this->series_id)),
         ];
     }
 }

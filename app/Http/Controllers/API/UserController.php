@@ -72,7 +72,7 @@ class UserController extends Controller
 	
 	public function subscriptions(Request $request)
 	{
-		$subscriptions = $request->user()->subscriptions()->get();
+		$subscriptions = $request->user()->subscriptions()->orderBy('created_at', 'desc')->get();
 
 		return new SubscriptionCollection($subscriptions);
 	}
@@ -99,7 +99,7 @@ class UserController extends Controller
 
 	public function histories(Request $request)
 	{
-		$histories = $request->user()->histories()->paginate(9);
+		$histories = $request->user()->histories()->orderBy('created_at', 'desc')->paginate(9);
 		return new HistoryCollection($histories);
 	}
 }
