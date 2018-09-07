@@ -12,6 +12,7 @@ use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
 use App\Enums\VideoType;
+use App\Enums\UserRoles;
 class VideoController extends Controller
 {
 	public function index(Request $request)
@@ -21,8 +22,14 @@ class VideoController extends Controller
 		$view_param = $request->view; // hot, popular, trending, recent
 		$limit_param = $request->limit;
 		$type_param = $request->type; // normal, featured, promotion, recommended
+		$scope_param = $request->scope; // free, pro
 
 		$videos = Video::published();
+		if ( isset($scope_param) )
+		{
+			$videos = $videos->where('scope', UserRoles::getValue($scope_param));
+		}
+
 		if ( isset($type_param) )
 		{
 			$videos = $videos->where('type', VideoType::getValue($type_param));
