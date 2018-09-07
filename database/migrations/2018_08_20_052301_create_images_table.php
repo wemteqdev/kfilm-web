@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->integer('width')->nullable();
             $table->integer('height')->nullable();
             $table->string('uri');
-            $table->string('alt');
+            $table->string('alt')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

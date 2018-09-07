@@ -47,6 +47,7 @@ class Video extends Model implements LikeableContract
         'views_count_last_30days',
         'year',
         'published_at',
+        'scope',
     ];
 
     protected $casts = [
@@ -83,7 +84,7 @@ class Video extends Model implements LikeableContract
 
     public function isPro()
     {
-        return $this->type == VideoType::pro;
+        return $this->scope == VideoType::pro;
     }
 
     public function getStatusNameAttribute() {

@@ -55,7 +55,8 @@ class Video extends JsonResource
 				"featured_video"=> new VideoResource(Video::find($this->featured_video_id)),
 				"is_favorited"=>$this->liked,
 				"likes"=>$this->likesCount,
-				"is_pro" => $this->type_name == 'pro',
+				"scope"=>$this->scope,
+				"is_pro" => $this->isPro(),
 				'related'=> VideoShortResource::collection($this->suggested()),
 				"series" => new SeriesShortResource(Series::find($this->series_id)),
         ];

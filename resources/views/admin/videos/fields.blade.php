@@ -61,6 +61,14 @@
                 {!! Form::select('type', App\Enums\VideoType::toSelectArray(), null) !!}
             </label>
         </div>
+        
+         <!-- Type Field -->
+         <div class="form-group ">
+            {!! Form::label('scope', 'Scope:') !!}
+            <label class="checkbox-inline">
+                {!! Form::select('scope', App\Enums\UserRoles::toSelectArray(), null) !!}
+            </label>
+        </div>
 
         <!-- Status Field -->
         <div class="form-group ">
