@@ -48,7 +48,7 @@ class LeftSidebar extends Component {
                     </NavItem>
                     <NavItem eventKey="billing">
                         <NavIcon>
-                            <FontAwesomeIcon icon="home"/>
+                            <FontAwesomeIcon icon="calendar-check"/>
                         </NavIcon>
                         <NavText>
                             Billing

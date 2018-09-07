@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Table } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { billLoadingAction } from '../../actions';
+import { billLoadingAction } from '../../../actions';
 
 class BillingTable extends Component {
     state = {

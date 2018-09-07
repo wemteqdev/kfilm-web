@@ -4,10 +4,10 @@ const About = () => {
     return (
         <div className="widgetBox">
             <div className="widgetTitle">
-                <h5>About Betube</h5>
+                <h5>About korfilm</h5>
             </div>
             <div className="textwidget">
-                Betube video wordpress theme lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s book.
+                KORFILM is the most 
             </div>
         </div>
     )

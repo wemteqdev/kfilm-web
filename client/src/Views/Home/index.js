@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Banner from '../widgets/Banner';
-import MainContent from '../widgets/MainContent';
-import Videos from '../widgets/Videos';
+import Banner from '../../components/widgets/Banner';
+import MainContent from '../../components/widgets/MainContent';
+import Videos from '../../components/widgets/Videos';
 
 
 export default class Home extends Component {

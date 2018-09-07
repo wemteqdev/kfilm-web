@@ -37,39 +37,52 @@ export default class Plan extends Component {
         }
         return this.state.plans[0].plans.map((plan, key) => {
                 return (
-                    <div key={key} className="card mb-4 shadow-sm col-3 mx-3 text-center">
-                            <div className="card-header">
-                                <h4 className="my-0 font-weight-normal">{this.state.plans[0].name}-{plan.nickname}</h4>
+                    <div key={key} className="col-4">
+                        <div className="pricing">
+                            <div className="price-head">
+                                <span className="price-title">{this.state.plans[0].name}-{plan.nickname}</span>
+                                <div className="price">
+                                    <h3>${ plan.amount / 100 }<span className="duration">/ { plan.interval }</span></h3>
+                                </div>
                             </div>
-                            <div className="card-body">
-                                <h1 className="card-title pricing-card-title">${ plan.amount / 100 } <small className="text-muted">/ { plan.interval }</small></h1>
-                                <ul className="list-unstyled mt-3 mb-4">
-                                    <li>20 users included</li>
-                                    <li>10 GB of storage</li>
-                                    <li>Priority email support</li>
-                                    <li>Help center access</li>
-                                </ul>
+                            <ul className="price-content">
+                                <li>
+                                    <p>1GB Disk Space</p>
+                                </li>
+                                <li>
+                                    <p>100 Email Account</p>
+                                </li>
+                                <li>
+                                    <p>24/24 Support</p>
+                                </li>
+                            </ul>
+                            <div className="price-btn">
                                 { this.state.subscription !== plan.id && <StripeCheckout
                                     token={this.onToken(plan.id)}
                                     stripeKey="pk_test_ZaX66npOBaJhNzR80x8lBlS0"
                                     amount={plan.amount}
                                     name={plan.nickname}
                                     description="description"
-                                />}
+                                >
+                                    <button className="outline-btn">Purchase now</button>
+                                </StripeCheckout>}
                             </div>
+                        </div>
                     </div>
                 )
             })
     }
     render() {
         return (
-            <div className="pricing-page bgWhite">
-                <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                    <h1 className="display-4">Pricing</h1>
-                    <p className="lead"></p>
+            <div className="container page-padding">
+                <div className="row">
+                    <div className="section-header text-center">
+                        <h1 className="title">Pricing</h1>
+                    </div>
                 </div>
-                <div className="row justify-content-center align-items-center">
+                <div className="row align-items-center justify-content-center">
                     { this.showPlans() }
+                    
                 </div>
             </div>
         )

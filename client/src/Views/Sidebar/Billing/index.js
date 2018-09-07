@@ -3,7 +3,7 @@ import BillingTable from './table';
 import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { billLoadingAction } from '../../actions';
+import { billLoadingAction } from '../../../actions';
 
 class Billing extends Component {
 

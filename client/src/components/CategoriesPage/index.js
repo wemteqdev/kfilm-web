@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Card, CardImg, CardBody, CardSubtitle } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import VideoList from '../widgets/VideoList';
 import './categoriesPage.scss';
 
 class CategoriesPage extends Component {
     
     state = {
         videos:[],
-        category:null
+        category:{}
     }
 
     componentWillMount(){
@@ -31,40 +29,14 @@ class CategoriesPage extends Component {
         this.loadVideos(nextProps)
     }
 
-    showVideos() {
-        return this.state.videos.map( (item, i) => {
-            return (
-                <div key={i} className="col-3">
-                    <Card className="video-card">
-                        <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
-                        <Link to={'/videos/' + item.slug} className='hover-posts'>
-                            <span><FontAwesomeIcon icon='play'/>Watch Video</span>
-                        </Link>
-                        <CardBody>
-                            <CardSubtitle>{ item.name }</CardSubtitle>
-                        </CardBody>
-                    </Card>
-                </div>
-            )
-        } )
-    }
-
     render() {
         return (
-            <div>
-                <div className="banner">
-                    { (this.state.category != null) && (<div className="banner-image row align-items-center text-center" style={ {
-                        background: `url(${this.state.category.featured_image_url}) center center`,
-                    }}>
-                    <div className="banner-heading">
-                        <h2 className="text-shadow-md">{this.state.category.name}</h2>
+            <div className="page-padding">
+                    <div className="section-header">
+                        <h1 className="title">{this.state.category.name}</h1>
                     </div>
-                    </div>)}
-                </div>
-                <div className="container videoList">
-                    <div className="row">
-                        { this.showVideos() }
-                    </div>
+                <div>
+                    <VideoList videos={this.state.videos} size="2"/>
                 </div>
             </div>
         )

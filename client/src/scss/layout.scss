@@ -7,6 +7,7 @@
 @import './login.scss';
 @import './plan.scss';
 @import './history.scss';
+@import './pricing.scss';
 @import '~owl.carousel/dist/assets/owl.carousel.css';
 @import '~owl.carousel/dist/assets/owl.theme.default.css';
 @import '../components/widgets/Videos/Carousel/carousel.scss';
@@ -214,6 +215,72 @@ a {
         .modal-content{
             height:100%;
             border: none;
+        }
+    }
+}
+
+.section-header {
+    position: relative;
+    margin-bottom: 4rem;
+    width: 100%;
+    .title {
+        text-transform: capitalize;
+        font-size: 3rem;
+        color: #000;
+    }
+    .title:after {
+        content: "";
+        display: block;
+        height: .4rem;
+        width: 10rem;
+        background-color: #6195FF;
+        margin-top: 1rem;
+    }
+}
+
+.text-center .title:after {
+    margin: 0 auto;
+}
+
+.page-padding {
+    padding:5rem 5rem 10rem 5rem;
+}
+
+.primary-button {
+    width: 7rem;
+    height: 3rem;
+    font-size: 1.4rem;
+}
+
+.banner-mask {
+    width: 100%;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 7rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    padding: 3rem 2rem;
+    p {
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+    .banner-watch {
+        font-size: 3rem;
+        a {
+            color: $color-pink;
+            text-transform: uppercase;
+            transition: color 0.25s;
+            &:hover {
+                color: #007bff;
+                border-bottom: 2px solid #007bff;
+            }
+            svg {
+                font-size: 2rem;
+            }
         }
     }
 }

@@ -1,0 +1,102 @@
+.pricing {
+    position: relative;
+    text-align: center;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    z-index: 8;
+    margin: 15px 0px;
+
+    &:hover .price-title {
+        color: #6195FF;
+    }
+    
+    .price-head {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .price-title {
+        display: block;
+        padding: 40px 0px 20px;
+        text-transform: uppercase;
+        -webkit-transition: 0.2s color;
+        transition: 0.2s color;
+    }
+
+    .price {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        line-height: 140px;
+        text-align: center;
+        margin: auto;
+        border-radius: 50%;
+        border: 2px solid #6195FF;
+        h3 {
+            font-size: 42px;
+            margin: 0px;
+            -webkit-transition: 0.2s color;
+            transition: 0.2s color;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            top: 50%;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+    }
+    .duration {
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #10161A;
+        -webkit-transition: 0.2s color;
+        transition: 0.2s color;
+    }
+
+    .price-btn {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    .outline-btn {
+        background: transparent;
+        color: #6195FF !important;
+        border-color: #6195FF !important;
+        display: inline-block;
+        padding: 10px 35px;
+        margin: 3px;
+        border: 2px solid transparent;
+        border-radius: 3px;
+        transition: 0.2s opacity;
+    }
+    .outline-btn:hover {
+        opacity: 0.8;
+    }
+
+    .price-content {
+        list-style: none;
+        padding: 0;
+    }
+}
+
+.pricing::after {
+    content: "";
+    background-color: #444;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0%;
+    z-index: -1;
+    -webkit-transition: 0.2s height;
+    transition: 0.2s height;
+}
+
+.pricing:hover:after {
+    height: 100%;
+}
+
+.pricing:hover .price-title {
+    color: #6195FF;
+}

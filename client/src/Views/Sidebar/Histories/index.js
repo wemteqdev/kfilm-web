@@ -36,12 +36,14 @@ export default class Histories extends Component {
     return (
         <div id="history-page">
             <div className="container">
-                <div className="text-center">
-                    <h1>Histories</h1>
+                <div className="row">
+                    <div className="section-header text-center">
+                        <h1 className="title">Histories</h1>
+                    </div>
                 </div>
                 { this.showHistories() }
             </div>
-      </div>
+        </div>
     )
   }
 }

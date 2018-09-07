@@ -22,11 +22,7 @@ const Password = (props) => {
     const { handleSubmit, submitting } = props
 
     return (
-        <div>
-            <div className="text-center">
-                <h2>Profile Password</h2>
-            </div>
-            <Form className="login-form" onSubmit={handleSubmit} method="post">
+            <Form onSubmit={handleSubmit} method="post">
                 <FormGroup>
                     <Field
                         name="current-password"
@@ -53,10 +49,9 @@ const Password = (props) => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Button className="login-button" type="Submit" disabled={submitting} >Save</Button>
+                    <Button className="primary-button float-right" type="Submit" disabled={submitting} >Save</Button>
                 </FormGroup>
             </Form>
-        </div>
     )
 }
 
