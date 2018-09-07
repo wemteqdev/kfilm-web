@@ -4,44 +4,40 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use \Conner\Tagging\Taggable;
 
-class Image extends Model
+class Slide extends Model
 {
+    use Taggable;
     use SoftDeletes;
 
-    public $table = 'images';
+    public $table = 'slides';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['src'];
+    protected $appends = ['tags'];
 
     public $fillable = [
-        'name',
-        'alt',
-        'width',
-        'height',
-        'uri'
+        'image_url',
+        'title',
+        'description',
+        'link_url',
+        'link_text',
+        'style'
     ];
 
     protected $casts = [
-        'id' => 'integer',
-        'width' => 'integer',
-        'height' => 'integer',
-        'uri' => 'string'
     ];
 
    public static $rules = [
         
     ];
 
-    public function getSrcAttribute(){
-        return $this->uri;
+    public function getTagsAttribute()
+    {
+        return $this->tagged->pluck('tag_slug');
     }
-
-    
 }
-

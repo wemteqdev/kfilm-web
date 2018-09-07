@@ -18,6 +18,11 @@
     <a href="{!! route('admin.images.index') !!}"><i class="fa fa-camera"></i> <span>Images</span></a>
 </li>
 
+
+<li class="{{ Request::is('admin/slides*') ? 'active' : '' }}">
+    <a href="{!! route('admin.slides.index') !!}"><i class="fa fa-money"></i> <span>Slides</span></a>
+</li>
+
 <li class="{{ Request::is('admin/videos*') ? 'active' : '' }}">
     <a href="{!! route('admin.videos.index') !!}"><i class="fa fa-film"></i> <span>Videos</span></a>
 </li>

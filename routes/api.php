@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 Route::post('user/login', 'UserController@login');
 Route::post('user/register', 'UserController@register');
 
+Route::get('slides', 'SlideController@index');
 Route::get('videos', 'VideoController@index');
 Route::get('categories', 'CategoryController@index');
 Route::get('images', 'ImageController@index');
@@ -90,4 +91,7 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 
 	Route::post('videos/{video_id}/add_tag', ['as'=> 'admin.videos.add_tag', 'uses' => 'VideoController@add_tag']);
 	Route::delete('videos/{video_id}/remove_tag', ['as'=> 'admin.videos.remove_tag', 'uses' => 'VideoController@remove_tag']);
+
+	Route::post('slides/{slide_id}/add_tag', ['as'=> 'admin.slides.add_tag', 'uses' => 'SlideController@add_tag']);
+	Route::delete('slides/{slide_id}/remove_tag', ['as'=> 'admin.slides.remove_tag', 'uses' => 'SlideController@remove_tag']);
 });
