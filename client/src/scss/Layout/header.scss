@@ -14,7 +14,7 @@ header {
     left: 0;
     z-index: 10;
     width: $sidebar-width;
-    height: $sidebar-height;
+    height: $header-height;
     .logo {
         width: 100%;
         height: 100%;
@@ -28,7 +28,7 @@ header {
 #categories-nav {
     padding-left: $sidebar-width + 1rem;
     background-color: $background-secondary-color;
-    height: $sidebar-height;
+    height: $header-height;
     li.nav-item {
         margin-right: 2rem;
         a {

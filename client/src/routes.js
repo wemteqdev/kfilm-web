@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Layout from './Layout/layout';
-import Home from './components/Home';
+import Home from './Views/Home';
 import CategoriesPage from './components/CategoriesPage';
 import SpecialVideos from './components/SpecialVideos';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
-import Profile from './components/Profile';
-import Plan from './components/Plan';
+import Register from './components/Register';
+import Profile from './Views/Sidebar/Profile';
+import Plan from './Views/Sidebar/Plan';
+import Billing from './Views/Sidebar/Billing';
+import Histories from './Views/Sidebar/Histories';
+import Favorites from './Views/Sidebar/Favorites';
+import ProVideos from './Views/Sidebar/ProVideos';
 
 class Routes extends Component {
     render(){
@@ -24,8 +29,13 @@ class Routes extends Component {
                     <Route path="/categories/:slug" exact component={CategoriesPage}/>
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>
-                    <Route path="/profile" exact component={Profile}/>
-                    <Route path="/plan" exact component={Plan}/>
+                    <Route path="/register" exact component={Register}/>
+                    <Route path="/user/profile" exact component={Profile}/>
+                    <Route path="/user/plan" exact component={Plan}/>
+                    <Route path="/user/billing" exact component={Billing}/>
+                    <Route path="/user/history" exact component={Histories}/>
+                    <Route path="/user/favorites" exact component={Favorites}/>
+                    <Route path="/user/pro-videos" exact component={ProVideos}/>
                 </Switch>
             </Layout>
            

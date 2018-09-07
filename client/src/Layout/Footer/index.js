@@ -1,19 +1,11 @@
 import React from 'react';
-import About from './about';
-import Tags from './tags';
 import Subscribe from './subscribe';
 
 const Footer = () => {
     return (
         <footer>
             <div className='container'>
-                <div className="row">
-                    <div className="col-4">
-                        <About/>
-                    </div>
-                    <div className="col-4">
-                        <Tags/>
-                    </div>
+                <div className="row align-items-center justify-content-center">
                     <div className="col-4">
                         <Subscribe/>
                     </div>
@@ -21,7 +13,7 @@ const Footer = () => {
             </div>
             <div id="footer-bottom">
                     <div className="logo text-center">
-                        <img src="/images/footerlogo.png" alt="footer logo"/>
+                        <h1>KORFILM</h1>
                     </div>
                     <div className="btm-footer-text text-center">
                         <p>2016 © Powered By WEMTEQ</p>

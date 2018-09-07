@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
+
 import search from './search';
 import login from './login';
 import sidebar from './sidebar';
-import { routerReducer } from 'react-router-redux';
+import billLoading from './billLoading';
 
 export default combineReducers({
   search,
   login,
   sidebar,
-  routing: routerReducer
+  billLoading,
+  routing: routerReducer,
+  form: formReducer
 })

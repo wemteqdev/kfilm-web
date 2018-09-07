@@ -22,3 +22,9 @@ export const toggleSidebarAction = () => {
         type: 'TOGGLE_SIDEBAR'
     }
 }
+
+export const billLoadingAction = () => {
+    return {
+        type: 'BILL_LOADING'
+    }
+}
