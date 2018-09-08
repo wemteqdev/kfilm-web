@@ -6,7 +6,7 @@ const UserFooter = () => {
         <footer id="user-footer">
             <div>
                     <div className="btm-footer-text text-center">
-                        <p>2016 © Powered By WEMTEQ</p>
+                        <p>2018 © Powered By WEMTEQ</p>
                     </div>
                 </div>
         </footer>
