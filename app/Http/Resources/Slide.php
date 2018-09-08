@@ -11,10 +11,10 @@ class Slide extends JsonResource
         return [
             'image_url' => $this->image_url,
             'title' => $this->title,
-            'description' => $this->title,
-            'link_url' => $this->title,
-            'link_text' => $this->title,
-            'style' => $this->title,
+            'description' => $this->description,
+            'link_url' => $this->link_url,
+            'link_text' => $this->link_text,
+            'style' => $this->style,
             "tags" => $this->tags,
         ];
     }
