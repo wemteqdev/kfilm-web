@@ -37,6 +37,15 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::get('admin/groups/{groups}', ['as'=> 'admin.groups.show', 'uses' => 'Admin\GroupController@show']);
 	Route::get('admin/groups/{groups}/edit', ['as'=> 'admin.groups.edit', 'uses' => 'Admin\GroupController@edit']);
 
+	Route::get('admin/slides', ['as'=> 'admin.slides.index', 'uses' => 'Admin\SlideController@index']);
+	Route::post('admin/slides', ['as'=> 'admin.slides.store', 'uses' => 'Admin\SlideController@store']);
+	Route::get('admin/slides/create', ['as'=> 'admin.slides.create', 'uses' => 'Admin\SlideController@create']);
+	Route::put('admin/slides/{slides}', ['as'=> 'admin.slides.update', 'uses' => 'Admin\SlideController@update']);
+	Route::patch('admin/slides/{slides}', ['as'=> 'admin.slides.update', 'uses' => 'Admin\SlideController@update']);
+	Route::delete('admin/slides/{slides}', ['as'=> 'admin.slides.destroy', 'uses' => 'Admin\SlideController@destroy']);
+	Route::get('admin/slides/{slides}', ['as'=> 'admin.slides.show', 'uses' => 'Admin\SlideController@show']);
+	Route::get('admin/slides/{slides}/edit', ['as'=> 'admin.slides.edit', 'uses' => 'Admin\SlideController@edit']);
+
 	Route::get('admin/series', ['as'=> 'admin.series.index', 'uses' => 'Admin\SeriesController@index']);
 	Route::post('admin/series', ['as'=> 'admin.series.store', 'uses' => 'Admin\SeriesController@store']);
 	Route::get('admin/series/create', ['as'=> 'admin.series.create', 'uses' => 'Admin\SeriesController@create']);

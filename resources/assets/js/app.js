@@ -15,11 +15,11 @@ Vue.component('video-category-list', require('./components/video/CategoryListCom
 Vue.component('video-group-list', require('./components/video/GroupListComponent.vue'));
 Vue.component('video-tag-list', require('./components/video/TagListComponent.vue'));
 
+Vue.component('slide-tag-list', require('./components/slide/TagListComponent.vue'));
+
 $(document).keypress(
     function(event){
      if (event.which == '13') {
         event.preventDefault();
       }
-
-
 });
