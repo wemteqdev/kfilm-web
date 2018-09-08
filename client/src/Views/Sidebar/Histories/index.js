@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Media } from 'reactstrap';
 import axios from 'axios';
+import serverURL from '../../../variables';
 
 export default class Histories extends Component {
 
@@ -8,7 +9,7 @@ export default class Histories extends Component {
         histories:[]
     }
     componentWillMount = () => {
-        axios.get(`http://korfilm.loc/api/user/histories`)
+        axios.get(`${serverURL}/api/user/histories`)
         .then( response => {
             this.setState({histories :response.data.data})
         })

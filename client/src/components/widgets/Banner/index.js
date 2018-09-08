@@ -4,6 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import serverURL from '../../../variables';
 
 class Banner extends Component {
 
@@ -11,10 +12,9 @@ class Banner extends Component {
         banners: []
     }
     componentWillMount = () => {
-        axios.get(`http://korfilm.loc/api/slides`)
+        axios.get(`${serverURL}/api/slides`)
         .then( response => {
             this.setState({banners:response.data.data})
-            console.log(response.data.data)
         })
     }
 

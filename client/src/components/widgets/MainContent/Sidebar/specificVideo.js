@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MediaObject from './media-object';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import serverURL from '../../variables';
 
 class  SpecificVideo extends Component {
 
@@ -20,7 +21,7 @@ class  SpecificVideo extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/videos?view=${this.state.slug}&limit=1`)
+        axios.get(`${serverURL}/api/videos?view=${this.state.slug}&limit=1`)
         .then( response => {
             this.setState({videos:response.data.data});
         })

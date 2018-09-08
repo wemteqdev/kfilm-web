@@ -7,6 +7,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toggleSearchAction, logoutSuccessAction, loginSuccessAction } from '../../actions';
 import cookie from 'react-cookies';
+import serverURL from '../../variables';
 
 class Header extends Component {
 
@@ -25,7 +26,7 @@ class Header extends Component {
         if (user !== undefined) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
 
-            axios.get(`http://korfilm.loc/api/user`)
+            axios.get(`${serverURL}/api/user`)
             .then( (response) => {
                 this.props.loginSuccess(user)
                 },
@@ -35,7 +36,7 @@ class Header extends Component {
                 }
             )
         }
-        axios.get(`http://korfilm.loc/api/categories`)
+        axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
         })

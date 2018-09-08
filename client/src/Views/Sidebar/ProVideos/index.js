@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../../../components/widgets/VideoList';
+import serverURL from '../../../variables';
 
 export default class ProVideos extends Component {
 
@@ -9,7 +10,7 @@ export default class ProVideos extends Component {
     }
 
     componentWillMount = () => {
-        axios.get(`http://korfilm.loc/api/videos?type=pro`)
+        axios.get(`${serverURL}/api/videos?type=pro`)
         .then( response => {
             this.setState({videos:response.data.data});
         })

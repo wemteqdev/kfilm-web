@@ -6,6 +6,7 @@ import { Modal, ModalHeader, ModalBody, Input, Card, CardImg, CardBody, CardSubt
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import serverURL from '../../variables';
 
 class SearchPage extends Component {
 
@@ -41,7 +42,7 @@ class SearchPage extends Component {
     search() {
         if (this.state.keyword.length >= 0)
         {
-            axios.get(`http://korfilm.loc/api/videos?q=${this.state.keyword}`)
+            axios.get(`${serverURL}/api/videos?q=${this.state.keyword}`)
             .then( response => {
                 this.setState({videos:response.data.data});
             })

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../widgets/VideoList';
 import './categoriesPage.scss';
+import serverURL from '../../variables';
 
 class CategoriesPage extends Component {
     
@@ -15,11 +16,11 @@ class CategoriesPage extends Component {
     }
 
     loadVideos(props) {
-        axios.get(`http://korfilm.loc/api/categories/${props.match.params.slug}/videos`)
+        axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos`)
         .then( response => {
             this.setState({videos:response.data.data});
         })
-        axios.get(`http://korfilm.loc/api/categories/${props.match.params.slug}`)
+        axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
         .then( response => {
             this.setState({category:response.data.data});
         })

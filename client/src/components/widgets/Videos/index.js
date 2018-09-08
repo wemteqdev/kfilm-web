@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Carousel from './Carousel';
+import serverURL from '../../../variables';
 
 
 class Videos extends Component {
@@ -10,7 +11,7 @@ class Videos extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/videos`)
+        axios.get(`${serverURL}/api/videos`)
         .then( response => {
             this.setState({videos:response.data.data});
         })
