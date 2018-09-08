@@ -107,7 +107,7 @@ class VideoController extends AdminBaseController
             Flash::error('Something went wrong.'); 
         }
         
-        return redirect(route('admin.videos.index'));
+        return back();
     }
 
     public function sync_vimeo_videos()
