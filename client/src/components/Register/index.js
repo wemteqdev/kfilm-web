@@ -1,22 +1,16 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import validate from '../Validate/validate';
-import asyncValidate from '../Validate/asyncValidate';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
-
-const renderField = ({ input, label, type, meta: { asyncValidating, touched, error } }) => (
-    <FormGroup>
-        <Label htmlFor="login-email">{label}</Label>
-
-    <div className={asyncValidating ? 'async-validating' : ''}>
-        <Input type={type} {...input}/>
-        {touched && error && <span>{error}</span>}
-    </div>
-    </FormGroup>
-)
+import RegisterForm from './registerForm';
+import axios from 'axios';
 
 const Register = (props) => {
-    const { handleSubmit, submitting } = props
+
+    const handleSubmit = (values) => {
+        axios.post(`http://korfilm.loc/api/user/register?email=${values.email}&password=${values.password}&name=${values.firstname} ${values.lastname}&confirm_password=${values.confirm}`)
+        .then( response => {
+            props.history.push(`/login`)
+        })
+    }
+
     return (
         <section className="loginPage page-padding">
             <div className="container">
@@ -25,15 +19,7 @@ const Register = (props) => {
                         <div className="section-header text-center">
                             <h1 className="title">Sign UP</h1>
                         </div>
-                        <Form className="login-form" onSubmit={handleSubmit}>
-                            <Field name="firstname" type="text" component={renderField} label="First Name:"/>
-                            <Field name="lastname" type="text" component={renderField} label="Last Name:"/>
-                            <Field name="email" type="email" component={renderField} label="Email address:"/>
-                            <Field name="password" type="password" component={renderField} label="Password:"/>
-                            <div>
-                                <button type="submit" className="login-button" disabled={submitting}>Sign Up</button>
-                            </div>
-                        </Form>
+                        <RegisterForm onSubmit={handleSubmit}/>
                     </div>
                 </div>
             </div>
@@ -41,9 +27,4 @@ const Register = (props) => {
     )
 }
 
-export default reduxForm({
-  form: 'asyncValidation', // a unique identifier for this form
-  validate,
-  asyncValidate,
-  asyncBlurFields: [ 'email' ]
-})(Register)
+export default Register;

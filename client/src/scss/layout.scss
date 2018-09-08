@@ -265,6 +265,46 @@ a {
     font-size: 7rem;
     background-color: rgba(0, 0, 0, .3);
     padding: 3rem 2rem;
+
+    &.style1 {
+        top: 25%;
+        
+        width: 75%;
+    }
+    &.style2 {
+        top: 50%;
+        width: 100%;
+    }
+    &.style3 {
+        top: 25%;
+        left:25%;
+        width: 75%;
+    }
+    &.style4 {
+        top: 75%;
+        left:25%;
+        width: 75%;
+    }
+    &.style5 {
+        top: 75%;
+        width: 75%;
+    }
+    &.style6 {
+        top: 25%;
+        left: 25%;
+        width: 75%;
+    }
+    &.style7 {
+        top: 75%;
+        left: 13%;
+        width: 75%;
+    }
+    &.style8 {
+        top: 25%;
+        left: 13%;
+        width: 75%;
+    }
+
     p {
         color: #ffffff;
         text-transform: uppercase;
