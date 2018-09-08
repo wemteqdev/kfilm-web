@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateSlideRequest;
-use App\Http\Requests\Admin\UpdateslideRequest;
+use App\Http\Requests\Admin\UpdateSlideRequest;
 use App\Repositories\Admin\SlideRepository;
 use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Http\Resources\Slide as SlideResource;
+use App\Http\Resources\Slide as Resource;
 
 class SlideController extends AdminBaseController
 {
@@ -44,7 +44,7 @@ class SlideController extends AdminBaseController
 
         Flash::success('slide saved successfully.');
 
-        return redirect(route('admin.slides.index'));
+        return redirect(route('admin.slides.edit', $slide));
     }
 
     public function show($id)
