@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel';
-
+declare var sm;
+declare var xs;
+declare var md;
 
 class Carousel extends Component {
 
   constructor(props) {
     super(props);
-    this.owlCarousel = React.createRef();    
+    this.owlCarousel = React.createRef();   
+    
   }
 
   onNext = () => {
@@ -39,6 +42,15 @@ class Carousel extends Component {
   }
 
     render() {
+        
+        let count = 4;
+        if (sm || xs) {
+            count = 2;
+        }
+        if (md) {
+            count = 3;
+        }
+
         return (
             <section className="movies container">
                 <div className="row">
@@ -59,7 +71,7 @@ class Carousel extends Component {
                             </div>
                             </div>
                         </div>
-                        <OwlCarousel ref={this.owlCarousel} id="owl-carousel" className={"owl-theme"} autoplay autoplayTimeout="3000" loop dots={false} margin={10} items={4} >
+                        <OwlCarousel ref={this.owlCarousel} id="owl-carousel" className={"owl-theme"} autoplay autoplayTimeout="3000" loop dots={false} margin={10} items={ count } >
                             { this.showCarousel() }
                         </OwlCarousel>
                     </div>

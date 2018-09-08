@@ -1,0 +1,100 @@
+
+.banner {
+    font-size: .2rem;
+    .banner-mask {
+        width: 100%;
+    }
+    
+    .banner-title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        background-color: rgba(0, 0, 0, .3);
+        padding: 1em 1em;
+    
+        &.style1 {
+            top: 25%;
+            
+            width: 75%;
+        }
+        &.style2 {
+            top: 50%;
+            width: 100%;
+        }
+        &.style3 {
+            top: 25%;
+            left:25%;
+            width: 75%;
+        }
+        &.style4 {
+            top: 75%;
+            left:25%;
+            width: 75%;
+        }
+        &.style5 {
+            top: 75%;
+            width: 75%;
+        }
+        &.style6 {
+            top: 25%;
+            left: 25%;
+            width: 75%;
+        }
+        &.style7 {
+            top: 75%;
+            left: 13%;
+            width: 75%;
+        }
+        &.style8 {
+            top: 25%;
+            left: 13%;
+            width: 75%;
+        }
+    
+        p {
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 6em;
+            margin:.1em;
+        }
+        .banner-watch {
+            font-size: 5em;
+            
+            a {
+                color: $color-hover-pink;
+                text-transform: uppercase;
+                transition: color 0.25s;
+                &:hover {
+                    color: #007bff;
+                    border-bottom: .2rem solid #007bff;
+                }
+                svg {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+}
+
+
+@media (min-width: 576px) { 
+    .banner {
+        font-size: .3rem;
+    }
+}
+@media (min-width: 768px) { 
+    .banner {
+        font-size: .5rem;
+    }
+}
+@media (min-width: 992px) {
+    .banner {
+        font-size: .8rem;
+    }
+}
+@media (min-width: 1200px) { 
+    .banner {
+        font-size: 1rem;
+    } 
+}

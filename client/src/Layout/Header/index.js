@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toggleSearchAction, logoutSuccessAction, loginSuccessAction } from '../../actions';
 import cookie from 'react-cookies';
 import serverURL from '../../variables';
+declare var xs;
+declare var sm;
+declare var md;
 
 class Header extends Component {
 
@@ -71,21 +74,19 @@ class Header extends Component {
                         </div>
                     </Link>
                 </div>
+                <div className="login navButton d-flex justify-content-center align-items-center">
+                    <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
+                    { this.props.login.user == null
+                            ? <Link to="/login" className="loginReg">Log in / Register</Link>
+                            : <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
+                                <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+                                </span>
+                    }
+                </div>
                 <Navbar id='categories-nav' light expand="md">
-                    <Collapse navbar className="d-flex justify-content-between">
-                        <Nav navbar>
-                            { this.showCategories() }
-                        </Nav>
-                        <div className="login navButton">
-                            <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
-                            { this.props.login.user == null
-                                    ? <Link to="/login" className="loginReg">Log in / Register</Link>
-                                    : <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
-                                        <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
-                                        </span>
-                            }
-                        </div>
-                    </Collapse>
+                    <Nav navbar>
+                        { this.showCategories() }
+                    </Nav>
                 </Navbar>
             </header>
         )

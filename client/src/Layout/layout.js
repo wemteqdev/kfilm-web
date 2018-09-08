@@ -2,10 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './Header';
-import Footer from './Footer';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
-import UserFooter from './UserFooter';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 

@@ -6,6 +6,29 @@ header {
     z-index: 9;
     border-bottom: .5rem solid rgba(0, 0, 0, .5);
     opacity: .9;
+    font-size: 1rem;
+    background-color: $background-secondary-color;
+}
+
+@media (min-width: 576px) { 
+    header {
+        font-size: 1.5rem;
+    }
+}
+@media (min-width: 768px) { 
+    header {
+        font-size: 2rem;
+    }
+}
+@media (min-width: 992px) {
+    header {
+        font-size: 2.1rem;
+    }
+}
+@media (min-width: 1200px) { 
+    header {
+        font-size: 2.4rem;
+    } 
 }
 
 #logo {
@@ -13,12 +36,13 @@ header {
     top: 0;
     left: 0;
     z-index: 10;
-    width: $sidebar-width;
+    width: 10em;
     height: $header-height;
     .logo {
         width: 100%;
         height: 100%;
         h2 {
+            font-size: 1.2em;
             color: white;
             font-style: italic;
         }
@@ -26,8 +50,7 @@ header {
 }
 
 #categories-nav {
-    padding-left: $sidebar-width + 1rem;
-    background-color: $background-secondary-color;
+    padding-left: 10em;
     height: $header-height;
     li.nav-item {
         margin-right: 2rem;
@@ -59,8 +82,16 @@ header {
     }
 }
 
+
+.login {
+    position: relative;
+    top: ($header-height - 3rem) / 2;
+    height: 3rem;
+    right: 1rem;
+}
+
 .loginReg {
-    padding: 0.7rem 0.5rem;
+    padding: 0.4em 0.1em;
     background: $color-pink;
     border: 0.1rem solid $color-pink;
     color: $font-nav-color;

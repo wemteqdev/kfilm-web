@@ -1,2 +1,2 @@
-const serverURL= "http://korfilm.co"
+const serverURL= "http://korfilm.loc"
 export default serverURL

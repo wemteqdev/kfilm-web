@@ -36,8 +36,8 @@ class Banner extends Component {
 
     render() {
         return (
-            <section>
-                { this.state.banners.length !== 0 && <Carousel autoPlay={true} interval={5000} showThumbs={false} showArrows={false} infiniteLoop={true} showStatus={false} emulateTouch={true}>
+            <section className="banner" >
+                { this.state.banners.length !== 0 && <Carousel autoPlay={false} interval={5000} showThumbs={false} showArrows={false} infiniteLoop={true} showStatus={false} emulateTouch={true}>
                     { this.showBanners() }
                 </Carousel>}
             </section>
