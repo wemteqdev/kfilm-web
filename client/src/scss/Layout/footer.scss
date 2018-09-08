@@ -22,30 +22,30 @@ footer {
                     font-size: 1.3rem;
                     color: $text-primary-color;
                 }
-                .input {
-                    width: 100%;
-                    margin-bottom: 1rem;
-                    input {
-                        background: $background-light-grey-color;
-                        color: white;
-                        margin: 0;
-                        border: .1rem solid $background-light-grey-color;
-                        border: .1rem solid #6c6c6c;
-                        border-radius: .3rem;
-                        font-size: 1.5rem;
-                        &::placeholder {
-                            color: $color-grey;
-                        }
+            }
+            .input {
+                width: 100%;
+                margin-bottom: 1rem;
+                input {
+                    background: $background-light-grey-color;
+                    color: white;
+                    margin: 0;
+                    border: .1rem solid $background-light-grey-color;
+                    border: .1rem solid #6c6c6c;
+                    border-radius: .3rem;
+                    font-size: 1.5rem;
+                    &::placeholder {
+                        color: $color-grey;
                     }
                 }
-                button[type="submit"] {
-                    width: 100%;
-                    text-align: center;
-                    text-transform: uppercase;
-                    background: $background-primary-color;
-                    color: $text-primary-color;
-                    padding: 1.2rem 0;
-                }
+            }
+            button[type="submit"] {
+                width: 100%;
+                text-align: center;
+                text-transform: uppercase;
+                background: $background-primary-color;
+                color: $text-primary-color;
+                padding: 1.2rem 0;
             }
             .secondary-button {
                 display: inline-block;
@@ -60,22 +60,6 @@ footer {
                     color: $text-primary-color;
                     line-height: 1.3rem;
                 }
-            }
-        }
-        .tagcloud a {
-            display: inline-block;
-            background: $background-light-grey-color;
-            color: $text-primary-color;
-            font-size: 1.3rem;
-            text-transform: capitalize;
-            padding: 1rem;
-            border-radius: .3rem;
-            margin-bottom: .5rem;
-            line-height: 1.3rem;
-            margin-left: .3rem;
-            &:hover {
-                background-color: $color-pink;
-                color: $text-secondary-color;
             }
         }
     }
