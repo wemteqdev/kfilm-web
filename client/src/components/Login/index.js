@@ -7,6 +7,7 @@ import cookie from 'react-cookies';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginSuccessAction } from '../../actions';
+import serverURL from '../../variables';
 
 class Login extends Component {
 
@@ -38,7 +39,7 @@ class Login extends Component {
         this.setState({
             signing: !this.state.signing
         })
-        axios.post(`http://korfilm.loc/api/user/login?email=${this.state.email}&password=${this.state.password}`)
+        axios.post(`${serverURL}/api/user/login?email=${this.state.email}&password=${this.state.password}`)
         .then( (response) => {
                 this.setState({
                     signing: !this.state.signing,

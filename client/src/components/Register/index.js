@@ -1,11 +1,12 @@
 import React from 'react';
 import RegisterForm from './registerForm';
 import axios from 'axios';
+import serverURL from '../../variables';
 
 const Register = (props) => {
 
     const handleSubmit = (values) => {
-        axios.post(`http://korfilm.loc/api/user/register?email=${values.email}&password=${values.password}&name=${values.firstname} ${values.lastname}&confirm_password=${values.confirm}`)
+        axios.post(`${serverURL}/api/user/register?email=${values.email}&password=${values.password}&name=${values.firstname} ${values.lastname}&confirm_password=${values.confirm}`)
         .then( response => {
             props.history.push(`/login`)
         })

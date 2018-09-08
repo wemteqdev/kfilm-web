@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import serverURL from '../../../../variables';
 
 class VideoPosts extends Component {
 
@@ -17,7 +18,7 @@ class VideoPosts extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/videos?view=${this.state.type}&limit=4`)
+        axios.get(`${serverURL}/api/videos?view=${this.state.type}&limit=4`)
         .then( response => {
             this.setState({posts:response.data.data});
         })
@@ -25,8 +26,8 @@ class VideoPosts extends Component {
 
     showThum = (item) => {
         return (
-            <div className="post-thumb">
-                <img src={item.featured_image_url} alt="new video"/>
+            <div className="post-thumb" style={{background:"url(" + item.featured_image_url + ") center"}}>
+                
                 <Link to={'/videos/' + item.slug} className='hover-posts'>
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>

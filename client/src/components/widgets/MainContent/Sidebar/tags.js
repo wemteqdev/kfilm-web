@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import serverURL from '../../variables';
 
 export default class Tags extends Component {
     
@@ -9,7 +10,7 @@ export default class Tags extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/tags`)
+        axios.get(`${serverURL}/api/tags`)
         .then( response => {
             this.setState({tags:response.data.data});
         })

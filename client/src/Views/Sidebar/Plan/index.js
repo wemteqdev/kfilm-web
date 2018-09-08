@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
+import serverURL from '../../../variables';
 
 export default class Plan extends Component {
 
@@ -10,22 +11,21 @@ export default class Plan extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/user/subscriptions`)
+        axios.get(`${serverURL}/api/user/subscriptions`)
         .then( response => {
             this.setState({subscription:response.data.data[0].stripe_plan});
         })
-        axios.get(`http://korfilm.loc/api/products`)
+        axios.get(`${serverURL}/api/products`)
         .then( response => {
             this.setState({plans:response.data.data});
         })
     }
 
     onToken = (plan_id) => token => {
-        axios.post(`http://korfilm.loc/api/plans/${plan_id}/subscribe`, {
+        axios.post(`${serverURL}/api/plans/${plan_id}/subscribe`, {
             method: 'POST',
             stripeToken: token.id,
         }).then(response => {
-            console.log(response)
         }).catch(error => {
 
         });

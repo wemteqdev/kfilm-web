@@ -4,7 +4,6 @@ import VideoList from '../VideoList';
 
 class Video extends Component {
     render (){
-        console.log(this.props)
         return (
             <section className="fullwidth-single-video">
                 <div className='container'>

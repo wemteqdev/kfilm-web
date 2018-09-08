@@ -4,7 +4,6 @@ import Password from './password';
 const Profile = (props) => {
 
     const showResult = (result) => {
-        console.log(result)
     }
     return (
         <div className="loginPage container page-padding">

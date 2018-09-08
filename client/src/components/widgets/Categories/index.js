@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Carousel from './CategoriesCarousel/carousel';
 import './categories.scss'
+import serverURL from '../../variables';
 
 class Categories extends Component {
 
@@ -10,7 +11,7 @@ class Categories extends Component {
     }
 
     componentWillMount(){
-        axios.get(`http://korfilm.loc/api/categories`)
+        axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
         })

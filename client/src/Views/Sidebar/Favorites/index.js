@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../../../components/widgets/VideoList';
+import serverURL from '../../../variables';
 
 export default class Favorites extends Component {
 
@@ -9,7 +10,7 @@ export default class Favorites extends Component {
     }
 
     componentWillMount = () => {
-        axios.get(`http://korfilm.loc/api/user/favorite_videos`)
+        axios.get(`${serverURL}/api/user/favorite_videos`)
         .then( response => {
             this.setState({videos:response.data.data});
         })

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Card, CardImg, CardBody, CardSubtitle } from 'reactstrap';
+import serverURL from '../../variables';
 
 class SpeicalVideos extends Component {
     
@@ -13,7 +14,7 @@ class SpeicalVideos extends Component {
     }
 
     loadVideos(props) {
-        axios.get(`http://korfilm.loc/api/videos?view=${props.match.params.slug}`)
+        axios.get(`${serverURL}/api/videos?view=${props.match.params.slug}`)
         .then( response => {
             this.setState({videos:response.data.data});
         })

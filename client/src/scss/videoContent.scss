@@ -26,6 +26,9 @@
         .post-thumb {
             position: relative;
             overflow: hidden;
+            height: 15rem;
+            background-size: cover !important;
+            box-shadow: .2rem .2rem rgba(0, 0, 0, .5);
             img {
                 width: 100%;
                 height: auto;

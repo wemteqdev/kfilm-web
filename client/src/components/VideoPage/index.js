@@ -3,6 +3,7 @@ import axios from 'axios';
 import Video from '../widgets/Video';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import serverURL from '../../variables';
 
 class VideoPage extends Component {
     
@@ -21,24 +22,24 @@ class VideoPage extends Component {
         let like = !this.state.like
         this.setState({like: like})
         if (like) {
-            axios.post(`http://korfilm.loc/api/user/videos/${this.state.video.slug}/like`)
+            axios.post(`${serverURL}/api/user/videos/${this.state.video.slug}/like`)
             .then( response => {
             })    
         }
         else {
-            axios.delete(`http://korfilm.loc/api/user/videos/${this.state.video.slug}/unlike`)
+            axios.delete(`${serverURL}/api/user/videos/${this.state.video.slug}/unlike`)
             .then( response => {
             })
         }
     }
     addHistory() {
-        axios.post(`http://korfilm.loc/api/user/videos/${this.state.video.slug}/add_history`)
+        axios.post(`${serverURL}/api/user/videos/${this.state.video.slug}/add_history`)
         .then( response => {
         })
     }
 
     loadVideo(props, history) {
-        let url = `http://korfilm.loc/api/`
+        let url = `${serverURL}/api/`
         if (props.login.user !== null && props.login.user !== undefined){
             url = url + "user/"
         }

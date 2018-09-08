@@ -16,7 +16,7 @@ const Footer = () => {
                         <h1>KORFILM</h1>
                     </div>
                     <div className="btm-footer-text text-center">
-                        <p>2016 © Powered By WEMTEQ</p>
+                        <p>2018 © Powered By WEMTEQ</p>
                     </div>
                 </div>
         </footer>

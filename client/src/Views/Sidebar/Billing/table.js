@@ -4,6 +4,7 @@ import { Table } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { billLoadingAction } from '../../../actions';
+import serverURL from '../../../variables';
 
 class BillingTable extends Component {
     state = {
@@ -11,7 +12,7 @@ class BillingTable extends Component {
     }
 
     componentWillMount = () => {
-        axios.get(`http://korfilm.loc/api/user/invoices`)
+        axios.get(`${serverURL}/api/user/invoices`)
         .then( response => {
             this.setState({
                 invoices:response.data.data,

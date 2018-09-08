@@ -23,9 +23,8 @@ class Carousel extends Component {
       return ( 
         this.props.videos.map( (video, i) => {
           return (
-            <div key={i} className="item-movie item">
+            <div key={i} className="item-movie item" style={{background:"url(" + video.featured_image_url + ") center"}}>
                 <figure className="premium-img">
-                    <img src={video.featured_image_url} alt="carousel"/>
                     <figcaption>
                         <h3>{video.name}</h3>
                     </figcaption>
