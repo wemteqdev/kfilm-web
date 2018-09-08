@@ -26,8 +26,8 @@ class VideoPosts extends Component {
 
     showThum = (item) => {
         return (
-            <div className="post-thumb">
-                <img src={item.featured_image_url} alt="new video"/>
+            <div className="post-thumb" style={{background:"url(" + item.featured_image_url + ") center"}}>
+                
                 <Link to={'/videos/' + item.slug} className='hover-posts'>
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
