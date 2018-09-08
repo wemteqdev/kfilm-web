@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './videoPage.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import VideoList from '../widgets/VideoList';
+import Video from '../widgets/Video';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class VideoPage extends Component {
     
@@ -38,14 +38,23 @@ class VideoPage extends Component {
     }
 
     loadVideo(props, history) {
-        axios.get(`http://korfilm.loc/api/user/videos/${props.match.params.slug}`)
+        let url = `http://korfilm.loc/api/`
+        if (props.login.user !== null && props.login.user !== undefined){
+            url = url + "user/"
+        }
+        url = url + `videos/${props.match.params.slug}`
+        axios.get(url)
         .then( response => {
-            this.setState({video:response.data.data, like:response.data.data.is_favorited});
-            if (history) {
-                setTimeout(
-                    this.addHistory,
-                    this.state.video.duration / 2
-                );
+            this.setState({video:response.data.data})
+
+            if (props.login.user !== null && props.login.user !== undefined){
+                this.setState({ like:response.data.data.is_favorited});
+                if (history) {
+                    setTimeout(
+                        this.addHistory,
+                        this.state.video.duration / 2
+                    );
+                }
             }
         })
     }
@@ -62,35 +71,19 @@ class VideoPage extends Component {
 
     render (){
         return (
-            <section className="fullwidth-single-video">
-                <div className='container'>
-                    <div className="row">
-                        <div className="col-12 text-center">
-                            <div className="flex-video widescreen">
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                    __html: this.state.video.embed
-                                    }}>
-                                </div>
-                            </div>
-                            {
-                                this.state.like && <button className="btn btn-primary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
-                            }
-                            {
-                                !this.state.like && <button className="btn btn-secondary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
-                            }
-                            <div className="mt-5 mb-5">
-                                <VideoList videos={this.state.video.related} size="3"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div>
+                <Video {...this.state} type={ this.props.login.user !== null && this.props.login.user !== undefined ? "pro" : "free" }/>
+            </div>
+            
         );
     }
 };
 
-export default VideoPage;
+const mapStateToProps = (state) => {
+    return {
+      login: state.login
+    }
+}
 
-
-
+  
+export default withRouter( connect(mapStateToProps, null)(VideoPage));

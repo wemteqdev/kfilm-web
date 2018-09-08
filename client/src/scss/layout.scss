@@ -4,6 +4,7 @@
 @import './Layout/sidebar.scss';
 @import './videoContent.scss';
 @import './Layout/footer.scss';
+@import './video.scss';
 @import './login.scss';
 @import './plan.scss';
 @import './history.scss';
@@ -20,7 +21,7 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+    font-family: Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-size: 1.4rem;
     line-height: 1.5;
@@ -260,8 +261,8 @@ a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 7rem;
     width: 100%;
+    font-size: 7rem;
     background-color: rgba(0, 0, 0, .3);
     padding: 3rem 2rem;
     p {
@@ -271,7 +272,7 @@ a {
     .banner-watch {
         font-size: 3rem;
         a {
-            color: $color-pink;
+            color: $color-hover-pink;
             text-transform: uppercase;
             transition: color 0.25s;
             &:hover {
