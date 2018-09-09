@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 import Header from './Header';
+import Footer from './Footer';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
 import 'bootstrap/scss/bootstrap.scss';
@@ -58,8 +59,9 @@ const Layout = (props) => {
             }
             <Header/>
             <SearchPage/>
-                { props.login.user != null && <LeftSidebar/> }
-                { mainContent() }
+            { props.login.user != null && <LeftSidebar/> }
+            { mainContent() }
+            <Footer/>
         </div>
     )
 }
