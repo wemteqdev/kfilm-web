@@ -77,9 +77,9 @@ const Layout = (props) => {
         <div>
             <Header/>
             <SearchPage/>
-            { props.login.user !== null && <LeftSidebar/> }
+            { props.login.user != null && <LeftSidebar/> }
             { mainContent() }
-            { props.login.user === null && <Footer/> }
+            { props.login.user == null && <Footer/> }
             
         </div>
     )
