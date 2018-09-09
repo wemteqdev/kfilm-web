@@ -16,6 +16,7 @@ class Banner extends Component {
         banners: []
     }
     componentWillMount = () => {
+        $("body").addClass('all-loading')
         axios.get(`${serverURL}/api/slides`)
         .then( response => {
             this.setState({banners:response.data.data})

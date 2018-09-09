@@ -48,22 +48,3 @@
     }
 }
 
-.loading-page {
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: black;
-    opacity: .5;
-}
-
-.loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    svg {
-        margin-top: -50%;
-        margin-left: -50%;
-    }    
-}
