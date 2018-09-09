@@ -4,6 +4,11 @@ import VideoList from '../widgets/VideoList';
 import './categoriesPage.scss';
 import serverURL from '../../variables';
 
+declare var xs;
+declare var sm;
+declare var md;
+declare var lg;
+
 class CategoriesPage extends Component {
     
     state = {
@@ -31,13 +36,26 @@ class CategoriesPage extends Component {
     }
 
     render() {
+        let size = 2;
+        if (xs) {
+            size = 12;
+        }
+        if (sm) {
+            size = 6;
+        }
+        if (md) {
+            size = 4;
+        }
+        if (lg) {
+            size = 3;
+        }
         return (
             <div className="page-padding">
                     <div className="section-header">
                         <h1 className="title">{this.state.category.name}</h1>
                     </div>
                 <div>
-                    <VideoList videos={this.state.videos} size="2"/>
+                    <VideoList videos={this.state.videos} size={size}/>
                 </div>
             </div>
         )

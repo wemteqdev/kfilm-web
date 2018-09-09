@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import serverURL from '../../../variables';
+import { bannerAction } from '../../../actions';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Banner extends Component {
 
@@ -15,6 +18,7 @@ class Banner extends Component {
         axios.get(`${serverURL}/api/slides`)
         .then( response => {
             this.setState({banners:response.data.data})
+            this.props.bannerLoad()
         })
     }
 
@@ -45,4 +49,8 @@ class Banner extends Component {
     }
 };
 
-export default Banner;
+const mapDispatchToProps = dispatch => ({
+    bannerLoad: (payload) => dispatch(bannerAction(payload)),
+})
+
+export default withRouter( connect(null, mapDispatchToProps)(Banner) );

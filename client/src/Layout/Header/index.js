@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Collapse, Navbar, Nav, NavItem } from 'reactstrap';
+import { Nav, NavItem } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -48,7 +48,7 @@ class Header extends Component {
     showCategories() {
         return this.state.categories.map( (item, i) => {
             return (
-                <NavItem key={i}>
+                <NavItem key={i} className="d-flex">
                     <NavLink to={"/categories/" + item.slug } activeClassName='active'>{ item.name }</NavLink>
                 </NavItem>
             )
@@ -83,11 +83,9 @@ class Header extends Component {
                                 </span>
                     }
                 </div>
-                <Navbar id='categories-nav' light expand="md">
-                    <Nav navbar>
-                        { this.showCategories() }
-                    </Nav>
-                </Navbar>
+                <Nav id='categories-nav'>
+                    { this.showCategories() }
+                </Nav>
             </header>
         )
     }

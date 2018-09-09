@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReactLoading from 'react-loading';
 import Header from './Header';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
@@ -50,6 +51,11 @@ const Layout = (props) => {
     }
     return(
         <div>
+            {   !props.banner.bannerLoad && 
+                <div className="loading-page">
+                    <ReactLoading className="loading" type={'spinningBubbles'} color={'white'} height={40} width={40} />
+                </div>
+            }
             <Header/>
             <SearchPage/>
                 { props.login.user != null && <LeftSidebar/> }
@@ -61,7 +67,8 @@ const Layout = (props) => {
 const mapStateToProps = (state) => {
     return {
       login: state.login,
-      sidebar: state.sidebar
+      sidebar: state.sidebar,
+      banner: state.banner
     }
 }
 

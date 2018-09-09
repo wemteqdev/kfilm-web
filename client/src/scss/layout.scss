@@ -253,3 +253,9 @@ a {
     height: 3rem;
     font-size: 1.4rem;
 }
+
+.loading-page {
+    opacity: 1;
+    z-index: 1000;
+    background-image: url('/images/loading.jpg');
+}

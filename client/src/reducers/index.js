@@ -6,8 +6,10 @@ import search from './search';
 import login from './login';
 import sidebar from './sidebar';
 import billLoading from './billLoading';
+import banner from './banner';
 
 export default combineReducers({
+  banner,
   search,
   login,
   sidebar,

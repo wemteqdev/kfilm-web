@@ -28,3 +28,9 @@ export const billLoadingAction = () => {
         type: 'BILL_LOADING'
     }
 }
+
+export const bannerAction = () => {
+    return {
+        type: 'BANNER_LOAD'
+    }
+}
