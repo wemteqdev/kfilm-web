@@ -8,6 +8,7 @@ import serverURL from '../../../variables';
 import { bannerAction } from '../../../actions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+declare var $;
 
 class Banner extends Component {
 
@@ -19,6 +20,7 @@ class Banner extends Component {
         .then( response => {
             this.setState({banners:response.data.data})
             this.props.bannerLoad()
+            $("body").removeClass('all-loading')
         })
     }
 

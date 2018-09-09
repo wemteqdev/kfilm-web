@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactLoading from 'react-loading';
 import Header from './Header';
 import Footer from './Footer';
 import SearchPage from './SearchPage';
@@ -52,11 +51,6 @@ const Layout = (props) => {
     }
     return(
         <div>
-            {   !props.banner.bannerLoad && 
-                <div className="loading-page">
-                    <ReactLoading className="loading" type={'spinningBubbles'} color={'white'} height={40} width={40} />
-                </div>
-            }
             <Header/>
             <SearchPage/>
             { props.login.user != null && <LeftSidebar/> }
