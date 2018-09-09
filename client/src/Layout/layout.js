@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactLoading from 'react-loading';
+import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
 import SearchPage from './SearchPage';
@@ -22,6 +22,17 @@ library.add(faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, faYoutub
     faPlayCircle, faAngleLeft, faAngleRight, faThList, faThLarge, faClock, faEye, faPlay, faFacebook, faVideo, faFlickr, faHeart, 
     faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck);
     
+declare var $;
+
+axios.interceptors.response.use(
+    response => {
+        $("body").removeClass('all-loading')
+        return response
+    },
+    (error) => {
+    }
+)
+
 const Layout = (props) => {
 
     const mainContent = () => {
@@ -52,20 +63,11 @@ const Layout = (props) => {
     }
     return(
         <div>
-            {   !props.banner.bannerLoad && 
-                <div className="loading-page">
-                    <ReactLoading className="loading" type={'spinningBubbles'} color={'white'} height={40} width={40} />
-                </div>
-            }
-            {   props.banner.bannerLoad &&
-                <div>
-                    <Header/>
-                    <SearchPage/>
-                    { props.login.user != null && <LeftSidebar/> }
-                    { mainContent() }
-                    <Footer/>
-                </div>
-            }
+            <Header/>
+            <SearchPage/>
+            { props.login.user != null && <LeftSidebar/> }
+            { mainContent() }
+            <Footer/>
         </div>
     )
 }
