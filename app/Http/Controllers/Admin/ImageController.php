@@ -31,7 +31,7 @@ class ImageController extends AdminBaseController
     public function index(Request $request)
     {
         $this->imageRepository->pushCriteria(new RequestCriteria($request));
-        $images = $this->imageRepository->paginate(9);
+        $images = $this->imageRepository->orderBy('created_at', 'desc')->paginate(9);
 
         return view('admin.images.index')
             ->with('images', $images);
@@ -61,7 +61,7 @@ class ImageController extends AdminBaseController
         list($width, $height) = getimagesize($request->file('file'));
         $path = $request->file('file')->store('images', 'public');
         
-        $input['uri'] = Storage::url($path);
+        $input['uri'] = Storage::disk('public')->url($path);
         $input['width'] = $width;
         $input['height'] = $height;
 
