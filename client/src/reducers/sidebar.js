@@ -1,5 +1,5 @@
 const STATE = {
-  toggleSidebar:true
+  toggleSidebar:false
 }
 const sidebar = (state = STATE, action) => {
     switch (action.type) {

@@ -3,21 +3,72 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleSidebarAction } from '../../actions';
+import { toggleSidebarAction, logoutSuccessAction } from '../../actions';
+import axios from 'axios';
+import serverURL from '../../variables';
+import {isMobile} from 'react-device-detect';
+import cookie from 'react-cookies';
 
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 class LeftSidebar extends Component {
 
+    state = {
+        categories:[]
+    }
+    
     constructor(props) {
         super(props)
         this.onNav = this.onNav.bind(this)
+        this.showUserInfo = this.showUserInfo.bind(this)
+        this.logout = this.logout.bind(this)
     }
+
+    componentWillMount = () => {
+        axios.get(`${serverURL}/api/categories`)
+        .then( response => {
+            this.setState({categories:response.data.data});
+        })
+    }
+    
     onToggle() {
     }
 
     onNav(selected) {
-        this.props.history.push('/user/' + selected)
+        this.props.history.push(selected)
+    }
+
+    showCategories() {
+        return this.state.categories.length === 0 
+            ? 
+            null : 
+            this.state.categories.map((item, i) => {
+            return (
+                <NavItem key={i} eventKey={`/categories/${item.slug}`}>
+                    <NavIcon>
+                        <FontAwesomeIcon icon="th"/>
+                    </NavIcon>
+                    <NavText>
+                            {item.name}
+                    </NavText>
+                </NavItem>
+            )
+        })
+    }
+
+    logout() {
+        this.props.logoutSuccess()
+        cookie.remove('user', { path: '/' })
+        axios.defaults.headers.common['Authorization'] = ''
+    }
+
+    showUserInfo() {
+        if (this.props.login.user == null) {
+            return null;
+        }
+        return  <span className="pl-5">Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
+                    <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+                </span>
     }
     render() {
         return (
@@ -26,44 +77,46 @@ class LeftSidebar extends Component {
                     this.onNav(selected)
                 }}
                 onToggle={this.onToggle}
+                expanded={this.props.sidebar.toggleSidebar}
                 className="sidebar"
-                expanded={true}
             >
                 <SideNav.Nav defaultSelected="home" className="sidenav">
-                    <NavItem eventKey="profile">
+                    { isMobile && this.props.sidebar.toggleSidebar && this.showUserInfo()}
+                    { isMobile && this.showCategories()}
+                    { this.props.login.user != null && <NavItem eventKey="/user/profile">
                         <NavIcon>
                             <FontAwesomeIcon icon="user"/>
                         </NavIcon>
                         <NavText>
                                 Profile
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="favorites">
+                    </NavItem>}
+                    { this.props.login.user != null && <NavItem eventKey="/user/favorites">
                         <NavIcon>
                             <FontAwesomeIcon icon="heart"/>
                         </NavIcon>
                         <NavText>
                             Favorites
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="history">
+                    </NavItem>}
+                    { this.props.login.user != null && <NavItem eventKey="/user/history">
                         <NavIcon>
                             <FontAwesomeIcon icon="history"/>
                         </NavIcon>
                         <NavText>
                             History
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="pro-videos">
+                    </NavItem> }
+                    { this.props.login.user != null && <NavItem eventKey="/user/pro-videos">
                         <NavIcon>
                             <FontAwesomeIcon icon="film"/>
                         </NavIcon>
                         <NavText>
                             Pro Videos
                         </NavText>
-                    </NavItem>
+                    </NavItem> }
                     {
-                        this.props.sidebar.toggleSidebar &&
+                       this.props.login.user != null &&  this.props.sidebar.toggleSidebar &&
                         <div className="d-flex text-center plan-nav-item">
                             <div className="justify-content-center align-self-center mx-auto plan-upgrade">
                                 <h2>korfilm Pro</h2>
@@ -82,12 +135,14 @@ class LeftSidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      sidebar: state.sidebar
+      sidebar: state.sidebar,
+      login: state.login,
     }
   }
   
-  const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     toogleSidebar: () => dispatch(toggleSidebarAction()),
-  })
+    logoutSuccess: () => dispatch(logoutSuccessAction())
+})
   
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(LeftSidebar));
