@@ -24,9 +24,21 @@ library.add(faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, faYoutub
     
 declare var $;
 
+axios.interceptors.request.use(
+    request => {
+        $(".page").css('opacity', '.5')
+        return request
+    },
+    (error) => {
+    }
+)
+
 axios.interceptors.response.use(
     response => {
         $("body").removeClass('all-loading')
+        setTimeout(() => {
+            $(".page").css('opacity', '1')
+        }, 1000)
         return response
     },
     (error) => {
@@ -67,7 +79,8 @@ const Layout = (props) => {
             <SearchPage/>
             { props.login.user != null && <LeftSidebar/> }
             { mainContent() }
-            <Footer/>
+            { props.login.user == null && <Footer/> }
+            
         </div>
     )
 }
