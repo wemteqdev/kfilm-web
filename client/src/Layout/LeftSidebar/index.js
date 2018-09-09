@@ -46,14 +46,6 @@ class LeftSidebar extends Component {
                             Favorites
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="billing">
-                        <NavIcon>
-                            <FontAwesomeIcon icon="calendar-check"/>
-                        </NavIcon>
-                        <NavText>
-                            Billing
-                        </NavText>
-                    </NavItem>
                     <NavItem eventKey="history">
                         <NavIcon>
                             <FontAwesomeIcon icon="history"/>
