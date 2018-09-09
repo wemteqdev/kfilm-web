@@ -26,7 +26,7 @@
 <!-- Uri Field -->
 <div class="form-group ">
     {!! Form::label('uri', 'Uri:') !!}
-    {!! Form::text('uri', null, ['class' => 'form-control', 'disabled'=>true]) !!}
+    {!! Form::text('uri', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
