@@ -65,7 +65,7 @@ class Login extends Component {
                 { this.props.login.user == null  ? null : <Redirect to="/"/> }
                 <div className="container">
                     <div className="row d-flex justify-content-center">
-                        <div className="col-4">
+                        <div className="col-lg-4 col-md-6 col-sm-8 col-11">
                             <div className="text-center">
                                 <h2>Profile Login</h2>
                             </div>

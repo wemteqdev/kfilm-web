@@ -27,7 +27,7 @@ body {
     font-size: 1.4rem;
     line-height: 1.5;
     color: $font-primary-color;
-    background: white !important;
+    background: $background-primary-color !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -228,7 +228,7 @@ a {
     .title {
         text-transform: capitalize;
         font-size: 3rem;
-        color: #000;
+        color: white;
     }
     .title:after {
         content: "";

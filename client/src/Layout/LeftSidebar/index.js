@@ -39,6 +39,17 @@ class LeftSidebar extends Component {
     }
 
     showCategories() {
+        let icons = [
+            {
+                name: "FT"
+            },
+            {
+                name: "TV"
+            },
+            {
+                name: "AN"
+            }
+        ]
         return this.state.categories.length === 0 
             ? 
             null : 
@@ -46,7 +57,7 @@ class LeftSidebar extends Component {
             return (
                 <NavItem key={i} eventKey={`/categories/${item.slug}`}>
                     <NavIcon>
-                        <FontAwesomeIcon icon="th"/>
+                        {icons[i].name}
                     </NavIcon>
                     <NavText>
                             {item.name}
