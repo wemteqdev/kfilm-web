@@ -57,15 +57,11 @@ const Layout = (props) => {
                     <ReactLoading className="loading" type={'spinningBubbles'} color={'white'} height={40} width={40} />
                 </div>
             }
-            {   props.banner.bannerLoad &&
-                <div>
-                    <Header/>
-                    <SearchPage/>
-                    { props.login.user != null && <LeftSidebar/> }
-                    { mainContent() }
-                    <Footer/>
-                </div>
-            }
+            <Header/>
+            <SearchPage/>
+            { props.login.user != null && <LeftSidebar/> }
+            { mainContent() }
+            <Footer/>
         </div>
     )
 }
