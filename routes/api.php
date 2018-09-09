@@ -39,6 +39,7 @@ Route::get('tags', 'TagController@index');
 Route::get('products', 'ProductController@index');
 
 Route::group(['middleware' => ['auth:api']], function(){
+	Route::post('user/profile/update_password', 'UserController@update_password');
 	Route::get('user/videos', 'VideoController@index');
 	Route::post('user/videos/{id_or_slug}/like', 'VideoController@like');
 	Route::delete('user/videos/{id_or_slug}/unlike', 'VideoController@unlike');

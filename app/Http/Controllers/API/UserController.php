@@ -40,6 +40,35 @@ class UserController extends Controller
 	 	return response()->json(['error' => 'Invalid username or Password'], 401);
 	}
 
+	function update_password(Request $request) {
+		$data = $request->all();
+		$user = Auth::guard('api')->user();
+   
+		//Changing the password only if is different of null
+		if( isset($data['old_password']) && !empty($data['old_password']) && $data['old_password'] !== "" && $data['old_password'] !=='undefined') {
+			//checking the old password first
+			$check  = Auth::guard('web')->attempt([
+				'email' => $user->email,
+				'password' => $data['old_password']
+			]);
+			if($check && isset($data['new_password']) && !empty($data['new_password']) && $data['new_password'] !== "" && $data['new_password'] !=='undefined') {
+				$user->password = bcrypt($data['new_password']);
+				$user->token()->revoke();
+				$token = $user->createToken('newToken')->accessToken;
+   
+				//Changing the type
+				$user->save();
+   
+				return json_encode(array('access_token' => $token)); //sending the new token
+			}
+			else {
+				return response()->json(['error' => 'Wrong password information'], 401);
+			}
+		}
+
+		return response()->json(['error' => 'Wrong password information'], 401);
+	}
+
 	public function logout(Request $request)
     {
         $request->user()->token()->revoke();
