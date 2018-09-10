@@ -47,15 +47,17 @@ axios.interceptors.response.use(
 const Layout = (props) => {
 
     const mainContent = () => {
-        let paddingLeft = 0;
+        let marginLeft = 0;
         if (isMobile) {
-            paddingLeft = '6.4rem'
+            marginLeft = '6.4rem'
+            $("footer").css('margin-left', '6.4rem')
         if (props.sidebar.toggleSidebar){
-            paddingLeft = '24rem'
+            marginLeft = '24rem'
+            $("footer").css('margin-left', '24rem')
         }}
         return (
             <div className="page" style={ {
-                paddingLeft: paddingLeft, 
+                marginLeft: marginLeft, 
                 transition: 'padding 0.5s'
                 } }
             >

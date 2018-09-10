@@ -17,7 +17,7 @@ export default class VideoList extends Component {
         else {
             return this.props.videos.map( (item, i) => {
                 return (
-                    <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12">
                         <Card className="video-card">
                             <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
                             <Link to={'/videos/' + item.slug} className='hover-posts' onClick={this.props.toggleSearch}>

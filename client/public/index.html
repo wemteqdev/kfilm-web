@@ -12,7 +12,10 @@
   </head>
  <style>
    .all-loading #root, .loading-banner #root {
-     display: none;
+        display: none;
+   }
+   .all-loading footer, .loading-banner footer {
+        display: none;
    }
    #root {
     transition: width 2s, height 4s;
@@ -31,8 +34,11 @@
       background-size: cover;
       display: none;
    }
+   .page-loading footer {
+       
+   }
 
-   .all-loading .page-loading,  .loading-banner .page-loading{
+   .all-loading .page-loading,  .loading-banner .page-loading, .all-loading footer, .loading-banner footer{
      display: block;
    }
   .loading {

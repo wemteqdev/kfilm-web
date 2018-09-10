@@ -1,14 +1,14 @@
 footer {
+    font-size: 1rem;
     background: $background-secondary-color;
-    padding-top: 4rem;
-
+    padding-top: 2em;
     .widgetBox {
         .widgetTitle {
-            margin-bottom: 1rem;
+            margin-bottom: .5em;
             h5 {
                 color: $text-secondary-color;
                 margin: 0;
-                font-size: 2.1rem;
+                font-size: 1.7em;
             }
         }
         .textwidget {
@@ -17,23 +17,23 @@ footer {
         }
         .widgetContent {
             form {
-                margin-bottom: 2.5rem;
+                margin-bottom: 2.5em;
                 p {
-                    font-size: 1.3rem;
+                    font-size: 1.3em;
                     color: $text-primary-color;
                 }
             }
             .input {
                 width: 100%;
-                margin-bottom: 1rem;
+                margin-bottom: 1em;
                 input {
                     background: $background-light-grey-color;
                     color: white;
                     margin: 0;
                     border: .1rem solid $background-light-grey-color;
                     border: .1rem solid #6c6c6c;
-                    border-radius: .3rem;
-                    font-size: 1.5rem;
+                    border-radius: .3em;
+                    font-size: 1.3em;
                     &::placeholder {
                         color: $color-grey;
                     }
@@ -45,38 +45,48 @@ footer {
                 text-transform: uppercase;
                 background: $background-primary-color;
                 color: $text-primary-color;
-                padding: 1.2rem 0;
-            }
-            .secondary-button {
-                display: inline-block;
-                width: 3rem;
-                height: 3rem;
-                text-align: center;
-                line-height: 3rem;
-                margin-right: .4rem;
-                background: $background-secondary-light-color;
-                svg {
-                    font-size: 1.3rem;
-                    color: $text-primary-color;
-                    line-height: 1.3rem;
-                }
+                padding: .7em 0;
             }
         }
     }
     #footer-bottom {
         background: $background-primary-color;
-        padding: 2.5rem 0;
-        margin-top: 3rem;
+        padding: 1.2em 0;
+        margin-top: 1.5em;
         .logo {
-            margin-bottom: 1rem;
+            margin-bottom: .5em;
+            h1 {
+                font-size: 2em;
+            }
         }
         .btm-footer-text p {
-            font-size: 1.3rem;
+            font-size: 1.3em;
             color: $text-primary-color;
             margin: 0;
-            line-height: 1.4rem;
+            line-height: .7em;
         }
     }
+}
+
+@media (min-width: 576px) { 
+    footer {
+        font-size: 1.1rem;
+    }
+}
+@media (min-width: 768px) { 
+    footer {
+        font-size: 1.2rem;
+    }
+}
+@media (min-width: 992px) {
+    footer {
+        font-size: 1.3rem;
+    }
+}
+@media (min-width: 1200px) { 
+    footer {
+        font-size: 1.5rem;
+    } 
 }
 
 #user-footer {

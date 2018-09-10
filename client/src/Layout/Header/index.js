@@ -97,7 +97,7 @@ class Header extends Component {
                 </div>
                 <div className="login navButton d-flex justify-content-center align-items-center">
                     <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
-                    { this.props.login.user == null && <Link to="/login" className="loginReg">Log in / Register</Link> }
+                    { this.props.login.user == null && <Link to="/login" className="loginReg">Log in</Link> }
                     { isMobile === false && this.props.login.user != null && <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
                                 <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
                                 </span>
