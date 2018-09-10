@@ -52,8 +52,8 @@ const Layout = (props) => {
             marginLeft = '6.4rem'
             $("footer").css('margin-left', '6.4rem')
         if (props.sidebar.toggleSidebar){
-            marginLeft = '24rem'
-            $("footer").css('margin-left', '24rem')
+            marginLeft = '20rem'
+            $("footer").css('margin-left', '20rem')
         }}
         return (
             <div className="page" style={ {
@@ -69,7 +69,7 @@ const Layout = (props) => {
         <div>
             <Header/>
             <SearchPage/>
-            { isMobile && <LeftSidebar/> } 
+            { (isMobile || props.login.user != null) && <LeftSidebar/> }
             { mainContent() }
         </div>
     )

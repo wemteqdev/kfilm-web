@@ -69,13 +69,14 @@ class Header extends Component {
 
     render () {
         let style;
-        if (isMobile)
-        style = {
-            left: '4rem'
+        if (isMobile || this.props.login.user != null) {
+            style = {
+                left: '4rem'
+            }
         }
         return (
             <header {...this.boundActions}>
-                { isMobile &&
+                { (isMobile || this.props.login.user != null) &&
                 <div id="toggle" className="d-flex justify-content-center align-items-center text-center">
                     <a onClick={this.onToggle}>
                         { this.props.sidebar.toggleSidebar &&

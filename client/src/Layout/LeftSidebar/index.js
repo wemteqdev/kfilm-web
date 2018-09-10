@@ -131,7 +131,6 @@ class LeftSidebar extends Component {
                         <div className="d-flex text-center plan-nav-item">
                             <div className="justify-content-center align-self-center mx-auto plan-upgrade">
                                 <h2>korfilm Pro</h2>
-                                <span>Powerful privacy options<br/> and advanced stats</span>
                                 <div className="plan-button">
                                     <Link to="/user/plan" className="btn btn-danger btn-lg">Upgrade</Link>
                                 </div>
