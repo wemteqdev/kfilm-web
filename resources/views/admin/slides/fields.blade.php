@@ -59,6 +59,14 @@
                     <slide-tag-list />
             </div>
 
+    <!-- Status Field -->
+    <div class="form-group ">
+        {!! Form::label('status', 'Status:') !!}
+        <label class="checkbox-inline">
+            {!! Form::select('status', App\Enums\VideoStatus::toSelectArray(), null) !!}
+        </label>
+    </div>
+    
     <!-- Submit Field -->
     <div class="form-slide col-sm-12">
         {!! Form::submit('Save', ['class' => 'btn btn-lg btn-primary']) !!}

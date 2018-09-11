@@ -5,7 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \Conner\Tagging\Taggable;
-
+use App\Enums\VideoStatus;
 class Slide extends Model
 {
     use Taggable;
@@ -26,7 +26,8 @@ class Slide extends Model
         'description',
         'link_url',
         'link_text',
-        'style'
+        'style',
+        'status'
     ];
 
     protected $casts = [
@@ -35,6 +36,11 @@ class Slide extends Model
    public static $rules = [
         
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', VideoStatus::published);
+    }
 
     public function getTagsAttribute()
     {
