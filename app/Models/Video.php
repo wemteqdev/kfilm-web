@@ -8,6 +8,7 @@ use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
+use App\Enums\UserRole;
 use App\Enums\VideoType;
 use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
@@ -82,9 +83,14 @@ class Video extends Model implements LikeableContract
         ];
     }
 
+    public function isFree()
+    {
+        return $this->scope == UserRole::free;
+    }
+
     public function isPro()
     {
-        return $this->scope == VideoType::pro;
+        return $this->scope == UserRole::pro;
     }
 
     public function getStatusNameAttribute() {
@@ -93,6 +99,16 @@ class Video extends Model implements LikeableContract
 
     public function getTypeNameAttribute() {
         return VideoType::getKey($this->type);
+    }
+
+    public function scopeNormal($query)
+    {
+        return $query->where('type', VideoType::normal);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('type', VideoType::featured);
     }
 
     public function scopePublished($query)

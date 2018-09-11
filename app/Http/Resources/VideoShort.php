@@ -45,7 +45,7 @@ class VideoShort extends JsonResource
 			"thumbnail_url"=> $this->thumbnail_url,
 			"is_favorited"=>$this->liked,
 			"likes"=>$this->likesCount,
-			"is_pro" => $this->type_name == 'pro',
+			"is_pro" => $this->isPro(),
         ];
     }
 }
