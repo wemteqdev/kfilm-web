@@ -24,9 +24,9 @@ class SlideController extends Controller
 
 		if( isset($tag_param) )
 		{
-			$slides = Slide::withAnyTag($tag_param)->get();
+			$slides = Slide::withAnyTag($tag_param)->published()->get();
         }else{
-            $slides = Slide::all();
+            $slides = Slide::published()->get();
         }
 
 		return new SlideCollection($slides);
