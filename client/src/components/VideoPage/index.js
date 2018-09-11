@@ -47,8 +47,12 @@ class VideoPage extends Component {
         url = url + `videos/${props.match.params.slug}`
         axios.get(url)
         .then( response => {
-            this.setState({video:response.data.data})
-
+            if (response.data.data.embed === null){
+                this.setState({video:response.data.data.featured_video})
+            }
+            else {
+                this.setState({video:response.data.data.embed})
+            }
             if (props.login.user !== null && props.login.user !== undefined){
                 this.setState({ like:response.data.data.is_favorited});
                 $("body").removeClass('all-loading')
@@ -77,7 +81,7 @@ class VideoPage extends Component {
     render (){
         return (
             <div>
-                <Video {...this.state} type={ this.props.login.user !== null && this.props.login.user !== undefined ? "pro" : "free" }/>
+                <Video {...this.state} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
             </div>
             
         );

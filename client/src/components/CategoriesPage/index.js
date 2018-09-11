@@ -23,7 +23,9 @@ class CategoriesPage extends Component {
     loadVideos(props) {
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos`)
         .then( response => {
-            this.setState({videos:response.data.data});
+            if (response.data.data.length > 0) {
+                this.setState({videos:response.data.data});
+            }
         })
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
         .then( response => {

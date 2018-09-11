@@ -14,6 +14,7 @@ import Billing from './Views/Sidebar/Billing';
 import Histories from './Views/Sidebar/Histories';
 import Favorites from './Views/Sidebar/Favorites';
 import ProVideos from './Views/Sidebar/ProVideos';
+import Auth from './Layout/Auth';
 
 class Routes extends Component {
     render(){
@@ -30,12 +31,14 @@ class Routes extends Component {
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/register" exact component={Register}/>
-                    <Route path="/user/profile" exact component={Profile}/>
-                    <Route path="/user/plan" exact component={Plan}/>
-                    <Route path="/user/billing" exact component={Billing}/>
-                    <Route path="/user/history" exact component={Histories}/>
-                    <Route path="/user/favorites" exact component={Favorites}/>
-                    <Route path="/user/pro-videos" exact component={ProVideos}/>
+                    <Auth>
+                        <Route path="/user/profile" exact component={Profile}/>
+                        <Route path="/user/plan" exact component={Plan}/>
+                        <Route path="/user/billing" exact component={Billing}/>
+                        <Route path="/user/history" exact component={Histories}/>
+                        <Route path="/user/favorites" exact component={Favorites}/>
+                        <Route path="/user/pro-videos" exact component={ProVideos}/>
+                    </Auth>
                 </Switch>
             </Layout>
            

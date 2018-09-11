@@ -11,7 +11,9 @@ export default class Histories extends Component {
     componentWillMount = () => {
         axios.get(`${serverURL}/api/user/histories`)
         .then( response => {
-            this.setState({histories :response.data.data})
+            if (response.data.data.length > 0){
+                this.setState({histories :response.data.data})
+            }
         })
     }
     

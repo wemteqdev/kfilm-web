@@ -12,7 +12,9 @@ export default class Favorites extends Component {
     componentWillMount = () => {
         axios.get(`${serverURL}/api/user/favorite_videos`)
         .then( response => {
-            this.setState({videos:response.data.data});
+            if (response.data.data.length > 0){
+                this.setState({videos:response.data.data});
+            }
         })
     }
     
