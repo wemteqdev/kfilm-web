@@ -12,7 +12,7 @@ use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
 use App\Enums\VideoType;
-use App\Enums\UserRoles;
+use App\Enums\UserRole;
 class VideoController extends Controller
 {
 	public function index(Request $request)
@@ -24,10 +24,14 @@ class VideoController extends Controller
 		$type_param = $request->type; // normal, featured, promotion, recommended
 		$scope_param = $request->scope; // free, pro
 
+		$user = auth('api')->user();
+
 		$videos = Video::published();
+		$videos = $videos->normal();
+
 		if ( isset($scope_param) )
 		{
-			$videos = $videos->where('scope', UserRoles::getValue($scope_param));
+			$videos = $videos->where('scope', UserRole::getValue($scope_param));
 		}
 
 		if ( isset($type_param) )
@@ -68,6 +72,12 @@ class VideoController extends Controller
 			$videos = $videos->paginate(9);
 		}
 
+		return new VideoCollection($videos);
+	}
+
+	public function featured()
+	{
+		$videos = Video::featured()->orderBy('created_at', 'desc')->paginate(9);
 		return new VideoCollection($videos);
 	}
 

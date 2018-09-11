@@ -24,11 +24,24 @@ class VideoController extends AdminBaseController
 
     public function index(Request $request)
     {
-        $this->videoRepository->pushCriteria(new RequestCriteria($request));
-        $videos = $this->videoRepository->paginate(5);
+        $videos = Video::orderBy('created_at', 'desc')->paginate(9);
 
-        return view('admin.videos.index')
-            ->with('videos', $videos);
+        return view('admin.videos.index')->with('videos', $videos);
+    }
+
+    public function normal(Request $request)
+    {
+        $videos = Video::normal()->orderBy('created_at', 'desc')->paginate(9);
+
+        return view('admin.videos.index')->with('videos', $videos);
+
+    }
+    
+    public function featured(Request $request)
+    {
+        $videos = Video::featured()->orderBy('created_at', 'desc')->paginate(9);
+
+        return view('admin.videos.index')->with('videos', $videos); 
     }
 
     public function create()

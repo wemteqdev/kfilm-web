@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         
         Video::observe(VideoObserver::class);
-        $vimeo_authorization_url = Vimeo::buildAuthorizationEndpoint(env('VIMEO_REDIRECT_URI'));
+        $vimeo_authorization_url = Vimeo::buildAuthorizationEndpoint(env('VIMEO_REDIRECT_URI'), ['public', 'private', 'video_files']);
 
         View::share('vimeo_authorization_url', $vimeo_authorization_url);
         session('vimeo_authorization_url', $vimeo_authorization_url);

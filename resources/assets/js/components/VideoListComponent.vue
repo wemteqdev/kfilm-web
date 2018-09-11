@@ -38,11 +38,11 @@
 			    	if(this.$parent.$parent.$options.methods.onSelectVideo)
 			    	{
 			    		this.$parent.$parent.$options.methods.onSelectVideo(video)
-			    	}
+			    	}	
 			    },
 			    load_page(){
-
-			    	Api.videos.index(this.currentPage).then(function(response){
+						console.log(111);
+			    	axios.get("/api/videos/featured?&page=" + this.currentPage).then(function(response){
 	    				return response.data;
 	    			}).then((payload)=>{
 	    				this.videos = payload.data;

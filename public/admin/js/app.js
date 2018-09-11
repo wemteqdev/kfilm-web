@@ -20822,7 +20822,7 @@ var Api = function Api() {
     _classCallCheck(this, Api);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Api);
+/* unused harmony default export */ var _unused_webpack_default_export = (Api);
 
 
 Api.images = {
@@ -80704,7 +80704,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				load_page: function load_page() {
 						var _this = this;
 
-						__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].videos.index(this.currentPage).then(function (response) {
+						console.log(111);
+						axios.get("/api/videos/featured?&page=" + this.currentPage).then(function (response) {
 								return response.data;
 						}).then(function (payload) {
 								_this.videos = payload.data;

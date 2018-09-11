@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     @foreach($videos as $video)
-        <tr class="{{ 'published_' . ( $video->status_name == 'published' ) }}">
+        <tr class="{{ 'published_' . ( $video->status_name == 'published' ) }} {{ 'featured_' . ( $video->type_name == 'featured' ) }}">
             <td><img src="{{ $video->featured_image_url()}}" width=250 ></td></td>
             <td>{!! $video->name !!}</td>
             <td>{!! $video->description !!}</td>
