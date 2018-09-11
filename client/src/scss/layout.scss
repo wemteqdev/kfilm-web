@@ -304,3 +304,14 @@ a {
     background: url('/images/loading.jpg') center center no-repeat;
     background-size: cover;
 }
+
+.more-button {
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color:$color-pink;
+    color: white !important;
+    &:hover {
+        background-color: $color-hover-pink !important;
+    }
+}
