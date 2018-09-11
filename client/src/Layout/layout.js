@@ -3,24 +3,23 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Header from './Header';
-import Footer from './Footer';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
-
+import {isMobile} from 'react-device-detect';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faHome, faFilm, faTh, faEdit, faMagic, faUser, faEnvelope, 
          faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight, faThList, faThLarge,
          faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp, faSignature,
-         faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+         faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, 
          faFacebook, faYoutube, faFlickr } from '@fortawesome/free-brands-svg-icons';
 
 library.add(faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, faYoutube, 
     faSearch, faHome, faFilm, faTh, faEdit, faMagic, faUser, faEnvelope, faAngleUp, faAngleDown,
     faPlayCircle, faAngleLeft, faAngleRight, faThList, faThLarge, faClock, faEye, faPlay, faFacebook, faVideo, faFlickr, faHeart, 
-    faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck);
+    faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck, faBars);
     
 declare var $;
 
@@ -48,39 +47,30 @@ axios.interceptors.response.use(
 const Layout = (props) => {
 
     const mainContent = () => {
-        if (props.login.user != null) {
-            let paddingLeft = '6.9rem'
-            if (props.sidebar.toggleSidebar){
-                paddingLeft = '24rem'
-            }
-            return (
-                <div className="page" style={ {
-                    paddingLeft: paddingLeft, 
-                    transition: 'padding 0.5s'
-                    } }
-                >
-                    {props.children}
-                </div>
-            )
-        }
-        else {
-            return (
-                <div className="page" style={{
-                    transition: 'padding 0.5s'
-                }}>
-                    {props.children}
-                </div>
-            )
-        }
+        let marginLeft = 0;
+        if (isMobile) {
+            marginLeft = '6.4rem'
+            $("footer").css('margin-left', '6.4rem')
+        if (props.sidebar.toggleSidebar){
+            marginLeft = '20rem'
+            $("footer").css('margin-left', '20rem')
+        }}
+        return (
+            <div className="page" style={ {
+                marginLeft: marginLeft, 
+                transition: 'padding 0.5s'
+                } }
+            >
+                {props.children}
+            </div>
+        )
     }
     return(
         <div>
             <Header/>
             <SearchPage/>
-            { props.login.user != null && <LeftSidebar/> }
+            { (isMobile || props.login.user != null) && <LeftSidebar/> }
             { mainContent() }
-            { props.login.user == null && <Footer/> }
-            
         </div>
     )
 }

@@ -27,12 +27,12 @@
     input {
         background-color: transparent;
         border: 0.1rem solid $color-grey;
-        color: black;
+        color: white;
         font-size: 1.8rem;
         &:focus {
             border:none;
             background-color: transparent;
-            color: black;
+            color: white;
         }
         &::placeholder {
             color: #666;

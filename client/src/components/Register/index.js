@@ -16,7 +16,7 @@ const Register = (props) => {
         <section className="loginPage page-padding">
             <div className="container">
                 <div className="row d-flex justify-content-center">
-                    <div className="col-4">
+                    <div className="col-lg-4 col-md-6 col-sm-8 col-11">
                         <div className="section-header text-center">
                             <h1 className="title">Sign UP</h1>
                         </div>

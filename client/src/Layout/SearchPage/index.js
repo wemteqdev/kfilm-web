@@ -52,7 +52,7 @@ class SearchPage extends Component {
     showVideos() {
         return this.state.videos.map( (item, i) => {
             return (
-                <div key={i} className="col-4">
+                <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12">
                     <Card className="video-card">
                         <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
                         <Link to={'/videos/' + item.slug} className='hover-posts' onClick={this.props.toggleSearch}>

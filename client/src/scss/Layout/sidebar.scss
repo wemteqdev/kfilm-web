@@ -4,10 +4,13 @@
     top: $header-height;
     z-index: 8;
     border-right: .5rem solid rgba(0, 0, 0, .2);
-    width: $sidebar-width;
+    // min-width: $sidebar-width;
     .sidenav {
         margin-top: 3rem;
     }
+}
+.sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
+    min-width: $sidebar-width;
 }
 
 .plan-nav-item {
