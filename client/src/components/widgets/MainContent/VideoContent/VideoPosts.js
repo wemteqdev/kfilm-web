@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import serverURL from '../../../../variables';
-import TimeFormat from 'hh-mm-ss';
 
 class VideoPosts extends Component {
 
@@ -34,7 +33,7 @@ class VideoPosts extends Component {
                 </Link>
                 <div className="video-stats clearfix">
                     <div className="thumb-stats float-right">
-                        <span>{ TimeFormat.fromS(item.duration) }</span>
+                        <span>{ item.duration }</span>
                     </div>
                 </div>
             </div>
