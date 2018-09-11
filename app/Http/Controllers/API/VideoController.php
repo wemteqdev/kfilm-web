@@ -75,6 +75,12 @@ class VideoController extends Controller
 		return new VideoCollection($videos);
 	}
 
+	public function featured()
+	{
+		$videos = Video::featured()->orderBy('created_at', 'desc')->paginate(9);
+		return new VideoCollection($videos);
+	}
+
 	public function show($id_or_slug)
 	{
 		$video = Video::find($id_or_slug);

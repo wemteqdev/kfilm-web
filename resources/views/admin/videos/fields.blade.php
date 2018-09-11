@@ -66,7 +66,7 @@
          <div class="form-group ">
             {!! Form::label('scope', 'Scope:') !!}
             <label class="checkbox-inline">
-                {!! Form::select('scope', App\Enums\UserRoles::toSelectArray(), null) !!}
+                {!! Form::select('scope', App\Enums\UserRole::toSelectArray(), null) !!}
             </label>
         </div>
 
