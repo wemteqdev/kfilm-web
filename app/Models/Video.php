@@ -26,7 +26,7 @@ class Video extends Model implements LikeableContract
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     protected $dates = ['deleted_at'];
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags', 'status_name', 'type_name'];
+    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
 
     public $fillable = [
         'name',
@@ -99,6 +99,10 @@ class Video extends Model implements LikeableContract
 
     public function getTypeNameAttribute() {
         return VideoType::getKey($this->type);
+    }
+
+    public function getScopeNameAttribute() {
+        return UserRole::getKey($this->scope);
     }
 
     public function scopeNormal($query)

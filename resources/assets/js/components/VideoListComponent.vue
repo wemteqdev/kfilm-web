@@ -16,7 +16,6 @@
 </template>
 
 <script>
-		import Api from '../api';
     export default {
     	  data: function(){
 			  	return {
@@ -41,7 +40,6 @@
 			    	}	
 			    },
 			    load_page(){
-						console.log(111);
 			    	axios.get("/api/videos/featured?&page=" + this.currentPage).then(function(response){
 	    				return response.data;
 	    			}).then((payload)=>{
