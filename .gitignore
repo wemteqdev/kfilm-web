@@ -15,6 +15,7 @@ yarn-error.log
 /bower_components
 /package-lock.json
 /client/node_modules
+/client/package-lock.json
 /client/build
 /composer.lock
 /.dump.rdb
