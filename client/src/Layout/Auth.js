@@ -8,7 +8,7 @@ class Auth extends Component {
         setTimeout(()=>{
             let isLoggedIn = this.props.login.user != null;
             if (isLoggedIn === false) {
-                this.props.history.push('/')
+                this.props.history.push('/login')
             }
         }, 2000)
     }
