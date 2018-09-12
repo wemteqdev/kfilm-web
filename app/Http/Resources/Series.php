@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Video as VideoResource;
+use App\Http\Resources\VideoShort as VideoShortResource;
 
 class Series extends JsonResource
 {
@@ -16,7 +16,7 @@ class Series extends JsonResource
             'featured_image_url' => $this->featured_image_url(),
             "views" => $this->getUniqueViews(),
             'videos_count' => $this->videos_count,
-            'videos' => VideoResource::collection($this->videos),
+            'videos' => VideoShortResource::collection($this->videos()->orderBy('series_number', 'desc')->get()),
         ];
     }
 }
