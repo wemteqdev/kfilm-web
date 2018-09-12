@@ -8,6 +8,16 @@ export default class VideoList extends Component {
     constructor(props) {
         super(props);
         this.showVideos = this.showVideos.bind(this)
+        this.videoURL = this.videoURL.bind(this)
+    }
+
+    videoURL(slug) {
+        if (this.props.type === "pro") {
+            return '/user/videos/' + slug;
+        }
+        else {
+            return '/videos/' + slug;
+        }
     }
 
     showVideos() {
@@ -20,7 +30,7 @@ export default class VideoList extends Component {
                     <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12">
                         <Card className="video-card">
                             <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
-                            <Link to={'/videos/' + item.slug} className='hover-posts' onClick={this.props.toggleSearch}>
+                            <Link to={this.videoURL(item.slug)} className='hover-posts' onClick={this.props.toggleSearch}>
                                 <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                             </Link>
                             <CardBody>

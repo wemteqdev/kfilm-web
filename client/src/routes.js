@@ -38,6 +38,7 @@ class Routes extends Component {
                         <Route path="/user/history" exact component={Histories}/>
                         <Route path="/user/favorites" exact component={Favorites}/>
                         <Route path="/user/pro-videos" exact component={ProVideos}/>
+                        <Route path="/user/videos/:slug" exact component={VideoPage}/>
                     </Auth>
                 </Switch>
             </Layout>

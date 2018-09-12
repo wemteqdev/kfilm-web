@@ -10,7 +10,7 @@ export default class ProVideos extends Component {
     }
 
     componentWillMount = () => {
-        axios.get(`${serverURL}/api/videos?type=pro`)
+        axios.get(`${serverURL}/api/videos?scope=pro`)
         .then( response => {
             if (response.data.data.length > 0){
                 this.setState({videos:response.data.data});

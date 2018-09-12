@@ -48,13 +48,14 @@ const Layout = (props) => {
 
     const mainContent = () => {
         let marginLeft = 0;
-        if (isMobile) {
+        if (isMobile || props.login.user !== null) {
             marginLeft = '6.4rem'
-            $("footer").css('margin-left', '6.4rem')
+            $("footer").css('margin-left', '6.4rem') 
+        }
         if (props.sidebar.toggleSidebar){
             marginLeft = '20rem'
             $("footer").css('margin-left', '20rem')
-        }}
+        }
         return (
             <div className="page" style={ {
                 marginLeft: marginLeft, 
