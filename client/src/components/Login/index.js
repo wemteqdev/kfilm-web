@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
@@ -50,6 +50,7 @@ class Login extends Component {
                 expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
                 cookie.save('user', response.data, { path: '/', maxAge: 3600 * 24 * 7 })
                 this.props.loginSuccess(response.data)
+                this.props.history.goBack();
             },
             (error) => { 
                 this.setState({
@@ -62,7 +63,7 @@ class Login extends Component {
     render() {
         return (
             <section className="loginPage">
-                { this.props.login.user == null  ? null : <Redirect to="/"/> }
+                {/* { this.props.login.user == null  ? null : <Redirect to="/"/> } */}
                 <div className="container">
                     <div className="row d-flex justify-content-center">
                         <div className="col-lg-4 col-md-6 col-sm-8 col-11">

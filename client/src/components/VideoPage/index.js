@@ -48,10 +48,10 @@ class VideoPage extends Component {
         axios.get(url)
         .then( response => {
             if (response.data.data.embed === null){
-                this.setState({video:response.data.data.featured_video})
+                this.setState({video:response.data.data})
             }
             else {
-                this.setState({video:response.data.data.embed})
+                this.setState({video:response.data.data})
             }
             if (props.login.user !== null && props.login.user !== undefined){
                 this.setState({ like:response.data.data.is_favorited});

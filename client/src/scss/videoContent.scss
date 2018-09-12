@@ -1,23 +1,22 @@
 .videos {
     .main-heading {
         margin-bottom: 1rem;
+    }
+    .head-title {
+        svg {
+            display: inline-block;
+            color: $color-pink;
+            margin-right: 1.1rem;
+        }
 
-        .head-title {
-            svg {
-                display: inline-block;
-                color: $color-pink;
-                margin-right: 1.1rem;
-            }
+        h4 {
+            display: inline-block;
+            font-size: 2.2rem;
+            margin: 0;
+        }
 
-            h4 {
-                display: inline-block;
-                font-size: 2.2rem;
-                margin: 0;
-            }
-
-            a {
-                color: $color-grey;
-            }
+        a {
+            color: $color-grey;
         }
     }
 
