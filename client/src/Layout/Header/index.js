@@ -14,6 +14,7 @@ declare var xs;
 declare var sm;
 declare var md;
 
+
 class Header extends Component {
 
     state = {
@@ -37,13 +38,16 @@ class Header extends Component {
 
             axios.get(`${serverURL}/api/user`)
             .then( (response) => {
-                this.props.loginSuccess(user)
-                },
-                (error) => {
-                    cookie.remove('user')
-                    axios.defaults.headers.common['Authorization'] = ''
-                }
-            )
+                    if (response === undefined) {
+                        this.logout()
+                    }
+                    else {
+                        this.props.loginSuccess(user)
+                    }
+            }).catch( error => {
+                console.log('abc')
+            })
+            
         }
         axios.get(`${serverURL}/api/categories`)
         .then( response => {
@@ -65,6 +69,7 @@ class Header extends Component {
         this.props.logoutSuccess()
         cookie.remove('user', { path: '/' })
         axios.defaults.headers.common['Authorization'] = ''
+        this.props.history.push('/')
     }
 
     render () {

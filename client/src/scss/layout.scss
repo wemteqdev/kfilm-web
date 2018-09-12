@@ -166,16 +166,41 @@ a {
     font-weight: bold;
 }
 
+.mobile-page .video-card.card {
+    .card-img {
+        height: 40vh !important;
+    }
+}
+
 .video-card.card {
     border: none;
     margin-bottom: 2rem;
-    .card-body {
+    overflow: hidden;
+    .card-img {
+        height: 30vh;
+        width: 100%;
+        background-size: cover !important;
+    }
+    .video-stats {
+        bottom: 3em;
         height: 3rem;
+        .thumb-stats {
+            background-color: #444;
+            span {
+                color: white;
+                line-height: 3rem;
+            }
+        }
+    }
+    .card-body {
         padding: .5rem;
         background-color: $background-secondary-color;
         .card-subtitle {
-            padding: .5rem 1rem;
+            padding: 1% 1rem;
             color: white;
+            font-size: 100%;
+            line-height: inherit;
+            height: 100%;
         }
     }
     &:hover a.hover-posts {
@@ -188,6 +213,10 @@ a {
     img {
         width: 100%;
     }
+}
+
+.pro-stats {
+    background-color: #e96969 !important;
 }
 
 .stripe {
@@ -249,7 +278,7 @@ a {
 }
 
 .page-padding {
-    padding:5rem 1rem 5rem 1rem;
+    padding:3rem 1rem 3rem 1rem;
 }
 
 @media (min-width: 576px) { 

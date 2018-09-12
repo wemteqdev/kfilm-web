@@ -44,11 +44,13 @@ axios.interceptors.response.use(
     }
 )
 
+
+
 const Layout = (props) => {
 
     const mainContent = () => {
         let marginLeft = 0;
-        if (isMobile || props.login.user !== null) {
+        if (isMobile || props.login.user !== undefined) {
             marginLeft = '6.4rem'
             $("footer").css('margin-left', '6.4rem') 
         }
@@ -56,8 +58,12 @@ const Layout = (props) => {
             marginLeft = '20rem'
             $("footer").css('margin-left', '20rem')
         }
+        let pageClass = "";
+        if (isMobile) {
+            pageClass = "mobile-page"
+        }
         return (
-            <div className="page" style={ {
+            <div className={`page ${pageClass}`} style={ {
                 marginLeft: marginLeft, 
                 transition: 'padding 0.5s'
                 } }

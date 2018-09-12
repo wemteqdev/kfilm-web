@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardBody, CardSubtitle } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import VideoCard from '../VideoCard';
 
 export default class VideoList extends Component {
 
@@ -27,16 +25,8 @@ export default class VideoList extends Component {
         else {
             return this.props.videos.map( (item, i) => {
                 return (
-                    <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <Card className="video-card">
-                            <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
-                            <Link to={this.videoURL(item.slug)} className='hover-posts' onClick={this.props.toggleSearch}>
-                                <span><FontAwesomeIcon icon='play'/>Watch Video</span>
-                            </Link>
-                            <CardBody>
-                                <CardSubtitle>{ item.name }</CardSubtitle>
-                            </CardBody>
-                        </Card>
+                    <div key={i} className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
+                        <VideoCard video={item} type={this.props.type} />
                     </div>
                 )
             } )

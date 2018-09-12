@@ -45,8 +45,10 @@ class VideoPage extends Component {
             url = url + "user/"
         }
         url = url + `videos/${props.match.params.slug}`
+        console.log(url)
         axios.get(url)
         .then( response => {
+            
             if (response.data.data.embed === null){
                 this.setState({video:response.data.data})
             }
