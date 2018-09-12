@@ -95,7 +95,7 @@ class Header extends Component {
                     <Link to="/">
                         <div className="logo d-flex">
                             <div className="justify-content-center align-self-center mx-auto">
-                                <h2 className="mb-0"><img src="/images/logo.png" width="32" alt=""></img>KORFILM</h2>
+                                <h2 className="mb-0">KORFILM</h2>
                             </div>
                             
                         </div>
