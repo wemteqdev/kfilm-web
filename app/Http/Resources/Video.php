@@ -44,6 +44,7 @@ class Video extends JsonResource
 				"description" => $this->description,
 				"slug" => $this->slug,
 				"duration" => $this->duration,
+				"formatted_duration" => gmdate("H:i", $this->duration),
 				"width" => $this->width,
 				"height" => $this->height,
 				"year" => $this->year,
