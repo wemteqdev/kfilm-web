@@ -12,29 +12,53 @@ class Video extends Component {
 
     showVideo() {
         let video = this.props.video
-        if (video.embed === null) {
-            return video.featured_video.embed
+        console.log(video)
+        if (video.embed === null && video.featured_video !== null) {
+            return (
+                <div className="flex-video widescreen">
+                    <div
+                        dangerouslySetInnerHTML={{
+                        __html: video.featured_video.embed
+                        }}>
+                    </div>
+                </div>)
         }
-        else {
-            return video.embed;
+        if( video.embed !== null) {
+            return (
+                <div className="flex-video widescreen">
+                    <div
+                        dangerouslySetInnerHTML={{
+                        __html: video.embed
+                        }}>
+                    </div>
+                </div>)
+        }
+        if (video.embed === null && video.featured_video === null) {
+            let style = {
+                background:`url(${video.featured_image_url}) center center`,
+                height: '50vh',
+                backgroundSize: 'cover'
+            }
+           return ( 
+                <div style={style}>
+                </div>
+            )
         }
     }
     
     render (){
         return (
             <section className="fullwidth-single-video">
-                <div className="container">
-                    <div className="flex-video widescreen">
-                        <div
-                            dangerouslySetInnerHTML={{
-                            __html: this.showVideo()
-                            }}>
-                        </div>
+                <div className="bgBlack">
+                    <div className="container">
+                        
+                        { this.showVideo()}
                     </div>
                 </div>
                 <div className='container'>
                     <div className="row">
                         <div className="col-12">
+                            
                             { this.props.type === "free" && 
                                 <div className="mt-2 mb-5">
                                     <Link to={`/user/videos/${this.props.slug}`} className="btn button more-button">To see full video Click here</Link>
