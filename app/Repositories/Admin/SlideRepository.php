@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Slide;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 class SlideRepository extends BaseRepository
 {

@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Group;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 class GroupRepository extends BaseRepository
 {

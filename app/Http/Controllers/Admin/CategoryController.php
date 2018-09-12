@@ -15,7 +15,6 @@ use App\Models\Category;
 
 class CategoryController extends AdminBaseController
 {
-    /** @var  CategoryRepository */
     private $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepo)
@@ -23,12 +22,6 @@ class CategoryController extends AdminBaseController
         $this->categoryRepository = $categoryRepo;
     }
 
-    /**
-     * Display a listing of the Category.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->categoryRepository->pushCriteria(new RequestCriteria($request));
@@ -38,23 +31,11 @@ class CategoryController extends AdminBaseController
             ->with('categories', $categories);
     }
 
-    /**
-     * Show the form for creating a new Category.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('admin.categories.create');
     }
 
-    /**
-     * Store a newly created Category in storage.
-     *
-     * @param CreateCategoryRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateCategoryRequest $request)
     {
         $input = $request->all();
@@ -66,13 +47,6 @@ class CategoryController extends AdminBaseController
         return redirect(route('admin.categories.index'));
     }
 
-    /**
-     * Display the specified Category.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
@@ -86,13 +60,6 @@ class CategoryController extends AdminBaseController
         return view('admin.categories.show')->with('category', $category);
     }
 
-    /**
-     * Show the form for editing the specified Category.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
@@ -106,14 +73,6 @@ class CategoryController extends AdminBaseController
         return view('admin.categories.edit')->with('category', $category);
     }
 
-    /**
-     * Update the specified Category in storage.
-     *
-     * @param  int              $id
-     * @param UpdateCategoryRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateCategoryRequest $request)
     {
         $category = $this->categoryRepository->findWithoutFail($id);
