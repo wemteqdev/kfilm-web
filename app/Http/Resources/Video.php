@@ -61,6 +61,7 @@ class Video extends JsonResource
 				"is_pro" => $this->isPro(),
 				"related" => VideoShortResource::collection($this->suggested()),
 				"series" => new SeriesShortResource(Series::find($this->series_id)),
+				"series_number" => $this->series_number,
         ];
     }
 }

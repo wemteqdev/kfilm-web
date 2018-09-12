@@ -62,7 +62,7 @@
             </label>
         </div>
         
-         <!-- Type Field -->
+         <!-- Scope Field -->
          <div class="form-group ">
             {!! Form::label('scope', 'Scope:') !!}
             <label class="checkbox-inline">
@@ -155,6 +155,12 @@
                         </div>
                     </div>
                     </div>
+                </div>
+
+                <!-- Series Number Field -->
+                <div class="form-group ">
+                    {!! Form::label('series_number', 'Series Number:') !!}
+                    {!! Form::number('series_number', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
         </div>
