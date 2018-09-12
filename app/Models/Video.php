@@ -49,6 +49,7 @@ class Video extends Model implements LikeableContract
         'year',
         'published_at',
         'scope',
+        'series_number',
     ];
 
     protected $casts = [
@@ -68,6 +69,7 @@ class Video extends Model implements LikeableContract
         'embed' => 'string',
         'year' => 'integer',
         'published_at' => 'datetime',
+        'series_number' => 'integer'
     ];
 
     public static $rules = [
