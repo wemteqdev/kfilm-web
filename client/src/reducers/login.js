@@ -3,7 +3,7 @@ const login = (state = {}, action) => {
       case 'LOGIN_SUCCESS':
         return {...state, user: action.payload}
       case 'LOGOUT_SUCCESS':
-        return {...state, user: null}
+        return {...state, user: undefined}
       default:
         return state
     }

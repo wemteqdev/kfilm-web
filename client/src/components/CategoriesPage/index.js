@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../widgets/VideoList';
-import './categoriesPage.scss';
 import serverURL from '../../variables';
 
 declare var xs;

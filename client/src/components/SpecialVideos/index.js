@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Card, CardImg, CardBody, CardSubtitle } from 'reactstrap';
+import VideoList from '../widgets/VideoList';
 import serverURL from '../../variables';
 
 class SpeicalVideos extends Component {
@@ -24,26 +24,18 @@ class SpeicalVideos extends Component {
         this.loadVideos(nextProps)
     }
 
-    showVideos() {
-        return this.state.videos.map( (item, i) => {
-            return (
-                <div key={i} className="col-3">
-                    <Card className="video-card">
-                        <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
-                        <CardBody>
-                            <CardSubtitle>{ item.name }</CardSubtitle>
-                        </CardBody>
-                    </Card>
-                </div>
-            )
-        } )
+    componentDidMount() {
+        window.scrollTo(0, 0)
     }
 
     render() {
         return (
-            <div className="container videoList">
-                <div className="row">
-                    { this.showVideos() }
+            <div className="page-padding">
+                    <div className="section-header">
+                        <h1 className="title">{this.props.match.path.slice(1)}</h1>
+                    </div>
+                <div>
+                    <VideoList videos={this.state.videos}/>
                 </div>
             </div>
         )

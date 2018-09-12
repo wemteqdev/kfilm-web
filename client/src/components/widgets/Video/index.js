@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import VideoList from '../VideoList';
 import { Link } from 'react-router-dom';
+import RelatedVideoList from '../RelatedVideoList';
 
 class Video extends Component {
     
     constructor(props) {
         super(props)
-
         this.showVideo = this.showVideo.bind(this)
     }
 
@@ -52,7 +51,7 @@ class Video extends Component {
                                 <div className="head-title mb-4">
                                     <h4 className='borderBottom text-left'>Related</h4>
                                 </div>
-                                <VideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
+                                <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
                             </div>
                         </div>
                     </div>
