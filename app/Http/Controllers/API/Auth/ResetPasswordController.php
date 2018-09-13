@@ -27,7 +27,7 @@ class ResetPasswordController extends Controller
         );
 
         return $response == Password::PASSWORD_RESET
-                    ? new UserResource($request->user())
+                    ? response()->json(['message'=>'password updated successfully'], 200)
                     : response()->json(['error'=>'something went wrong'], 400);
     }
 
@@ -61,8 +61,6 @@ class ResetPasswordController extends Controller
         $user->save();
 
         event(new PasswordReset($user));
-
-        $this->auth->login($user);
     }
 
     public function broker()
