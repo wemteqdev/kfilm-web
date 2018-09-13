@@ -9,17 +9,14 @@ import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 import {isMobile} from 'react-device-detect';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faHome, faFilm, faTh, faEdit, faMagic, faUser, faEnvelope, 
-         faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight, faThList, faThLarge,
+import { faSearch, faHome, faFilm, faTh, faEdit, faUser, 
+         faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight,
          faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp, faSignature,
-         faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck, faBars } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, 
-         faFacebook, faYoutube, faFlickr } from '@fortawesome/free-brands-svg-icons';
+         faHistory, faTimes, faCalendarCheck, faBars } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTwitter, faGooglePlus, faInstagram, faVimeo, faFacebookF, faYoutube, 
-    faSearch, faHome, faFilm, faTh, faEdit, faMagic, faUser, faEnvelope, faAngleUp, faAngleDown,
-    faPlayCircle, faAngleLeft, faAngleRight, faThList, faThLarge, faClock, faEye, faPlay, faFacebook, faVideo, faFlickr, faHeart, 
-    faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faLandmark, faCarCrash, faTimes, faCalendarCheck, faBars);
+library.add(faSearch, faHome, faFilm, faTh, faEdit,faUser, faAngleUp, faAngleDown,
+    faPlayCircle, faAngleLeft, faAngleRight, faClock, faEye, faPlay, faVideo,faHeart, 
+    faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faTimes, faCalendarCheck, faBars);
     
 declare var $;
 
