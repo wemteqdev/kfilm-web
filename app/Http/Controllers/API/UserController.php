@@ -18,7 +18,7 @@ class UserController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('throttle:3,1')->only('register');
+        $this->middleware('throttle:24,1')->only('register');
 	}
 	
 	public function index(Request $request)
@@ -102,7 +102,7 @@ class UserController extends Controller
 		$user->assignRole('free');
 		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken;
 
-		return (new UserResource($user))->additional(['access_token' => $token]);
+		return (new UserResource($user))->additional(['access_token' => $token, 'message'=>'Verification email sent']);
 	}
 	
 	public function subscriptions(Request $request)
