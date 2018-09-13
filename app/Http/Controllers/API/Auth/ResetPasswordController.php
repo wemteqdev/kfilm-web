@@ -2,9 +2,13 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Resources\User as UserResource;
-
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 class ResetPasswordController extends Controller
 {
     public function __construct()
@@ -59,5 +63,10 @@ class ResetPasswordController extends Controller
         event(new PasswordReset($user));
 
         $this->guard()->login($user);
+    }
+
+    public function broker()
+    {
+        return Password::broker();
     }
 }

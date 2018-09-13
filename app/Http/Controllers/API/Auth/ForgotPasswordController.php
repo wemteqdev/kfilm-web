@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -29,5 +30,10 @@ class ForgotPasswordController extends Controller
     protected function validateEmail(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
+    }
+
+    public function broker()
+    {
+        return Password::broker();
     }
 }
