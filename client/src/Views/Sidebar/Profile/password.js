@@ -6,22 +6,6 @@ import { connect } from 'react-redux';
 import serverURL from '../../../variables';
 import cookie from 'react-cookies';
 
-const renderField = ({
-        input,
-        label,
-        type,
-        name,
-        meta: { asyncValidating, touched, error }
-    }) => (
-    <div>
-        <Label htmlFor={name}>{label}</Label>
-        <div className={asyncValidating ? 'async-validating' : ''}>
-            <Input {...input} type={type} />
-            {touched && error && <span>{error}</span>}
-        </div>
-    </div>
-)
-
 class Password extends Component {
 
     state = {
@@ -64,7 +48,7 @@ class Password extends Component {
             <Form>
                 <FormGroup>
                     <Label htmlFor="old-password">Enter your KORFILM password:</Label>
-                    <input type="password" name="old-password" ref={input => this.state.old_password = input} />
+                    <input type="password" name="old-password" ref={input => this.setState({old_password: input})} />
                     <a className="float-right forgot-button mt-3">Forgot password?</a>
                 </FormGroup>
                 <FormGroup>

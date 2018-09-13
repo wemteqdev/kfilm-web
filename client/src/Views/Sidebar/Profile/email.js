@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
-import cookie from 'react-cookies';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import serverURL from '../../../variables';

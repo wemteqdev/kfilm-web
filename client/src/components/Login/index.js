@@ -104,7 +104,7 @@ class Login extends Component {
                                 <h2>Profile Login</h2>
                             </div>
                             <Form className="login-form">
-                                {this.state.tryAgain!='' ?
+                                {this.state.tryAgain!=='' ?
                                     <FormGroup>
                                         <p className="alert alert-danger">{this.state.tryAgain}</p>
                                     </FormGroup>

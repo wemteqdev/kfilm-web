@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import serverURL from '../../../variables';
-import cookie from 'react-cookies';
 
 class ResetPassword extends Component {
 
@@ -67,7 +66,7 @@ class ResetPassword extends Component {
     displayForm = () => {
         return (
             <Form className="reset-form">
-                {this.state.tryAgain != '' ? 
+                {this.state.tryAgain !== '' ? 
                     this.displayError()
                 :
                 null
@@ -135,7 +134,7 @@ class ResetPassword extends Component {
                             <div className="text-center">
                                 <h2>Reset Password</h2>
                             </div>
-                            {this.state.successReset==false ?
+                            {this.state.successReset===false ?
                                 this.displayForm()
                             :
                                 this.displaySuccess()
