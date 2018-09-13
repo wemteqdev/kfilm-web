@@ -61,8 +61,6 @@ class ResetPasswordController extends Controller
         $user->save();
 
         event(new PasswordReset($user));
-
-        $this->guard()->login($user);
     }
 
     public function broker()
