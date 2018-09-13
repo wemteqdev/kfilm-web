@@ -18,11 +18,12 @@ class VideoController extends Controller
 	public function index(Request $request)
 	{
 		$keyword_param = $request->q;
-		$tag_param = $request->tag; // slug
+		$tag_param = $request->tag; // tag slug
 		$view_param = $request->view; // hot, popular, trending, recent
 		$limit_param = $request->limit;
 		$type_param = $request->type; // normal, featured, promotion, recommended
 		$scope_param = $request->scope; // free, pro
+		$per_page = $request->per_page ?: 9; // for pagination, default 9
 
 		$user = auth('api')->user();
 
@@ -69,7 +70,7 @@ class VideoController extends Controller
 		{
 			$videos = $videos->take($limit_param)->get();
 		}else{
-			$videos = $videos->paginate(9);
+			$videos = $videos->paginate(min($per_page, 30));
 		}
 
 		return new VideoCollection($videos);
