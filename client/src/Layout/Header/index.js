@@ -31,24 +31,8 @@ class Header extends Component {
     onToggle() {
         this.props.toggleSidebar()
     }
-    componentWillMount(){
-        let user = cookie.load('user')
-        if (user !== undefined) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
 
-            axios.get(`${serverURL}/api/user`)
-            .then( (response) => {
-                    if (response === undefined) {
-                        this.logout()
-                    }
-                    else {
-                        this.props.loginSuccess(user)
-                    }
-            }).catch( error => {
-                console.log('abc')
-            })
-            
-        }
+    componentWillMount(){
         axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});

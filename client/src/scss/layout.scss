@@ -6,6 +6,8 @@
 @import './Layout/footer.scss';
 @import './video.scss';
 @import './login.scss';
+@import './email_verification.scss';
+@import './reset_password.scss';
 @import './plan.scss';
 @import './history.scss';
 @import './pricing.scss';
@@ -24,7 +26,7 @@ body {
     margin: 0;
     font-family: Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: normal;
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 1.5;
     color: $font-primary-color;
     background: $background-primary-color !important;
@@ -343,4 +345,8 @@ a {
     &:hover {
         background-color: $color-hover-pink !important;
     }
+}
+
+.bg-dark {
+    // background-color: #444 !important;
 }

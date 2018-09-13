@@ -12,7 +12,6 @@ class Video extends Component {
 
     showVideo() {
         let video = this.props.video
-        console.log(video)
         if (video.embed === null && video.featured_video !== null) {
             return (
                 <div className="flex-video widescreen">

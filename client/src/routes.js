@@ -7,6 +7,7 @@ import CategoriesPage from './components/CategoriesPage';
 import SpecialVideos from './components/SpecialVideos';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
+import EmailVerification from './components/EmailVerification';
 import Register from './components/Register';
 import Profile from './Views/Sidebar/Profile';
 import Plan from './Views/Sidebar/Plan';
@@ -15,6 +16,7 @@ import Histories from './Views/Sidebar/Histories';
 import Favorites from './Views/Sidebar/Favorites';
 import ProVideos from './Views/Sidebar/ProVideos';
 import Auth from './Layout/Auth';
+import ResetPassword from './Views/Sidebar/ResetPassword';
 
 class Routes extends Component {
     render(){
@@ -30,7 +32,9 @@ class Routes extends Component {
                     <Route path="/categories/:slug" exact component={CategoriesPage}/>
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>
+                    <Route path="/email-verification" exact component={EmailVerification}/>
                     <Route path="/register" exact component={Register}/>
+                    <Route path="/user/password/reset/:token" exact component={ResetPassword}/>
                     <Auth>
                         <Route path="/user/profile" exact component={Profile}/>
                         <Route path="/user/plan" exact component={Plan}/>

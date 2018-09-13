@@ -36,7 +36,7 @@ class VideoPosts extends Component {
                         <span>{ item.is_pro && "PRO" }</span>
                     </div>
                     <div className="thumb-stats float-right">
-                        <span>{ item.duration }</span>
+                        <span>{ item.formatted_duration }</span>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import cookie from 'react-cookies';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Header from './Header';
 import SearchPage from './SearchPage';
 import LeftSidebar from './LeftSidebar';
+import serverURL from '../variables';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 import {isMobile} from 'react-device-detect';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import {loginSuccessAction} from '../actions';
 import { faSearch, faHome, faFilm, faTh, faEdit, faUser, 
          faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight,
          faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp,
@@ -26,6 +29,7 @@ axios.interceptors.request.use(
         return request
     },
     (error) => {
+        return Promise.reject(error)
     }
 )
 
@@ -38,20 +42,47 @@ axios.interceptors.response.use(
         return response
     },
     (error) => {
+        $("body").removeClass('all-loading')
+        setTimeout(() => {
+            $(".page").css('opacity', '1')
+        }, 1000)
+        return Promise.reject(error)
     }
 )
 
+class Layout extends Component {
 
+    componentWillMount() {
+        let user = cookie.load('user')
+        if (user !== undefined) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
 
-const Layout = (props) => {
+            axios.get(`${serverURL}/api/user`)
+            .then( (response) => {
+                if (response === undefined) {
+                    this.logout()
+                } else {
+                    this.props.loginSuccess(user)
+                }
+            }).catch( error => {
+            })
+        }
+    }
 
-    const mainContent = () => {
+    logout = () => {
+        this.props.logoutSuccess()
+        cookie.remove('user', { path: '/' })
+        axios.defaults.headers.common['Authorization'] = ''
+        this.props.history.push('/')
+    }
+
+    mainContent = () => {
         let marginLeft = 0;
-        if (isMobile || props.login.user !== undefined) {
+        if (isMobile || this.props.login.user !== undefined) {
             marginLeft = '6.4rem'
             $("footer").css('margin-left', '6.4rem') 
         }
-        if (props.sidebar.toggleSidebar){
+        if (this.props.sidebar.toggleSidebar){
             marginLeft = '20rem'
             $("footer").css('margin-left', '20rem')
         }
@@ -65,18 +96,21 @@ const Layout = (props) => {
                 transition: 'padding 0.5s'
                 } }
             >
-                {props.children}
+                {this.props.children}
             </div>
         )
     }
-    return(
-        <div>
-            <Header/>
-            <SearchPage/>
-            { (isMobile || props.login.user != null) && <LeftSidebar/> }
-            { mainContent() }
-        </div>
-    )
+
+    render () {
+        return(
+            <div>
+                <Header/>
+                <SearchPage/>
+                { (isMobile || this.props.login.user != null) && <LeftSidebar/> }
+                { this.mainContent() }
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -87,5 +121,8 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    loginSuccess: (payload) => dispatch(loginSuccessAction(payload)),
+})
   
-export default withRouter( connect(mapStateToProps, null)(Layout));
+export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Layout));
