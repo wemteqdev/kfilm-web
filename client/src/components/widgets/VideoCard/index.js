@@ -32,7 +32,7 @@ export default class VideoCard extends Component {
                     </div>
                     }
                     <div className="thumb-stats float-right">
-                        <span>{ this.props.video.duration }</span>
+                        <span>{ this.props.video.formatted_duration }</span>
                     </div>
                 </div>
                 <CardBody>

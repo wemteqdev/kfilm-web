@@ -15,6 +15,12 @@ class Password extends Component {
         successUpdate: false
     }
 
+    handleOldPassword = (event) => {
+        this.setState({
+            old_password: event.target.value,
+        })
+    }
+
     handleNewPassword = (event) => {
         this.setState({
             new_password: event.target.value,
@@ -28,19 +34,20 @@ class Password extends Component {
     }
 
     handleUpdatePassword = () => {
-        console.log(this.props.login.user);
-        axios.post(`${serverURL}/api/user/update_password?email=${this.props.login.user.data.email}&old_password=${this.state.old_password.value}&new_password=${this.state.new_password}`)
-            .then( (response) => {
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token
-                this.props.login.user.access_token = response.data.access_token
-                cookie.save('user', this.props.login.user, { path: '/', maxAge: 3600 * 24 * 7 })
-                this.props.loginSuccess(this.props.login.user.data)
-                this.props.history.push('/')
-            },
-            (error) => { 
-                alert(error)
-            }
-        )
+        axios.post(`${serverURL}/api/user/update_password?email=${this.props.login.user.data.email}&old_password=${this.state.old_password}&new_password=${this.state.new_password}`)
+        .then(response => {
+            console.log(response.data)
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token
+            this.props.login.user.access_token = response.data.access_token
+            cookie.save('user', this.props.login.user, { path: '/', maxAge: 3600 * 24 * 7 })
+            this.props.loginSuccess(this.props.login.user.data)
+            this.props.history.push('/')
+        })
+        .catch(error => {
+            console.log(error.response)
+            this.setState({
+            })
+        });
     }
 
     render() {
@@ -48,7 +55,11 @@ class Password extends Component {
             <Form>
                 <FormGroup>
                     <Label htmlFor="old-password">Enter your KORFILM password:</Label>
-                    <input type="password" name="old-password" ref={input => this.setState({old_password: input})} />
+                    <Input type="password" name="old-password" 
+                        onChange={
+                            (event) => this.handleOldPassword(event)
+                        }
+                    />
                     <a className="float-right forgot-button mt-3">Forgot password?</a>
                 </FormGroup>
                 <FormGroup>
@@ -69,7 +80,7 @@ class Password extends Component {
                 </FormGroup>
                 { this.state.new_password !== this.state.confirm_password ?
                     <FormGroup>
-                        <p className="text-danger">Password doesn't match</p>
+                        <p className="alert alert-danger">Password doesn't match</p>
                     </FormGroup>
                     :
                     null
