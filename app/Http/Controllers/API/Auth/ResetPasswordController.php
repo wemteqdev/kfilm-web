@@ -6,6 +6,11 @@ use App\Http\Resources\User as UserResource;
 
 class ResetPasswordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('throttle:24,1')->only('reset');
+    }
+
     public function reset(Request $request)
     {
         $this->validate($request, $this->rules(), $this->validationErrorMessages());

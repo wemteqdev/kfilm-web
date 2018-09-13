@@ -4,8 +4,8 @@ use Illuminate\Http\Request;
 
 Route::post('user/login', 'UserController@login');
 Route::post('user/register', 'UserController@register');
-Route::post('user/password/email', 'UserController@send_reset_link_email');
-Route::post('user/password/reset', 'ResetPasswordController@reset');
+Route::post('user/password/email', 'Auth\ForgotPasswordController@send_reset_link_email');
+Route::post('user/password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('slides', 'SlideController@index');
 Route::get('videos', 'VideoController@index');

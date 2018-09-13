@@ -7,11 +7,10 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
 
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('throttle:24,1')->only('send_reset_link_email');
     }
 
     public function send_reset_link_email(Request $request)
