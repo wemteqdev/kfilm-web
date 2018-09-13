@@ -2,20 +2,10 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-
 Route::post('user/login', 'UserController@login');
 Route::post('user/register', 'UserController@register');
+Route::post('user/password/email', 'Auth\ForgotPasswordController@send_reset_link_email');
+Route::post('user/password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('slides', 'SlideController@index');
 Route::get('videos', 'VideoController@index');
@@ -41,7 +31,7 @@ Route::group(['middleware' => ['auth:api', 'verified']], function(){
 	Route::delete('plans/{plan_id}/cancel', ['as'=>'plans.cancel', 'uses' => 'PlanController@cancel']);
 
 	// user routes
-	Route::post('user/profile/update_password', 'UserController@update_password');
+	Route::post('user/update_password', 'UserController@update_password');
 	Route::get('user/videos', 'VideoController@index');
 	Route::post('user/videos/{id_or_slug}/like', 'VideoController@like');
 	Route::delete('user/videos/{id_or_slug}/unlike', 'VideoController@unlike');

@@ -13,16 +13,25 @@ class VerificationController extends Controller
     public function __construct()
     {
         $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $this->middleware('throttle:24,1')->only('verify', 'resend');
     }
 
     public function resend(Request $request)
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        $user = $request->user();
+
+        if(isset($request->email) && ($request->email!=$user->email))
+        {
+            $user->email = $request->email;
+            $user->email_verified_at = null;
+            $user->save();
+        }
+
+        if ($user->hasVerifiedEmail()) {
             return new UserResource($request->user());
         }
 
-        $request->user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         return new UserResource($request->user());
     }

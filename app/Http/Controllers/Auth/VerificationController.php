@@ -29,6 +29,6 @@ class VerificationController extends Controller
              event(new Verified($request->user()));
         }
 
-        return redirect('/user/login');
+        return redirect('/login');
     }
 }

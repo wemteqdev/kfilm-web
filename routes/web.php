@@ -80,6 +80,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 
 Route::get('verification/verify', 'Auth\VerificationController@verify')->name('verification.verify');
 
+Route::get('user/password/reset/{token}', function(){
+	return File::get(public_path() . '/index.html');	
+})->name('password.reset');
+
 Route::any('{all}', function () {
     return File::get(public_path() . '/index.html');
 })->where('all', '.*');
