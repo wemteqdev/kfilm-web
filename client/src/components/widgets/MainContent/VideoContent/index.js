@@ -20,7 +20,7 @@ class VideoContent extends Component {
         {
             slug:'trending',
             title:'Trending',
-            icon:'signature'
+            icon:'signal'
         },
     ]
 

@@ -11,12 +11,12 @@ import {isMobile} from 'react-device-detect';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faHome, faFilm, faTh, faEdit, faUser, 
          faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight,
-         faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp, faSignature,
-         faHistory, faTimes, faCalendarCheck, faBars } from '@fortawesome/free-solid-svg-icons';
+         faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp,
+         faHistory, faTimes, faCalendarCheck, faBars, faSignal } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faSearch, faHome, faFilm, faTh, faEdit,faUser, faAngleUp, faAngleDown,
     faPlayCircle, faAngleLeft, faAngleRight, faClock, faEye, faPlay, faVideo,faHeart, 
-    faStar, faCalendar, faBurn, faThumbsUp, faSignature, faHistory, faTimes, faCalendarCheck, faBars);
+    faStar, faCalendar, faBurn, faThumbsUp, faHistory, faTimes, faCalendarCheck, faBars, faSignal);
     
 declare var $;
 

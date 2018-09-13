@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import StripeCheckout from 'react-stripe-checkout';
 import serverURL from '../../../variables';
 
 export default class Plan extends Component {
@@ -57,15 +56,9 @@ export default class Plan extends Component {
                                 </li>
                             </ul>
                             <div className="price-btn">
-                                { this.state.subscription !== plan.id && <StripeCheckout
-                                    token={this.onToken(plan.id)}
-                                    stripeKey="pk_test_ZaX66npOBaJhNzR80x8lBlS0"
-                                    amount={plan.amount}
-                                    name={plan.nickname}
-                                    description="description"
-                                >
-                                    <button className="outline-btn">Purchase now</button>
-                                </StripeCheckout>}
+                                { this.state.subscription !== plan.id && 
+                                <button className="outline-btn">Purchase now</button>
+                                }
                             </div>
                         </div>
                     </div>
