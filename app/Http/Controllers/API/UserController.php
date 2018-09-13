@@ -16,6 +16,11 @@ use Laravel\Passport\Passport;
 use App\Models\Video;
 class UserController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('throttle:3,1')->only('register');
+	}
+	
 	public function index(Request $request)
 	{
 		return new UserResource($request->user());
@@ -92,8 +97,9 @@ class UserController extends Controller
 		$input['password'] = bcrypt($input['password']); 
 		
 		$user = User::create($input);
-		$user->assignRole('free');
+		$user->sendEmailVerificationNotification();
 
+		$user->assignRole('free');
 		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken;
 
 		return (new UserResource($user))->additional(['access_token' => $token]);
