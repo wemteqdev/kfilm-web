@@ -42,7 +42,7 @@ class VideoController extends Controller
 		$limit_param = $request->limit;
 		$type_param = $request->type;
 		$scope_param = $request->scope;
-		$per_page = $request->per_page ?: 9;
+		$per_page = $request->per_page ?: 12;
 		$order_by = $request->order_by;
 		$order_direction = $request->order_direction ?: 'asc';
 
