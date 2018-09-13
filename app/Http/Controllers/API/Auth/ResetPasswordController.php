@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Resources\User as UserResource;
 
 class ResetPasswordController extends Controller
