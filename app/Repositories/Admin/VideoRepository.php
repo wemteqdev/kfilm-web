@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Video;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 /**
  * Class VideoRepository

@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Series;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 class SeriesRepository extends BaseRepository
 {

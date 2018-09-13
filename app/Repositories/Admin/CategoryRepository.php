@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Category;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 /**
  * Class CategoryRepository

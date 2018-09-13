@@ -3,8 +3,7 @@ Route::prefix('admin')->group(function () {
 	Auth::routes();
 });
 
-
-Route::stripeWebhooks('gateway/stripe/webhook');
+// Route::stripeWebhooks('gateway/stripe/webhook');
 
 Route::get('/gateway/vimeo/oauth2_callback', 'Gateway\VimeoController@oauth2_callback');
 
@@ -78,6 +77,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::get('admin/videos/{videos}', ['as'=> 'admin.videos.show', 'uses' => 'Admin\VideoController@show']);
 	Route::get('admin/videos/{videos}/edit', ['as'=> 'admin.videos.edit', 'uses' => 'Admin\VideoController@edit']);
 });
+
+Route::get('verification/verify', 'Auth\VerificationController@verify')->name('verification.verify');
 
 Route::any('{all}', function () {
     return File::get(public_path() . '/index.html');

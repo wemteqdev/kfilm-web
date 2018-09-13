@@ -3,7 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Image;
-use InfyOm\Generator\Common\BaseRepository;
+use App\Repositories\BaseRepository;
 
 /**
  * Class ImageRepository
