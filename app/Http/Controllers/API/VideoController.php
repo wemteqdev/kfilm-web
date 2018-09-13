@@ -13,17 +13,38 @@ use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
 use App\Enums\VideoType;
 use App\Enums\UserRole;
+use Validator;
+use Illuminate\Validation\Rule;
 class VideoController extends Controller
 {
+	protected function rules()
+    {
+        return [
+			'type' => Rule::in(['normal', 'featured', 'promotion', 'recommended']),
+			'scope' => Rule::in(['free', 'pro']),
+			'view_param' => Rule::in(['recent', 'hot', 'popular', 'trending']),
+			'order_by' => Rule::in(['published_at', 'name', 'duration']),
+			'order_direction' => Rule::in(['asc', 'dsc']),
+        ];
+	}
+	
 	public function index(Request $request)
 	{
+		$validator = Validator::make($request->all(), $this->rules(), []);
+
+		if ($validator->fails()) {
+			return response()->json($validator->messages(), 400);
+		}
+
 		$keyword_param = $request->q;
-		$tag_param = $request->tag; // tag slug
-		$view_param = $request->view; // hot, popular, trending, recent
+		$tag_param = $request->tag;
+		$view_param = $request->view;
 		$limit_param = $request->limit;
-		$type_param = $request->type; // normal, featured, promotion, recommended
-		$scope_param = $request->scope; // free, pro
-		$per_page = $request->per_page ?: 9; // for pagination, default 9
+		$type_param = $request->type;
+		$scope_param = $request->scope;
+		$per_page = $request->per_page ?: 9;
+		$order_by = $request->order_by;
+		$order_direction = $request->order_direction ?: 'asc';
 
 		$user = auth('api')->user();
 
@@ -64,6 +85,11 @@ class VideoController extends Controller
 			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
 		}elseif($view_param == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
+		}
+
+		if (isset($order_by))
+		{
+			$videos->orderBy($order_by, $order_direction);
 		}
 
 		if( isset($limit_param) )
