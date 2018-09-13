@@ -27,11 +27,9 @@ class VerificationController extends Controller
             $user->save();
         }
 
-
         if ($user->hasVerifiedEmail()) {
             return new UserResource($request->user());
         }
-
 
         $user->sendEmailVerificationNotification();
 
