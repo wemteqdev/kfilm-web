@@ -10,14 +10,12 @@ use Laravel\Cashier\Billable;
 use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 use Cog\Laravel\Love\Liker\Models\Traits\Liker;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Auth\CanResetPassword;
 class User extends Authenticatable implements LikerContract, MustVerifyEmail
 {
     use HasApiTokens, Notifiable;
     use HasRoles;
     use Billable;
     use Liker;
-    use CanResetPassword;
 
     protected $guard_name = 'api';
 
