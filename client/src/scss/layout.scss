@@ -180,6 +180,7 @@ a {
     overflow: hidden;
     .card-img {
         height: 30vh;
+        min-height: 200px ;
         width: 100%;
         background-size: cover !important;
     }
@@ -271,7 +272,7 @@ a {
         height: .4rem;
         width: 10rem;
         background-color: #6195FF;
-        margin-top: 1rem;
+        // margin-top: 1rem;
     }
 }
 
@@ -377,7 +378,8 @@ div.series {
 
 .video-page {
     .video-name {
+        color: white ;
         font-size: 20px ;
-        text-transform: capitalize;
+        text-transform: capitalize ;
     }
 }

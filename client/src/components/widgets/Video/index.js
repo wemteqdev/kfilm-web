@@ -109,14 +109,14 @@ class Video extends Component {
                                 this.props.type === "pro" && !this.props.like && <button className="btn btn-secondary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
                             }
 
-                            <div className="alert alert-info video-name">
+                            <div className="my-5 video-name">
                                 {this.props.video.name}
                             </div>
 
                             <div className="my-5 series">
                                 {this.displaySeries()}
                             </div>
-                            <div className="mt-5 mb-5 videos">
+                            <div className="my-5 videos">
                                 <div className="head-title mb-4">
                                     <h4 className='borderBottom text-left'>Related</h4>
                                 </div>

@@ -31,11 +31,15 @@ class SpeicalVideos extends Component {
     render() {
         return (
             <div className="page-padding">
-                    <div className="section-header">
-                        <h1 className="title">{this.props.match.path.slice(1)}</h1>
+                <div className="container">
+                    <div className="row">
+                        <div className="col section-header">
+                            <h1 className="title">{this.props.match.path.slice(1)}</h1>
+                        </div>
                     </div>
-                <div>
-                    <VideoList videos={this.state.videos}/>
+                    <div className="row">
+                        <VideoList videos={this.state.videos}/>
+                    </div>
                 </div>
             </div>
         )
