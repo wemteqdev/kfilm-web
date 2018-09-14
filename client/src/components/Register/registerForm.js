@@ -24,7 +24,7 @@ const RegisterForm = (props) =>{
             <Field name="password" type="password" component={renderField} label="Password:"/>
             <Field name="confirm" type="password" component={renderField} label="Confirm password:"/>
             <div>
-                <button type="submit" className="login-button" disabled={submitting}>Sign Up</button>
+                <button type="submit" className="login-button btn btn-secondary" disabled={submitting}>Sign Up</button>
             </div>
         </Form>
     )

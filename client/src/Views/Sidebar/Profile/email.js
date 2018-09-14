@@ -17,30 +17,28 @@ class Email extends Component{
         })
     }
 
-    handleEmailSubmit = () => {
+    handleEmailSubmit = (event) => {
         axios.post(`${serverURL}/api/user/verification/resend?email=${this.state.email}`)
-            .then( (response) => {
-                if (response != null) {
-                    this.setState({
-                        isSent: true
-                    })
-                    if (response.data.data.email_verified) {
-                    }
-                }
-            },
-            (error) => { 
-            }
-        )
+        .then(response => {
+            this.setState({
+                isSent: true
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+            this.setState({
+            })
+        });
     }
 
     render() {
         return (
-            <Form className="verification-form">
+            <Form className="login-form">
                 <FormGroup>
-                    <Label htmlFor="verification-email">Email address:</Label>
+                    <Label htmlFor="login-email">Email address:</Label>
                     <Input 
                         type="email" 
-                        id="verification-email" 
+                        id="login-email" 
                         placeholder="Email address"
                         defaultValue={this.props.login.user.data.email}
                         onChange={
@@ -50,14 +48,15 @@ class Email extends Component{
                 </FormGroup>
                 { this.state.isSent ? 
                     <FormGroup>
-                        <p className="">Your email was resent successfully</p>
-                        <p className="">Check your email</p>
+                        <p className="alert alert-success">Please check your email</p>
                     </FormGroup>
                 :
                     null
                 }
-                <FormGroup className="form-check d-flex align-items-center justify-content-between">
-                    <Button className="resend-button" onClick={this.handleEmailSubmit}>Change Email</Button>
+                <FormGroup>
+                    <Button className="primary-button" 
+                        onClick={(event) => this.handleEmailSubmit(event)}
+                    >Change Email</Button>
                 </FormGroup>
             </Form>
         )
