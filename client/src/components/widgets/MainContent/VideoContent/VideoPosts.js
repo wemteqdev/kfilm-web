@@ -32,9 +32,11 @@ class VideoPosts extends Component {
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
                 <div className="video-stats clearfix">
-                    <div className="thumb-stats float-left pro-stats">
-                        <span>{ item.is_pro && "PRO" }</span>
-                    </div>
+                    { item.is_pro &&
+                        <div className="thumb-stats float-left pro-stats">
+                            <span>PRO</span>
+                        </div>
+                    }
                     <div className=" float-right">
                         <span>{ item.formatted_duration }</span>
                     </div>
