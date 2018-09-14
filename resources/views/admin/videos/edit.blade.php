@@ -16,6 +16,10 @@
                         @include('admin.videos.fields')
 
                    {!! Form::close() !!}
+
+                    {!! Form::open(['method' => 'PUT', 'url' => route('admin.videos.publish', $video->id)]) !!}
+                        <button type="submit" class="btn btn-warning btn-lg">Publish</button>
+                    {!! Form::close() !!}
                </div>
            </div>
        </div>
