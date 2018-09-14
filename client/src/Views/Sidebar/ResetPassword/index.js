@@ -66,10 +66,8 @@ class ResetPassword extends Component {
     displayForm = () => {
         return (
             <Form className="reset-form">
-                {this.state.tryAgain !== '' ? 
+                {this.state.tryAgain !== '' && 
                     this.displayError()
-                :
-                null
                 }
                 <FormGroup>
                     <Label htmlFor="email">Email address:</Label>
@@ -98,12 +96,10 @@ class ResetPassword extends Component {
                         }
                     />
                 </FormGroup>
-                { this.state.new_password !== this.state.confirm_password ?
+                { this.state.new_password !== this.state.confirm_password &&
                     <FormGroup>
                         <p className="alert alert-danger">Password doesn't match</p>
                     </FormGroup>
-                :
-                    null
                 }
                 <FormGroup>
                     <Button className="primary-button float-right" onClick={this.handleResetPassword}>Reset</Button>

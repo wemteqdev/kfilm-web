@@ -62,13 +62,11 @@ class EmailVerification extends Component {
                                         }
                                     />
                                 </FormGroup>
-                                { this.state.isSent ? 
+                                { this.state.isSent && 
                                     <FormGroup>
                                         <p className="">Your email was resent successfully</p>
                                         <p className="">Check your email</p>
                                     </FormGroup>
-                                :
-                                    null
                                 }
                                 <FormGroup className="form-check d-flex align-items-center justify-content-between">
                                     <Button className="resend-button" onClick={this.handleResend.bind(this)}>Resend</Button>

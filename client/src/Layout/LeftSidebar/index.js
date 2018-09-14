@@ -50,21 +50,21 @@ class LeftSidebar extends Component {
                 name: "AN"
             }
         ]
-        return this.state.categories.length === 0 
-            ? 
-            null : 
-            this.state.categories.map((item, i) => {
-            return (
-                <NavItem key={i} eventKey={`/categories/${item.slug}`}>
-                    <NavIcon>
-                        {icons[i].name}
-                    </NavIcon>
-                    <NavText>
-                            {item.name}
-                    </NavText>
-                </NavItem>
-            )
-        })
+        return (
+            this.state.categories.length !== 0 && 
+                this.state.categories.map((item, i) => {
+                return (
+                    <NavItem key={i} eventKey={`/categories/${item.slug}`}>
+                        <NavIcon>
+                            {icons[i].name}
+                        </NavIcon>
+                        <NavText>
+                                {item.name}
+                        </NavText>
+                    </NavItem>
+                )
+            })
+        )
     }
 
     logout() {
@@ -74,13 +74,14 @@ class LeftSidebar extends Component {
     }
 
     showUserInfo() {
-        if (this.props.login.user == null) {
-            return null;
-        }
-        return  <span className="pl-5">Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
-                    <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
-                </span>
+        return (
+            this.props.login.user !== null && 
+            <span className="pl-5">Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
+                <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+            </span>
+        )
     }
+
     render() {
         return (
             <SideNav

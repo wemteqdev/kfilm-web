@@ -99,7 +99,7 @@ class CategoriesPage extends Component {
         }
         return (
             <div className="page-padding">
-                <div className="container-fluid">
+                <div className="container">
                     <div className="row">
                         <div className="col section-header">
                             <h1 className="title">{this.state.category.name}</h1>
