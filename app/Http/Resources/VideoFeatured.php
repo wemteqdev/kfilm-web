@@ -15,7 +15,9 @@ class VideoFeatured extends JsonResource
         return [
 			"duration"=> $this->duration,
 			"width"=> $this->width,
-			"height"=> $this->height,
+            "height"=> $this->height,
+            "duration"=> $this->duration,
+            "formatted_duration" => gmdate("H:i:s", $this->duration),
 			"featured_image_url"=> $this->featured_image_url(),
 			"embed"=> $this->embed,
         ];

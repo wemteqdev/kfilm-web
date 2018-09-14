@@ -37,6 +37,7 @@ class VideoShort extends JsonResource
 			"description"=> $this->description,
 			"slug"=> $this->slug,
 			"duration"=> $this->duration,
+			"formatted_duration" => gmdate("H:i:s", $this->duration),
 			"width"=> $this->width,
 			"height"=> $this->height,
 			"year" => $this->year,
