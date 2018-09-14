@@ -20,7 +20,7 @@ class VideoPage extends Component {
     }
 
     toggleLike() {
-        let like = !this.state.like
+        let like = !this.state.like;
         this.setState({like: like})
         if (like) {
             axios.post(`${serverURL}/api/user/videos/${this.state.video.slug}/like`)
@@ -81,7 +81,7 @@ class VideoPage extends Component {
     render (){
         return (
             <div>
-                <Video {...this.state} {...this.props} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
+                <Video toggleLike={this.toggleLike} {...this.state} {...this.props} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
             </div>
             
         );

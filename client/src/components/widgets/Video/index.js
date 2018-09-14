@@ -62,19 +62,13 @@ class Video extends Component {
         if (this.props.video != null && this.props.video.series != null) {
             let series_videos = this.props.video.series.videos;
             return series_videos.map( (item, index) => {
-                if (item.slug === this.props.slug) {
-                    return (
-                        <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-light m-2">
-                            {item.series_number}
-                        </Link>
-                    )
-                } else {
-                    return (
-                        <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-secondary m-2">
-                            {item.series_number}
-                        </Link>
-                    )
-                }
+                return (
+                    <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
+                        item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
+                    `}>
+                        {item.series_number}
+                    </Link>
+                )
             })
         } else {
             return (
@@ -83,9 +77,14 @@ class Video extends Component {
             )
         }
     }
+
+    displayLike = () => {
+        if (this.props.type === "pro") {
+            return <button className={`like-button ml-5 btn ${this.props.like?'btn-primary':'btn-secondary'}`} onClick={this.props.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
+        }
+    }
     
     render (){
-        console.log(this.props)
         return (
             <section className="fullwidth-single-video">
                 <div className="bgBlack">
@@ -98,19 +97,14 @@ class Video extends Component {
                         <div className="col-12">
                             
                             { this.props.type === "free" && 
-                                <div className="mt-2 mb-5">
+                                <div className="mt-2 mb-5 d-flex justify-content-center">
                                     <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
                                 </div>
-                            }
-                            {
-                                this.props.type === "pro" && this.props.like && <button className="btn btn-primary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
-                            }
-                            {
-                                this.props.type === "pro" && !this.props.like && <button className="btn btn-secondary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
                             }
 
                             <div className="my-5 video-name">
                                 {this.props.video.name}
+                                {this.displayLike()}
                             </div>
 
                             <div className="my-5 series">

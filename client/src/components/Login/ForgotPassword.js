@@ -65,10 +65,8 @@ class ForgotPassword extends Component {
                         }
                     />
                 </FormGroup>
-                {this.state.successForget?
+                {this.state.successForget &&
                     <p className="alert alert-success">Please check your email</p>
-                :
-                    null
                 }
                 <FormGroup>
                     <Button className="primary-button float-right" 

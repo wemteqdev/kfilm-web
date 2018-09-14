@@ -78,12 +78,10 @@ class Password extends Component {
                         }
                     />
                 </FormGroup>
-                { this.state.new_password !== this.state.confirm_password ?
+                { this.state.new_password !== this.state.confirm_password &&
                     <FormGroup>
                         <p className="alert alert-danger">Password doesn't match</p>
                     </FormGroup>
-                    :
-                    null
                 }
                 <FormGroup>
                     <Button className="primary-button float-right" onClick={this.handleUpdatePassword}>Update</Button>

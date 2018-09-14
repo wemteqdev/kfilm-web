@@ -46,12 +46,10 @@ class Email extends Component{
                         }
                     />
                 </FormGroup>
-                { this.state.isSent ? 
+                { this.state.isSent && 
                     <FormGroup>
                         <p className="alert alert-success">Please check your email</p>
                     </FormGroup>
-                :
-                    null
                 }
                 <FormGroup>
                     <Button className="primary-button" 

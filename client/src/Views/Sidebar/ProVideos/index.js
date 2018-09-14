@@ -20,14 +20,16 @@ export default class ProVideos extends Component {
 
     render() {
         return (
-            <div className="container page-padding">
-                <div className="row">
-                    <div className="section-header text-center">
-                        <h1 className="title">Pro Videos</h1>
+            <div className="page-padding">
+                <div className="container">
+                    <div className="row">
+                        <div className="col section-header text-center">
+                            <h1 className="title">Pro Videos</h1>
+                            </div>
                     </div>
-                </div>
-                <div>
-                    <VideoList videos={this.state.videos} size="3"/>
+                    <div className="row">
+                        <VideoList videos={this.state.videos} size="3"/>
+                    </div>
                 </div>
             </div>
         )
