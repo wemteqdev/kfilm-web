@@ -81,7 +81,7 @@ class VideoPage extends Component {
     render (){
         return (
             <div>
-                <Video {...this.state} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
+                <Video {...this.state} {...this.props} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
             </div>
             
         );
