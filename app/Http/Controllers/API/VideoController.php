@@ -36,6 +36,7 @@ class VideoController extends Controller
 			return response()->json($validator->messages(), 400);
 		}
 
+		$category = $request->category;
 		$keyword_param = $request->q;
 		$tag_param = $request->tag;
 		$view_param = $request->view;
@@ -49,6 +50,16 @@ class VideoController extends Controller
 		$user = auth('api')->user();
 
 		$videos = Video::published();
+
+		if(isset($category))
+		{
+			$category = Category::find_by_id_or_slug($category);
+			if($category!==null)
+			{
+				$videos = $category->videos()->published();
+			}			
+		}
+		
 		$videos = $videos->normal();
 
 		if ( isset($scope_param) )

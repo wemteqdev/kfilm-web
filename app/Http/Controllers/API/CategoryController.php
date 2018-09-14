@@ -10,6 +10,9 @@ use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
+use Validator;
+use Illuminate\Validation\Rule;
+
 class CategoryController extends Controller
 {
 	public function index(Request $request)
@@ -58,17 +61,45 @@ class CategoryController extends Controller
 		return 	new CategoryResource($category);
 	}
 
+	protected function video_filter_rules()
+    {
+        return [
+			'type' => Rule::in(['normal', 'featured', 'promotion', 'recommended']),
+			'scope' => Rule::in(['free', 'pro']),
+			'view_param' => Rule::in(['recent', 'hot', 'popular', 'trending']),
+			'order_by' => Rule::in(['published_at', 'name', 'duration']),
+			'order_direction' => Rule::in(['asc', 'dsc']),
+        ];
+	}
+
 	public function videos($id_or_slug, Request $request)
 	{
+		$validator = Validator::make($request->all(), $this->video_filter_rules(), []);
+
+		if ($validator->fails()) {
+			return response()->json($validator->messages(), 400);
+		}
+
 		$keyword_param = $request->q;
-		$tag_param = $request->tag; //slug
-		$view_param = $request->view; // hot, popular, trending, recent
+		$tag_param = $request->tag;
+		$view_param = $request->view;
 		$limit_param = $request->limit;
-		$type_param = $request->type; // normal, featured, promotion, recommended
+		$type_param = $request->type;
+		$scope_param = $request->scope;
+		$per_page = $request->per_page ?: 12;
+		$order_by = $request->order_by;
+		$order_direction = $request->order_direction ?: 'asc';
+
+		$user = auth('api')->user();
 
 		$category = Category::find_by_id_or_slug($id_or_slug);
-
 		$videos = $category->videos()->published();
+		$videos = $videos->normal();
+
+		if ( isset($scope_param) )
+		{
+			$videos = $videos->where('scope', UserRole::getValue($scope_param));
+		}
 
 		if ( isset($type_param) )
 		{
@@ -101,11 +132,16 @@ class CategoryController extends Controller
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
 		}
 
+		if (isset($order_by))
+		{
+			$videos->orderBy($order_by, $order_direction);
+		}
+
 		if( isset($limit_param) )
 		{
 			$videos = $videos->take($limit_param)->get();
 		}else{
-			$videos = $videos->paginate(9);
+			$videos = $videos->paginate(min($per_page, 30));
 		}
 
 		return new VideoCollection($videos);
