@@ -13,7 +13,7 @@ class SeriesShort extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'featured_image_url' => $this->featured_image_url(),
-            'videos' => VideoShortResource::collection($this->videos()->published()->orderBy('series_number', 'desc')->get()),
+            'videos' => VideoShortResource::collection($this->videos()->published()->orderBy('series_number', 'asc')->get()),
         ];
     }
 }

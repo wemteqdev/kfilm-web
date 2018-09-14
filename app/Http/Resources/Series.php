@@ -16,7 +16,7 @@ class Series extends JsonResource
             'featured_image_url' => $this->featured_image_url(),
             "views" => $this->getUniqueViews(),
             'videos_count' => $this->videos()->count(),
-            'videos' => VideoShortResource::collection($this->videos()->published()->orderBy('series_number', 'desc')->get()),
+            'videos' => VideoShortResource::collection($this->videos()->published()->orderBy('series_number', 'asc')->get()),
         ];
     }
 }
