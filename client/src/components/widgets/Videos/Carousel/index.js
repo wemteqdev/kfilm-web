@@ -23,22 +23,26 @@ class Carousel extends Component {
   };
 
   showCarousel = () => {
-      return ( 
-        this.props.videos.map( (video, i) => {
-          return (
-            <div key={i} className="item-movie item" style={{background:"url(" + video.featured_image_url + ") center"}}>
-                <figure className="premium-img">
-                    <figcaption>
-                        <h3>{video.name}</h3>
-                    </figcaption>
-                </figure>
-                <Link to={'/videos/' + video.slug} className='hover-posts'>
-                    <span><FontAwesomeIcon icon='play'/></span>
-                </Link>
-            </div>
-          )
-        })
-    );
+    if (this.props.videos.length > 0) {
+        return (
+            this.props.videos.map( (video, i) => {
+            return (
+                <div key={i} className="item-movie item" style={{background:"url(" + video.featured_image_url + ") center"}}>
+                    <figure className="premium-img">
+                        <figcaption>
+                            <h3>{video.name}</h3>
+                        </figcaption>
+                    </figure>
+                    <Link to={'/videos/' + video.slug} className='hover-posts'>
+                        <span><FontAwesomeIcon icon='play'/></span>
+                    </Link>
+                </div>
+            )
+            })
+        )
+    } else {
+        return <div></div>
+    }
   }
 
     render() {

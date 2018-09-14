@@ -59,7 +59,7 @@ a {
 
 .button {
     font-weight: bold;
-    border-radius: 0.5rem;
+    // border-radius: 0.5rem;
     text-transform: uppercase;
     text-align: center;
     line-height: 1;
@@ -145,7 +145,7 @@ a {
     width: 3rem;
     height: 3rem;
     line-height: 3rem;
-    border-radius: .3rem;
+    // border-radius: .3rem;
     border: .1rem solid $background-secondary-light-color;
     margin-left: 1rem;
     display: inline-block;
@@ -337,8 +337,8 @@ a {
 
 .more-button {
     font-size: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0 ;
     background-color:$color-pink;
     color: white !important;
     &:hover {
@@ -348,4 +348,10 @@ a {
 
 .bg-dark {
     // background-color: #444 !important;
+}
+
+.pagination {
+    li {
+        font-size: 14px ;
+    }
 }
