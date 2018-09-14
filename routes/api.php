@@ -7,18 +7,6 @@ Route::post('user/register', 'UserController@register');
 Route::post('user/password/email', 'Auth\ForgotPasswordController@send_reset_link_email');
 Route::post('user/password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('slides', 'SlideController@index');
-Route::get('videos', 'VideoController@index');
-Route::get('categories', 'CategoryController@index');
-Route::get('images', 'ImageController@index');
-Route::get('series', 'SeriesController@index');
-Route::get('series/{id_or_slug}', 'SeriesController@show');
-Route::get('videos/{id_or_slug}', 'VideoController@show');
-Route::get('categories/{id_or_slug}', 'CategoryController@show');
-Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
-Route::get('tags', 'TagController@index');
-Route::get('products', 'ProductController@index');
-
 Route::group(['middleware' => ['auth:api']], function(){
 	Route::get('user', 'UserController@index');
 	Route::post('user/verification/resend', 'Auth\VerificationController@resend');
@@ -86,3 +74,15 @@ Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
 	Route::post('slides/{slide_id}/add_tag', ['as'=> 'admin.slides.add_tag', 'uses' => 'SlideController@add_tag']);
 	Route::delete('slides/{slide_id}/remove_tag', ['as'=> 'admin.slides.remove_tag', 'uses' => 'SlideController@remove_tag']);
 });
+
+Route::get('slides', 'SlideController@index');
+Route::get('videos', 'VideoController@index');
+Route::get('categories', 'CategoryController@index');
+Route::get('images', 'ImageController@index');
+Route::get('series', 'SeriesController@index');
+Route::get('series/{id_or_slug}', 'SeriesController@show');
+Route::get('videos/{id_or_slug}', 'VideoController@show');
+Route::get('categories/{id_or_slug}', 'CategoryController@show');
+Route::get('categories/{id_or_slug}/videos', 'CategoryController@videos');
+Route::get('tags', 'TagController@index');
+Route::get('products', 'ProductController@index');
