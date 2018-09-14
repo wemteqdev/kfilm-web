@@ -35,9 +35,7 @@ export default class VideoList extends Component {
 
     render() {
         return (
-            <div className="row">
-                { this.showVideos() }
-            </div>
+            this.showVideos()
         )
     }
 }

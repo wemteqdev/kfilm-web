@@ -7,6 +7,7 @@ import CategoriesPage from './components/CategoriesPage';
 import SpecialVideos from './components/SpecialVideos';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
+import ForgotPassword from './components/Login/ForgotPassword';
 import EmailVerification from './components/EmailVerification';
 import Register from './components/Register';
 import Profile from './Views/Sidebar/Profile';
@@ -32,6 +33,7 @@ class Routes extends Component {
                     <Route path="/categories/:slug" exact component={CategoriesPage}/>
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>
+                    <Route path="/login/forgot_password" exact component={ForgotPassword}/>
                     <Route path="/email-verification" exact component={EmailVerification}/>
                     <Route path="/register" exact component={Register}/>
                     <Route path="/user/password/reset/:token" exact component={ResetPassword}/>

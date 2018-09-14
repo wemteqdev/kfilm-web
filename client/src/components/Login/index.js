@@ -18,7 +18,6 @@ class Login extends Component {
         userInfo: {},
         token: '',
         tryAgain: '',
-        successForget: false
     }
 
     constructor(props){
@@ -42,26 +41,11 @@ class Login extends Component {
         if (isLoggedIn) {
             let isEmailVerified = nextProps.login.user.data.email_verified;
             if (isEmailVerified) {
-                this.props.history.goBack();
+                this.props.history.push('/');
             } else {
                 this.props.history.push('/email-verification')
             }
         }
-    }
-
-    handleForgetPassword = () => {
-        axios.post(`${serverURL}/api/user/password/email?email=${this.state.email}`)
-        .then( (response) => {
-            this.setState({
-                tryAgain: '',
-                successForget: true,
-            })
-        })
-        .catch(error => {
-            this.setState({
-                tryAgain: error.response.data.error,
-            })
-        });
     }
 
     login() {
@@ -117,16 +101,7 @@ class Login extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="login-password">Password:</Label>
-                                    <a className="float-right forgot-button"
-                                        onClick={this.handleForgetPassword}
-                                    >
-                                        Forgot password?
-                                    </a>
-                                    {this.state.successForget?
-                                        <p className="alert alert-success">Please check your email</p>
-                                    :
-                                        null
-                                    }
+                                    <Link className="float-right forgot-button" to="/login/forgot_password">Forgot password?</Link>
                                     <Input type="password" id="login-password" onChange={this.handlePasswordChange} placeholder="Password"/>
                                 </FormGroup>
                                 <FormGroup className="form-check d-flex align-items-center justify-content-between">
