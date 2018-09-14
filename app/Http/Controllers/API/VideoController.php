@@ -96,8 +96,10 @@ class VideoController extends Controller
 			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
 		}elseif($view_param == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
+		}else{
+			$videos = $videos->orderBy('created_at', 'desc');	
 		}
-
+		
 		if (isset($order_by))
 		{
 			$videos->orderBy($order_by, $order_direction);
