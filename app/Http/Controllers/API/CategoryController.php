@@ -123,7 +123,7 @@ class CategoryController extends Controller
 		}
 
 		if ($view_param == "recent"){
-			$videos = $videos->orderBy('created_at', 'desc');
+			$videos = $videos->orderBy('published_at', 'desc');
 		}elseif($view_param == "hot"){
 			$videos = $videos->orderBy('views_count_last_30days', 'desc');
 		}elseif($view_param == "popular"){
@@ -131,7 +131,7 @@ class CategoryController extends Controller
 		}elseif($view_param == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
 		}else{
-			$videos = $videos->orderBy('created_at', 'desc');	
+			$videos = $videos->orderBy('published_at', 'desc');	
 		}
 
 		if (isset($order_by))
