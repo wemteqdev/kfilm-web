@@ -352,6 +352,16 @@ a {
 
 .pagination {
     li {
-        font-size: 14px ;
+        a {
+            width: 30px ;
+            font-size: 14px ;
+            border: none ;
+            border-radius: 0 ;
+        }
+    }
+    li.active {
+        a {
+            background-color: red;
+        }
     }
 }

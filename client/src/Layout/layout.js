@@ -53,20 +53,23 @@ axios.interceptors.response.use(
 class Layout extends Component {
 
     componentWillMount() {
-        let user = cookie.load('user')
-        if (user !== undefined) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
-
-            axios.get(`${serverURL}/api/user`)
-            .then( (response) => {
-                if (response === undefined) {
-                    this.logout()
-                } else {
-                    this.props.loginSuccess(user)
-                }
-            }).catch( error => {
-            })
-        }
+        setTimeout(()=>{
+            let user = cookie.load('user')
+            if (user !== undefined) {
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token
+    
+                axios.get(`${serverURL}/api/user`)
+                .then( (response) => {
+                    if (response === undefined) {
+                        this.logout()
+                    } else {
+                        this.props.loginSuccess(user)
+                    }
+                })
+                .catch( error => {
+                })
+            }
+        }, 1000)
     }
 
     logout = () => {

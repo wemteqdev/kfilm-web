@@ -24,7 +24,8 @@ class CategoriesPage extends Component {
     }
 
     loadVideos(props) {
-        axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${this.props.location.search}`)
+        let search = props.location.search || '?';
+        axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${search}`)
         .then( response => {
             if (response.data.data.length > 0) {
                 this.setState({
@@ -45,8 +46,11 @@ class CategoriesPage extends Component {
     }
 
     handlePageClick = (data) => {
-        let url = '/categories/animation?page=' + (data.selected+1)
-        window.location = url;
+        this.setState({
+            pageNum: data.selected+1
+        })
+        let search = '?page=' + (data.selected+1);
+        this.props.history.push(this.props.match.params.slug + search);
     };
 
     displayPaginate = () => {
@@ -68,9 +72,9 @@ class CategoriesPage extends Component {
                 nextLinkClassName={"text-white"}
                 breakLabel={<a href="">...</a>}
                 breakClassName={"mx-5"}
-                activeClassName={"btn btn-danger"}
-                pageClassName={"btn btn-secondary mx-2"}
-                pageLinkClassName={"text-white"}
+                activeClassName={"active"}
+                pageClassName={"mx-2"}
+                pageLinkClassName={"btn btn-secondary text-white p-2"}
             />
         )
     }
