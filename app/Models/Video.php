@@ -38,6 +38,7 @@ class Video extends Model implements LikeableContract
         'type',
         'status',
         'featured_image_id',
+        'thumbnail_url',
         'featured_video_id',
         'vimeo_video_id',
         'uri',
