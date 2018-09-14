@@ -65,13 +65,13 @@ class Video extends Component {
                 if (item.slug === this.props.slug) {
                     return (
                         <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-light m-2">
-                            {index+1}
+                            {item.series_number}
                         </Link>
                     )
                 } else {
                     return (
                         <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-secondary m-2">
-                            {index+1}
+                            {item.series_number}
                         </Link>
                     )
                 }
@@ -85,15 +85,15 @@ class Video extends Component {
     }
     
     render (){
+        console.log(this.props)
         return (
             <section className="fullwidth-single-video">
                 <div className="bgBlack">
                     <div className="container">
-                        
                         { this.showVideo()}
                     </div>
                 </div>
-                <div className='container'>
+                <div className='container video-page'>
                     <div className="row">
                         <div className="col-12">
                             
@@ -108,6 +108,10 @@ class Video extends Component {
                             {
                                 this.props.type === "pro" && !this.props.like && <button className="btn btn-secondary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
                             }
+
+                            <div className="alert alert-info video-name">
+                                {this.props.video.name}
+                            </div>
 
                             <div className="my-5 series">
                                 {this.displaySeries()}
