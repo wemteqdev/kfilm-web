@@ -44,6 +44,45 @@ class Video extends Component {
             )
         }
     }
+
+    handleSeriesIndex = (index) => {
+        console.log(index);
+    }
+
+    videoURL(slug) {
+        if (this.props.type === "pro") {
+            return '/user/videos/' + slug;
+        }
+        else {
+            return '/videos/' + slug;
+        }
+    }
+
+    displaySeries = () => {
+        if (this.props.video != null && this.props.video.series != null) {
+            let series_videos = this.props.video.series.videos;
+            return series_videos.map( (item, index) => {
+                if (item.slug === this.props.slug) {
+                    return (
+                        <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-light m-2">
+                            {index+1}
+                        </Link>
+                    )
+                } else {
+                    return (
+                        <Link key={index} to={this.videoURL(item.slug)} className="series-index btn btn-secondary m-2">
+                            {index+1}
+                        </Link>
+                    )
+                }
+            })
+        } else {
+            return (
+                <div>
+                </div>
+            )
+        }
+    }
     
     render (){
         return (
@@ -60,7 +99,7 @@ class Video extends Component {
                             
                             { this.props.type === "free" && 
                                 <div className="mt-2 mb-5">
-                                    <Link to={`/user/videos/${this.props.slug}`} className="btn button more-button">To see full video Click here</Link>
+                                    <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
                                 </div>
                             }
                             {
@@ -69,7 +108,10 @@ class Video extends Component {
                             {
                                 this.props.type === "pro" && !this.props.like && <button className="btn btn-secondary like-button" onClick={this.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
                             }
-                            
+
+                            <div className="my-5 series">
+                                {this.displaySeries()}
+                            </div>
                             <div className="mt-5 mb-5 videos">
                                 <div className="head-title mb-4">
                                     <h4 className='borderBottom text-left'>Related</h4>

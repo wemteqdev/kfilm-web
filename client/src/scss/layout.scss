@@ -258,7 +258,7 @@ a {
 
 .section-header {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
     width: 100%;
     .title {
         text-transform: capitalize;
@@ -363,5 +363,14 @@ a {
         a {
             background-color: red;
         }
+    }
+}
+
+div.series {
+    .series-index {
+        width: 40px ;
+        font-size: 20px ;
+        border: none ;
+        border-radius: 0 ;
     }
 }
