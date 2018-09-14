@@ -13,6 +13,7 @@ class VideoFeatured extends JsonResource
     public function toArray($request)
     {
         return [
+            "name"=> $this->name,
 			"duration"=> $this->duration,
 			"width"=> $this->width,
             "height"=> $this->height,
