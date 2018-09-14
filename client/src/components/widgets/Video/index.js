@@ -60,7 +60,7 @@ class Video extends Component {
                             
                             { this.props.type === "free" && 
                                 <div className="mt-2 mb-5">
-                                    <Link to={`/user/videos/${this.props.slug}`} className="btn button more-button">To see full video Click here</Link>
+                                    <Link to={`/user/videos/${this.props.slug}`} className="btn button more-button">Click here to see full video</Link>
                                 </div>
                             }
                             {

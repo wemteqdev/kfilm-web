@@ -54,29 +54,33 @@ class CategoriesPage extends Component {
     };
 
     displayPaginate = () => {
-        return (
-            <ReactPaginate 
-                pageCount={this.state.pageCount}
-                onPageChange={this.handlePageClick}
-                forcePage={this.state.pageNum}
-                disableInitialCallback={true}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={3}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                previousLabel={<FontAwesomeIcon icon="caret-left" />}
-                previousClassName={"mx-2 p-2"}
-                previousLinkClassName={"text-white"}
-                nextLabel={<FontAwesomeIcon icon="caret-right" />}
-                nextClassName={"mx-2 p-2"}
-                nextLinkClassName={"text-white"}
-                breakLabel={<a href="">...</a>}
-                breakClassName={"mx-5"}
-                activeClassName={"active"}
-                pageClassName={"mx-2"}
-                pageLinkClassName={"btn btn-secondary text-white p-2"}
-            />
-        )
+        if (this.state.pageCount > 1) {
+            return (
+                <ReactPaginate 
+                    pageCount={this.state.pageCount}
+                    onPageChange={this.handlePageClick}
+                    forcePage={this.state.pageNum}
+                    disableInitialCallback={true}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    previousLabel={<FontAwesomeIcon icon="caret-left" />}
+                    previousClassName={"mx-2 p-2"}
+                    previousLinkClassName={"text-white"}
+                    nextLabel={<FontAwesomeIcon icon="caret-right" />}
+                    nextClassName={"mx-2 p-2"}
+                    nextLinkClassName={"text-white"}
+                    breakLabel={<a href="">...</a>}
+                    breakClassName={"mx-5"}
+                    activeClassName={"active"}
+                    pageClassName={"mx-2"}
+                    pageLinkClassName={"btn btn-secondary text-white p-2"}
+                />
+            )
+        } else {
+            return <div></div>
+        }
     }
 
     render() {
@@ -101,13 +105,13 @@ class CategoriesPage extends Component {
                             <h1 className="title">{this.state.category.name}</h1>
                         </div>
                     </div>
-                    <div className="row d-flex justify-content-center">
+                    <div className="row my-3 d-flex justify-content-center">
                         {this.displayPaginate()}
                     </div>
                     <div className="row">
                         <VideoList videos={this.state.videos} size={size}/>
                     </div>
-                    <div className="row d-flex justify-content-center">
+                    <div className="row my-3 d-flex justify-content-center">
                         {this.displayPaginate()}
                     </div>
                 </div>
