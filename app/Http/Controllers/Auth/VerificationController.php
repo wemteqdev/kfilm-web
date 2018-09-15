@@ -13,12 +13,11 @@ class VerificationController extends Controller
     public function __construct()
     {
         $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $this->middleware('throttle:24,1')->only('verify');
     }
 
     public function verify(Request $request)
     {
-
         $user = User::find($request->id);
         // if ($request->route('id') == $request->user()->getKey() &&
         //     $request->user()->markEmailAsVerified()) {
