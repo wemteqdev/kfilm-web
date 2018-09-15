@@ -108,9 +108,6 @@ class CategoriesPage extends Component {
                                 <h1 className="title">{this.state.category.name}</h1>
                             </div>
                         </div>
-                        <div className="row my-3 d-flex justify-content-center">
-                            {this.displayPaginate()}
-                        </div>
                         <div className="row">
                             <VideoList videos={this.state.videos} size={size}/>
                         </div>

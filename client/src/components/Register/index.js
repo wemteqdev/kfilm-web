@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import RegisterForm from './registerForm';
 import axios from 'axios';
 import serverURL from '../../variables';
-import _ from 'lodash';
+import RegisterForm from './registerForm';
 
-class Register extends Component {
+export default class Register extends Component {
 
     state = {
         errors: {},
     }
 
-    handleSubmit = (values) => {
+    handleRegister = (values) => {
         axios.post(`${serverURL}/api/user/register?email=${values.email}&password=${values.password}&name=${values.firstname} ${values.lastname}&confirm_password=${values.confirm}`)
         .then( response => {
-            this.props.history.push('/login')
+            this.setState({
+                success: 'You have been registered successfully',
+            })
+            setTimeout(() => {
+                this.props.history.push('/login')
+            }, 2000)
         })
         .catch(error => {
             this.setState({
@@ -31,7 +35,7 @@ class Register extends Component {
                             <div className="text-center">
                                 <h1 className="title">Sign UP</h1>
                             </div>
-                            <RegisterForm onSubmit={this.handleSubmit} errors={this.state.errors}/>
+                            <RegisterForm onSubmit={this.handleRegister} errors={this.state.errors}/>
                         </div>
                     </div>
                 </div>
@@ -39,5 +43,3 @@ class Register extends Component {
         )
     }
 }
-
-export default Register;

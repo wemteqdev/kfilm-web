@@ -10,17 +10,21 @@ import serverURL from '../variables';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 import {isMobile} from 'react-device-detect';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {loginSuccessAction} from '../actions';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faHome, faFilm, faTh, faEdit, faUser, 
          faAngleUp, faAngleDown, faPlayCircle, faAngleLeft, faAngleRight,
          faClock, faEye, faPlay, faVideo, faHeart, faStar, faCalendar, faBurn, faThumbsUp,
          faHistory, faTimes, faCalendarCheck, faBars, faSignal, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
-// import {faFacebook} from '@fortawesome/free-brands-svg-icons'
 
 library.add(faSearch, faHome, faFilm, faTh, faEdit,faUser, faAngleUp, faAngleDown,
     faPlayCircle, faAngleLeft, faAngleRight, faClock, faEye, faPlay, faVideo,faHeart, 
     faStar, faCalendar, faBurn, faThumbsUp, faHistory, faTimes, faCalendarCheck, faBars, faSignal, faCaretLeft, faCaretRight);
+
+// import {faFacebook} from '@fortawesome/free-brands-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 declare var $;
 
 axios.interceptors.request.use(

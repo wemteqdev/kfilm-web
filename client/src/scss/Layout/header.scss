@@ -9,6 +9,8 @@ header {
     opacity: .9;
     font-size: 1rem;
     background-color: $background-secondary-color;
+
+    backface-visibility: hidden;
 }
 
 @media (max-width: 680px) {
@@ -131,4 +133,3 @@ header {
         }
     }
 }
-

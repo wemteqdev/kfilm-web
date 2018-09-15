@@ -9,7 +9,8 @@ import PopularPage from './components/PopularPage';
 import TrendingPage from './components/TrendingPage';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
-import ForgotPassword from './components/Login/ForgotPassword';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 import EmailVerification from './components/EmailVerification';
 import Register from './components/Register';
 import Profile from './Views/Sidebar/Profile';
@@ -19,7 +20,6 @@ import Histories from './Views/Sidebar/Histories';
 import Favorites from './Views/Sidebar/Favorites';
 import ProVideos from './Views/Sidebar/ProVideos';
 import Auth from './Layout/Auth';
-import ResetPassword from './Views/Sidebar/ResetPassword';
 
 class Routes extends Component {
     render(){

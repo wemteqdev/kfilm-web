@@ -46,7 +46,6 @@ class Video extends Component {
     }
 
     handleSeriesIndex = (index) => {
-        console.log(index);
     }
 
     videoURL(slug) {
