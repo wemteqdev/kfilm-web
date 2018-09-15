@@ -20,10 +20,9 @@ export default class VideoCard extends Component {
     }
 
     render() {
-        console.log(this.props.video)
         return (
             <Card className="video-card d-flex">
-                <CardImg style={{background:`url(${this.props.video.featured_image_url}) center center`}}></CardImg>
+                <div className="card-img" style={{background:`url(${this.props.video.featured_image_url}) center center`}}></div>
                 <Link to={this.videoURL(this.props.video.slug)} className='hover-posts'>
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
@@ -32,10 +31,13 @@ export default class VideoCard extends Component {
                         { this.props.video.is_pro && 
                             <div className="pro-stats p-1 text-white">PRO</div>
                         }
-                        <div className="offset-2 col text-white text-right line-height-props">
+                        <div className="mx-3 text-white line-height-props">
                             <FontAwesomeIcon icon="heart" className="text-danger" /> { this.props.video.likes }
                         </div>
-                        <div className="col text-white text-right line-height-props">
+                        <div className="mx-3 text-white line-height-props">
+                            <FontAwesomeIcon icon="eye" /> { this.props.video.views  }
+                        </div>
+                        <div className="mx-3 text-white line-height-props">
                             <FontAwesomeIcon icon="clock" /> { this.props.video.formatted_duration }
                         </div>
                     </div>
