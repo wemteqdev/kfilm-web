@@ -32,7 +32,7 @@ class UpdateSitemap extends Command
                 ->setPriority(0.1));
         }
 
-        $videos = \App\Models\Video::published();
+        $videos = \App\Models\Video::all();
         foreach ($videos as $video) {
             $sitemap->add(Url::create('https://korfilm.co/videos/' . $video->slug)
                 ->setLastModificationDate(Carbon::yesterday())
