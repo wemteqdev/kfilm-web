@@ -1,2 +1,4 @@
+Sitemap: https://korfilm.co/sitemap.xml
 User-agent: *
-Disallow:
+Allow: /*
+Disallow: /api/*

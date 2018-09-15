@@ -19,4 +19,5 @@ yarn-error.log
 /client/build
 /composer.lock
 /.dump.rdb
+/public/sitemap.xml
 .DS_Store

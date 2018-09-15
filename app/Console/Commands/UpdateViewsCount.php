@@ -13,7 +13,7 @@ use CyrildeWit\EloquentViewable\View;
 
 class UpdateViewsCount extends Command
 {
-    protected $signature = 'db:update_views_count';
+    protected $signature = 'korfilm:update_video_views_count';
 
     protected $description = 'Updates views count of videos, categories, groups and series';
 
