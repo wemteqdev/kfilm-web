@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../widgets/VideoList';
 import serverURL from '../../variables';
+import {ReactTitle} from 'react-meta-tags';
 
 class SpeicalVideos extends Component {
     
@@ -14,7 +15,7 @@ class SpeicalVideos extends Component {
     }
 
     loadVideos(props) {
-        axios.get(`${serverURL}/api/videos?view=${props.match.params.slug}`)
+        axios.get(`${serverURL}/api/videos?view=${props.slug}`)
         .then( response => {
             this.setState({videos:response.data.data});
         })
@@ -30,15 +31,18 @@ class SpeicalVideos extends Component {
 
     render() {
         return (
-            <div className="page-padding">
-                <div className="container">
-                    <div className="row">
-                        <div className="col section-header">
-                            <h1 className="title">{this.props.match.path.slice(1)}</h1>
+            <div className="wrapper page-padding">
+                <ReactTitle title={this.props.title}/>
+                <div className="content">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col section-header">
+                                <h1 className="title">{this.props.title}</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <VideoList videos={this.state.videos}/>
+                        <div className="row">
+                            <VideoList videos={this.state.videos}/>
+                        </div>
                     </div>
                 </div>
             </div>

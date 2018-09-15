@@ -180,13 +180,14 @@ a {
     overflow: hidden;
     .card-img {
         height: 25em;
-        width: 110%;
+        width: 100%;
         background-size: cover !important;
-        margin-left: -5% ;
+        // margin-left: -5% ;
     }
     .video-stats {
         bottom: 3em;
         height: 3rem;
+        background-color: rgba(51, 51, 51, 0.7);
         .thumb-stats {
             background-color: #444;
             span {
@@ -196,6 +197,7 @@ a {
         }
     }
     .card-body {
+        height: 3em ;
         padding: .5rem;
         background-color: $background-secondary-color;
         .card-subtitle {

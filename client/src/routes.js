@@ -4,7 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import Layout from './Layout/layout';
 import Home from './Views/Home';
 import CategoriesPage from './components/CategoriesPage';
-import SpecialVideos from './components/SpecialVideos';
+import HotPage from './components/HotPage';
+import PopularPage from './components/PopularPage';
+import TrendingPage from './components/TrendingPage';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
 import ForgotPassword from './components/Login/ForgotPassword';
@@ -25,11 +27,9 @@ class Routes extends Component {
             <Layout>
                 <Switch>
                     <Route path="/" exact component={Home}/>
-                    <Route path="/hot" exact component={SpecialVideos} slug="hot"/>
-                    <Route path="/popular" exact component={SpecialVideos} slug="popular"/>
-                    <Route path="/trending" exact component={SpecialVideos} slug="trending"/>
-                    <Route path="/recent" exact component={SpecialVideos} slug="recent"/>
-                    <Route path="/promotion" exact component={SpecialVideos} slug="promotion"/>
+                    <Route path="/hot" exact component={HotPage}/>
+                    <Route path="/popular" exact component={PopularPage}/>
+                    <Route path="/trending" exact component={TrendingPage}/>
                     <Route path="/categories/:slug" exact component={CategoriesPage}/>
                     <Route path="/videos/:slug" exact component={VideoPage}/>
                     <Route path="/login" exact component={Login}/>

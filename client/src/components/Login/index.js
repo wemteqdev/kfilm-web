@@ -77,6 +77,12 @@ class Login extends Component {
         });
     }
 
+    handleKeyEvent = (event) => {
+        if (event.charCode === 13 || event.keyCode === 13) {
+            this.login();
+        }
+    }
+
     render() {
         return (
             <section className="loginPage">
@@ -95,12 +101,18 @@ class Login extends Component {
                                 }
                                 <FormGroup>
                                     <Label htmlFor="login-email">Email address:</Label>
-                                    <Input type="email" id="login-email" onChange={this.handleEmailChange} placeholder="Email address"/>
+                                    <Input type="email" id="login-email" placeholder="Email address" 
+                                        onChange={this.handleEmailChange} 
+                                        onKeyPress={(event) => this.handleKeyEvent(event)}
+                                    />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label htmlFor="login-password">Password:</Label>
                                     <Link className="float-right forgot-button" to="/login/forgot_password">Forgot password?</Link>
-                                    <Input type="password" id="login-password" onChange={this.handlePasswordChange} placeholder="Password"/>
+                                    <Input type="password" id="login-password" placeholder="Password" 
+                                        onChange={this.handlePasswordChange} 
+                                        onKeyPress={(event) => this.handleKeyEvent(event)}
+                                    />
                                 </FormGroup>
                                 <FormGroup className="form-check d-flex align-items-center justify-content-between">
                                     <Label className="form-check-label">

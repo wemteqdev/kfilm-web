@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import Routes from './routes';
 import reducers from './reducers';
 
-
 const store = createStore(reducers);
 
 const App = () => {

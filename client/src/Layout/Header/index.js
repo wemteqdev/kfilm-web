@@ -65,37 +65,47 @@ class Header extends Component {
         }
         return (
             <header {...this.boundActions}>
-                { (isMobile || this.props.login.user != null) &&
-                <div id="toggle" className="d-flex justify-content-center align-items-center text-center">
-                    <a onClick={this.onToggle}>
-                        { this.props.sidebar.toggleSidebar &&
-                        <FontAwesomeIcon icon="times" /> }
-                        { !this.props.sidebar.toggleSidebar &&
-                        <FontAwesomeIcon icon="bars" /> }
-                    </a>
-                </div>
-                }
-                <div id="logo" className="text-center" style={style}>
-                    <Link to="/">
-                        <div className="logo d-flex">
-                            <div className="justify-content-center align-self-center mx-auto">
-                                <h2 className="mb-0">KORFILM</h2>
-                            </div>
-                            
+                <div className="container-fluid">
+                    <div className="row">
+                        { (isMobile || this.props.login.user != null) &&
+                        <div id="toggle" className="col d-flex justify-content-center align-items-center text-center">
+                            <a onClick={this.onToggle}>
+                                { this.props.sidebar.toggleSidebar &&
+                                <FontAwesomeIcon icon="times" /> }
+                                { !this.props.sidebar.toggleSidebar &&
+                                <FontAwesomeIcon icon="bars" /> }
+                            </a>
                         </div>
-                    </Link>
+                        }
+                        <div id="logo" className="col text-center" style={style}>
+                            <Link to="/">
+                                <div className="logo d-flex">
+                                    <div className="justify-content-center align-self-center mx-auto">
+                                        <h2 className="mb-0">KORFILM</h2>
+                                    </div>
+                                    
+                                </div>
+                            </Link>
+                        </div>
+                        <div id='categories-nav' className="col" style={style}>
+                            <div className="container">
+                                <div className="row">
+                                    <Nav>
+                                        { this.showCategories() }
+                                    </Nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="login navButton d-flex justify-content-end align-items-center">
+                            <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
+                            { this.props.login.user == null && <Link to="/login" className="loginReg">Log in</Link> }
+                            { isMobile === false && this.props.login.user != null && <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
+                                        <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
+                                        </span>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div className="login navButton d-flex justify-content-center align-items-center">
-                    <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
-                    { this.props.login.user == null && <Link to="/login" className="loginReg">Log in</Link> }
-                    { isMobile === false && this.props.login.user != null && <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
-                                <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
-                                </span>
-                    }
-                </div>
-                <Nav id='categories-nav'>
-                    { this.showCategories() }
-                </Nav>
             </header>
         )
     }

@@ -23,7 +23,7 @@ class Carousel extends Component {
   };
 
   showCarousel = () => {
-    if (this.props.videos.length > 0) {
+    if (this.props.videos !== null) {
         return (
             this.props.videos.map( (video, i) => {
             return (

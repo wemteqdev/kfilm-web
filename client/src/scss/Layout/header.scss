@@ -65,10 +65,9 @@ header {
 }
 
 #categories-nav {
-    padding-left: 10em;
     height: $header-height;
     li.nav-item {
-        margin-left: 2rem;
+        margin-right: 2rem;
         a {
             padding: 0 1rem !important;
             line-height: $header-height;
@@ -101,7 +100,7 @@ header {
 
 
 .login {
-    position: relative;
+    position: absolute;
     top: ($header-height - 3rem) / 2;
     height: 3rem;
     right: 1rem;
