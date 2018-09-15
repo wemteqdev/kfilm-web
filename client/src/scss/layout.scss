@@ -170,7 +170,7 @@ a {
 
 .mobile-page .video-card.card {
     .card-img {
-        height: 40vh !important;
+        height: 30em !important;
     }
 }
 
@@ -179,10 +179,10 @@ a {
     margin-bottom: 2rem;
     overflow: hidden;
     .card-img {
-        height: 30vh;
-        min-height: 200px ;
-        width: 100%;
+        height: 25em;
+        width: 110%;
         background-size: cover !important;
+        margin-left: -5% ;
     }
     .video-stats {
         bottom: 3em;
