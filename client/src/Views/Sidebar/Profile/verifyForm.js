@@ -6,7 +6,7 @@ import asyncValidate from '../../../components/Validate/asyncValidate';
 import renderField from '../../../components/widgets/renderField'
 
 const VerifyForm = (props) =>{
-    const {handleSubmit, submitting, errors, success, email} = props
+    const {handleSubmit, submitting, errors, success} = props
 
     const handleKeyEvent = (event) => {
         if (event.charCode === 13 || event.keyCode === 13) {

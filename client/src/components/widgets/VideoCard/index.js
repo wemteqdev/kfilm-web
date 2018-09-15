@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardBody, CardSubtitle } from 'reactstrap';
+import { Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -29,7 +29,7 @@ export default class VideoCard extends Component {
                 <div className="video-stats align-self-end w-100 container">
                     <div className="row mt-1 d-flex justify-content-end">
                         { this.props.video.is_pro && 
-                            <div className="pro-stats p-1 text-white">PRO</div>
+                            <div className="pro-stats px-3 py-1 text-white">PRO</div>
                         }
                         <div className="mx-3 text-white line-height-props">
                             <FontAwesomeIcon icon="heart" className="text-danger" /> { this.props.video.likes }
