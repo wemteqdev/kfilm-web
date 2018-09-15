@@ -126,7 +126,7 @@ class VideoController extends Controller
 		$video = Video::find($id_or_slug);
 
 		if($video==null){
-			$video = Video::where('slug', $id_or_slug)->firstorfail();
+			$video = Video::published()->where('slug', $id_or_slug)->firstorfail();
 		}
 		
 		$video->addView();
