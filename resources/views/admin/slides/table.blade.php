@@ -11,7 +11,7 @@
     <tbody>
     @foreach($slides as $slide)
         <tr>
-            <td><img src="{!! $slide->image_url !!}" max-height=100 max-width=300></td></td>
+            <td><img src="{!! $slide->image_url !!}" max-height=100 max-width=300></td>
             <td>{!! $slide->title !!}</td>
             <td>{!! $slide->description !!}</td>
             <td>{!! $slide->link_url !!}</td>

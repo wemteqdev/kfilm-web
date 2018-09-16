@@ -29,6 +29,11 @@ class User extends Authenticatable implements LikerContract, MustVerifyEmail
 
     protected $appends = ['role_names'];
 
+    public static $rules = [
+        'name' => 'required',
+        'email' => 'required|email'  
+    ];
+
     public function histories()
     {
         return $this->hasMany('App\Models\History');

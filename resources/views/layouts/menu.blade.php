@@ -34,3 +34,7 @@
 <li class="{{ Request::is('admin/plans*') ? 'active' : '' }}">
     <a href="{!! route('admin.plans.index') !!}"><i class="fa fa-money"></i> <span>Plans</span></a>
 </li>
+
+<li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
+    <a href="{!! route('admin.users.index') !!}"><i class="fa fa-user"></i> <span>Users</span></a>
+</li>

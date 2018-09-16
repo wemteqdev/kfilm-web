@@ -8,7 +8,7 @@ use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
-use App\Enums\UserRole;
+use App\Enums\VideoScope;
 use App\Enums\VideoType;
 use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
@@ -88,12 +88,12 @@ class Video extends Model implements LikeableContract
 
     public function isFree()
     {
-        return $this->scope == UserRole::free;
+        return $this->scope == VideoScope::free;
     }
 
     public function isPro()
     {
-        return $this->scope == UserRole::pro;
+        return $this->scope == VideoScope::pro;
     }
 
     public function getStatusNameAttribute() {
@@ -105,7 +105,7 @@ class Video extends Model implements LikeableContract
     }
 
     public function getScopeNameAttribute() {
-        return UserRole::getKey($this->scope);
+        return VideoScope::getKey($this->scope);
     }
 
     public function scopeNormal($query)

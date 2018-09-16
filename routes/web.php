@@ -76,6 +76,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::delete('admin/videos/{videos}', ['as'=> 'admin.videos.destroy', 'uses' => 'Admin\VideoController@destroy']);
 	Route::get('admin/videos/{videos}', ['as'=> 'admin.videos.show', 'uses' => 'Admin\VideoController@show']);
 	Route::get('admin/videos/{videos}/edit', ['as'=> 'admin.videos.edit', 'uses' => 'Admin\VideoController@edit']);
+
+	Route::namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
+		Route::resource('users', 'UserController');
+		Route::patch('users/{user}/update_password', 'UserController@update_password')->name('users.update_password');
+	});
 });
 
 Route::get('verification/verify', 'Auth\VerificationController@verify')->name('verification.verify');

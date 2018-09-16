@@ -12,7 +12,7 @@ use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
 use App\Enums\VideoType;
-use App\Enums\UserRole;
+use App\Enums\VideoScope;
 use Validator;
 use Illuminate\Validation\Rule;
 class VideoController extends Controller
@@ -64,7 +64,7 @@ class VideoController extends Controller
 
 		if ( isset($scope_param) )
 		{
-			$videos = $videos->where('scope', UserRole::getValue($scope_param));
+			$videos = $videos->where('scope', VideoScope::getValue($scope_param));
 		}
 
 		if ( isset($type_param) )

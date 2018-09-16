@@ -98,7 +98,7 @@ class CategoryController extends Controller
 
 		if ( isset($scope_param) )
 		{
-			$videos = $videos->where('scope', UserRole::getValue($scope_param));
+			$videos = $videos->where('scope', VideoScope::getValue($scope_param));
 		}
 
 		if ( isset($type_param) )
