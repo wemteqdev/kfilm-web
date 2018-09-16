@@ -87,4 +87,15 @@ class Group extends Model
             $group->save();
         }
     }
+
+    public static function find_by_id_or_slug($id_or_slug)
+    {
+        $group = Group::find($id_or_slug);
+
+		if($group==null){
+			$group = Group::where('slug', $id_or_slug)->first();
+        }
+        
+        return $group;
+    }
 }
