@@ -180,7 +180,8 @@ a {
     overflow: hidden;
     background-color: rgba(71, 71, 71, 1) ;
     .card-img {
-        height: 15em;
+        height: 30vh;
+        min-height: 10em ;
         width: 100%;
         background-size: cover !important;
     }
@@ -386,4 +387,11 @@ div.series {
 
 .like-button {
     font-size: 14px ;
+}
+
+.click-here {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
 }
