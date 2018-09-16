@@ -34,9 +34,9 @@ class Banner extends Component {
                 <div key={i} className="banner-mask">
                     <img src={ item.image_url } width="100%" height="auto" alt="" onLoad={this.imageLoaded.bind(this)} />
                     <div className={`banner-title ${item.style}`}>
-                        <p>{item.title}</p>
-                        <div className="banner-watch">
-                            <Link to={`/videos/${item.link_url}`}>Watch Now <FontAwesomeIcon icon="play"/></Link>
+                        <p style={{fontFamily: "Anton"}}>{item.title}</p>
+                        <div className="banner-watch my-4">
+                            <Link to={`/videos/${item.link_url}`} className="btn watch-button"><span>Watch Now</span> <FontAwesomeIcon icon="chevron-right"/></Link>
                         </div>
                     </div>
                 </div>

@@ -59,18 +59,14 @@
             margin:.1em;
         }
         .banner-watch {
-            font-size: 5em;
-            
-            a {
-                color: $color-hover-pink;
-                text-transform: uppercase;
-                transition: color 0.25s;
+            .watch-button {
+                font-size: 3em;
+                padding: 1rem 3rem ;
+                border-radius: 0 ;
+                background-color: $color-pink;
+                color: white !important;
                 &:hover {
-                    color: #007bff;
-                    border-bottom: .2rem solid #007bff;
-                }
-                svg {
-                    font-size: 1em;
+                    background-color: $color-hover-pink !important;
                 }
             }
         }
