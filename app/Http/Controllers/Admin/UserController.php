@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateuserRequest;
-use App\Http\Requests\Admin\UpdateuserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Repositories\Admin\UserRepository;
 use App\Http\Controllers\AdminBaseController;
 use Illuminate\Http\Request;
