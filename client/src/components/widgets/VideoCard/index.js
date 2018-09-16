@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Card } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class VideoCard extends Component {
@@ -26,10 +26,12 @@ export default class VideoCard extends Component {
                 <Link to={this.videoURL(this.props.video.slug)} className='hover-posts'>
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
-                <div className="video-stats align-self-end w-100 container">
+                <div className="video-stats pt-1 align-self-end w-100 container">
                     <div className="row mt-1 d-flex justify-content-end">
-                        { this.props.video.is_pro && 
-                            <div className="pro-stats px-3 py-1 text-white">PRO</div>
+                        { this.props.video.is_pro ? 
+                            <div className="user-stats px-3 py-1 text-white">PRO</div>
+                        :
+                            <div className="free-stats px-3 py-1 text-white">FREE</div>
                         }
                         <div className="mx-3 text-white line-height-props">
                             <FontAwesomeIcon icon="heart" className="text-danger" /> { this.props.video.likes }

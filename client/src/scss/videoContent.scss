@@ -23,11 +23,37 @@
     .post {
         margin-bottom: 1rem;
         .post-thumb {
-            position: relative;
-            overflow: hidden;
-            height: 15rem;
+            border: none;
+            height: 15em;
             background-size: cover !important;
             box-shadow: .2rem .2rem rgba(0, 0, 0, .5);
+            background-color: transparent ;
+            .card-img {
+                height: 15em;
+                width: 100%;
+                background-size: cover !important;
+            }
+            .video-stats {
+                height: 2em;
+                margin-top: 13em ;
+                background-color: rgba(51, 51, 51, .8) ;
+                // .thumb-stats {
+                //     span {
+                //         color: white;
+                //         line-height: 3em;
+                //     }
+                // }
+                .free-stats {
+                    height: auto ;
+                    background-color: #1fac13 !important;
+                }
+                .user-stats {
+                    background-color: #e96969 !important;
+                }
+                
+                .line-height-props {
+                }
+            }
             img {
                 width: 100%;
                 height: auto;
@@ -87,9 +113,9 @@
 //     }
 // }
 
-.post:hover .video-stats {
-    transform: translateY(7rem); 
-}
+// .post:hover .video-stats {
+// //    transform: translateY(7rem); 
+// }
 
 .post:hover a.hover-posts {
     visibility: visible;
