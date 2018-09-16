@@ -7,16 +7,18 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import serverURL from '../../variables';
+import {isMobile} from 'react-device-detect';
 
 class SearchPage extends Component {
 
     constructor(props) {
         super(props);
     
-        this.handleChange = this.handleChange.bind(this);
-        this.keyPress = this.keyPress.bind(this);
-        this.search = this.search.bind(this);
         this.focusRef = React.createRef();
+    }
+
+    isUserValid = () => {
+        return this.props.login.user !== null && this.props.login.user !== undefined;
     }
 
     state = {
@@ -28,18 +30,18 @@ class SearchPage extends Component {
         this.setState({keyword: event.target.value});
     }
 
-    keyPress(e){
-        if(e.keyCode === 13){
+    keyPress = (e) => {
+        if (e.keyCode === 13){
            this.search()
         }
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps = () => {
         this.setState({videos: []});
         this.setState({keyword: ''});
     }
      
-    search() {
+    search = () => {
         if (this.state.keyword.length >= 0)
         {
             axios.get(`${serverURL}/api/videos?q=${this.state.keyword}`)
@@ -49,7 +51,7 @@ class SearchPage extends Component {
         }
     }
 
-    showVideos() {
+    showVideos = () => {
         return this.state.videos.map( (item, i) => {
             return (
                 <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -67,9 +69,16 @@ class SearchPage extends Component {
         } )
     }
 
-    render() {
+    render = () => {
+        let marginLeft = 0;
+        if (isMobile || this.isUserValid()) {
+            marginLeft = 6.4
+        }
+        if (this.props.sidebar.toggleSidebar){
+            marginLeft = 20
+        }
         return (
-            <div id="search">
+            <div id="search" style={{marginLeft: `${marginLeft}rem`}}>
                 <Modal  isOpen={this.props.search.toggleSearch} 
                         toggle={this.props.toggleSearch} 
                         className="search-dialog"
@@ -81,9 +90,9 @@ class SearchPage extends Component {
                             <div className="row">
                                 <div className="col-12">
                                     <Input type="text"  value={this.state.keyword} placeholder="Search videos ..." 
-                                            onChange={this.handleChange} onKeyDown={this.keyPress}
-                                            autoFocus={true}
-                                            />
+                                        onChange={this.handleChange} onKeyDown={this.keyPress}
+                                        autoFocus={true}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -103,7 +112,9 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    search: state.search
+    search: state.search,
+    login: state.login,
+    sidebar: state.sidebar,
   }
 }
 

@@ -83,9 +83,13 @@ class Layout extends Component {
         this.props.history.push('/')
     }
 
+    isUserValid = () => {
+        return this.props.login.user !== null && this.props.login.user !== undefined;
+    }
+
     mainContent = () => {
         let marginLeft = 0;
-        if (isMobile || this.props.login.user !== undefined) {
+        if (isMobile || this.isUserValid()) {
             marginLeft = '6.4rem'
             $("footer").css('margin-left', '6.4rem') 
         }
@@ -113,7 +117,7 @@ class Layout extends Component {
             <div>
                 <Header/>
                 <SearchPage/>
-                { (isMobile || this.props.login.user != null) && <LeftSidebar/> }
+                { (isMobile || this.isUserValid()) && <LeftSidebar/> }
                 { this.mainContent() }
             </div>
         )

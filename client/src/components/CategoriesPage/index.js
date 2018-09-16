@@ -10,6 +10,7 @@ declare var xs;
 declare var sm;
 declare var md;
 declare var lg;
+declare var xl;
 
 class CategoriesPage extends Component {
     
@@ -88,16 +89,18 @@ class CategoriesPage extends Component {
         let size = 2;
         if (xs) {
             size = 12;
-        }
-        if (sm) {
+        } else if (sm) {
             size = 6;
+        } else if (md || lg || xl) {
+            if (this.props.match.params.slug === "festival") {
+                size = 6;
+            } else if(this.props.match.params.slug === "feature") {
+                size = 4;
+            } else {
+                size = 3;
+            }
         }
-        if (md) {
-            size = 4;
-        }
-        if (lg) {
-            size = 3;
-        }
+
         return (
             <div className="page-padding">
                 <ReactTitle title={this.state.category.name}/>
