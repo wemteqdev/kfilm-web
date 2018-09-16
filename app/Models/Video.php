@@ -229,9 +229,9 @@ class Video extends Model implements LikeableContract
         return $video->save();
     }
 
-    public static function create_videos_from_vimeo()
+    public static function create_videos_from_vimeo($url = '/me/videos')
     {
-        $payload = Vimeo::request('/me/videos', [], 'GET')['body'];
+        $payload = Vimeo::request($url, [], 'GET')['body'];
         $vimeo_videos = $payload['data'];
 
         foreach($vimeo_videos as $vimeo_video)
@@ -259,6 +259,11 @@ class Video extends Model implements LikeableContract
             $video->embed = $vimeo_video['embed']['html'];
 
             $video->save();
+        }
+
+        if(isset($payload['paging']) && isset($payload['paging']['next']))
+        {
+            Video::create_videos_from_vimeo($payload['paging']['next']);
         }
     }
 }
