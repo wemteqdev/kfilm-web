@@ -52,7 +52,6 @@ class Profile extends Component {
             }, 2000)
         })
         .catch(error => {
-            console.log(error.response);
             this.setState({
                 password_errors: error.response.data.error,
             })
@@ -80,7 +79,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login
+        login: state.login
     }
 }
 

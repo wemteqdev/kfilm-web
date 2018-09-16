@@ -21,14 +21,7 @@ class Header extends Component {
         categories:[]
     }
 
-    constructor(props) {
-        super(props)
-
-        this.logout = this.logout.bind(this)
-        this.onToggle = this.onToggle.bind(this)
-    }
-
-    onToggle() {
+    onToggle = () => {
         this.props.toggleSidebar()
     }
 
@@ -49,16 +42,20 @@ class Header extends Component {
         } )
     }
 
-    logout() {
+    logout = () => {
         this.props.logoutSuccess()
         cookie.remove('user', { path: '/' })
         axios.defaults.headers.common['Authorization'] = ''
         this.props.history.push('/')
     }
 
+    isUserValid = () => {
+        return this.props.login.user !== null && this.props.login.user !== undefined;
+    }
+
     render () {
         let style;
-        if (isMobile || this.props.login.user != null) {
+        if (isMobile || this.isUserValid()) {
             style = {
                 left: '4rem'
             }
@@ -67,7 +64,7 @@ class Header extends Component {
             <header {...this.boundActions}>
                 <div className="container-fluid">
                     <div className="row">
-                        { (isMobile || this.props.login.user != null) &&
+                        { (isMobile || this.isUserValid()) &&
                         <div id="toggle" className="col d-flex justify-content-center align-items-center text-center">
                             <a onClick={this.onToggle}>
                                 { this.props.sidebar.toggleSidebar &&
@@ -87,22 +84,26 @@ class Header extends Component {
                                 </div>
                             </Link>
                         </div>
-                        <div id='categories-nav' className="col" style={style}>
-                            <div className="container">
-                                <div className="row">
+                        { isMobile === false && 
+                            <div id='categories-nav' className="col" style={style}>
+                                <div className="container px-2">
                                     <Nav>
                                         { this.showCategories() }
                                     </Nav>
                                 </div>
                             </div>
-                        </div>
+                        }
                         <div className="login navButton d-flex justify-content-end align-items-center">
                             <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
-                            { this.props.login.user == null && <Link to="/login" className="loginReg">Log in</Link> }
-                            { isMobile === false && this.props.login.user != null && <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
-                                        <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
-                                        </span>
+                            { isMobile === false && this.isUserValid() && 
+                                <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;</span>
                             }
+                            { this.isUserValid() ? 
+                                <Link to="/" className="loginReg" onClick={this.logout}>Log out</Link>
+                            :
+                                <Link to="/login" className="loginReg">Log in</Link>
+                            }
+                            
                         </div>
                     </div>
                 </div>
@@ -113,8 +114,8 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login,
-      sidebar: state.sidebar
+        login: state.login,
+        sidebar: state.sidebar
     }
 }
 

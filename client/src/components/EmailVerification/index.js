@@ -14,6 +14,7 @@ class EmailVerification extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
         let isLoggedIn = nextProps.login.user != null;
         if (isLoggedIn) {
             let isEmailVerified = nextProps.login.user.data.email_verified;
@@ -48,30 +49,35 @@ class EmailVerification extends Component {
         });
     }
 
+    isUserValid = () => {
+        return this.props.login.user !== null && this.props.login.user !== undefined;
+    }
+
     render() {
-        if (this.props.login.user == null) {
-            return <div></div>;
-        }
-        return (
-            <section className="loginPage">
-                <div className="container bg-light py-5">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-lg-4 col-md-6 col-sm-8 col-11">
-                            <div className="text-center">
-                                <h2>Email Verification</h2>
+        if (this.isUserValid()) {
+            return (
+                <section className="loginPage">
+                    <div className="container bg-light py-5">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-lg-4 col-md-6 col-sm-8 col-11">
+                                <div className="text-center">
+                                    <h2>Email Verification</h2>
+                                </div>
+                                <VerifyForm onSubmit={this.handleResend} errors={this.state.errors} success={this.state.success} email={this.props.login.user.data.email}/>
                             </div>
-                            <VerifyForm onSubmit={this.handleResend} errors={this.state.errors} success={this.state.success} email={this.props.login.user.data.email}/>
                         </div>
                     </div>
-                </div>
-            </section>
-        )
+                </section>
+            )
+        } else {
+            return <div></div>
+        }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login
+        login: state.login
     }
 }
 

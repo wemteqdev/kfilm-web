@@ -4,13 +4,8 @@ import { Link } from 'react-router-dom';
 import RelatedVideoList from '../RelatedVideoList';
 
 class Video extends Component {
-    
-    constructor(props) {
-        super(props)
-        this.showVideo = this.showVideo.bind(this)
-    }
 
-    showVideo() {
+    showVideo = () => {
         let video = this.props.video
         if (video.embed === null && video.featured_video !== null) {
             return (
@@ -20,7 +15,8 @@ class Video extends Component {
                         __html: video.featured_video.embed
                         }}>
                     </div>
-                </div>)
+                </div>
+            )
         }
         if( video.embed !== null) {
             return (
@@ -40,6 +36,11 @@ class Video extends Component {
             }
            return ( 
                 <div style={style}>
+                    { this.props.type === "free" && 
+                        <div className="click-here d-flex justify-content-center">
+                            <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
+                        </div>
+                    }
                 </div>
             )
         }
@@ -94,13 +95,6 @@ class Video extends Component {
                 <div className='container video-page'>
                     <div className="row">
                         <div className="col-12">
-                            
-                            { this.props.type === "free" && 
-                                <div className="mt-2 mb-5 d-flex justify-content-center">
-                                    <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
-                                </div>
-                            }
-
                             <div className="my-5 video-name">
                                 {this.props.video.name}
                                 {this.displayLike()}

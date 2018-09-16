@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { Card, CardImgOverlay } from 'reactstrap';
 import axios from 'axios';
 import serverURL from '../../../../variables';
 
@@ -26,22 +27,22 @@ class VideoPosts extends Component {
 
     showThum = (item) => {
         return (
-            <div className="post-thumb" style={{background:"url(" + item.featured_image_url + ") center"}}>
-                
+            <Card className="post-thumb d-flex">
+                <div className="card-img" style={{background:"url(" + item.featured_image_url + ") center"}}></div>
                 <Link to={'/videos/' + item.slug} className='hover-posts'>
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
-                <div className="video-stats clearfix">
-                    { item.is_pro &&
-                        <div className="thumb-stats float-left pro-stats">
-                            <span>PRO</span>
-                        </div>
+                <CardImgOverlay className="video-stats px-3 py-1 align-self-end container d-flex justify-content-between">
+                    { item.is_pro ? 
+                        <div className="user-stats px-3 py-1 text-white">PRO</div>
+                    :
+                        <div className="free-stats px-3 py-1 text-white">FREE</div>
                     }
-                    <div className=" float-right">
-                        <span>{ item.formatted_duration }</span>
+                    <div className="mx-3 text-white line-height-props">
+                        <FontAwesomeIcon icon="clock" /> { item.formatted_duration }
                     </div>
-                </div>
-            </div>
+                </CardImgOverlay>
+            </Card>
         )
     }
 
@@ -67,7 +68,7 @@ class VideoPosts extends Component {
         if (this.state.posts !== null) {
             return this.state.posts.map( (item, i) => {
                 return (
-                    <div key={i} className="item col-lg-3 col-md-4 col-sm-6 col-12 group-item-secondary-button grid-medium">
+                    <div key={i} className="item col-md-3 col-sm-6 col-12 group-item-secondary-button grid-medium">
                         <div className="post">
                             { this.showThum(item) }
                             { this.showDesc(item) }

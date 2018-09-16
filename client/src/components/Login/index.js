@@ -76,7 +76,6 @@ class Login extends Component {
     render() {
         return (
             <section className="loginPage">
-                {/* { this.props.login.user == null  ? null : <Redirect to="/"/> } */}
                 <div className="container bg-light py-5">
                     <div className="row d-flex justify-content-center">
                         <div className="col-lg-4 col-md-6 col-sm-8 col-11">
@@ -98,7 +97,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login
+        login: state.login
     }
 }
 

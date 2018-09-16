@@ -7,7 +7,6 @@ import { toggleSidebarAction, logoutSuccessAction } from '../../actions';
 import axios from 'axios';
 import serverURL from '../../variables';
 import {isMobile} from 'react-device-detect';
-import cookie from 'react-cookies';
 
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
@@ -17,42 +16,34 @@ class LeftSidebar extends Component {
         categories:[]
     }
     
-    constructor(props) {
-        super(props)
-        this.onNav = this.onNav.bind(this)
-        this.showUserInfo = this.showUserInfo.bind(this)
-        this.logout = this.logout.bind(this)
-    }
-
     componentWillMount = () => {
         axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
         })
     }
-    
-    onToggle() {
+
+    isUserValid = () => {
+        return this.props.login.user !== null && this.props.login.user !== undefined;
     }
 
-    onNav(selected) {
+    onToggle = () => {
+    }
+
+    onNavSelected = (selected) => {
         this.props.history.push(selected)
     }
 
     showCategories() {
         let icons = [
-            {
-                name: "FT"
-            },
-            {
-                name: "TV"
-            },
-            {
-                name: "AN"
-            }
+            {name: "FT"},
+            {name: "TV"},
+            {name: "AN"}
         ]
+        let categories = this.state.categories;
         return (
-            this.state.categories.length !== 0 && 
-                this.state.categories.map((item, i) => {
+            categories.length > 0 && 
+                categories.map((item, i) => {
                 return (
                     <NavItem key={i} eventKey={`/categories/${item.slug}`}>
                         <NavIcon>
@@ -67,78 +58,80 @@ class LeftSidebar extends Component {
         )
     }
 
-    logout() {
-        this.props.logoutSuccess()
-        cookie.remove('user', { path: '/' })
-        axios.defaults.headers.common['Authorization'] = ''
+    showUserInfo = () => {
+        let userInfo = [
+            {
+                eventKey: "/user/profile",
+                icon: "user",
+                text: "Profile",
+            },
+            {
+                eventKey: "/user/favorites",
+                icon: "heart",
+                text: "Favorites",
+            },
+            {
+                eventKey: "/user/history",
+                icon: "history",
+                text: "History",
+            },
+            {
+                eventKey: "/user/pro-videos",
+                icon: "film",
+                text: "Pro Videos",
+            },
+        ]
+        return (
+            userInfo.map((item, index) => {
+                return (
+                    <NavItem key={index} eventKey={item.eventKey}>
+                        <NavIcon>
+                            <FontAwesomeIcon icon={item.icon}/>
+                        </NavIcon>
+                        <NavText>
+                            {item.text}
+                        </NavText>
+                    </NavItem>
+                )
+            })
+        )
     }
 
-    showUserInfo() {
+    showUpgrade = () => {
         return (
-            this.props.login.user !== null && 
-            <span className="pl-5">Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;
-                <Link to="/" className="loginReg" onClick={this.logout}>Logout</Link>
-            </span>
+            <div className="d-flex text-center plan-nav-item">
+                <div className="justify-content-center align-self-center mx-auto plan-upgrade">
+                    <h2>korfilm Pro</h2>
+                    <div className="plan-button">
+                        <Link to="/user/plan" className="btn btn-danger btn-lg">Upgrade</Link>
+                    </div>
+                </div>
+            </div>
         )
     }
 
     render() {
         return (
             <SideNav
-                onSelect={(selected) => {
-                    this.onNav(selected)
-                }}
-                onToggle={this.onToggle}
+                onSelect={(selected) => {this.onNavSelected(selected)}}
                 expanded={this.props.sidebar.toggleSidebar}
+                onToggle={this.onToggle}
                 className="sidebar"
             >
                 <SideNav.Nav defaultSelected="home" className="sidenav">
-                    { isMobile && this.props.sidebar.toggleSidebar && this.showUserInfo()}
-                    { isMobile && this.showCategories()}
-                    { this.props.login.user != null && <NavItem eventKey="/user/profile">
-                        <NavIcon>
-                            <FontAwesomeIcon icon="user"/>
-                        </NavIcon>
-                        <NavText>
-                                Profile
-                        </NavText>
-                    </NavItem>}
-                    { this.props.login.user != null && <NavItem eventKey="/user/favorites">
-                        <NavIcon>
-                            <FontAwesomeIcon icon="heart"/>
-                        </NavIcon>
-                        <NavText>
-                            Favorites
-                        </NavText>
-                    </NavItem>}
-                    { this.props.login.user != null && <NavItem eventKey="/user/history">
-                        <NavIcon>
-                            <FontAwesomeIcon icon="history"/>
-                        </NavIcon>
-                        <NavText>
-                            History
-                        </NavText>
-                    </NavItem> }
-                    { this.props.login.user != null && <NavItem eventKey="/user/pro-videos">
-                        <NavIcon>
-                            <FontAwesomeIcon icon="film"/>
-                        </NavIcon>
-                        <NavText>
-                            Pro Videos
-                        </NavText>
-                    </NavItem> }
-                    {
-                       this.props.login.user != null &&  this.props.sidebar.toggleSidebar &&
-                        <div className="d-flex text-center plan-nav-item">
-                            <div className="justify-content-center align-self-center mx-auto plan-upgrade">
-                                <h2>korfilm Pro</h2>
-                                <div className="plan-button">
-                                    <Link to="/user/plan" className="btn btn-danger btn-lg">Upgrade</Link>
-                                </div>
-                            </div>
-                        </div>
+                    { isMobile && this.props.sidebar.toggleSidebar && this.isUserValid() && 
+                        <span className="pl-5 pb-3">Hi, {this.props.login.user.data.name}</span>
                     }
-                    </SideNav.Nav>
+                    { isMobile && 
+                        this.showCategories()
+                    }
+                    { this.isUserValid() && 
+                        this.showUserInfo()
+                    }
+                    { this.isUserValid() && this.props.sidebar.toggleSidebar && 
+                        this.showUpgrade()
+                    }
+                </SideNav.Nav>
             </SideNav>
         )
     }
@@ -146,8 +139,8 @@ class LeftSidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      sidebar: state.sidebar,
-      login: state.login,
+        sidebar: state.sidebar,
+        login: state.login,
     }
   }
   

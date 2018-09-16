@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Video;
 use Vimeo\Laravel\Facades\Vimeo;
+use App\Enums\VideoType;
 
 class VideoController extends AdminBaseController
 {
@@ -24,7 +25,17 @@ class VideoController extends AdminBaseController
 
     public function index(Request $request)
     {
-        $videos = Video::orderBy('created_at', 'desc')->paginate(9);
+        $this->videoRepository->pushCriteria(new RequestCriteria($request));
+        $videos = $this->videoRepository;
+
+        if(isset($request->type))
+        {
+            $videos = $videos->scopeQuery(function($query) use ($request){
+                return $query->where('type', VideoType::getValue($request->type));
+            });
+        }
+
+        $videos = $videos->orderBy('created_at', 'desc')->paginate(12);
 
         return view('admin.videos.index')->with('videos', $videos);
     }

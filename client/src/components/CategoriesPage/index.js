@@ -10,6 +10,7 @@ declare var xs;
 declare var sm;
 declare var md;
 declare var lg;
+declare var xl;
 
 class CategoriesPage extends Component {
     
@@ -20,11 +21,22 @@ class CategoriesPage extends Component {
         pageNum: 0,
     }
 
+    initVideos = () => {
+        this.setState({
+            videos: [],
+            category: {},
+            pageCount: 1,
+            pageNum: 0,
+        })
+    }
+
     componentWillMount(){
         this.loadVideos(this.props)
     }
 
     loadVideos(props) {
+        this.initVideos();
+
         let search = props.location.search || '?';
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${search}`)
         .then( response => {
@@ -88,16 +100,16 @@ class CategoriesPage extends Component {
         let size = 2;
         if (xs) {
             size = 12;
-        }
-        if (sm) {
+        } else if (sm) {
             size = 6;
+        } else if (md || lg || xl) {
+            if (this.props.match.params.slug === "festival") {
+                size = 6;
+            } else {
+                size = 3;
+            }
         }
-        if (md) {
-            size = 4;
-        }
-        if (lg) {
-            size = 3;
-        }
+
         return (
             <div className="page-padding">
                 <ReactTitle title={this.state.category.name}/>
@@ -107,6 +119,9 @@ class CategoriesPage extends Component {
                             <div className="col section-header">
                                 <h1 className="title">{this.state.category.name}</h1>
                             </div>
+                        </div>
+                        <div className="row my-3 d-flex justify-content-center">
+                            {this.displayPaginate()}
                         </div>
                         <div className="row">
                             <VideoList videos={this.state.videos} size={size}/>

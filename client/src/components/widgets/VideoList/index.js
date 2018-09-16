@@ -25,7 +25,7 @@ export default class VideoList extends Component {
         else {
             return this.props.videos.map( (item, i) => {
                 return (
-                    <div key={i} className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div key={i} className={`col-sm-6 col-xs-12 col-md-${this.props.size}`}>
                         <VideoCard video={item} type={this.props.type} />
                     </div>
                 )

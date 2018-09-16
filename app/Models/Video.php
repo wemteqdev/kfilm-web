@@ -39,6 +39,7 @@ class Video extends Model implements LikeableContract
         'status',
         'featured_image_id',
         'thumbnail_url',
+        'thumbnail_high_url',
         'featured_video_id',
         'vimeo_video_id',
         'uri',
@@ -228,9 +229,9 @@ class Video extends Model implements LikeableContract
         return $video->save();
     }
 
-    public static function create_videos_from_vimeo()
+    public static function create_videos_from_vimeo($url = '/me/videos')
     {
-        $payload = Vimeo::request('/me/videos', [], 'GET')['body'];
+        $payload = Vimeo::request($url, [], 'GET')['body'];
         $vimeo_videos = $payload['data'];
 
         foreach($vimeo_videos as $vimeo_video)
@@ -250,10 +251,19 @@ class Video extends Model implements LikeableContract
             $video->height = $vimeo_video['height'];
             $video->vimeo_video_id = $vimeo_id;
             $video->uri = $vimeo_video['uri'];
-            $video->thumbnail_url = end($vimeo_video['pictures']['sizes'])['link'];
+
+            $video->thumbnail_high_url = end($vimeo_video['pictures']['sizes'])['link'];
+
+            $image_count = count($vimeo_video['pictures']['sizes']);
+            $video->thumbnail_url = $vimeo_video['pictures']['sizes'][$image_count/2]['link'];
             $video->embed = $vimeo_video['embed']['html'];
 
             $video->save();
+        }
+
+        if(isset($payload['paging']) && isset($payload['paging']['next']))
+        {
+            Video::create_videos_from_vimeo($payload['paging']['next']);
         }
     }
 }
