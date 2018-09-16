@@ -55,7 +55,6 @@ class VideoPage extends Component {
             }
             if (props.login.user !== null && props.login.user !== undefined){
                 this.setState({ like:response.data.data.is_favorited});
-                $("body").removeClass('all-loading')
                 if (history) {
                     setTimeout(
                         this.addHistory,

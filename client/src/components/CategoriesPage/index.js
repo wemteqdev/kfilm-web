@@ -21,11 +21,22 @@ class CategoriesPage extends Component {
         pageNum: 0,
     }
 
+    initVideos = () => {
+        this.setState({
+            videos: [],
+            category: {},
+            pageCount: 1,
+            pageNum: 0,
+        })
+    }
+
     componentWillMount(){
         this.loadVideos(this.props)
     }
 
     loadVideos(props) {
+        this.initVideos();
+
         let search = props.location.search || '?';
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${search}`)
         .then( response => {
@@ -108,6 +119,9 @@ class CategoriesPage extends Component {
                             <div className="col section-header">
                                 <h1 className="title">{this.state.category.name}</h1>
                             </div>
+                        </div>
+                        <div className="row my-3 d-flex justify-content-center">
+                            {this.displayPaginate()}
                         </div>
                         <div className="row">
                             <VideoList videos={this.state.videos} size={size}/>
