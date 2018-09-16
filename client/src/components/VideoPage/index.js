@@ -53,12 +53,13 @@ class VideoPage extends Component {
             else {
                 this.setState({video:response.data.data})
             }
+
             if (props.login.user !== null && props.login.user !== undefined){
                 this.setState({ like:response.data.data.is_favorited});
                 if (history) {
                     setTimeout(
                         this.addHistory,
-                        this.state.video.duration / 100
+                        this.state.video.duration * 1000 / 2
                     );
                 }
             }
