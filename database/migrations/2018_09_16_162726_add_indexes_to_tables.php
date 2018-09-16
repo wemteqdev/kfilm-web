@@ -23,6 +23,7 @@ class AddIndexesToTables extends Migration
         });
 
         Schema::table('group_video', function (Blueprint $table) {
+            $table->index('group_id');
             $table->index('video_id');
         });
 
