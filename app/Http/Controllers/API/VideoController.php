@@ -123,12 +123,17 @@ class VideoController extends Controller
 
 	public function show($id_or_slug)
 	{
-		$video = Video::find($id_or_slug);
+		$video = Video::published()->where('slug', $id_or_slug)->first();
 
 		if($video==null){
-			$video = Video::published()->where('slug', $id_or_slug)->firstorfail();
+			$video = Video::published()->where('id', $id_or_slug)->first();
 		}
 		
+		if($video==null)
+		{
+			return response()->json(['error'=>'Not found'], 404);
+		}
+
 		$video->addView();
 		return new VideoResource($video);
 	}
