@@ -15,11 +15,15 @@ class Carousel extends Component {
   }
 
   onNext = () => {
-    this.owlCarousel.current.next(100);
+    this.owlCarousel.current.stop()
+    this.owlCarousel.current.next(100)
+    this.owlCarousel.current.play()
   };
 
   onPrev = () => {
+    this.owlCarousel.current.stop()
     this.owlCarousel.current.prev(100);
+    this.owlCarousel.current.play()
   };
 
   showCarousel = () => {
