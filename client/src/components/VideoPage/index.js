@@ -58,7 +58,7 @@ class VideoPage extends Component {
                 if (history) {
                     setTimeout(
                         this.addHistory,
-                        this.state.video.duration / 2
+                        this.state.video.duration / 100
                     );
                 }
             }
