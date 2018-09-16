@@ -255,7 +255,7 @@ class Video extends Model implements LikeableContract
             $video->thumbnail_high_url = end($vimeo_video['pictures']['sizes'])['link'];
 
             $image_count = count($vimeo_video['pictures']['sizes']);
-            $video->thumbnail_url = $vimeo_video['pictures']['sizes'][$image_count/3]['link'];
+            $video->thumbnail_url = $vimeo_video['pictures']['sizes'][$image_count/2]['link'];
             $video->embed = $vimeo_video['embed']['html'];
 
             $video->save();
