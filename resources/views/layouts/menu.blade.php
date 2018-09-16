@@ -24,7 +24,7 @@
 </li>
 
 <li class="{{ Request::is('admin/videos*') ? 'active' : '' }}">
-    <a href="{!! route('admin.videos.normal') !!}"><i class="fa fa-film"></i> <span>Videos</span></a>
+    <a href="{!! route('admin.videos.index') !!}"><i class="fa fa-film"></i> <span>Videos</span></a>
 </li>
 
 <li class="{{ Request::is('admin/products*') ? 'active' : '' }}">

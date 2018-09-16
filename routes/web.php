@@ -67,7 +67,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::get('admin/videos', ['as'=> 'admin.videos.index', 'uses' => 'Admin\VideoController@index']);
 	Route::post('admin/videos', ['as'=> 'admin.videos.store', 'uses' => 'Admin\VideoController@store']);
 	Route::get('admin/videos/normal', ['as'=> 'admin.videos.normal', 'uses' => 'Admin\VideoController@normal']);
-	Route::get('admin/videos/featured', ['as'=> 'admin.videos.featured', 'uses' => 'Admin\VideoController@featured']);
 	Route::get('admin/videos/create', ['as'=> 'admin.videos.create', 'uses' => 'Admin\VideoController@create']);
 	Route::put('admin/videos/sync_vimeo_videos', ['as'=> 'admin.videos.sync_vimeo_videos', 'uses' => 'Admin\VideoController@sync_vimeo_videos']);
 	Route::put('admin/videos/{videos}/publish', ['as'=> 'admin.videos.publish', 'uses' => 'Admin\VideoController@publish']);

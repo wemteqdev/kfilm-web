@@ -7,10 +7,19 @@
            <!-- <a class="btn btn-primary md-button" href="{!! route('admin.videos.create') !!}">Add New</a> -->
         </h1>
     </section>
-    <h1>
-            <a class="btn btn-primary md-button" href="{!! route('admin.videos.normal') !!}">Normal</a>
-            <a class="btn btn-warning md-button" href="{!! route('admin.videos.featured') !!}">featured</a>
-    </h1>
+
+    <div class="filter">
+        <a class="btn btn-primary md-button" href="{!! request()->fullUrlWithQuery(['type'=>'normal']) !!}">Normal</a>
+        <a class="btn btn-warning md-button" href="{!! request()->fullUrlWithQuery(['type'=>'featured']) !!}">featured</a>
+        
+        <form class="form-inline float-right" action="{!! request()->fullUrlWithQuery([]) !!}">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{{ app('request')->input('search') }}"/>
+                <input type="hidden" name="searchFields" value="name:like"/>
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
     <div class="content">
         <div class="clearfix"></div>
         @include('flash::message')
