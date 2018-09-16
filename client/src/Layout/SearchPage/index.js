@@ -26,7 +26,7 @@ class SearchPage extends Component {
         videos:[]
     }
       
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({keyword: event.target.value});
     }
 
@@ -40,7 +40,7 @@ class SearchPage extends Component {
         this.setState({videos: []});
         this.setState({keyword: ''});
     }
-     
+
     search = () => {
         if (this.state.keyword.length >= 0)
         {
@@ -69,27 +69,28 @@ class SearchPage extends Component {
         } )
     }
 
-    render = () => {
+    render() {
         let marginLeft = 0;
         if (isMobile || this.isUserValid()) {
-            marginLeft = 6.4
+            marginLeft = 3.2
         }
         if (this.props.sidebar.toggleSidebar){
-            marginLeft = 20
+            marginLeft = 18
         }
         return (
-            <div id="search" style={{marginLeft: `${marginLeft}rem`}}>
+            <div id="search">
                 <Modal  isOpen={this.props.search.toggleSearch} 
                         toggle={this.props.toggleSearch} 
                         className="search-dialog"
                         autoFocus={false}
+                        style={{marginLeft: `${marginLeft}rem`}}
                 >
                     <ModalHeader>
                         <a color="primary" className="float-right" onClick={this.props.toggleSearch}> <FontAwesomeIcon icon='times'/> </a>
                         <div className="container">
                             <div className="row">
                                 <div className="col-12">
-                                    <Input type="text"  value={this.state.keyword} placeholder="Search videos ..." 
+                                    <Input type="text" value={this.state.keyword} placeholder="Search videos ..." 
                                         onChange={this.handleChange} onKeyDown={this.keyPress}
                                         autoFocus={true}
                                     />
@@ -112,9 +113,9 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    search: state.search,
-    login: state.login,
-    sidebar: state.sidebar,
+        search: state.search,
+        login: state.login,
+        sidebar: state.sidebar,
   }
 }
 

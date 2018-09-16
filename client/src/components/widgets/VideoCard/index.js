@@ -27,7 +27,6 @@ export default class VideoCard extends Component {
                     <span><FontAwesomeIcon icon='play'/>Watch Video</span>
                 </Link>
                 <div className="video-stats pt-1 px-0 align-self-end w-100 container">
-                    <h4>{ this.props.video.name }</h4>
                     <div className="mt-1 d-flex justify-content-end">
                         { this.props.video.is_pro ? 
                             <div className="user-stats px-3 py-1 text-white">PRO</div>
@@ -44,6 +43,7 @@ export default class VideoCard extends Component {
                             <FontAwesomeIcon icon="clock" /> { this.props.video.formatted_duration }
                         </div>
                     </div>
+                    <h4>{ this.props.video.name }</h4>
                 </div>
             </Card>
         )

@@ -139,8 +139,8 @@ class LeftSidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      sidebar: state.sidebar,
-      login: state.login,
+        sidebar: state.sidebar,
+        login: state.login,
     }
   }
   

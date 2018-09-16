@@ -94,8 +94,6 @@ class CategoriesPage extends Component {
         } else if (md || lg || xl) {
             if (this.props.match.params.slug === "festival") {
                 size = 6;
-            } else if(this.props.match.params.slug === "feature") {
-                size = 4;
             } else {
                 size = 3;
             }

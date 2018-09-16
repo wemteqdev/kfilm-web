@@ -114,8 +114,8 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login,
-      sidebar: state.sidebar
+        login: state.login,
+        sidebar: state.sidebar
     }
 }
 

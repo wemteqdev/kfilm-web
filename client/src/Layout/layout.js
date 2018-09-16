@@ -126,9 +126,9 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      login: state.login,
-      sidebar: state.sidebar,
-      banner: state.banner
+        login: state.login,
+        sidebar: state.sidebar,
+        banner: state.banner
     }
 }
 
