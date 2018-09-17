@@ -62,7 +62,14 @@ class VideoPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.loadVideo(nextProps, true)
+        if (this.props !== nextProps) {
+            this.loadVideo(nextProps, true)
+            window.scrollTo(0, 0)
+        }
+    }
+
+    componentWillMount() {
+        this.loadVideo(this.props, true)
         window.scrollTo(0, 0)
     }
 
