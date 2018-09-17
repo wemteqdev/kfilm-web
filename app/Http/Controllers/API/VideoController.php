@@ -37,6 +37,7 @@ class VideoController extends Controller
 		}
 
 		$category = $request->category;
+		$group = $request->group;
 		$keyword_param = $request->q;
 		$tag_param = $request->tag;
 		$view_param = $request->view;
@@ -58,6 +59,12 @@ class VideoController extends Controller
 			{
 				$videos = $category->videos()->published();
 			}			
+		}elseif(isset($group)){
+			$group = Group::find_by_id_or_slug($group);
+			if($group!==null)
+			{
+				$videos = $group->videos()->published();
+			}	
 		}
 		
 		$videos = $videos->normal();

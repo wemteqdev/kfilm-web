@@ -11,7 +11,7 @@ class Videos extends Component {
     }
 
     componentWillMount(){
-        axios.get(`${serverURL}/api/videos`)
+        axios.get(`${serverURL}/api/videos?group=homevideos`)
         .then( response => {
             this.setState({videos:response.data.data});
         })

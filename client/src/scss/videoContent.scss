@@ -24,18 +24,20 @@
         margin-bottom: 1rem;
         .post-thumb {
             border: none;
-            height: 15em;
+            height: 40vh;
             background-size: cover !important;
             box-shadow: .2rem .2rem rgba(51, 51, 51, .5);
             background-color: transparent ;
             .card-img {
-                height: 15em;
+                height: 40vh;
                 width: 100%;
                 background-size: cover !important;
             }
             .video-stats {
                 height: 2em;
-                margin-top: 13em ;
+                position: relative;
+                bottom: 0px;
+                
                 background-color: rgba(0, 0, 0, .8) ;
                 // .thumb-stats {
                 //     span {
