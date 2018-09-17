@@ -1,34 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import VideoCard from '../VideoCard';
 
-export default class RelatedVideoList extends Component {
-
-    constructor(props) {
-        super(props);
-        this.showVideos = this.showVideos.bind(this)
-    }
-
-
-    showVideos() {
-        if (this.props.videos === undefined) {
-            return <div></div>
-        }
-        else {
-            return this.props.videos.map( (item, i) => {
-                return (
-                    <div key={i} className="col-md-4 col-sm-6 col-12">
-                        <VideoCard video={item} type={this.props.type} />
-                    </div>
-                )
-            } )
-        }
-    }
-
-    render() {
+const RelatedVideoList = (props) => {
+    console.log(props.videos)
+    if (props.videos !== undefined && props.videos.length > 0) {
         return (
-            <div className="row">
-                { this.showVideos() }
+            <div className="my-5 videos">
+                <div className="head-title mb-4">
+                    <h4 className='borderBottom text-left'>Related</h4>
+                </div>
+                {props.videos.map( (item, i) => {
+                    return (
+                        <div key={i} className="col-md-3 col-sm-6 col-12">
+                            <VideoCard video={item} type={props.type} />
+                        </div>
+                    )
+                })}
             </div>
         )
+    } else {
+        return <div></div>
     }
 }
+
+export default RelatedVideoList;

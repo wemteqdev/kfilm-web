@@ -8,6 +8,8 @@ import axios from 'axios';
 import serverURL from '../../variables';
 import {isMobile} from 'react-device-detect';
 
+import { isValid } from '../../functions';
+
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 class LeftSidebar extends Component {
@@ -23,10 +25,6 @@ class LeftSidebar extends Component {
         })
     }
 
-    isUserValid = () => {
-        return this.props.login.user !== null && this.props.login.user !== undefined;
-    }
-
     onToggle = () => {
     }
 
@@ -36,10 +34,10 @@ class LeftSidebar extends Component {
 
     showCategories() {
         let icons = [
-            {name: "FT"},
-            {name: "TV"},
-            {name: "AN"},
-            {name: "FV"},
+            {name: "fe"},
+            {name: "tv"},
+            {name: "an"},
+            {name: "fe"},
         ]
         let categories = this.state.categories;
         return (
@@ -47,11 +45,13 @@ class LeftSidebar extends Component {
                 categories.map((item, i) => {
                 return (
                     <NavItem key={i} eventKey={`/categories/${item.slug}`}>
-                        <NavIcon>
+                        <NavIcon style={{width: "3em"}}>
                             {icons[i].name}
                         </NavIcon>
                         <NavText>
+                            <div className="pl-3 pr-5">
                                 {item.name}
+                            </div>
                         </NavText>
                     </NavItem>
                 )
@@ -90,7 +90,7 @@ class LeftSidebar extends Component {
                             <FontAwesomeIcon icon={item.icon}/>
                         </NavIcon>
                         <NavText>
-                            {item.text}
+                            <div className="pl-3 pr-5">{item.text}</div>
                         </NavText>
                     </NavItem>
                 )
@@ -118,18 +118,19 @@ class LeftSidebar extends Component {
                 expanded={this.props.sidebar.toggleSidebar}
                 onToggle={this.onToggle}
                 className="sidebar"
+                style={{minWidth: "3em"}}
             >
                 <SideNav.Nav defaultSelected="home" className="sidenav">
-                    { isMobile && this.props.sidebar.toggleSidebar && this.isUserValid() && 
+                    { isMobile && this.props.sidebar.toggleSidebar && isValid(this.props.login.user) && 
                         <span className="pl-5 pb-3">Hi, {this.props.login.user.data.name}</span>
                     }
                     { isMobile && 
                         this.showCategories()
                     }
-                    { this.isUserValid() && 
+                    { isValid(this.props.login.user) && 
                         this.showUserInfo()
                     }
-                    { this.isUserValid() && this.props.sidebar.toggleSidebar && 
+                    { isValid(this.props.login.user) && this.props.sidebar.toggleSidebar && 
                         this.showUpgrade()
                     }
                 </SideNav.Nav>

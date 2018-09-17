@@ -45,6 +45,7 @@ class CategoriesPage extends Component {
                     pageNum: response.data.meta.current_page-1,
                     pageCount: response.data.meta.last_page,
                 });
+                window.scrollTo(0, 0)
             }
         })
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
@@ -118,9 +119,6 @@ class CategoriesPage extends Component {
                             <div className="col section-header">
                                 <h1 className="title">{this.state.category.name}</h1>
                             </div>
-                        </div>
-                        <div className="row my-3 d-flex justify-content-center">
-                            {this.displayPaginate()}
                         </div>
                         <div className="row">
                             <VideoList videos={this.state.videos} size={size}/>

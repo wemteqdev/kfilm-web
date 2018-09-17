@@ -1,6 +1,36 @@
 
+@media (min-width: 156px) { 
+    .banner {
+        font-size: 1.5rem;
+    }
+}
+@media (min-width: 372px) { 
+    .banner {
+        font-size: 2rem;
+    }
+}
+@media (min-width: 576px) { 
+    .banner {
+        font-size: 2.5rem;
+    }
+}
+@media (min-width: 768px) { 
+    .banner {
+        font-size: 3rem;
+    }
+}
+@media (min-width: 992px) {
+    .banner {
+        font-size: 4rem;
+    }
+}
+@media (min-width: 1200px) { 
+    .banner {
+        font-size: 5rem;
+    } 
+}
+
 .banner {
-    font-size: .2rem;
     .banner-mask {
         width: 100%;
     }
@@ -8,60 +38,60 @@
     .banner-title {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
+        // transform: translateY(-50%);
         width: 100%;
         background-color: rgba(0, 0, 0, .3);
-        padding: 1em 1em;
+        padding: .5em .5em;
     
         &.style1 {
-            top: 25%;
-            
+            top: 10%;
             width: 75%;
         }
         &.style2 {
-            top: 50%;
+            top: 40%;
             width: 100%;
         }
         &.style3 {
-            top: 25%;
+            top: 20%;
             left:25%;
             width: 75%;
         }
         &.style4 {
-            top: 75%;
+            top: 50%;
             left:25%;
             width: 75%;
         }
         &.style5 {
-            top: 75%;
+            top: 10%;
             width: 75%;
         }
         &.style6 {
-            top: 25%;
+            top: 30%;
             left: 25%;
             width: 75%;
         }
         &.style7 {
-            top: 75%;
+            top: 20%;
             left: 13%;
             width: 75%;
         }
         &.style8 {
-            top: 25%;
+            top: 40%;
             left: 13%;
             width: 75%;
         }
     
         p {
+            font-family: "Anton", Tahoma, Arial, Helvetica, sans-serif;
             color: #ffffff;
             text-transform: uppercase;
-            font-size: 6em;
-            margin:.1em;
+            font-size: 1em;
+            margin: .1em;
         }
         .banner-watch {
             .watch-button {
-                font-size: 3em;
-                padding: 1rem 3rem ;
+                font-size: .5em;
+                padding: .5em 1em ;
                 border-radius: 0 ;
                 background-color: $color-pink;
                 color: white !important;
@@ -71,26 +101,4 @@
             }
         }
     }
-}
-
-
-@media (min-width: 576px) { 
-    .banner {
-        font-size: .3rem;
-    }
-}
-@media (min-width: 768px) { 
-    .banner {
-        font-size: .5rem;
-    }
-}
-@media (min-width: 992px) {
-    .banner {
-        font-size: .8rem;
-    }
-}
-@media (min-width: 1200px) { 
-    .banner {
-        font-size: 1rem;
-    } 
 }

@@ -9,6 +9,6 @@ const sidebar = (state = STATE, action) => {
         return state
     }
 
-  }
+}
   
 export default sidebar;

@@ -311,31 +311,6 @@ a {
     font-size: 1.4rem;
 }
 
-.loading-page {
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: black;
-    opacity: .5;
-}
-
-.loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    svg {
-        margin-top: -50%;
-        margin-left: -50%;
-    }    
-}
-.loading-page {
-    opacity: 1;
-    z-index: 1000;
-    background: url('/images/loading.jpg') center center no-repeat;
-    background-size: cover;
-}
 
 .more-button {
     font-size: 2rem;
@@ -394,4 +369,14 @@ div.series {
     top: 50%;
     transform: translateY(-50%);
 
+}
+
+.loginPage {
+    svg {
+        font-size: 2em !important;
+        transition: all 0.3s ease 0s;
+        &:hover {
+            color: grey;
+        }
+    }
 }
