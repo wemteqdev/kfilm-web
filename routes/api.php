@@ -31,8 +31,9 @@ Route::group(['middleware' => ['auth:api', 'verified']], function(){
 	Route::get('user/categories/{id_or_slug}/videos', 'CategoryController@videos');
 	Route::get('user/tags', 'TagController@index');
 	Route::get('user/products', 'ProductController@index');
-	Route::get('user/favorite_videos', 'UserController@favorite_videos');
-	Route::get('user/histories', 'UserController@histories');
+
+	Route::get('user/favorite_videos', 'UserController@favorite_videos')->middleware('doNotCacheResponse');
+	Route::get('user/histories', 'UserController@histories')->middleware('doNotCacheResponse');
 
 	// pro routes
 	Route::get('pro/videos', 'VideoController@index');
