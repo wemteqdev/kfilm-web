@@ -60,7 +60,7 @@ class Video extends JsonResource
 				"likes" => $this->likesCount,
 				"scope" => $this->scope,
 				"is_pro" => $this->isPro(),
-				"related" => VideoShortResource::collection($this->suggested_by_group()),
+				"related" => VideoShortResource::collection($this->suggested_by_groups()),
 				"series" => new SeriesShortResource(Series::find($this->series_id)),
 				"series_number" => $this->series_number,
         ];
