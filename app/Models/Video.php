@@ -31,6 +31,7 @@ class Video extends Model implements LikeableContract
     public $fillable = [
         'name',
         'description',
+        'meta_tags',
         'slug',
         'duration',
         'width',

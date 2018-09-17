@@ -89,5 +89,11 @@ Route::get('user/password/reset/{token}', function(){
 })->name('password.reset');
 
 Route::any('{all}', function () {
-    return File::get(public_path() . '/index.html');
+	$title = "korfilm";
+	ob_start();
+	include public_path() . '/index.html';
+	$var = ob_get_contents();
+	ob_end_clean();
+	
+	return $var;
 })->where('all', '.*');

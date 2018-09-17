@@ -41,6 +41,12 @@
             {!! Form::text('slug', null, ['class' => 'form-control', 'disabled'=>true]) !!}
         </div>
 
+         <!-- Meta tags Field -->
+        <div class="form-group ">
+            {!! Form::label('meta_tags', 'Meta tags:') !!}
+            {!! Form::text('meta_tags', null, ['class' => 'form-control']) !!}
+        </div>
+
         <!-- Videos Count Field -->
         <div class="form-group ">
             {!! Form::label('videos_count', 'Videos Count:') !!}

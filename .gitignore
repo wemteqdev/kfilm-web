@@ -20,4 +20,5 @@ yarn-error.log
 /composer.lock
 /.dump.rdb
 /public/sitemap.xml
+/public/.htaccess
 .DS_Store

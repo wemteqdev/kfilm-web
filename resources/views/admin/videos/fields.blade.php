@@ -18,6 +18,12 @@
             {!! Form::text('slug', null, ['class' => 'form-control', 'readonly'=>true]) !!}
         </div>
 
+         <!-- Meta tags Field -->
+         <div class="form-group ">
+            {!! Form::label('meta_tags', 'Meta tags:') !!}
+            {!! Form::text('meta_tags', null, ['class' => 'form-control']) !!}
+        </div>
+
         <!-- Duration Field -->
         <div class="form-group ">
             {!! Form::label('duration', 'Duration:') !!}

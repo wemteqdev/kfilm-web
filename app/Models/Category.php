@@ -24,6 +24,7 @@ class Category extends Model
     public $fillable = [
         'name',
         'description',
+        'meta_tags',
         'slug',
         'videos_count',
         'featured_image_id',
