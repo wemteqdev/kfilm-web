@@ -197,7 +197,6 @@ a {
             position: absolute ;
             left: 0 ;
             z-index: 1 ;
-            background-color: #1fac13 !important;
         }
         .user-stats {
             position: absolute ;
@@ -205,7 +204,7 @@ a {
             z-index: 1 ;
             background-color: #e96969 !important;
         }
-        
+
         .line-height-props {
             line-height: 2em;
         }
@@ -222,6 +221,13 @@ a {
     }
 }
 
+.free-stats {
+    background-color: #1fac13 !important;
+}
+
+.user-stats {
+    background-color: #e96969 !important;
+}
 
 .stripe {
     padding-top: 1.5rem;

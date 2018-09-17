@@ -4,26 +4,27 @@ import Video from '../widgets/Video';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import serverURL from '../../variables';
-declare var $;
+import { isValid } from '../../functions';
 
 class VideoPage extends Component {
     
     state = {
-        video : {},
-        like: false
+        video : null,
+        like: null, 
     }
 
     toggleLike = () => {
         let like = !this.state.like;
-        this.setState({like: like})
         if (like) {
             axios.post(`${serverURL}/api/user/videos/${this.state.video.slug}/like`)
             .then( response => {
-            })    
+                this.setState({like: like})
+            })
         }
         else {
             axios.delete(`${serverURL}/api/user/videos/${this.state.video.slug}/unlike`)
             .then( response => {
+                this.setState({like: like})
             })
         }
     }
@@ -35,17 +36,20 @@ class VideoPage extends Component {
 
     loadVideo(props, history) {
         let url = `${serverURL}/api/`
-        if (props.login.user !== null && props.login.user !== undefined){
+        if (isValid(props.login.user)){
             url = url + "user/"
         }
         url = url + `videos/${props.match.params.slug}`
         axios.get(url)
         .then( response => {
-            this.setState({video:response.data.data})
+            this.setState({
+                video: response.data.data,
+                like: response.data.data.is_favorited,
+            })
 
             window.scrollTo(0, 0)
 
-            if (props.login.user !== null && props.login.user !== undefined){
+            if (isValid(props.login.user)){
                 this.setState({ like:response.data.data.is_favorited});
                 if (history) {
                     setTimeout(
@@ -59,20 +63,13 @@ class VideoPage extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.loadVideo(nextProps, true)
-
-    }
-
-    componentWillMount = () => {
-        this.loadVideo(this.props, false)
-    }
-    
-    componentDidMount() {
         window.scrollTo(0, 0)
     }
+
     render (){
         return (
             <div>
-                <Video toggleLike={this.toggleLike} {...this.state} {...this.props} slug={this.props.match.params.slug} type={ this.props.login.user !== undefined ? "pro" : "free" }/>
+                <Video toggleLike={this.toggleLike} {...this.state} type={ isValid(this.props.login.user) ? "pro" : "free" }/>
             </div>
             
         );
@@ -85,5 +82,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-  
 export default withRouter( connect(mapStateToProps, null)(VideoPage));

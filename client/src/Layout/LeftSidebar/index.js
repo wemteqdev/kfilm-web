@@ -121,7 +121,7 @@ class LeftSidebar extends Component {
                 style={{minWidth: "3em"}}
             >
                 <SideNav.Nav defaultSelected="home" className="sidenav">
-                    { isMobile && this.props.sidebar.toggleSidebar && isValid(this.props.login.user) && 
+                    { isMobile && isValid(this.props.login.user) && this.props.sidebar.toggleSidebar && 
                         <span className="pl-5 pb-3">Hi, {this.props.login.user.data.name}</span>
                     }
                     { isMobile && 

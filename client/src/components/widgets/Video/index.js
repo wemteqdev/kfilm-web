@@ -46,9 +46,6 @@ class Video extends Component {
         }
     }
 
-    handleSeriesIndex = (index) => {
-    }
-
     videoURL(slug) {
         if (this.props.type === "pro") {
             return '/user/videos/' + slug;
@@ -59,32 +56,59 @@ class Video extends Component {
     }
 
     displaySeries = () => {
-        if (this.props.video != null && this.props.video.series != null) {
-            let series_videos = this.props.video.series.videos;
-            return series_videos.map( (item, index) => {
-                return (
-                    <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
-                        item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
-                    `}>
-                        {item.series_number}
-                    </Link>
-                )
-            })
-        } else {
-            return (
-                <div>
-                </div>
-            )
+        if (this.props.video.series === null) {
+            return;
         }
+        let series_videos = this.props.video.series.videos;
+        return series_videos.map( (item, index) => {
+            return (
+                <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
+                    item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
+                `}>
+                    {item.series_number}
+                </Link>
+            )
+        })
     }
 
     displayLike = () => {
         if (this.props.type === "pro") {
-            return <button className={`like-button ml-5 btn ${this.props.like?'btn-primary':'btn-secondary'}`} onClick={this.props.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
+            if (this.props.like) {
+                return <FontAwesomeIcon icon="heart" className="text-danger my-2"/>
+            } else {
+                return <button className="like-button ml-5 btn btn-secondary" onClick={this.props.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
+            }
         }
+    }
+
+    displayVideoDetail = () => {
+        return (
+            <div className="container">
+                <div className="row my-3">
+                    { this.props.video.is_pro ? 
+                        <div className="user-stats px-3 py-1 text-white">PRO</div>
+                    :
+                        <div className="free-stats px-3 py-1 text-white">FREE</div>
+                    }
+                    <div className="ml-5 line-height-props">
+                        <FontAwesomeIcon icon="eye" /> { this.props.video.views  }
+                    </div>
+                    <div className="ml-5 line-height-props">
+                        <FontAwesomeIcon icon="clock" /> { this.props.video.formatted_duration }
+                    </div>
+                </div>
+                <div className="row my-3">
+                    {this.props.video.name}&nbsp;&nbsp;&nbsp;
+                    {this.displayLike()}
+                </div>
+            </div>
+        )
     }
     
     render (){
+        if (this.props.video === null) {
+            return <div></div>;
+        }
         return (
             <section className="fullwidth-single-video">
                 <div className="bgBlack">
@@ -92,12 +116,12 @@ class Video extends Component {
                         { this.showVideo()}
                     </div>
                 </div>
+
                 <div className='container video-page'>
                     <div className="row">
                         <div className="col-12">
                             <div className="my-5 video-name">
-                                {this.props.video.name}
-                                {this.displayLike()}
+                                {this.displayVideoDetail()}
                             </div>
 
                             <div className="my-5 series">

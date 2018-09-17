@@ -10,9 +10,9 @@ import serverURL from '../variables';
 import 'bootstrap/scss/bootstrap.scss';
 import '../scss/layout.scss';
 import {isMobile} from 'react-device-detect';
-import {loginSuccessAction} from '../actions';
+import {loginSuccessAction, toggleSidebarAction} from '../actions';
 
-import { isValid } from '../functions';
+import { isValid, justifyPageMargin } from '../functions';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faHome, faFilm, faTh, faEdit, faUser, 
@@ -22,7 +22,8 @@ import { faSearch, faHome, faFilm, faTh, faEdit, faUser,
 
 library.add(faSearch, faHome, faFilm, faTh, faEdit,faUser, faAngleUp, faAngleDown,
     faPlayCircle, faAngleLeft, faAngleRight, faClock, faEye, faPlay, faVideo,faHeart, 
-    faStar, faCalendar, faBurn, faThumbsUp, faHistory, faTimes, faCalendarCheck, faBars, faSignal, faCaretLeft, faCaretRight, faChevronRight);
+    faStar, faCalendar, faBurn, faThumbsUp, faHistory, faTimes, faCalendarCheck, faBars, 
+    faSignal, faCaretLeft, faCaretRight, faChevronRight);
 
 // import {faFacebook} from '@fortawesome/free-brands-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -65,6 +66,7 @@ class Layout extends Component {
                     this.logout()
                 } else {
                     this.props.loginSuccess(user)
+                    justifyPageMargin('42px');
                 }
             })
             .catch( error => {
@@ -77,6 +79,11 @@ class Layout extends Component {
         cookie.remove('user', { path: '/' })
         axios.defaults.headers.common['Authorization'] = ''
         this.props.history.push('/')
+
+        if (this.props.sidebar.toggleSidebar === true) {
+            this.props.toggleSidebar()
+        }
+        justifyPageMargin('0px');
     }
 
     mainContent = () => {
@@ -113,6 +120,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     loginSuccess: (payload) => dispatch(loginSuccessAction(payload)),
+    toggleSidebar: () => dispatch(toggleSidebarAction()),
 })
 
 export default withRouter( connect(mapStateToProps, mapDispatchToProps)(Layout));

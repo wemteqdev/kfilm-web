@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import serverURL from '../../variables';
-import {isMobile} from 'react-device-detect';
-
-import { isValid } from '../../functions';
 
 class SearchPage extends Component {
 
@@ -52,7 +49,7 @@ class SearchPage extends Component {
     showVideos = () => {
         return this.state.videos.map( (item, i) => {
             return (
-                <div key={i} className="col-md-3 col-sm-6 col-12">
+                <div key={i} className="col-lg-3 col-md-6 col-xs-12">
                     <Card className="video-card">
                         <CardImg top width="100%" src={ item.featured_image_url } alt="Card image cap" />
                         <Link to={'/videos/' + item.slug} className='hover-posts' onClick={this.props.toggleSearch}>
@@ -68,20 +65,12 @@ class SearchPage extends Component {
     }
 
     render() {
-        let marginLeft = 0;
-        if (isMobile || isValid(this.props.login.user)) {
-            marginLeft = 3.2
-        }
-        if (this.props.sidebar.toggleSidebar){
-            marginLeft = 18
-        }
         return (
             <div id="search">
                 <Modal  isOpen={this.props.search.toggleSearch} 
                         toggle={this.props.toggleSearch} 
                         className="search-dialog"
                         autoFocus={false}
-                        style={{marginLeft: `${marginLeft}rem`}}
                 >
                     <ModalHeader>
                         <a color="primary" className="float-right" onClick={this.props.toggleSearch}> <FontAwesomeIcon icon='times'/> </a>

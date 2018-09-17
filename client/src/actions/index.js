@@ -1,3 +1,5 @@
+import { justifyPageMargin } from "../functions";
+
 declare var $;
 
 export const toggleSearchAction = () => {
@@ -8,6 +10,7 @@ export const toggleSearchAction = () => {
 
 export const loginSuccessAction = (payload) => {
     $('footer').addClass('d-none');
+    justifyPageMargin('42px')
     return {
         type: 'LOGIN_SUCCESS',
         payload: payload
@@ -16,6 +19,7 @@ export const loginSuccessAction = (payload) => {
 
 export const logoutSuccessAction = () => {
     $('footer').removeClass('d-none');
+    justifyPageMargin('0px')
     return {
         type: 'LOGOUT_SUCCESS'
     }
