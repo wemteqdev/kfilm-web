@@ -131,17 +131,7 @@ class VideoController extends Controller
 
 	public function show($id_or_slug)
 	{
-		$video = Video::published()->where('slug', $id_or_slug)->first();
-
-		if($video==null){
-			$video = Video::published()->where('id', $id_or_slug)->first();
-		}
-		
-		if($video==null)
-		{
-			return response()->json(['error'=>'Not found'], 404);
-		}
-
+		$video = Video::published()->where('slug', $id_or_slug)->firstorfail();
 		$video->addView();
 		return new VideoResource($video);
 	}
@@ -224,15 +214,9 @@ class VideoController extends Controller
 
 	public function like($id_or_slug, Request $request)
 	{
-	
 		// $user = auth('api')->user();
 		$user = $request->user();
-		$video = Video::find($id_or_slug);
-
-		if($video==null){
-			$video = Video::where('slug', $id_or_slug)->firstorfail();
-
-		}
+		$video = Video::where('slug', $id_or_slug)->firstorfail();
 
 		$user->like($video);
 
@@ -242,12 +226,8 @@ class VideoController extends Controller
 	public function unlike($id_or_slug, Request $request)
 	{
 		$user = $request->user();
-		$video = Video::find($id_or_slug);
-
-		if($video==null){
-			$video = Video::where('slug', $id_or_slug)->firstorfail();
-
-		}
+		
+		$video = Video::where('slug', $id_or_slug)->firstorfail();
 
 		$user->unlike($video);
 
@@ -257,12 +237,8 @@ class VideoController extends Controller
 	public function add_history($id_or_slug, Request $request)
 	{
 		$user = $request->user();
-		$video = Video::find($id_or_slug);
 
-		if($video==null){
-			$video = Video::where('slug', $id_or_slug)->firstorfail();
-
-		}
+		$video = Video::where('slug', $id_or_slug)->firstorfail();
 
 		$user->create_video_watch_history($video);
 
