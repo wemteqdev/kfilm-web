@@ -92,12 +92,11 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	})->name('password.reset');
 
 	Route::get('videos/{slug}', function ($slug) {
-		$title = "KORFILM";
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
 
-		$title = $video->name;
-		$meta_tags = $video->meta_tags.','.$video->tag_names;
+		$og_title = 'KORFILM:' . $video->name;
 		$og_image = $video->featured_image_url;
+		$meta_tags = $video->meta_tags.','.$video->tag_names;
 		
 		ob_start();
 		include public_path() . '/client.html';
@@ -108,11 +107,11 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	});
 
 	Route::get('categories/{slug}', function ($slug) {
-		$title = "KORFILM";
 		$category = \App\Models\Category::where('slug', $slug)->firstorfail();
-		$title = $category->name;
-		$meta_tags = $category->meta_tags;
+		
+		$og_title = 'KORFILM' . $category->name;
 		$og_image = "https://korfilm.co/images/og-image.jpg";
+		$meta_tags = $category->meta_tags;
 
 		ob_start();
 		include public_path() . '/client.html';
@@ -123,9 +122,10 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	});
 
 	Route::any('{all}', function () {
-		$title = "KORFILM";
-		$meta_tags = "korfilm, film, tv-series, animiation, festival, korean, english, subtitle, high-quality";
+		$og_title = "KORFILM";
 		$og_image = "https://korfilm.co/images/og-image.jpg";
+		$meta_tags = "korfilm, film, tv-series, animiation, festival, korean, english, subtitle, high-quality";
+
 		ob_start();
 		include public_path() . '/client.html';
 		$var = ob_get_contents();
