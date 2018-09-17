@@ -80,7 +80,7 @@ class Video extends Component {
     displayLike = () => {
         if (this.props.type === "pro") {
             if (this.props.like) {
-                return <FontAwesomeIcon icon="heart" className="text-danger my-2"/>
+                return <FontAwesomeIcon icon="heart" className="text-danger my-2 like-heart"/>
             } else {
                 return <button className="like-button ml-5 btn btn-secondary" onClick={this.props.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
             }

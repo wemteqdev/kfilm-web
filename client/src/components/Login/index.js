@@ -16,15 +16,15 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let isLoggedIn = nextProps.login.user != null;
-        if (isLoggedIn) {
-            let isEmailVerified = nextProps.login.user.data.email_verified;
-            if (isEmailVerified) {
-                this.props.history.push('/');
-            } else {
-                this.props.history.push('/email-verification')
-            }
-        }
+        // let isLoggedIn = nextProps.login.user != null;
+        // if (isLoggedIn) {
+        //     let isEmailVerified = nextProps.login.user.data.email_verified;
+        //     if (isEmailVerified) {
+        //         this.props.history.push('/');
+        //     } else {
+        //         this.props.history.push('/email-verification')
+        //     }
+        // }
     }
 
     componentDidMount() {
@@ -45,14 +45,14 @@ class Login extends Component {
                 })
                 setTimeout(() => {
                     this.props.history.push('/')
-                }, 1000)
+                }, 2000)
             } else {
                 this.setState({
                     errors: 'Please verify your email',
                 })
                 setTimeout(() => {
                     this.props.history.push('/email-verification')
-                }, 1000)
+                }, 2000)
             }
         })
         .catch(error => {
