@@ -94,7 +94,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('videos/{slug}', function ($slug) {
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
 
-		$og_title = 'KORFILM:' . $video->name;
+		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
 		$meta_tags = $video->meta_tags.','.$video->tag_names;
 		
@@ -109,7 +109,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('categories/{slug}', function ($slug) {
 		$category = \App\Models\Category::where('slug', $slug)->firstorfail();
 		
-		$og_title = 'KORFILM' . $category->name;
+		$og_title = 'KORFILM: ' . $category->name;
 		$og_image = "https://korfilm.co/images/og-image.jpg";
 		$meta_tags = $category->meta_tags;
 
