@@ -86,7 +86,7 @@ class LeftSidebar extends Component {
             userInfo.map((item, index) => {
                 return (
                     <NavItem key={index} eventKey={item.eventKey} title={item.text}>
-                        <NavIcon>
+                        <NavIcon style={{width: "3em"}}>
                             <FontAwesomeIcon icon={item.icon}/>
                         </NavIcon>
                         <NavText>

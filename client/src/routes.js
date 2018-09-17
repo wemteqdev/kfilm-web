@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Layout from './Layout/layout';
+import Layout from './Layout';
+import Auth from './Layout/Auth';
 import Home from './Views/Home';
 import CategoriesPage from './components/CategoriesPage';
 import HotPage from './components/HotPage';
@@ -19,7 +20,6 @@ import Billing from './Views/Sidebar/Billing';
 import Histories from './Views/Sidebar/Histories';
 import Favorites from './Views/Sidebar/Favorites';
 import ProVideos from './Views/Sidebar/ProVideos';
-import Auth from './Layout/Auth';
 
 const Routes = () => {
     return(

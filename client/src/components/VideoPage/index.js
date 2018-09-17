@@ -13,13 +13,7 @@ class VideoPage extends Component {
         like: false
     }
 
-    constructor(props) {
-        super(props)
-        this.addHistory = this.addHistory.bind(this)
-        this.toggleLike = this.toggleLike.bind(this)
-    }
-
-    toggleLike() {
+    toggleLike = () => {
         let like = !this.state.like;
         this.setState({like: like})
         if (like) {
@@ -33,7 +27,7 @@ class VideoPage extends Component {
             })
         }
     }
-    addHistory() {
+    addHistory = () => {
         axios.post(`${serverURL}/api/user/videos/${this.state.video.slug}/add_history`)
         .then( response => {
         })
