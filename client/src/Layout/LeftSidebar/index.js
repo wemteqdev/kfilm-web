@@ -38,7 +38,8 @@ class LeftSidebar extends Component {
         let icons = [
             {name: "FT"},
             {name: "TV"},
-            {name: "AN"}
+            {name: "AN"},
+            {name: "FV"},
         ]
         let categories = this.state.categories;
         return (
@@ -84,7 +85,7 @@ class LeftSidebar extends Component {
         return (
             userInfo.map((item, index) => {
                 return (
-                    <NavItem key={index} eventKey={item.eventKey}>
+                    <NavItem key={index} eventKey={item.eventKey} title={item.text}>
                         <NavIcon>
                             <FontAwesomeIcon icon={item.icon}/>
                         </NavIcon>
