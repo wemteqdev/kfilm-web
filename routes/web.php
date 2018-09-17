@@ -94,10 +94,9 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('videos/{slug}', function ($slug) {
 		$title = "KORFILM";
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
-		$tags = implode(',', $video->tag_names);
-
+		
 		$title = $video->name;
-		$meta_tags = $video->meta_tags.','.$tags;
+		$meta_tags = $video->meta_tags.','.$video->tag_names;
 		$og_image = $video->featured_image_url;
 		
 		ob_start();
