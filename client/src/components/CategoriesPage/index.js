@@ -97,12 +97,8 @@ class CategoriesPage extends Component {
     }
 
     render() {
-        let size = 2;
-        if (xs) {
-            size = 12;
-        } else if (sm) {
-            size = 6;
-        } else if (md || lg || xl) {
+        let size = 6;
+        if (lg || xl) {
             if (this.props.match.params.slug === "festival") {
                 size = 6;
             } else {

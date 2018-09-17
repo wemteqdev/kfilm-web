@@ -197,7 +197,6 @@ a {
             position: absolute ;
             left: 0 ;
             z-index: 1 ;
-            background-color: #1fac13 !important;
         }
         .user-stats {
             position: absolute ;
@@ -205,7 +204,7 @@ a {
             z-index: 1 ;
             background-color: #e96969 !important;
         }
-        
+
         .line-height-props {
             line-height: 2em;
         }
@@ -222,6 +221,13 @@ a {
     }
 }
 
+.free-stats {
+    background-color: #1fac13 !important;
+}
+
+.user-stats {
+    background-color: #e96969 !important;
+}
 
 .stripe {
     padding-top: 1.5rem;
@@ -282,35 +288,13 @@ a {
 }
 
 .page-padding {
-    padding:3rem 1rem 3rem 1rem;
-}
-
-@media (min-width: 576px) { 
-    .page-padding {
-        padding:5rem 2rem 5rem 2rem;
-    }
-}
-@media (min-width: 768px) { 
-    .page-padding {
-        padding:5rem 3rem 5rem 3rem;
-    }
-}
-@media (min-width: 992px) {
-    .page-padding {
-        padding:5rem 4rem 5rem 4rem;
-    }
-}
-@media (min-width: 1200px) { 
-    .page-padding {
-        padding:5rem 5rem 5rem 5rem;
-    }
+    padding:3em 0;
 }
 
 .primary-button {
     height: 3rem;
     font-size: 1.4rem;
 }
-
 
 .more-button {
     font-size: 2rem;
@@ -353,10 +337,11 @@ div.series {
 }
 
 .video-page {
+    color: white ;
+    font-size: 20px ;
+
     .video-name {
-        color: white ;
-        font-size: 20px ;
-        text-transform: capitalize ;
+        text-transform: uppercase ;
     }
 }
 
@@ -379,4 +364,8 @@ div.series {
             color: grey;
         }
     }
+}
+
+.col, .col-md-3, .col-sm-6, .col-xs-12 {
+    padding: 0 10px ;
 }

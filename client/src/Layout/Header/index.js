@@ -9,7 +9,7 @@ import { toggleSearchAction, logoutSuccessAction, loginSuccessAction, toggleSide
 import cookie from 'react-cookies';
 import serverURL from '../../variables';
 import {isMobile} from 'react-device-detect';
-import { isValid } from '../../functions';
+import { isValid, justifyPageMargin } from '../../functions';
 
 declare var $;
 
@@ -19,28 +19,20 @@ class Header extends Component {
         categories:[]
     }
 
-    justifyPageMargin = () => {
-        let marginLeft = '0px';
-        if (isMobile) {
-            marginLeft = '42px';
-        }           
-        if (!this.props.sidebar.toggleSidebar) {
-            marginLeft = '140px';
-        }
-        $("footer").css('margin-left', marginLeft)
-        $(".page").css('margin-left', marginLeft)
-    }
-
     onToggle = () => {
         this.props.toggleSidebar()
-        this.justifyPageMargin();
+
+        let marginLeft = '0px'
+        if (isValid(this.props.login.user)) {
+            marginLeft = '42px'
+        }
+        if (!this.props.sidebar.toggleSidebar) {
+            marginLeft = '140px'
+        }
+        justifyPageMargin(marginLeft);
     }
 
     componentWillMount(){
-        this.props.sidebar.toggleSidebar = true;
-        this.justifyPageMargin();
-        this.props.sidebar.toggleSidebar = false;
-
         axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
@@ -62,13 +54,18 @@ class Header extends Component {
         cookie.remove('user', { path: '/' })
         axios.defaults.headers.common['Authorization'] = ''
         this.props.history.push('/')
-    }
+
+        if (this.props.sidebar.toggleSidebar === true) {
+            this.props.toggleSidebar()
+        }
+        justifyPageMargin('0px');
+}
 
     render () {
         let style;
         if (isMobile || isValid(this.props.login.user)) {
             style = {
-                left: '4rem'
+                marginLeft: '4rem'
             }
         }
         return (
@@ -96,7 +93,7 @@ class Header extends Component {
                             </Link>
                         </div>
                         { isMobile === false && 
-                            <div id='categories-nav' className="col" style={style}>
+                            <div id='categories-nav' className="col">
                                 <div className="container px-2">
                                     <Nav>
                                         { this.showCategories() }
