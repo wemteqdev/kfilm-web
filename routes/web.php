@@ -94,10 +94,9 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('videos/{slug}', function ($slug) {
 		$title = "KORFILM";
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
-		$tags = implode(',', $video->tag_names);
 
 		$title = $video->name;
-		$meta_tags = $video->meta_tags.','.$tags;
+		$meta_tags = $video->meta_tags.','.$video->tag_names;
 		$og_image = $video->featured_image_url;
 		
 		ob_start();
@@ -125,7 +124,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 
 	Route::any('{all}', function () {
 		$title = "KORFILM";
-		$meta_tags = "korean, film, tv-series, animiation, festival, english, subtitle, high quality";
+		$meta_tags = "korfilm, film, tv-series, animiation, festival, korean, english, subtitle, high-quality";
 		$og_image = "https://korfilm.co/images/og-image.jpg";
 		ob_start();
 		include public_path() . '/client.html';
