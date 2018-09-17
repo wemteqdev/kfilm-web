@@ -61,15 +61,20 @@ class Video extends Component {
             return;
         }
         let series_videos = this.props.video.series.videos;
-        return series_videos.map( (item, index) => {
-            return (
-                <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
-                    item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
-                `}>
-                    {item.series_number}
-                </Link>
-            )
-        })
+        return (
+            <div className="container my-3 series">
+                {series_videos.map( (item, index) => {
+                    return (
+                        <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
+                            item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
+                        `}>
+                            {item.series_number}
+                        </Link>
+                    )
+                })}
+            </div>
+        )
+        
     }
 
     displayLike = () => {
@@ -121,16 +126,22 @@ class Video extends Component {
                 <div className="container-fluid">
                     <div className="row even-true video-page">
                         {this.displayVideoDetail()}
-                        <div className="container my-3 series">
-                            {this.displaySeries()}
+                        {this.displaySeries()}
+                    </div>
+                    { this.props.video.related.length > 0 ?
+                        <div>
+                            <div className="row pt-5 even-false">
+                                <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
+                            </div>
+                            <div className="row pt-5 even-true">
+                                <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row pt-5 even-false">
-                        <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
-                    </div>
-                    <div className="row pt-5 even-true">
-                        <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
-                    </div>
+                    :
+                        <div className="row pt-5 even-false">
+                            <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
+                        </div>
+                    }
                 </div>
             </section>
         );

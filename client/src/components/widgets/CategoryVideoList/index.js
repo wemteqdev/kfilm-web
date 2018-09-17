@@ -21,7 +21,8 @@ class CategoryVideoList extends Component {
             if (response.data.data.length > 0) {
                 let category_videos = response.data.data;
                 for (let i = 0; i < category_videos.length; i ++) {
-                    if (category_videos[i] === this.props.current_video_id) {
+                    if (category_videos[i].id === this.props.current_video_id) {
+                        console.log(i)
                         category_videos.splice(i, 1);
                         break;
                     }
