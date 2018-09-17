@@ -38,8 +38,6 @@ class VideoShort extends JsonResource
 			"slug"=> $this->slug,
 			"duration"=> $this->duration,
 			"formatted_duration" => gmdate("H:i:s", $this->duration),
-			"width"=> $this->width,
-			"height"=> $this->height,
 			"year" => $this->year,
 			"published_at" => $this->published_at->diffForHumans(),
 			"featured_image_url"=> $this->featured_image_url(),
@@ -48,6 +46,7 @@ class VideoShort extends JsonResource
 			"likes"=>$this->likesCount,
 			"is_pro" => $this->isPro(),
 			"series_number" => $this->series_number,
+			"views" => $this->getUniqueViews(),
         ];
     }
 }

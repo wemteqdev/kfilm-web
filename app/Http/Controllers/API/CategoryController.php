@@ -12,6 +12,7 @@ use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
 use Validator;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\VideoShort as VideoShortResource;
 
 class CategoryController extends Controller
 {
@@ -146,6 +147,6 @@ class CategoryController extends Controller
 			$videos = $videos->paginate(min($per_page, 30));
 		}
 
-		return new VideoCollection($videos);
+		return VideoShortResource::collection($videos);
 	}
 }

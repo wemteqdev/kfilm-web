@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\History;
 use App\Models\Group;
 use App\Http\Resources\VideoCollection;
+use App\Http\Resources\VideoShort as VideoShortResource;
 use App\Http\Resources\Video as VideoResource;
 use Illuminate\Support\Facades\DB;
 use App\Enums\VideoType;
@@ -119,13 +120,13 @@ class VideoController extends Controller
 			$videos = $videos->paginate(min($per_page, 30));
 		}
 
-		return new VideoCollection($videos);
+		return VideoShortResource::collection($videos);
 	}
 
 	public function featured()
 	{
 		$videos = Video::featured()->orderBy('created_at', 'desc')->paginate(9);
-		return new VideoCollection($videos);
+		return VideoShortResource::collection($videos);
 	}
 
 	public function show($id_or_slug)
