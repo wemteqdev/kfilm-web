@@ -1,3 +1,5 @@
+declare var $;
+
 export const toggleSearchAction = () => {
     return {
         type: 'TOGGLE_SEARCH'
@@ -5,6 +7,7 @@ export const toggleSearchAction = () => {
 }
 
 export const loginSuccessAction = (payload) => {
+    $('footer').addClass('d-none');
     return {
         type: 'LOGIN_SUCCESS',
         payload: payload
@@ -12,6 +15,7 @@ export const loginSuccessAction = (payload) => {
 }
 
 export const logoutSuccessAction = () => {
+    $('footer').removeClass('d-none');
     return {
         type: 'LOGOUT_SUCCESS'
     }

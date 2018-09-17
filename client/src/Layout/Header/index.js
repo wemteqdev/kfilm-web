@@ -9,11 +9,9 @@ import { toggleSearchAction, logoutSuccessAction, loginSuccessAction, toggleSide
 import cookie from 'react-cookies';
 import serverURL from '../../variables';
 import {isMobile} from 'react-device-detect';
+import { isValid } from '../../functions';
 
-declare var xs;
-declare var sm;
-declare var md;
-
+declare var $;
 
 class Header extends Component {
 
@@ -21,11 +19,28 @@ class Header extends Component {
         categories:[]
     }
 
+    justifyPageMargin = () => {
+        let marginLeft = '0px';
+        if (isMobile) {
+            marginLeft = '42px';
+        }           
+        if (!this.props.sidebar.toggleSidebar) {
+            marginLeft = '140px';
+        }
+        $("footer").css('margin-left', marginLeft)
+        $(".page").css('margin-left', marginLeft)
+    }
+
     onToggle = () => {
         this.props.toggleSidebar()
+        this.justifyPageMargin();
     }
 
     componentWillMount(){
+        this.props.sidebar.toggleSidebar = true;
+        this.justifyPageMargin();
+        this.props.sidebar.toggleSidebar = false;
+
         axios.get(`${serverURL}/api/categories`)
         .then( response => {
             this.setState({categories:response.data.data});
@@ -49,13 +64,9 @@ class Header extends Component {
         this.props.history.push('/')
     }
 
-    isUserValid = () => {
-        return this.props.login.user !== null && this.props.login.user !== undefined;
-    }
-
     render () {
         let style;
-        if (isMobile || this.isUserValid()) {
+        if (isMobile || isValid(this.props.login.user)) {
             style = {
                 left: '4rem'
             }
@@ -64,15 +75,15 @@ class Header extends Component {
             <header {...this.boundActions}>
                 <div className="container-fluid">
                     <div className="row">
-                        { (isMobile || this.isUserValid()) &&
-                        <div id="toggle" className="col d-flex justify-content-center align-items-center text-center">
-                            <a onClick={this.onToggle}>
-                                { this.props.sidebar.toggleSidebar &&
-                                <FontAwesomeIcon icon="times" /> }
-                                { !this.props.sidebar.toggleSidebar &&
-                                <FontAwesomeIcon icon="bars" /> }
-                            </a>
-                        </div>
+                        { (isMobile || isValid(this.props.login.user)) &&
+                            <div id="toggle" className="col d-flex justify-content-center align-items-center text-center">
+                                <a onClick={this.onToggle}>
+                                    { this.props.sidebar.toggleSidebar &&
+                                    <FontAwesomeIcon icon="times" /> }
+                                    { !this.props.sidebar.toggleSidebar &&
+                                    <FontAwesomeIcon icon="bars" /> }
+                                </a>
+                            </div>
                         }
                         <div id="logo" className="col text-center" style={style}>
                             <Link to="/">
@@ -95,10 +106,10 @@ class Header extends Component {
                         }
                         <div className="login navButton d-flex justify-content-end align-items-center">
                             <a className="search" onClick={ this.props.toggleSearch }><FontAwesomeIcon icon='search' /></a>
-                            { isMobile === false && this.isUserValid() && 
+                            { isMobile === false && isValid(this.props.login.user) && 
                                 <span>Hi, {this.props.login.user.data.name}&nbsp;&nbsp;&nbsp;</span>
                             }
-                            { this.isUserValid() ? 
+                            { isValid(this.props.login.user) ? 
                                 <Link to="/" className="loginReg" onClick={this.logout}>Log out</Link>
                             :
                                 <Link to="/login" className="loginReg">Log in</Link>

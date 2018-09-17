@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import serverURL from '../../variables';
 import RegisterForm from './registerForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Register extends Component {
 
@@ -17,7 +18,7 @@ export default class Register extends Component {
             })
             setTimeout(() => {
                 this.props.history.push('/login')
-            }, 2000)
+            }, 1000)
         })
         .catch(error => {
             this.setState({
@@ -29,13 +30,16 @@ export default class Register extends Component {
     render() {
         return (
             <section className="loginPage page-padding">
-                <div className="container bg-light py-5">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-lg-4 col-md-6 col-sm-8 col-11">
-                            <div className="text-center">
-                                <h1 className="title">Sign UP</h1>
+                <div className="container bg-light">
+                    <a className="float-right mt-3" onClick={this.goBack}> <FontAwesomeIcon icon='times'/> </a>
+                    <div className="py-5">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-lg-4 col-md-6 col-sm-8 col-11">
+                                <div className="text-center">
+                                    <h1 className="title">Sign UP</h1>
+                                </div>
+                                <RegisterForm onSubmit={this.handleRegister} errors={this.state.errors}/>
                             </div>
-                            <RegisterForm onSubmit={this.handleRegister} errors={this.state.errors}/>
                         </div>
                     </div>
                 </div>

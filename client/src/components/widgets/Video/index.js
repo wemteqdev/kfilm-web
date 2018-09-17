@@ -103,12 +103,7 @@ class Video extends Component {
                             <div className="my-5 series">
                                 {this.displaySeries()}
                             </div>
-                            <div className="my-5 videos">
-                                <div className="head-title mb-4">
-                                    <h4 className='borderBottom text-left'>Related</h4>
-                                </div>
-                                <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
-                            </div>
+                            <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
                         </div>
                     </div>
                 </div>

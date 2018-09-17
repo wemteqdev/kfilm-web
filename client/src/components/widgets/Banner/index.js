@@ -16,7 +16,7 @@ class Banner extends Component {
         banners: []
     }
     componentWillMount = () => {
-        $("body").addClass('loading-banner')
+        $(".page-loading").removeClass('d-none')
         axios.get(`${serverURL}/api/slides`)
         .then( response => {
             this.setState({banners:response.data.data})
@@ -25,7 +25,7 @@ class Banner extends Component {
     }
 
     imageLoaded() {
-        $("body").removeClass('loading-banner')
+        $(".page-loading").addClass('d-none')
     }
 
     showBanners = () => {
@@ -34,8 +34,8 @@ class Banner extends Component {
                 <div key={i} className="banner-mask">
                     <img src={ item.image_url } width="100%" height="auto" alt="" onLoad={this.imageLoaded.bind(this)} />
                     <div className={`banner-title ${item.style}`}>
-                        <p style={{fontFamily: "Anton"}}>{item.title}</p>
-                        <div className="banner-watch my-4">
+                        <p>{item.title}</p>
+                        <div className="banner-watch">
                             <Link to={`/videos/${item.link_url}`} className="btn watch-button"><span>Watch Now</span> <FontAwesomeIcon icon="chevron-right"/></Link>
                         </div>
                     </div>

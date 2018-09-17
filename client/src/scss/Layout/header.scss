@@ -18,7 +18,7 @@ header {
         display: none;
     }
 }
-@media (min-width: 576px) { 
+@media (min-width: 256px) { 
     header {
         font-size: 1.5rem;
     }
@@ -59,9 +59,8 @@ header {
         width: 100%;
         height: 100%;
         h2 {
-            font-size: 2.2rem;
+            font-size: 1em;
             color: white;
-            font-style: italic;
         }
     }
 }

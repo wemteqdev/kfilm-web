@@ -15,49 +15,35 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            display: block;
+            z-index: 1000;
+            background: url('/images/loading.jpg') center center no-repeat;
+            background-size: cover;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
 </head>
- <style>
-   .all-loading #root, .loading-banner #root {
-        display: none;
-   }
-   .all-loading footer, .loading-banner footer {
-        display: none;
-   }
-   #root {
-    transition: width 2s, height 4s;
-   }
-   .page-loading {
-      position: fixed;
-      top: 0px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      background-color: black;
-      opacity: .5;
-      opacity: 1;
-      z-index: 1000;
-      background: url('/images/loading.jpg') center center no-repeat;
-      background-size: cover;
-      display: none;
-   }
 
-   .all-loading .page-loading,  .loading-banner .page-loading {
-     display: block;
-   }
-  .loading {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
- </style>
-  <body class="all-loading">
-
+<body>
     <div class="page-loading">
-      <img class="loading" src="/images/loader.gif">
+      <img class="loading" src="/images/loader.gif"/>
     </div>
-    <div id="root">
-    </div>
+    <div id="root"></div>
     <footer>
       <div class='container'>
           <div class="row align-items-center justify-content-center">

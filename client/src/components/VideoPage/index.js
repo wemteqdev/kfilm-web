@@ -41,12 +41,9 @@ class VideoPage extends Component {
         url = url + `videos/${props.match.params.slug}`
         axios.get(url)
         .then( response => {
-            if (response.data.data.embed === null){
-                this.setState({video:response.data.data})
-            }
-            else {
-                this.setState({video:response.data.data})
-            }
+            this.setState({video:response.data.data})
+
+            window.scrollTo(0, 0)
 
             if (props.login.user !== null && props.login.user !== undefined){
                 this.setState({ like:response.data.data.is_favorited});

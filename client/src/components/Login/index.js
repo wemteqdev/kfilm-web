@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactLoading from 'react-loading';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import { withRouter } from 'react-router-dom';
@@ -7,11 +6,11 @@ import { connect } from 'react-redux';
 import { loginSuccessAction } from '../../actions';
 import serverURL from '../../variables';
 import LoginForm from './loginForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Login extends Component {
 
     state = {
-        signing: false,
         errors: '',
         success: '', 
     }
@@ -29,15 +28,8 @@ class Login extends Component {
     }
 
     handleLogin = (values) => {
-        this.setState({
-            signing: true
-        })
         axios.post(`${serverURL}/api/user/login?email=${values.email}&password=${values.password}`)
         .then(response => { 
-            this.setState({
-                signing: false
-            })
-
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token
 
             cookie.save('user', response.data, { path: '/', maxAge: 3600 * 24 * 7 })
@@ -49,19 +41,18 @@ class Login extends Component {
                 })
                 setTimeout(() => {
                     this.props.history.push('/')
-                }, 2000)
+                }, 1000)
             } else {
                 this.setState({
                     errors: 'Please verify your email',
                 })
                 setTimeout(() => {
                     this.props.history.push('/email-verification')
-                }, 2000)
+                }, 1000)
             }
         })
         .catch(error => {
             this.setState({
-                signing: false,
                 errors: error.response.data.error,
             })
         });
@@ -73,23 +64,26 @@ class Login extends Component {
         }
     }
 
+    goBack = () => {
+        this.props.history.goBack()
+    }
+
     render() {
         return (
             <section className="loginPage">
-                <div className="container bg-light py-5">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-lg-4 col-md-6 col-sm-8 col-11">
-                            <div className="text-center">
-                                <h2>Profile Login</h2>
+                <div className="container bg-light">
+                    <a className="float-right mt-3" onClick={this.goBack}> <FontAwesomeIcon icon='times'/> </a>
+                    <div className="py-5">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-lg-4 col-md-6 col-sm-8 col-11">
+                                <div className="text-center">
+                                    <h2>Profile Login</h2>
+                                </div>
+                                <LoginForm onSubmit={this.handleLogin} errors={this.state.errors} success={this.state.success}/>
                             </div>
-                            <LoginForm onSubmit={this.handleLogin} errors={this.state.errors} success={this.state.success}/>
                         </div>
                     </div>
                 </div>
-                { this.state.signing &&
-                <div className="loading-page">
-                    <ReactLoading className="loading" type={'spinningBubbles'} color={'white'} height={40} width={40} />
-                </div>}
             </section>
         )
     }

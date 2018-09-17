@@ -1,20 +1,18 @@
-import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import axios from 'axios';
+import { isValid } from '../functions'
 
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+const Auth = (props) => {
 
-class Auth extends Component {
-
-    render() {
-        return (
-            this.props.login.user != null && this.props.login.user.data.email_verified === true && this.props.children
-        );
+    const isUserVerified = () => {
+        return isValid(props.login.user) && props.login.user.data.email_verified === true;
     }
-};
+
+    return (
+        isUserVerified() && props.children
+    )
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -22,5 +20,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-  
 export default withRouter( connect(mapStateToProps, null)(Auth));

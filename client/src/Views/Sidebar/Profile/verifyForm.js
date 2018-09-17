@@ -6,7 +6,7 @@ import asyncValidate from '../../../components/Validate/asyncValidate';
 import renderField from '../../../components/widgets/renderField'
 
 const VerifyForm = (props) =>{
-    const {handleSubmit, submitting, errors, success} = props
+    const {handleSubmit, submitting, errors, success, email} = props
 
     const handleKeyEvent = (event) => {
         if (event.charCode === 13 || event.keyCode === 13) {
@@ -22,7 +22,7 @@ const VerifyForm = (props) =>{
             {success && 
                 <div className="alert alert-success">{success}</div>
             }
-            <Field name="email" type="email" component={renderField} label="Email address:" handleKeyEvent={handleKeyEvent}/>
+            <Field name="email" type="email" component={renderField} label="Email address:" initValue={email} handleKeyEvent={handleKeyEvent}/>
             {errors.email && 
                 <div className="alert alert-danger">{errors.email}</div>
             }
