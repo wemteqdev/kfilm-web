@@ -214,7 +214,7 @@ class Video extends Model implements LikeableContract
 
     public function suggested_by_groups()
     {
-        $group_ids = $this->groups()->pluck('group_id');
+        $group_ids = $this->groups()->where('slug', 'like', 'video-%')->pluck('group_id');
 
         $related_videos = Video::published()->whereHas('groups', function($query) use ($group_ids) {
             $query->whereIn('group_video.group_id', $group_ids);
