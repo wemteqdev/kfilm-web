@@ -25,13 +25,13 @@ class VideoContent extends Component {
     ]
 
     showAllCategories() {
-        return this.videoTypes.map((item, i) => {
+        return this.videoTypes.map((item, index) => {
             return (
-                <div className='container-fluid' key={i}>
-                    <div className={'row even-' + (i%2 === 0)}>
+                <div className='container-fluid' key={index}>
+                    <div className="row stripe">
                         <div className="container">
-                            <section className="stripe videos">
-                            <div className="main-heading mb-4">
+                            <section className="py-5 videos">
+                            <div className="mb-3">
                                 <div className="row">
                                     <div className="col-12">
                                         <div className="head-title">

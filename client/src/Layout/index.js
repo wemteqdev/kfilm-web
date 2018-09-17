@@ -41,6 +41,15 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     response => {
+        $('.stripe').each((index, element) => {
+            if (index & 1) {
+                $(element).removeClass('stripe-even')
+                $(element).addClass('stripe-odd')
+            } else {
+                $(element).removeClass('stripe-odd')
+                $(element).addClass('stripe-even')
+            }
+        })
         $('.page-loading').addClass('d-none')
         return response
     },

@@ -4,7 +4,6 @@ import VideoList from '../widgets/VideoList';
 import serverURL from '../../variables';
 import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {ReactTitle} from 'react-meta-tags';
 
 declare var xs;
 declare var sm;
@@ -108,20 +107,17 @@ class CategoriesPage extends Component {
 
         return (
             <div className="page-padding">
-                <ReactTitle title={this.state.category.name}/>
-                <div className="content">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col section-header">
-                                <h1 className="title">{this.state.category.name}</h1>
-                            </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col section-header">
+                            <h1 className="title">{this.state.category.name}</h1>
                         </div>
-                        <div className="row">
-                            <VideoList videos={this.state.videos} size={size}/>
-                        </div>
-                        <div className="row my-3 d-flex justify-content-center">
-                            {this.displayPaginate()}
-                        </div>
+                    </div>
+                    <div className="row">
+                        <VideoList videos={this.state.videos} size={size}/>
+                    </div>
+                    <div className="row my-3 d-flex justify-content-center">
+                        {this.displayPaginate()}
                     </div>
                 </div>
             </div>

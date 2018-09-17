@@ -12,9 +12,9 @@
 @import './history.scss';
 @import './pricing.scss';
 @import './banner.scss';
+@import './carousel.scss';
 @import '~owl.carousel/dist/assets/owl.carousel.css';
 @import '~owl.carousel/dist/assets/owl.theme.default.css';
-@import '../components/widgets/Videos/Carousel/carousel.scss';
 
 
 html {
@@ -229,10 +229,6 @@ a {
     background-color: #e96969 !important;
 }
 
-.stripe {
-    padding-top: 1.5rem;
-}
-
 .bgWhite {
     background-color: white !important;
 }
@@ -338,9 +334,9 @@ div.series {
 
 .video-page {
     color: white ;
-    font-size: 20px ;
 
     .video-name {
+        font-size: 2.2em ;
         text-transform: uppercase ;
     }
 }
@@ -368,4 +364,12 @@ div.series {
 
 .col, .col-md-3, .col-sm-6, .col-xs-12 {
     padding: 0 10px ;
+}
+
+.stripe-even{
+    background-color: $background-secondary-color;
+}
+
+.stripe-odd{
+    background-color: $color-hover-dark;
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../widgets/VideoList';
 import serverURL from '../../variables';
-import {ReactTitle} from 'react-meta-tags';
 
 class SpeicalVideos extends Component {
     
@@ -32,17 +31,14 @@ class SpeicalVideos extends Component {
     render() {
         return (
             <div className="wrapper page-padding">
-                <ReactTitle title={this.props.title}/>
-                <div className="content">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col section-header">
-                                <h1 className="title">{this.props.title}</h1>
-                            </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col section-header">
+                            <h1 className="title">{this.props.title}</h1>
                         </div>
-                        <div className="row">
-                            <VideoList videos={this.state.videos}/>
-                        </div>
+                    </div>
+                    <div className="row">
+                        <VideoList videos={this.state.videos}/>
                     </div>
                 </div>
             </div>

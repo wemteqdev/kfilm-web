@@ -12,7 +12,7 @@ export default class Home extends Component {
                 <Banner/>
                 <MainContent/>
                 <Videos/>
-            </div>        
+            </div>
         )
     }
 }

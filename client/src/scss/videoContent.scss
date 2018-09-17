@@ -1,7 +1,4 @@
 .videos {
-    .main-heading {
-        margin-bottom: 1rem;
-    }
     .head-title {
         svg {
             display: inline-block;
@@ -97,28 +94,6 @@
     }
 }
 
-// .video-stats {
-//     width: 100%;
-//     left: 0;
-//     padding: 0 1rem;
-
-//     .thumb-stats {
-//         padding: 0 .8rem;
-//         height: 3rem;
-//         text-align: center;
-//         // border-radius: .3rem;
-//         span {
-//             color: white;
-//             font-size: 1.4rem;
-//             line-height: 3rem;
-//         }
-//     }
-// }
-
-// .post:hover .video-stats {
-// //    transform: translateY(7rem); 
-// }
-
 .post:hover a.hover-posts {
     visibility: visible;
     transform: scale(1); }
@@ -127,15 +102,6 @@
     font-size: 1.8rem !important;
 }
 
-
 .borderBottom {
     border-bottom: 0.1rem solid $color-grey;
-}
-
-.even-true {
-    background-color: $background-secondary-color;
-}
-
-.even-false {
-    background-color: $color-hover-dark;
 }

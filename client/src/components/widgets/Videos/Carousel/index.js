@@ -60,23 +60,23 @@ class Carousel extends Component {
         }
 
         return (
-            <section className="movies container">
+            <section className="container py-5">
                 <div className="row">
                     <div className="col-12">
                         <div className="heading category-heading clearfix">
                             <div className="cat-head float-left">
-                            <FontAwesomeIcon icon={this.props.icon}/>
-                            <h4>{this.props.name}</h4>
+                                <FontAwesomeIcon icon={this.props.icon}/>
+                                <h4>{this.props.name}</h4>
                             </div>
                             <div>
-                            <div className="navText float-right show-for-large">
-                                <a className="prev secondary-button" onClick={this.onPrev}>
-                                    <FontAwesomeIcon icon="angle-left"/>
-                                </a>
-                                <a className="next secondary-button" onClick={this.onNext}>
-                                    <FontAwesomeIcon icon="angle-right"/>
-                                </a>
-                            </div>
+                                <div className="navText float-right show-for-large">
+                                    <a className="prev secondary-button" onClick={this.onPrev}>
+                                        <FontAwesomeIcon icon="angle-left"/>
+                                    </a>
+                                    <a className="next secondary-button" onClick={this.onNext}>
+                                        <FontAwesomeIcon icon="angle-right"/>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <OwlCarousel ref={this.owlCarousel} id="owl-carousel" className={"owl-theme"} autoplay autoplayTimeout="3000" loop dots={false} margin={10} items={ count } >
