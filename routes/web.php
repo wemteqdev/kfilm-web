@@ -113,6 +113,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 		$category = \App\Models\Category::where('slug', $slug)->firstorfail();
 		$title = $category->name;
 		$meta_tags = $category->meta_tags;
+		$og_image = "https://korfilm.co/images/og-image.jpg";
 
 		ob_start();
 		include public_path() . '/client.html';
