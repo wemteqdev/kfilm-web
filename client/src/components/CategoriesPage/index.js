@@ -24,7 +24,6 @@ class CategoriesPage extends Component {
     initVideos = () => {
         this.setState({
             videos: [],
-            category: {},
             pageCount: 1,
             pageNum: 0,
         })
