@@ -59,7 +59,7 @@ class Header extends Component {
             this.props.toggleSidebar()
         }
         justifyPageMargin('0px');
-}
+    }
 
     render () {
         let style;

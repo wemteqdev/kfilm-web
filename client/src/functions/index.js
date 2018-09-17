@@ -1,3 +1,5 @@
+import {isMobile} from 'react-device-detect';
+
 declare var $;
 
 export const isValid = (data) => {
@@ -5,7 +7,8 @@ export const isValid = (data) => {
 }
 
 export const justifyPageMargin = (marginLeft) => {
-    $("footer").css('margin-left', marginLeft)
-    $(".page").css('margin-left', marginLeft)
-    $("#categories-nav").css('margin-left', marginLeft)
+    if (isMobile && marginLeft === "0px") {
+        marginLeft = "42px";
+    }
+    $("body").css('margin-left', marginLeft)
 }

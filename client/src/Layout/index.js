@@ -65,6 +65,7 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 class Layout extends Component {
 
     componentWillMount() {
+        justifyPageMargin('0px');
         let user = cookie.load('user')
         if (user !== undefined) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.access_token

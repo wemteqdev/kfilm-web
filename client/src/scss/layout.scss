@@ -168,12 +168,6 @@ a {
     font-weight: bold;
 }
 
-.mobile-page .video-card.card {
-    .card-img {
-        height: 20em !important;
-    }
-}
-
 .video-card.card {
     border: none;
     margin-bottom: 5em;
@@ -186,6 +180,9 @@ a {
         width: 100%;
         background-size: cover !important;
     }
+    .card-subtitle {
+        font-size: 1.5em ;
+    }    
     .video-stats {
         .thumb-stats {
             span {
@@ -336,7 +333,7 @@ div.series {
     color: white ;
 
     .video-name {
-        font-size: 2.2em ;
+        font-size: 2.2rem ;
         text-transform: uppercase ;
     }
 }
@@ -362,7 +359,7 @@ div.series {
     }
 }
 
-.col, .col-md-3, .col-sm-6, .col-xs-12 {
+.col, .col-lg-3, .col-md-3, .col-sm-6, .col-xs-12 {
     padding: 0 10px ;
 }
 
