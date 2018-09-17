@@ -70,7 +70,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js && cp -R build/* ../public/",
+    "build": "node scripts/build.js && mv build/index.html build/client.html && cp -R build/* ../public/",
     "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": "http://korfilm.loc",
