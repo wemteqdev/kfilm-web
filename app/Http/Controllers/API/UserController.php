@@ -9,6 +9,7 @@ use App\Http\Resources\SubscriptionCollection;
 use App\Http\Resources\InoviceCollection;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\HistoryCollection;
+use App\Http\Resources\VideoShort as VideoShortResource;
 use Auth;
 use Validator;
 use App\User;
@@ -115,7 +116,7 @@ class UserController extends Controller
 	public function favorite_videos(Request $request)
 	{
 		$videos = Video::published()->whereLikedBy($request->user()->id)->with('likesCounter')->get();
-		return new VideoCollection($videos);
+		return VideoShortResource::collection($videos);
 	}
 
 	public function invoices(Request $request)
