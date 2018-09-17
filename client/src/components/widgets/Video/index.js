@@ -124,24 +124,18 @@ class Video extends Component {
                 </div>
 
                 <div className="container-fluid">
-                    <div className="row even-true video-page">
+                    <div className="row stripe-even video-page">
                         {this.displayVideoDetail()}
                         {this.displaySeries()}
                     </div>
-                    { this.props.video.related.length > 0 ?
-                        <div>
-                            <div className="row pt-5 even-false">
-                                <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
-                            </div>
-                            <div className="row pt-5 even-true">
-                                <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
-                            </div>
-                        </div>
-                    :
-                        <div className="row pt-5 even-false">
-                            <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
+                    { this.props.video.related.length > 0 && 
+                        <div className="row pt-5 stripe">
+                            <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
                         </div>
                     }
+                    <div className="row pt-5 stripe">
+                        <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
+                    </div>
                 </div>
             </section>
         );

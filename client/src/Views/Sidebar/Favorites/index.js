@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import VideoList from '../../../components/widgets/VideoList';
 import serverURL from '../../../variables';
-import {ReactTitle} from 'react-meta-tags';
 
 export default class Favorites extends Component {
 
@@ -22,17 +21,14 @@ export default class Favorites extends Component {
     render() {
         return (
             <div className="page-padding">
-                <ReactTitle title="Favorites"/>
-                <div className="content">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col section-header">
-                                <h1 className="title">Your favorites</h1>
-                            </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col section-header">
+                            <h1 className="title">Your favorites</h1>
                         </div>
-                        <div className="row">
-                            <VideoList videos={this.state.videos} size="3"/>
-                        </div>
+                    </div>
+                    <div className="row">
+                        <VideoList videos={this.state.videos} size="3"/>
                     </div>
                 </div>
             </div>

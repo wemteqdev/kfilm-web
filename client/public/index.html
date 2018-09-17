@@ -6,12 +6,12 @@
     <meta name="theme-color" content="#000000">
     
     <meta name="description" content="Best Quality Korean Videos With English Subtitles" />
-    <meta property="og:title" content="<?php echo $title; ?>" />
+    <meta property="og:title" content="<?php echo $og_title; ?>" />
     <meta property="og:image" content="<?php echo $og_image; ?>" />
 
     <meta name="keywords" content="<?php echo $meta_tags; ?>">
 
-    <title><?php echo $title; ?></title>
+    <title><?php echo $og_title; ?></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="/breakpoint.js"></script>
     <link rel="shortcut icon" href="/favicon.ico">
@@ -49,8 +49,8 @@
       <img class="loading" src="/images/loader.gif"/>
     </div>
     <div id="root"></div>
-    <footer>
-        <div class='container subscribe-form'>
+    <footer class="stripe">
+        <div class='container subscribe-form py-5'>
           <div class="row align-items-center justify-content-center">
               <div class="col-lg-4 col-md-5 col-sm-6 col-8">
                   <div id="mc_embed_signup" class="widgetBox">
