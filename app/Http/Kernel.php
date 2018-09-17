@@ -42,6 +42,7 @@ class Kernel extends HttpKernel
             'throttle:1000,1',
             'bindings',
             \Barryvdh\Cors\HandleCors::class,
+            \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         ],
     ];
 
@@ -64,5 +65,6 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
     ];
 }

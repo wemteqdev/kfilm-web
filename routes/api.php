@@ -26,9 +26,6 @@ Route::group(['middleware' => ['auth:api', 'verified']], function(){
 	Route::post('user/videos/{id_or_slug}/add_history', 'VideoController@add_history');
 
 	Route::get('user/categories', 'CategoryController@index');
-	Route::get('user/images', 'ImageController@index');
-	Route::get('user/series', 'SeriesController@index');
-	Route::get('user/series/{id_or_slug}', 'SeriesController@show');
 	Route::get('user/videos/{id_or_slug}', 'VideoController@show');
 	Route::get('user/categories/{id_or_slug}', 'CategoryController@show');
 	Route::get('user/categories/{id_or_slug}/videos', 'CategoryController@videos');
@@ -54,7 +51,7 @@ Route::group(['middleware' => ['auth:api', 'verified']], function(){
 	Route::get('pro/favorite_videos', 'UserController@favorite_videos');
 });
 
-Route::group(['middleware' => ['auth:api', 'role:admin']], function(){
+Route::group(['middleware' => ['doNotCacheResponse', 'auth:api', 'role:admin']], function(){
 	// admin routes
 	Route::post('categories/{category_id}/add_video', ['as'=> 'admin.categories.add_video', 'uses' => 'CategoryController@add_video']);
 	Route::delete('categories/{category_id}/remove_video', ['as'=> 'admin.categories.remove_video', 'uses' => 'CategoryController@remove_video']);
