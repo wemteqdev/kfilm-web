@@ -27,6 +27,10 @@ class Login extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     handleLogin = (values) => {
         axios.post(`${serverURL}/api/user/login?email=${values.email}&password=${values.password}`)
         .then(response => { 

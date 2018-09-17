@@ -4,7 +4,7 @@ import VideoCard from '../VideoCard';
 const RelatedVideoList = (props) => {
     if (props.videos !== undefined && props.videos.length > 0) {
         return (
-            <div className="my-5 videos container-fluid">
+            <div className="videos container">
                 <div className="row">
                     <div className="col head-title mb-4">
                         <h4 className='borderBottom text-left'>Related</h4>

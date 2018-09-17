@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import RelatedVideoList from '../RelatedVideoList';
+import CategoryVideoList from '../CategoryVideoList';
 
 class Video extends Component {
 
@@ -84,7 +85,7 @@ class Video extends Component {
     displayVideoDetail = () => {
         return (
             <div className="container">
-                <div className="row my-3">
+                <div className="d-flex my-3">
                     { this.props.video.is_pro ? 
                         <div className="user-stats px-3 py-1 text-white">PRO</div>
                     :
@@ -97,8 +98,8 @@ class Video extends Component {
                         <FontAwesomeIcon icon="clock" /> { this.props.video.formatted_duration }
                     </div>
                 </div>
-                <div className="row my-3">
-                    {this.props.video.name}&nbsp;&nbsp;&nbsp;
+                <div className="d-flex my-3">
+                    <span className="video-name">{this.props.video.name}</span>&nbsp;&nbsp;&nbsp;
                     {this.displayLike()}
                 </div>
             </div>
@@ -117,18 +118,18 @@ class Video extends Component {
                     </div>
                 </div>
 
-                <div className='container video-page'>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="my-5 video-name">
-                                {this.displayVideoDetail()}
-                            </div>
-
-                            <div className="my-5 series">
-                                {this.displaySeries()}
-                            </div>
-                            <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
+                <div className="container-fluid">
+                    <div className="row even-true video-page">
+                        {this.displayVideoDetail()}
+                        <div className="container my-3 series">
+                            {this.displaySeries()}
                         </div>
+                    </div>
+                    <div className="row pt-5 even-false">
+                        <RelatedVideoList videos={this.props.video.related} type={this.props.type === "pro" ? "pro" : "free"}/>
+                    </div>
+                    <div className="row pt-5 even-true">
+                        <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
                     </div>
                 </div>
             </section>

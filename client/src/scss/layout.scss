@@ -337,10 +337,11 @@ div.series {
 }
 
 .video-page {
+    color: white ;
+    font-size: 20px ;
+
     .video-name {
-        color: white ;
-        font-size: 20px ;
-        text-transform: capitalize ;
+        text-transform: uppercase ;
     }
 }
 
