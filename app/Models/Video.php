@@ -201,13 +201,24 @@ class Video extends Model implements LikeableContract
         return $this->save();
     }
     
-    public function suggested()
+    public function suggested_by_categories()
     {
         $category_ids = $this->categories()->pluck('category_id');
 
         $related_videos = Video::published()->whereHas('categories', function($query) use ($category_ids) {
             $query->whereIn('category_video.category_id', $category_ids);
         })->where('id', '<>', $this->id)->take(3)->get();
+
+        return $related_videos;
+    }
+
+    public function suggested_by_groups()
+    {
+        $group_ids = $this->groups()->pluck('group_id');
+
+        $related_videos = Video::published()->whereHas('groups', function($query) use ($group_ids) {
+            $query->whereIn('group_video.group_id', $group_ids);
+        })->where('id', '<>', $this->id)->get();
 
         return $related_videos;
     }
