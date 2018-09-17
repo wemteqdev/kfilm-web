@@ -84,16 +84,53 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 
 Route::get('verification/verify', 'Auth\VerificationController@verify')->name('verification.verify');
 
-Route::get('user/password/reset/{token}', function(){
-	return File::get(public_path() . '/index.html');	
-})->name('password.reset');
 
-Route::any('{all}', function () {
-	$title = "korfilm";
-	ob_start();
-	include public_path() . '/index.html';
-	$var = ob_get_contents();
-	ob_end_clean();
-	
-	return $var;
-})->where('all', '.*');
+/* IMPORTANT FROM HERE - FOR REACT APP */
+Route::group(['middleware' => ['cacheResponse']], function(){
+	Route::get('user/password/reset/{token}', function(){
+		return File::get(public_path() . '/client.html');	
+	})->name('password.reset');
+
+	Route::get('videos/{slug}', function ($slug) {
+		$title = "KORFILM";
+		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
+		$tags = implode(',', $video->tag_names);
+
+		$title = $video->name;
+		$meta_tags = $video->meta_tags.','.$tags;
+		$og_image = $video->featured_image_url;
+		
+		ob_start();
+		include public_path() . '/client.html';
+		$var = ob_get_contents();
+		ob_end_clean();
+		
+		return $var;
+	});
+
+	Route::get('categories/{slug}', function ($slug) {
+		$title = "KORFILM";
+		$category = \App\Models\Category::where('slug', $slug)->firstorfail();
+		$title = $category->name;
+		$meta_tags = $category->meta_tags;
+
+		ob_start();
+		include public_path() . '/client.html';
+		$var = ob_get_contents();
+		ob_end_clean();
+		
+		return $var;
+	});
+
+	Route::any('{all}', function () {
+		$title = "KORFILM";
+		$meta_tags = "korean, film, tv-series, animiation, festival, english, subtitle, high quality";
+		$og_image = "https://korfilm.co/images/og-image.jpg";
+		ob_start();
+		include public_path() . '/client.html';
+		$var = ob_get_contents();
+		ob_end_clean();
+		
+		return $var;
+	})->where('all', '.*');
+});
