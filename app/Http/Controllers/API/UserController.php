@@ -43,7 +43,7 @@ class UserController extends Controller
 			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}
 
-	 	return response()->json(['error' => 'Invalid username or Password'], 401);
+	 	return response()->json(['error' => 'Invalid username or password'], 401);
 	}
 
 	function update_password(Request $request) {
