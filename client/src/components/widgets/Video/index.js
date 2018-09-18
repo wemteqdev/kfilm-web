@@ -66,7 +66,7 @@ class Video extends Component {
                 {series_videos.map( (item, index) => {
                     return (
                         <Link key={index} to={this.videoURL(item.slug)} className={`series-index m-2 btn ${
-                            item.slug === this.props.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
+                            item.slug === this.props.video.slug ? 'btn-light' : (item.is_pro ? 'btn-danger' : 'btn-secondary')}
                         `}>
                             {item.series_number}
                         </Link>
