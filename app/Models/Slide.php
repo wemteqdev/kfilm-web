@@ -35,9 +35,14 @@ class Slide extends Model
     protected $casts = [
     ];
 
-   public static $rules = [
+    public static $rules = [
         
     ];
+
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('status', SlideStatus::active);
+    // }
 
     public function getTagsAttribute()
     {

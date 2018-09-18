@@ -34,6 +34,7 @@ class Category extends Model
         'views_count',
         'views_count_last_7days',
         'views_count_last_30days',
+        'status',
     ];
 
     protected $casts = [
