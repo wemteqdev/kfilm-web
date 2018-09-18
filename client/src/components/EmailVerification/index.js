@@ -37,7 +37,7 @@ class EmailVerification extends Component {
                 })
                 setTimeout(() => {
                     this.props.history.push('/')
-                }, 1000)
+                }, 2000)
             } else {
                 this.setState({
                     success: 'Check your email',

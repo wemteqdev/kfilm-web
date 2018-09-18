@@ -27,6 +27,10 @@ export default class Register extends Component {
         });
     }
 
+    goBack = () => {
+        this.props.history.goBack()
+    }
+
     render() {
         return (
             <section className="loginPage page-padding">

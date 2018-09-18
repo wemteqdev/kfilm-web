@@ -11,6 +11,7 @@ class VideoPage extends Component {
     state = {
         video : null,
         like: null, 
+        type: 'unlogin',
     }
 
     toggleLike = () => {
@@ -36,7 +37,7 @@ class VideoPage extends Component {
 
     loadVideo(props, history) {
         let url = `${serverURL}/api/`
-        if (isValid(props.login.user)){
+        if (this.state.type === 'pro'){
             url = url + "user/"
         }
         url = url + `videos/${props.match.params.slug}`
@@ -61,8 +62,23 @@ class VideoPage extends Component {
         })
     }
 
+    getType = (user) => {
+        let type = 'unlogin';
+        if (isValid(user)) {
+            let roles = user.data.role_names;
+            if (roles.indexOf('admin') >= 0 || roles.indexOf('pro') >= 0) {
+                type = 'pro';
+            } else if (roles.indexOf('free') >= 0) {
+                type = 'free';
+            }
+        }
+        this.setState({type: type});
+    }
+
     componentWillReceiveProps(nextProps) {
         if (this.props !== nextProps) {
+            this.getType(nextProps.login.user)
+
             this.loadVideo(nextProps, true)
             window.scrollTo(0, 0)
         }
@@ -76,7 +92,7 @@ class VideoPage extends Component {
     render (){
         return (
             <div>
-                <Video toggleLike={this.toggleLike} {...this.state} type={ isValid(this.props.login.user) ? "pro" : "free" }/>
+                <Video toggleLike={this.toggleLike} {...this.state} />
             </div>
             
         );

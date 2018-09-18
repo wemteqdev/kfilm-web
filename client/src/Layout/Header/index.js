@@ -11,8 +11,6 @@ import serverURL from '../../variables';
 import {isMobile} from 'react-device-detect';
 import { isValid, justifyPageMargin } from '../../functions';
 
-declare var $;
-
 class Header extends Component {
 
     state = {
@@ -59,7 +57,7 @@ class Header extends Component {
             this.props.toggleSidebar()
         }
         justifyPageMargin('0px');
-}
+    }
 
     render () {
         let style;

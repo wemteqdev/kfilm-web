@@ -37,8 +37,8 @@ class Video extends Component {
             }
            return ( 
                 <div style={style}>
-                    { this.props.type === "free" && 
-                        <div className="click-here d-flex justify-content-center">
+                    { this.props.type === "unlogin" && 
+                        <div className="click-here w-100 text-center">
                             <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
                         </div>
                     }
@@ -80,7 +80,7 @@ class Video extends Component {
     displayLike = () => {
         if (this.props.type === "pro") {
             if (this.props.like) {
-                return <FontAwesomeIcon icon="heart" className="text-danger my-2"/>
+                return <FontAwesomeIcon icon="heart" className="text-danger my-2 like-heart"/>
             } else {
                 return <button className="like-button ml-5 btn btn-secondary" onClick={this.props.toggleLike}><FontAwesomeIcon icon="heart" /> Like</button>
             }
@@ -90,6 +90,13 @@ class Video extends Component {
     displayVideoDetail = () => {
         return (
             <div className="container">
+                <div className="d-flex my-3">
+                    { this.props.type === "free" && 
+                        <div className="w-100 text-center">
+                            <Link to={`/user/plan`} className="btn button more-button">Click here to upgrade your profile</Link>
+                        </div>
+                    }
+                </div>
                 <div className="d-flex my-3">
                     { this.props.video.is_pro ? 
                         <div className="user-stats px-3 py-1 text-white">PRO</div>

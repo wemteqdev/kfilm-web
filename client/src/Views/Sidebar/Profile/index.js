@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VerifyForm from './verifyForm';
 import UpdateForm from './updateForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Profile extends Component {
     state = {
@@ -58,17 +59,24 @@ class Profile extends Component {
         });
     }
 
+    goBack = () => {
+        this.props.history.goBack()
+    }
+
     render() {
         return (
             <section className="loginPage">
-                <div className="container bg-light py-5">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-lg-4 col-md-6 col-sm-8 col-11">
-                            <div className="text-center">
-                                <h2>Profile</h2>
+                <div className="container bg-light">
+                    <a className="float-right mt-3" onClick={this.goBack}> <FontAwesomeIcon icon='times'/> </a>
+                    <div className="py-5">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-lg-4 col-md-6 col-sm-8 col-11">
+                                <div className="text-center">
+                                    <h2>Profile</h2>
+                                </div>
+                                <VerifyForm onSubmit={this.handleResend} errors={this.state.email_errors} success={this.state.email_success} email={this.props.login.user.data.email}/>
+                                <UpdateForm onSubmit={this.handleUpdatePassword} errors={this.state.password_errors} success={this.state.password_success}/>
                             </div>
-                            <VerifyForm onSubmit={this.handleResend} errors={this.state.email_errors} success={this.state.email_success} email={this.props.login.user.data.email}/>
-                            <UpdateForm onSubmit={this.handleUpdatePassword} errors={this.state.password_errors} success={this.state.password_success}/>
                         </div>
                     </div>
                 </div>

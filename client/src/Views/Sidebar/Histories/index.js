@@ -6,7 +6,7 @@ import serverURL from '../../../variables';
 export default class Histories extends Component {
 
     state = {
-        histories:[]
+        histories: null,
     }
     componentWillMount = () => {
         axios.get(`${serverURL}/api/user/histories`)
@@ -18,21 +18,23 @@ export default class Histories extends Component {
     }
     
     showHistories = () => {
-        return this.state.histories.map((item, i) => {
-            return (
-                <Media key={i} className="history-media">
-                    <Media left top href={`/videos/${item.video.slug}`} >
-                        <Media className="history-image" object  src={item.video.featured_image_url} alt="Generic placeholder image" />
+        if (this.state.histories != null && this.state.histories.length > 0) {
+            return this.state.histories.map((item, i) => {
+                return (
+                    <Media key={i} className="history-media">
+                        <Media left top href={`/videos/${item.video.slug}`} >
+                            <Media className="history-image" object  src={item.video.featured_image_url} alt="Generic placeholder image" />
+                        </Media>
+                        <Media body>
+                        <Media heading>
+                            {item.video.name}
+                        </Media>
+                            {item.created_at}
+                        </Media>
                     </Media>
-                    <Media body>
-                    <Media heading>
-                        {item.video.name}
-                    </Media>
-                        {item.created_at}
-                    </Media>
-                </Media>
-            )
-        })
+                )
+            })
+        }
     }
 
   render() {

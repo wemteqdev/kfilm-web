@@ -19,7 +19,7 @@ export default class ResetPassword extends Component {
             })
             setTimeout(() => {
                 this.props.history.push('/login')
-            }, 1000)
+            }, 2000)
         })
         .catch(error => {
             this.setState({

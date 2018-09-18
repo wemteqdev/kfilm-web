@@ -31,28 +31,26 @@ class VideoContent extends Component {
                     <div className="row stripe">
                         <div className="container">
                             <section className="py-5 videos">
-                            <div className="mb-3">
-                                <div className="row">
-                                    <div className="col-12">
-                                        <div className="head-title">
-                                            <h4 className='borderBottom'>
-                                                <FontAwesomeIcon icon={item.icon} />{ item.title }
-                                            </h4>
-                                            <Link to={'/' + item.slug} className="radius float-right">View All</Link>
+                                <div className="mb-3">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="head-title">
+                                                <h4 className='borderBottom'>
+                                                    <FontAwesomeIcon icon={item.icon} />{ item.title }
+                                                </h4>
+                                                <Link to={'/' + item.slug} className="radius float-right">View All</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="tab-content">
-                                        <div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="tab-content">
                                             <VideoPosts type={item.slug}/>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
                         </div>
                     </div>
                 </div>
