@@ -67,7 +67,7 @@ class Header extends Component {
             }
         }
         return (
-            <header {...this.boundActions}>
+            <header>
                 <div className="container-fluid">
                     <div className="row">
                         { (isMobile || isValid(this.props.login.user)) &&
