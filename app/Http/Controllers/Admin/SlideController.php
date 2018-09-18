@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Http\Resources\Slide as Resource;
+use App\Enums\SlideStatus;
 
 class SlideController extends AdminBaseController
 {
@@ -41,6 +42,11 @@ class SlideController extends AdminBaseController
         $input = $request->all();
 
         $slide = $this->slideRepository->create($input);
+
+        if(isset($request->status))
+        {
+            $slide->setStatus(SlideStatus::getKey($request->status));
+        }
 
         Flash::success('slide saved successfully.');
 
@@ -85,6 +91,11 @@ class SlideController extends AdminBaseController
 
         $slide = $this->slideRepository->update($request->all(), $id);
 
+        if(isset($request->status))
+        {
+            $slide->setStatus(SlideStatus::getKey($request->status));
+        }
+        
         Flash::success('slide updated successfully.');
 
         return redirect(route('admin.slides.index'));

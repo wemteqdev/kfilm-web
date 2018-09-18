@@ -5,12 +5,14 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \Conner\Tagging\Taggable;
-use App\Enums\VideoStatus;
+use App\Enums\SlideStatus;
+use Spatie\ModelStatus\HasStatuses;
 class Slide extends Model
 {
     use Taggable;
     use SoftDeletes;
-
+    use HasStatuses;
+    
     public $table = 'slides';
     
     const CREATED_AT = 'created_at';
@@ -36,11 +38,6 @@ class Slide extends Model
    public static $rules = [
         
     ];
-
-    public function scopePublished($query)
-    {
-        return $query->where('status', VideoStatus::published);
-    }
 
     public function getTagsAttribute()
     {
