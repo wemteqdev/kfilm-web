@@ -24,7 +24,7 @@ class Banner extends Component {
         })
     }
 
-    imageLoaded() {
+    imageLoaded = () => {
         $(".page-loading").addClass('d-none')
     }
 
@@ -32,7 +32,7 @@ class Banner extends Component {
         return this.state.banners.map((item, i) => {
             return (
                 <div key={i} className="banner-mask">
-                    <img src={ item.image_url } width="100%" height="auto" alt="" onLoad={this.imageLoaded.bind(this)} />
+                    <img src={ item.image_url } width="100%" height="auto" alt="" onLoad={this.imageLoaded} />
                     <div className={`banner-title ${item.style}`}>
                         <p>{item.title}</p>
                         <div className="banner-watch">

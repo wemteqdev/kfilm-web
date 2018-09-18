@@ -35,8 +35,8 @@ const LoginForm = (props) =>{
                 <Button type="submit" className="login-button" disabled={submitting}>Login</Button>
             </FormGroup>
             <div className="text-center">
-                <p className="">Don't have an account? 
-                    <Link to="/register">  signup</Link>
+                <p className="">Don't have an account? &nbsp;&nbsp;&nbsp;
+                    <Link to="/register">Signup Now</Link>
                 </p>
             </div>
         </Form>
