@@ -43,11 +43,6 @@ class SlideController extends AdminBaseController
 
         $slide = $this->slideRepository->create($input);
 
-        if(isset($request->status))
-        {
-            $slide->setStatus(SlideStatus::getKey($request->status));
-        }
-
         Flash::success('slide saved successfully.');
 
         return redirect(route('admin.slides.edit', $slide));
@@ -91,11 +86,6 @@ class SlideController extends AdminBaseController
 
         $slide = $this->slideRepository->update($request->all(), $id);
 
-        if(isset($request->status))
-        {
-            $slide->setStatus(SlideStatus::getKey($request->status));
-        }
-        
         Flash::success('slide updated successfully.');
 
         return redirect(route('admin.slides.index'));

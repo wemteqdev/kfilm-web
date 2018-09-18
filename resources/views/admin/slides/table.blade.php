@@ -16,7 +16,7 @@
             <td>{!! $slide->title !!}</td>
             <td>{!! $slide->description !!}</td>
             <td>{!! $slide->link_url !!}</td>
-            <td>{!! $slide->status() !!}</td>
+            <td>{!! $slide->status !!}</td>
             <td>
                 {!! Form::open(['route' => ['admin.slides.destroy', $slide->id], 'method' => 'delete']) !!}
                 <div class='btn-slide'>

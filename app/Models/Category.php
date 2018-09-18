@@ -59,6 +59,11 @@ class Category extends Model
         ];
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', SlideStatus::active);
+    }
+    
     public function featured_image()
     {
         return $this->belongsTo('App\Models\Image', 'featured_image_id');

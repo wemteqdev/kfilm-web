@@ -39,10 +39,10 @@ class Slide extends Model
         
     ];
 
-    // public function scopeActive($query)
-    // {
-    //     return $query->where('status', SlideStatus::active);
-    // }
+    public function scopeActive($query)
+    {
+        return $query->where('status', SlideStatus::active);
+    }
 
     public function getTagsAttribute()
     {
