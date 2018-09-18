@@ -6,11 +6,13 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Viewable;
+use Spatie\ModelStatus\HasStatuses;
 class Category extends Model
 {
     use SoftDeletes;
     use Sluggable;
     use Viewable;
+    use HasStatuses;
 
     public $table = 'categories';
     

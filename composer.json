@@ -22,6 +22,7 @@
         "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.6",
         "rtconner/laravel-tagging": "~2.2",
+        "spatie/laravel-model-status": "^1.6",
         "spatie/laravel-permission": "^2.17",
         "spatie/laravel-responsecache": "^4.4",
         "spatie/laravel-sitemap": "^5.2",

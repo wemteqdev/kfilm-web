@@ -59,6 +59,14 @@
             {!! Form::number('videos_count', null, ['class' => 'form-control', 'disabled'=>true]) !!}
         </div>
 
+        <!-- Status Field -->
+        <div class="form-group ">
+            {!! Form::label('status', 'Status:') !!}
+            <label class="checkbox-inline">
+                {!! Form::select('status', App\Enums\CategoryStatus::toSelectArray(), null) !!}
+            </label>
+        </div>
+
         <!-- Submit Field -->
         <div class="form-group col-sm-12">
             {!! Form::submit('Save', ['class' => 'btn btn-lg btn-primary']) !!}
