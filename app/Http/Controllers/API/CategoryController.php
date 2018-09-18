@@ -18,7 +18,7 @@ class CategoryController extends Controller
 {
 	public function index(Request $request)
 	{
-		return new CategoryCollection(Category::orderBy('position', 'asc'));
+		return new CategoryCollection(Category::orderBy('position', 'asc')->get());
 	}
 
 	public function show($id_or_slug)
