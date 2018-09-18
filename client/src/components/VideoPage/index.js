@@ -36,6 +36,8 @@ class VideoPage extends Component {
     }
 
     loadVideo(props, history) {
+        this.getType(props.login.user)
+
         let url = `${serverURL}/api/`
         if (this.state.type === 'pro'){
             url = url + "user/"
@@ -77,8 +79,6 @@ class VideoPage extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props !== nextProps) {
-            this.getType(nextProps.login.user)
-
             this.loadVideo(nextProps, true)
             window.scrollTo(0, 0)
         }

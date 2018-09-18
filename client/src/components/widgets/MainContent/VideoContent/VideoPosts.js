@@ -8,13 +8,13 @@ import serverURL from '../../../../variables';
 class VideoPosts extends Component {
 
     state = {
-        posts:[],
+        posts: null,
     }
 
     componentWillMount(){
         axios.get(`${serverURL}/api/videos?view=${this.props.type}&limit=4`)
         .then( response => {
-            this.setState({posts:response.data.data});
+            this.setState({posts: response.data.data});
         })
     }
 
@@ -83,8 +83,3 @@ class VideoPosts extends Component {
 }
 
 export default VideoPosts;
-
-
-
-
-

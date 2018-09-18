@@ -15,18 +15,6 @@ class Login extends Component {
         success: '', 
     }
 
-    componentWillReceiveProps(nextProps) {
-        // let isLoggedIn = nextProps.login.user != null;
-        // if (isLoggedIn) {
-        //     let isEmailVerified = nextProps.login.user.data.email_verified;
-        //     if (isEmailVerified) {
-        //         this.props.history.push('/');
-        //     } else {
-        //         this.props.history.push('/email-verification')
-        //     }
-        // }
-    }
-
     componentDidMount() {
         window.scrollTo(0, 0)
     }
@@ -42,6 +30,7 @@ class Login extends Component {
             if (response.data.data.email_verified) {
                 this.setState({
                     success: 'Login success',
+                    error: '',
                 })
                 setTimeout(() => {
                     this.props.history.push('/')
