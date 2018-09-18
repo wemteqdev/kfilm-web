@@ -9,17 +9,10 @@ class VideoPosts extends Component {
 
     state = {
         posts:[],
-        type:''
-    }
-
-    constructor(props) {
-        super(props)
-
-        this.state.type = props.type
     }
 
     componentWillMount(){
-        axios.get(`${serverURL}/api/videos?view=${this.state.type}&limit=4`)
+        axios.get(`${serverURL}/api/videos?view=${this.props.type}&limit=4`)
         .then( response => {
             this.setState({posts:response.data.data});
         })

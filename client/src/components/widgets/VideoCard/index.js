@@ -5,12 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class VideoCard extends Component {
 
-    constructor(props) {
-        super(props);
-        this.videoURL = this.videoURL.bind(this)
-    }
-
-    videoURL(slug) {
+    videoURL = (slug) => {
         if (this.props.type === "pro") {
             return '/user/videos/' + slug;
         }
