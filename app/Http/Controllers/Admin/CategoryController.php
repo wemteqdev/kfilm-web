@@ -12,7 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use View;
 use App\Models\Category;
-
+use App\Enums\CategoryStatus;
 class CategoryController extends AdminBaseController
 {
     private $categoryRepository;
@@ -41,6 +41,11 @@ class CategoryController extends AdminBaseController
         $input = $request->all();
 
         $category = $this->categoryRepository->create($input);
+
+        if(isset($request->status))
+        {
+            $category->setStatus(CategoryStatus::getKey($request->status));
+        }
 
         Flash::success('Category saved successfully.');
 
@@ -84,6 +89,11 @@ class CategoryController extends AdminBaseController
         }
 
         $category = $this->categoryRepository->update($request->all(), $id);
+
+        if(isset($request->status))
+        {
+            $category->setStatus(CategoryStatus::getKey($request->status));
+        }
 
         Flash::success('Category updated successfully.');
 

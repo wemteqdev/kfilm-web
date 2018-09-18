@@ -7,6 +7,7 @@
             <th>Slug</th>
             <th>Position</th>
             <th>Videos Count</th>
+            <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -19,6 +20,7 @@
             <td>{!! $category->slug !!}</td>
             <td>{!! $category->position !!}</td>
             <td>{!! $category->videos_count !!}</td>
+            <td>{!! $category->status() !!}</td>
             <td>
                 {!! Form::open(['route' => ['admin.categories.destroy', $category->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

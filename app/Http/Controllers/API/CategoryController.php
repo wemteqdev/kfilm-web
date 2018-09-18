@@ -18,7 +18,7 @@ class CategoryController extends Controller
 {
 	public function index(Request $request)
 	{
-		return new CategoryCollection(Category::orderBy('position', 'asc')->get());
+		return new CategoryCollection(Category::currentStatus('active')->orderBy('position', 'asc')->get());
 	}
 
 	public function show($id_or_slug)
@@ -26,7 +26,7 @@ class CategoryController extends Controller
 		$category = Category::find($id_or_slug);
 
 		if($category==null){
-			$category = Category::where('slug', $id_or_slug)->firstorfail();
+			$category = Category::currentStatus('active')->where('slug', $id_or_slug)->firstorfail();
 		}
 		
 		$category->addView();
