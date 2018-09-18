@@ -26,6 +26,7 @@ class Category extends Model
         'description',
         'meta_tags',
         'slug',
+        'position',
         'videos_count',
         'featured_image_id',
         'views_count',
@@ -38,6 +39,7 @@ class Category extends Model
         'name' => 'string',
         'description' => 'string',
         'slug' => 'string',
+        'position' => 'integer',
         'videos_count' => 'integer'
     ];
 

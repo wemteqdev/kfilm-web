@@ -25,7 +25,7 @@ class CategoryController extends AdminBaseController
     public function index(Request $request)
     {
         $this->categoryRepository->pushCriteria(new RequestCriteria($request));
-        $categories = $this->categoryRepository->all();
+        $categories = $this->categoryRepository->orderBy('position', 'asc')->get();
 
         return view('admin.categories.index')
             ->with('categories', $categories);
