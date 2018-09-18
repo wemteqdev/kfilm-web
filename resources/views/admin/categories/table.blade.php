@@ -5,6 +5,7 @@
             <th>Name</th>
             <th>Description</th>
             <th>Slug</th>
+            <th>Position</th>
             <th>Videos Count</th>
             <th colspan="3">Action</th>
         </tr>
@@ -16,6 +17,7 @@
             <td>{!! $category->name !!}</td>
             <td>{!! $category->description !!}</td>
             <td>{!! $category->slug !!}</td>
+            <td>{!! $category->position !!}</td>
             <td>{!! $category->videos_count !!}</td>
             <td>
                 {!! Form::open(['route' => ['admin.categories.destroy', $category->id], 'method' => 'delete']) !!}

@@ -41,6 +41,12 @@
             {!! Form::text('slug', null, ['class' => 'form-control', 'disabled'=>true]) !!}
         </div>
 
+        <!-- Position Field -->
+        <div class="form-group ">
+            {!! Form::label('position', 'Position:') !!}
+            {!! Form::number('position', null, ['class' => 'form-control']) !!}
+        </div>
+
          <!-- Meta tags Field -->
         <div class="form-group ">
             {!! Form::label('meta_tags', 'Meta tags:') !!}
