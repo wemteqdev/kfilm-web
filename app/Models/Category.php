@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use Spatie\ModelStatus\HasStatuses;
+use App\Enums\CategoryStatus;
 class Category extends Model
 {
     use SoftDeletes;
@@ -61,9 +62,9 @@ class Category extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', SlideStatus::active);
+        return $query->where('status', CategoryStatus::active);
     }
-    
+
     public function featured_image()
     {
         return $this->belongsTo('App\Models\Image', 'featured_image_id');
