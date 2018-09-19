@@ -148,7 +148,7 @@ class VideoController extends Controller
 			$video->categories()->attach($category->id);
 		}
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function remove_category($id, Request $request)
@@ -159,7 +159,7 @@ class VideoController extends Controller
 
 		$video->categories()->detach($category->id);
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function add_group($id, Request $request)
@@ -178,7 +178,7 @@ class VideoController extends Controller
 			$video->groups()->attach($group->id);
 		}
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function remove_group($id, Request $request)
@@ -189,7 +189,7 @@ class VideoController extends Controller
 
 		$video->groups()->detach($group->id);
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function add_tag($id, Request $request)
@@ -201,7 +201,7 @@ class VideoController extends Controller
             $video->tag($request->tag);
         }
         
-        return new VideoShortResource($video);
+        return new VideoResource($video);
 	}
 	
 	public function remove_tag($id, Request $request)
@@ -209,7 +209,7 @@ class VideoController extends Controller
         $video = Video::findOrFail($id);
         $video->untag($request->tag);
 
-        return new VideoShortResource($video);
+        return new VideoResource($video);
 	}
 
 	public function like($id_or_slug, Request $request)
