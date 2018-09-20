@@ -110,7 +110,7 @@ class CategoriesPage extends Component {
             return this.state.category.genres.map( (genre, index) => {
                 let ge = genre.replace(/-/g, " ")
                 return (
-                    <a key={index} className={`px-1 mx-3 ${genre === this.state.genre ? 'text-pink active-true' : 'active-false' }`}
+                    <a key={index} className={`px-1 mx-3 float-left ${genre === this.state.genre ? 'text-pink active-true' : 'active-false' }`}
                         onClick={(event)=>this.onTagClick(event, genre)}
                     >{ge}</a>
                 )
@@ -132,7 +132,7 @@ class CategoriesPage extends Component {
             <div className="page-padding">
                 <div className="container">
                     <div className="row mb-5">
-                        <div className="genres">
+                        <div className="w-100 genres">
                             {this.displayTags()}
                         </div>
                     </div>
