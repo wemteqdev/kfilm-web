@@ -29,22 +29,6 @@ class Video extends Component {
                     </div>
                 </div>)
         }
-        if (video.embed === null && video.featured_video === null) {
-            let style = {
-                background:`url(${video.featured_image_url}) center center`,
-                height: '50vh',
-                backgroundSize: 'cover'
-            }
-           return ( 
-                <div style={style}>
-                    { this.props.type === "unlogin" && 
-                        <div className="click-here w-100 text-center">
-                            <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
-                        </div>
-                    }
-                </div>
-            )
-        }
     }
 
     videoURL(slug) {
@@ -87,15 +71,27 @@ class Video extends Component {
         }
     }
 
+    displayClickhere = () => {
+        if (this.props.type === "unlogin") {
+            return (
+                <div className="w-100 text-center">
+                    <Link to={`/login`} className="btn button more-button">Click here to see full video</Link>
+                </div>
+            )
+        } else if (this.props.type === "free" && this.props.video.is_pro) {
+            return (
+                <div className="w-100 text-center">
+                    <Link to={`/user/plan`} className="btn button more-button">Click here to upgrade your profile</Link>
+                </div>
+            )
+        }
+    }
+
     displayVideoDetail = () => {
         return (
             <div className="container">
                 <div className="d-flex my-3">
-                    { this.props.type === "free" && 
-                        <div className="w-100 text-center">
-                            <Link to={`/user/plan`} className="btn button more-button">Click here to upgrade your profile</Link>
-                        </div>
-                    }
+                    {this.displayClickhere()}
                 </div>
                 <div className="d-flex my-3">
                     { this.props.video.is_pro ? 
