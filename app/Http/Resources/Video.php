@@ -53,7 +53,7 @@ class Video extends JsonResource
 				"embed" => $this->embedPro($request),
 				"tags" => $this->tags()->pluck('slug'),
 				"views" => $this->getUniqueViews(),
-				"categories" => $this->category,
+				"category" => $this->category,
 				"groups" => $this->groups,
 				"featured_video" => new VideoFeaturedResource(Video::find($this->featured_video_id)),
 				"is_favorited" => $this->liked,
