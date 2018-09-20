@@ -67,7 +67,7 @@ class CategoryController extends Controller
         return [
 			'type' => Rule::in(['normal', 'featured', 'promotion', 'recommended']),
 			'scope' => Rule::in(['free', 'pro']),
-			'view_param' => Rule::in(['recent', 'hot', 'popular', 'trending']),
+			'view' => Rule::in(['recent', 'hot', 'popular', 'trending']),
 			'order_by' => Rule::in(['published_at', 'name', 'duration']),
 			'order_direction' => Rule::in(['asc', 'dsc']),
         ];
@@ -82,7 +82,7 @@ class CategoryController extends Controller
 		}
 
 		$keyword_param = $request->q;
-		$tag_param = $request->tag;
+		$genres_param = $request->genres;
 		$view_param = $request->view;
 		$limit_param = $request->limit;
 		$type_param = $request->type;
@@ -107,9 +107,9 @@ class CategoryController extends Controller
 			$videos = $videos->where('type', VideoType::getValue($type_param));
 		}
 
-		if( isset($tag_param) )
+		if( isset($genres_param) )
 		{
-			$videos = $videos->withAnyTag($tag_param);
+			$videos = $videos->withAllTags(explode(',', $genres_param), $category->slug);
 		}
 
 		if( isset($keyword_param) )
@@ -128,7 +128,7 @@ class CategoryController extends Controller
 		}elseif($view_param == "hot"){
 			$videos = $videos->orderBy('views_count_last_30days', 'desc');
 		}elseif($view_param == "popular"){
-			$videos = $videos->orderBy(DB::raw("views_count + views_count_last_30days"), 'desc');
+			$videos = $videos->orderBy(\DB::raw("views_count + views_count_last_30days"), 'desc');
 		}elseif($view_param == "trending"){
 			$videos = $videos->orderBy('views_count_last_7days', 'desc');
 		}else{

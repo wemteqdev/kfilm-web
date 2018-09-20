@@ -15,7 +15,8 @@ class Category extends JsonResource
             'featured_image_url' => $this->featured_image_url(),
             'views' => $this->getUniqueViews(),
             'slug' => $this->slug,
-            'videos_count' => $this->videos_count
+            'videos_count' => $this->videos_count,
+            'genres' => \Spatie\Tags\Tag::withType($this->slug)->pluck('slug'),
         ];
     }
 }
