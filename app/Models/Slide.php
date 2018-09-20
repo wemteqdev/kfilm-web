@@ -46,6 +46,6 @@ class Slide extends Model
 
     public function getTagsAttribute()
     {
-        return $this->tagged->pluck('tag_slug');
+        return $this->tags()->pluck('slug');
     }
 }

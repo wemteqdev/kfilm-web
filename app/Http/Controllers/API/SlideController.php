@@ -38,7 +38,8 @@ class SlideController extends Controller
 		
         if(isset($request->tag))
         {
-            $slide->tag($request->tag, 'slide');
+            $tag = \Spatie\Tags\Tag::findOrCreate($request->tag, 'slide');
+            $slide->attachTag($tag);
         }
         
         return new SlideResource($slide);
@@ -47,7 +48,8 @@ class SlideController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $slide = Slide::findOrFail($id);
-        $slide->detachTags($request->tag);
+        $tag = \Spatie\Tags\Tag::findOrCreate($request->tag, 'slide');
+        $slide->detachTags($tag);
 
         return new SlideResource($slide);
 	}

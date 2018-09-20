@@ -107,24 +107,4 @@ class SlideController extends AdminBaseController
 
         return redirect(route('admin.slides.index'));
     }
-
-    public function add_tag($id, Request $request)
-    {
-        $slide = Slide::findOrFail($id);
-		
-        if(isset($request->tag))
-        {
-            $slide->tag($request->tag);
-        }
-        
-        return new SlideResource($slide);
-	}
-	
-	public function remove_tag($id, Request $request)
-    {
-        $slide = Slide::findOrFail($id);
-        $slide->untag($request->tag);
-
-        return new SlideResource($slide);
-	}
 }

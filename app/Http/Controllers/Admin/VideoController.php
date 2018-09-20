@@ -117,7 +117,7 @@ class VideoController extends AdminBaseController
 
         Flash::success('Video updated successfully.');
 
-        return redirect(route('admin.videos.index'));
+        return view('admin.videos.edit')->with('video', $video);
     }
 
     public function publish($id, Request $request)

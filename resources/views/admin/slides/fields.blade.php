@@ -95,7 +95,7 @@
         el: '#slide-tags',
         data: {
             slide: slideObject,
-            available_tags: {!! json_encode(\App\Models\Slide::existingTags()->pluck('slug')) !!},
+            available_tags: {!! json_encode(\Spatie\Tags\Tag::getWithType('slide')->pluck('slug')) !!},
         }
     });
 

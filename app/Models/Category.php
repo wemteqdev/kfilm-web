@@ -87,7 +87,7 @@ class Category extends Model
 
     public function videos()
     {
-        return $this->belongsToMany('App\Models\Video');
+        return $this->hasMany('App\Models\Video');
     }
 
     public static function find_by_id_or_slug($id_or_slug)

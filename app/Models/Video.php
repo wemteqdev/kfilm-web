@@ -26,9 +26,10 @@ class Video extends Model implements LikeableContract
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     protected $dates = ['deleted_at'];
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
+    protected $appends = ['featured_image_url', 'featured_video', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
 
     public $fillable = [
+        'category_id',
         'name',
         'description',
         'meta_tags',
@@ -130,6 +131,11 @@ class Video extends Model implements LikeableContract
         return $query->where('status', VideoStatus::active);
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category');
@@ -192,7 +198,7 @@ class Video extends Model implements LikeableContract
 
     public function getTagsAttribute()
     {
-        return $this->tagged->pluck('tag_slug');
+        return $this->tags()->pluck('slug');
     }
 
     public function publish()

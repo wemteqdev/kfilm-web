@@ -194,11 +194,16 @@ class VideoController extends Controller
 
 	public function add_tag($id, Request $request)
     {
-        $video = Video::findOrFail($id);
+		$video = Video::findOrFail($id);
+		if($video->category == null)
+		{
+			return response()->json(['error' => 'category is required'], 400);
+		}
 		
         if(isset($request->tag))
         {
-            $video->tag($request->tag);
+			$tag = \Spatie\Tags\Tag::findOrCreate($request->tag, $video->category->slug);
+            $video->attachTag($tag);
         }
         
         return new VideoResource($video);
@@ -206,8 +211,15 @@ class VideoController extends Controller
 	
 	public function remove_tag($id, Request $request)
     {
-        $video = Video::findOrFail($id);
-        $video->untag($request->tag);
+		$video = Video::findOrFail($id);
+		if($video->category == null)
+		{
+			return response()->json(['error' => 'category is required'], 400);
+		}
+
+		$tag = \Spatie\Tags\Tag::findorCreate($request->tag, $video->category->slug);
+
+        $video->detachTag($tag);
 
         return new VideoResource($video);
 	}
