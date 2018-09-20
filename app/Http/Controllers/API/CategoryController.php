@@ -82,7 +82,7 @@ class CategoryController extends Controller
 		}
 
 		$keyword_param = $request->q;
-		$tag_param = $request->tag;
+		$genres_param = $request->genres;
 		$view_param = $request->view;
 		$limit_param = $request->limit;
 		$type_param = $request->type;
@@ -107,9 +107,9 @@ class CategoryController extends Controller
 			$videos = $videos->where('type', VideoType::getValue($type_param));
 		}
 
-		if( isset($tag_param) )
+		if( isset($genres_param) )
 		{
-			$videos = $videos->withAnyTag($tag_param);
+			$videos = $videos->withAllTags(explode(',', $genres_param), $category->slug);
 		}
 
 		if( isset($keyword_param) )
