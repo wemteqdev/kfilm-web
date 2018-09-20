@@ -179,7 +179,7 @@
                 <div class="form-group blockquote alert-primary">
                     {!! Form::label('category', 'Category:') !!}
                     <label class="checkbox-inline">
-                        {!! Form::select('category_id', App\Models\Category::all()->pluck('slug'), null, ['placeholder' => 'Pick a category...']) !!}
+                        {!! Form::select('category_id', App\Models\Category::all()->pluck('slug', 'id'), null, ['placeholder' => 'Pick a category...']) !!}
                     </label>
                 </div>
             </div>
