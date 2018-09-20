@@ -6,20 +6,20 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
-use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use App\Enums\VideoScope;
 use App\Enums\VideoType;
 use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
+use Spatie\Tags\HasTags;
 class Video extends Model implements LikeableContract
 {
     use SoftDeletes;
     use Sluggable;
-    use Taggable;
     use Viewable;
     use Likeable;
+    use HasTags;
 
     public $table = 'videos';
     

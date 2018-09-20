@@ -164,7 +164,6 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Vimeo\Laravel\VimeoServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        \Conner\Tagging\Providers\TaggingServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
     ],

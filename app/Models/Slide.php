@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use \Conner\Tagging\Taggable;
 use App\Enums\SlideStatus;
 use Spatie\ModelStatus\HasStatuses;
+use Spatie\Tags\HasTags;
 class Slide extends Model
 {
-    use Taggable;
     use SoftDeletes;
     use HasStatuses;
+    use HasTags;
     
     public $table = 'slides';
     

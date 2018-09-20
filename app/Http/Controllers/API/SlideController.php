@@ -24,7 +24,7 @@ class SlideController extends Controller
 
 		if( isset($tag_param) )
 		{
-			$slides = Slide::active()->withAnyTag($tag_param)->get();
+			$slides = Slide::active()->withAnyTags([$tag_param])->get();
         }else{
             $slides = Slide::active()->get();
         }
@@ -38,7 +38,7 @@ class SlideController extends Controller
 		
         if(isset($request->tag))
         {
-            $slide->tag($request->tag);
+            $slide->tag($request->tag, 'slide');
         }
         
         return new SlideResource($slide);
@@ -47,7 +47,7 @@ class SlideController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $slide = Slide::findOrFail($id);
-        $slide->untag($request->tag);
+        $slide->detachTags($request->tag);
 
         return new SlideResource($slide);
 	}
