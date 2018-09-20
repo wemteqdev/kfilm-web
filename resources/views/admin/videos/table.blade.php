@@ -11,6 +11,7 @@
         <th>Featured Video Id</th>
         <th>Vimeo Video Id</th>
         <th>Published</th>
+        <th>Category</th>
         <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -45,6 +46,11 @@
                 @endif
 
                 <span> created: {!! $video->created_at->diffForHumans() !!} </span>
+            </td>
+            <td>
+                @if($video->category)
+                    {!! $video->category->slug !!}
+                @endif
             </td>
             <td>
                 {!! Form::open(['route' => ['admin.videos.destroy', $video->id], 'method' => 'delete']) !!}
