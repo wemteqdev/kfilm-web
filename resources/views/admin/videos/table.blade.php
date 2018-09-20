@@ -48,7 +48,7 @@
                 <span> created: {!! $video->created_at->diffForHumans() !!} </span>
             </td>
             <td>
-                @if($video->category)
+                @if($video->category!=null)
                     {!! $video->category->slug !!}
                 @endif
             </td>
