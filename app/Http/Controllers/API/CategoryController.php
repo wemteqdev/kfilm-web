@@ -67,7 +67,7 @@ class CategoryController extends Controller
         return [
 			'type' => Rule::in(['normal', 'featured', 'promotion', 'recommended']),
 			'scope' => Rule::in(['free', 'pro']),
-			'view_param' => Rule::in(['recent', 'hot', 'popular', 'trending']),
+			'view' => Rule::in(['recent', 'hot', 'popular', 'trending']),
 			'order_by' => Rule::in(['published_at', 'name', 'duration']),
 			'order_direction' => Rule::in(['asc', 'dsc']),
         ];
