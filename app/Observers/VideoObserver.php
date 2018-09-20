@@ -23,6 +23,10 @@ class VideoObserver
         Category::update_counter_cache();
         Series::update_counter_cache();
         Group::update_counter_cache();
+
+        if ($video->category_id != $video->getOriginal('category_id')) {
+            $video->syncTags([]);
+        }
     }
 
     public function deleted(Video $video)

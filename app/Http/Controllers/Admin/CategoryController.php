@@ -42,11 +42,6 @@ class CategoryController extends AdminBaseController
 
         $category = $this->categoryRepository->create($input);
 
-        if(isset($request->status))
-        {
-            $category->setStatus(CategoryStatus::getKey($request->status));
-        }
-
         Flash::success('Category saved successfully.');
 
         return redirect(route('admin.categories.index'));
@@ -89,11 +84,6 @@ class CategoryController extends AdminBaseController
         }
 
         $category = $this->categoryRepository->update($request->all(), $id);
-
-        if(isset($request->status))
-        {
-            $category->setStatus(CategoryStatus::getKey($request->status));
-        }
 
         Flash::success('Category updated successfully.');
 

@@ -6,29 +6,30 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
-use \Conner\Tagging\Taggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use App\Enums\VideoScope;
 use App\Enums\VideoType;
 use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
+use Spatie\Tags\HasTags;
 class Video extends Model implements LikeableContract
 {
     use SoftDeletes;
     use Sluggable;
-    use Taggable;
     use Viewable;
     use Likeable;
+    use HasTags;
 
     public $table = 'videos';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     protected $dates = ['deleted_at'];
-    protected $appends = ['featured_image_url', 'featured_video', 'categories', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
+    protected $appends = ['featured_image_url', 'featured_video', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
 
     public $fillable = [
+        'category_id',
         'name',
         'description',
         'meta_tags',
@@ -130,6 +131,11 @@ class Video extends Model implements LikeableContract
         return $query->where('status', VideoStatus::active);
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category');
@@ -192,7 +198,7 @@ class Video extends Model implements LikeableContract
 
     public function getTagsAttribute()
     {
-        return $this->tagged->pluck('tag_slug');
+        return $this->tags()->pluck('slug');
     }
 
     public function publish()

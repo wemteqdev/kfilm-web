@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TagCollection;
 use App\Http\Resources\Tag as TagResource;
-use Conner\Tagging\Model\Tag;
 
 class TagController extends Controller
 {

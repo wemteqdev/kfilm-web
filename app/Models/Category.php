@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use Spatie\ModelStatus\HasStatuses;
+use App\Enums\CategoryStatus;
 class Category extends Model
 {
     use SoftDeletes;
@@ -34,6 +35,7 @@ class Category extends Model
         'views_count',
         'views_count_last_7days',
         'views_count_last_30days',
+        'status',
     ];
 
     protected $casts = [
@@ -58,6 +60,11 @@ class Category extends Model
         ];
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', CategoryStatus::active);
+    }
+
     public function featured_image()
     {
         return $this->belongsTo('App\Models\Image', 'featured_image_id');
@@ -80,7 +87,7 @@ class Category extends Model
 
     public function videos()
     {
-        return $this->belongsToMany('App\Models\Video');
+        return $this->hasMany('App\Models\Video');
     }
 
     public static function find_by_id_or_slug($id_or_slug)

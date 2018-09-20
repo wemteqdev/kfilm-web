@@ -25,50 +25,50 @@
 
   <div class="col-md-6">
     <!-- Name Field -->
-    <div class="form-slide ">
+    <div class="form-group ">
         {!! Form::label('title', 'title:') !!}
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Description Field -->
-    <div class="form-slide ">
+    <div class="form-group ">
         {!! Form::label('description', 'Description:') !!}
         {!! Form::text('description', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Slug Field -->
-    <div class="form-slide ">
+    <div class="form-group ">
         {!! Form::label('link_text', 'Link Text:') !!}
         {!! Form::text('link_text', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Slug Field -->
-    <div class="form-slide ">
+    <div class="form-group ">
         {!! Form::label('link_url', 'Link Url:') !!}
         {!! Form::text('link_url', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Slug Field -->
-    <div class="form-slide ">
+    <div class="form-group ">
         {!! Form::label('style', 'Style:') !!}
         {!! Form::text('style', null, ['class' => 'form-control']) !!}
     </div>
 
     <div id="slide-tags" class="blockquote alert-primary">
-                    <h5>Tags</h3>
-                    <slide-tag-list />
-            </div>
+            <h5>Tags</h3>
+            <slide-tag-list />
+    </div>
 
     <!-- Status Field -->
     <div class="form-group ">
         {!! Form::label('status', 'Status:') !!}
         <label class="checkbox-inline">
-            {!! Form::select('status', App\Enums\VideoStatus::toSelectArray(), null) !!}
+            {!! Form::select('status', App\Enums\SlideStatus::toSelectArray(), null) !!}
         </label>
     </div>
-    
+
     <!-- Submit Field -->
-    <div class="form-slide col-sm-12">
+    <div class="form-group col-sm-12">
         {!! Form::submit('Save', ['class' => 'btn btn-lg btn-primary']) !!}
         <a href="{!! route('admin.slides.index') !!}" class="btn btn-lg btn-default">Cancel</a>
     </div>
@@ -95,7 +95,7 @@
         el: '#slide-tags',
         data: {
             slide: slideObject,
-            available_tags: {!! json_encode(\App\Models\Slide::existingTags()->pluck('slug')) !!},
+            available_tags: {!! json_encode(\Spatie\Tags\Tag::getWithType('slide')->pluck('slug')) !!},
         }
     });
 

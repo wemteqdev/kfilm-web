@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use \Conner\Tagging\Taggable;
-use App\Enums\VideoStatus;
+use App\Enums\SlideStatus;
+use Spatie\ModelStatus\HasStatuses;
+use Spatie\Tags\HasTags;
 class Slide extends Model
 {
-    use Taggable;
     use SoftDeletes;
-
+    use HasStatuses;
+    use HasTags;
+    
     public $table = 'slides';
     
     const CREATED_AT = 'created_at';
@@ -33,17 +35,17 @@ class Slide extends Model
     protected $casts = [
     ];
 
-   public static $rules = [
+    public static $rules = [
         
     ];
 
-    public function scopePublished($query)
+    public function scopeActive($query)
     {
-        return $query->where('status', VideoStatus::published);
+        return $query->where('status', SlideStatus::active);
     }
 
     public function getTagsAttribute()
     {
-        return $this->tagged->pluck('tag_slug');
+        return $this->tags()->pluck('slug');
     }
 }

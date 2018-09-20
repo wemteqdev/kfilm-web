@@ -24,9 +24,9 @@ class SlideController extends Controller
 
 		if( isset($tag_param) )
 		{
-			$slides = Slide::withAnyTag($tag_param)->published()->get();
+			$slides = Slide::active()->withAnyTags([$tag_param])->get();
         }else{
-            $slides = Slide::published()->get();
+            $slides = Slide::active()->get();
         }
 
 		return new SlideCollection($slides);
@@ -38,7 +38,8 @@ class SlideController extends Controller
 		
         if(isset($request->tag))
         {
-            $slide->tag($request->tag);
+            $tag = \Spatie\Tags\Tag::findOrCreate($request->tag, 'slide');
+            $slide->attachTag($tag);
         }
         
         return new SlideResource($slide);
@@ -47,7 +48,8 @@ class SlideController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $slide = Slide::findOrFail($id);
-        $slide->untag($request->tag);
+        $tag = \Spatie\Tags\Tag::findOrCreate($request->tag, 'slide');
+        $slide->detachTags($tag);
 
         return new SlideResource($slide);
 	}

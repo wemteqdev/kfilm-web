@@ -173,12 +173,17 @@
 
 
         <div class="row">
-            <div class="col-lg-12">
-                <div id="video-categories" class="blockquote alert-primary">
-                    <h5>CATEGORIES</h3>
-                    <video-category-list />
+
+             <!-- Category Field -->
+             <div class="col-lg-12">
+                <div class="form-group blockquote alert-primary">
+                    {!! Form::label('category', 'Category:') !!}
+                    <label class="checkbox-inline">
+                        {!! Form::select('category_id', App\Models\Category::all()->pluck('slug', 'id'), null, ['placeholder' => 'Pick a category...']) !!}
+                    </label>
                 </div>
             </div>
+
             <div class="col-lg-12">
                 <div id="video-groups" class="blockquote alert-primary">
                     <h5>GROUPS</h3>
@@ -240,15 +245,6 @@
         }
     });
 
-
-    const VideoCategories = new Vue({
-        el: '#video-categories',
-        data: {
-            video: Video,
-            available_categories: {!! \App\Models\Category::all()->pluck('slug') !!},
-        }
-    });
-
     const VideoGroups = new Vue({
         el: '#video-groups',
         data: {
@@ -257,13 +253,15 @@
         }
     });
 
-    const VideoTags = new Vue({
-        el: '#video-tags',
-        data: {
-            video: Video,
-            available_tags: {!! json_encode(\App\Models\Video::existingTags()->pluck('slug')) !!},
-        }
-    });
+    @if($video->category)
+        const VideoTags = new Vue({
+            el: '#video-tags',
+            data: {
+                video: Video,
+                available_tags: {!! json_encode(\Spatie\Tags\Tag::getWithType($video->category->slug)->pluck('slug')) !!},
+            }
+        });
+    @endif
 
     var selectedSeries = Video.series || {};
     const VideoSeriesPopup = new Vue({

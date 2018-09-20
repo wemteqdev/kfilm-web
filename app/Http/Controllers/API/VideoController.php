@@ -148,7 +148,7 @@ class VideoController extends Controller
 			$video->categories()->attach($category->id);
 		}
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function remove_category($id, Request $request)
@@ -159,7 +159,7 @@ class VideoController extends Controller
 
 		$video->categories()->detach($category->id);
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function add_group($id, Request $request)
@@ -178,7 +178,7 @@ class VideoController extends Controller
 			$video->groups()->attach($group->id);
 		}
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function remove_group($id, Request $request)
@@ -189,27 +189,39 @@ class VideoController extends Controller
 
 		$video->groups()->detach($group->id);
 		
-		return new VideoShortResource($video);
+		return new VideoResource($video);
 	}
 
 	public function add_tag($id, Request $request)
     {
-        $video = Video::findOrFail($id);
+		$video = Video::findOrFail($id);
+		if($video->category == null)
+		{
+			return response()->json(['error' => 'category is required'], 400);
+		}
 		
         if(isset($request->tag))
         {
-            $video->tag($request->tag);
+			$tag = \Spatie\Tags\Tag::findOrCreate($request->tag, $video->category->slug);
+            $video->attachTag($tag);
         }
         
-        return new VideoShortResource($video);
+        return new VideoResource($video);
 	}
 	
 	public function remove_tag($id, Request $request)
     {
-        $video = Video::findOrFail($id);
-        $video->untag($request->tag);
+		$video = Video::findOrFail($id);
+		if($video->category == null)
+		{
+			return response()->json(['error' => 'category is required'], 400);
+		}
 
-        return new VideoShortResource($video);
+		$tag = \Spatie\Tags\Tag::findorCreate($request->tag, $video->category->slug);
+
+        $video->detachTag($tag);
+
+        return new VideoResource($video);
 	}
 
 	public function like($id_or_slug, Request $request)
