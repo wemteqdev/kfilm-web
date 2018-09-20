@@ -137,7 +137,7 @@ class Video extends Component {
                         </div>
                     }
                     <div className="row pt-5 stripe">
-                        <CategoryVideoList category={this.props.video.categories[0]} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
+                        <CategoryVideoList category={this.props.video.category.slug} current_video_id={this.props.video.id} type={this.props.type === "pro" ? "pro" : "free"}/>
                     </div>
                 </div>
             </section>

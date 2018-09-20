@@ -16,6 +16,7 @@ class CategoriesPage extends Component {
     state = {
         videos: [],
         category: {},
+        genre: '',
         pageCount: 1,
         pageNum: 0,
     }
@@ -35,21 +36,21 @@ class CategoriesPage extends Component {
     loadVideos(props) {
         this.initVideos();
 
-        let search = props.location.search || '?';
-        axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${search}`)
-        .then( response => {
-            if (response.data.data.length > 0) {
-                this.setState({
-                    videos: response.data.data,
-                    pageNum: response.data.meta.current_page-1,
-                    pageCount: response.data.meta.last_page,
-                });
-                window.scrollTo(0, 0)
-            }
-        })
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
         .then( response => {
             this.setState({category:response.data.data});
+        })
+        let search = props.location.search || '?';
+        let url = `${serverURL}/api/categories/${props.match.params.slug}/videos${search}`;
+        axios.get(url)
+        .then( response => {
+            
+            this.setState({
+                videos: response.data.data,
+                pageNum: response.data.meta.current_page-1,
+                pageCount: response.data.meta.last_page,
+            });
+            window.scrollTo(0, 0)
         })
     }
 
@@ -95,6 +96,24 @@ class CategoriesPage extends Component {
         }
     }
 
+    onTagClick = (event, genre) => {
+        this.setState({
+            genre: genre
+        })
+    }
+
+    displayTags = () => {
+        if (this.state.category.genres !== undefined) {
+            return this.state.category.genres.map( (genre, index) => {
+                return (
+                    <a key={index} className={`px-3 mx-2 ${genre === this.state.genre && 'text-danger' }`}
+                        onClick={(event)=>this.onTagClick(event, genre)}
+                    >{genre}</a>
+                )
+            })
+        }
+    }
+
     render() {
         let size = 6;
         if (lg || xl) {
@@ -107,6 +126,9 @@ class CategoriesPage extends Component {
 
         return (
             <div className="page-padding">
+                <div className="genres d-flex justify-content-center mb-4">
+                    {/* {this.displayTags()} */}
+                </div>
                 <div className="container">
                     <div className="row">
                         <div className="col section-header">
