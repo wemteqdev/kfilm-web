@@ -33,7 +33,7 @@ class CategoriesPage extends Component {
         this.loadVideos(this.props)
     }
 
-    loadVideos(props) {
+    loadVideos(props, genre = null) {
         this.initVideos();
 
         axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
@@ -42,9 +42,11 @@ class CategoriesPage extends Component {
         })
         let search = props.location.search || '?';
         let url = `${serverURL}/api/categories/${props.match.params.slug}/videos${search}`;
+        if (genre !== null) {
+            url += `&genres=${genre}`;
+        }
         axios.get(url)
         .then( response => {
-            
             this.setState({
                 videos: response.data.data,
                 pageNum: response.data.meta.current_page-1,
@@ -100,15 +102,17 @@ class CategoriesPage extends Component {
         this.setState({
             genre: genre
         })
+        this.loadVideos(this.props, genre)
     }
 
     displayTags = () => {
         if (this.state.category.genres !== undefined) {
             return this.state.category.genres.map( (genre, index) => {
+                let ge = genre.replace(/-/g, " ")
                 return (
-                    <a key={index} className={`px-3 mx-2 ${genre === this.state.genre && 'text-danger' }`}
+                    <a key={index} className={`px-1 mx-3 ${genre === this.state.genre ? 'text-pink active-true' : 'active-false' }`}
                         onClick={(event)=>this.onTagClick(event, genre)}
-                    >{genre}</a>
+                    >{ge}</a>
                 )
             })
         }
@@ -126,10 +130,12 @@ class CategoriesPage extends Component {
 
         return (
             <div className="page-padding">
-                <div className="genres d-flex justify-content-center mb-4">
-                    {/* {this.displayTags()} */}
-                </div>
                 <div className="container">
+                    <div className="row mb-5">
+                        <div className="genres">
+                            {this.displayTags()}
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col section-header">
                             <h1 className="title">{this.state.category.name}</h1>

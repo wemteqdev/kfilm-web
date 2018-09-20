@@ -376,7 +376,20 @@ div.series {
 
 .genres {
     font-size: 1em ;
-    button {
+    a {
         font-size: 1em ;
+        text-decoration: none ;
+        color: lightgrey ;
+        text-transform: capitalize !important ;
+
+        line-height: 2em ;
+
+        &:hover, &.active-true {
+            border-bottom: 1px solid $color-pink !important ;
+        }
     }
+}
+
+.text-pink {
+    color: $color-pink !important;
 }
