@@ -49,7 +49,6 @@ class VideoPage extends Component {
                 video: response.data.data,
                 like: response.data.data.is_favorited,
             })
-            console.log(this.state.video)
 
             window.scrollTo(0, 0)
 
