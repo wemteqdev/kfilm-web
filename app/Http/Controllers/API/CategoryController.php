@@ -83,7 +83,7 @@ class CategoryController extends Controller
 
 		$keyword_param = $request->q;
 		$genres_param = $request->genres;
-		$view_param = $request->view;
+		$view_param = $request->view ?: 'popular';
 		$limit_param = $request->limit;
 		$type_param = $request->type;
 		$scope_param = $request->scope;
