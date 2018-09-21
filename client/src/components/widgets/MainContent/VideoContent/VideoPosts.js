@@ -42,7 +42,7 @@ class VideoPosts extends Component {
     showDesc = (item) => {
         return (
             <div className="post-des">
-                <h6 className="fixed"><Link to={'/videos/' + item.slug}>{item.name}</Link></h6>
+                <h6><Link to={'/videos/' + item.slug}>{item.name}</Link></h6>
                 <div className="post-stats clearfix">
                     <div className="float-left">
                         <FontAwesomeIcon icon="calendar" />

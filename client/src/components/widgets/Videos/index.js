@@ -25,7 +25,7 @@ class Videos extends Component {
     }
     render() {
         return (
-            <div className="videos-widget">
+            <div className="videos-widget stripe">
                 { this.showCarousel() }
             </div>
         )
