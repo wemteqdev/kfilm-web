@@ -8,6 +8,8 @@ import VerifyForm from './verifyForm';
 import UpdateForm from './updateForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+declare var $;
+
 class Profile extends Component {
     state = {
         email_errors: '',
@@ -17,6 +19,8 @@ class Profile extends Component {
     }
 
     handleResend = (values) => {
+        $('.page-loading').removeClass('d-none')
+        
         axios.post(`${serverURL}/api/user/verification/resend?email=${values.email}`)
         .then( (response) => {
             if (response.data.data.email_verified) {

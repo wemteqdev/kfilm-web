@@ -177,10 +177,10 @@ class CategoriesPage extends Component {
                         </div>
                     </div>
                     <div className="row mb-3">
-                        <div className="col-6 section-header">
+                        <div className="col section-header category-header">
                             <h1 className="title">{this.state.category.name}</h1>
                         </div>
-                        <div className="col-6">
+                        <div className="col-md-12 col-lg-6">
                             <div className="w-100 views d-flex align-items-end justify-content-end">
                                 {this.displayViews()}
                             </div>

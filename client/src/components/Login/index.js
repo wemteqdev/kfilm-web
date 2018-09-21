@@ -8,6 +8,8 @@ import serverURL from '../../variables';
 import LoginForm from './loginForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+declare var $;
+
 class Login extends Component {
 
     state = {
@@ -20,6 +22,8 @@ class Login extends Component {
     }
 
     handleLogin = (values) => {
+        $('.page-loading').removeClass('d-none')
+
         axios.post(`${serverURL}/api/user/login?email=${values.email}&password=${values.password}`)
         .then(response => { 
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token

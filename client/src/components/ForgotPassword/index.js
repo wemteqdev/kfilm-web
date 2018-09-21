@@ -4,6 +4,8 @@ import serverURL from '../../variables';
 import ForgotForm from './forgotForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+declare var $;
+
 export default class ForgotPassword extends Component {
 
     state = {
@@ -12,6 +14,8 @@ export default class ForgotPassword extends Component {
     }
 
     handleResetPassword = (values) => {
+        $('.page-loading').removeClass('d-none')
+        
         axios.post(`${serverURL}/api/user/password/email?email=${values.email}`)
         .then( (response) => {
             this.setState({
