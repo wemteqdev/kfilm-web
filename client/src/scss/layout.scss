@@ -342,12 +342,6 @@ div.series {
     font-size: 14px ;
 }
 
-.click-here {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .loginPage {
     svg {
         font-size: 2em !important;
@@ -374,7 +368,7 @@ div.series {
     font-size: 1.5em ;
 }
 
-.genres {
+.genres, .filters {
     font-size: 1em ;
     a {
         font-size: 1em ;

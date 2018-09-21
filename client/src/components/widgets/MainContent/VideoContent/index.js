@@ -22,6 +22,11 @@ class VideoContent extends Component {
             title:'Trending',
             icon:'signal'
         },
+        {
+            slug: 'recent',
+            title: 'Recent',
+            icon: 'clock'
+        },
     ]
 
     showAllCategories() {
