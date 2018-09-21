@@ -356,7 +356,7 @@ div.series {
     }
 }
 
-.col, .col-lg-3, .col-md-6, .col-sm-6, .col-xs-12 {
+.col, .col-lg-3, .col-lg-6, .col-md-6, .col-md-12, .col-sm-6, .col-sm-12, .col-xs-12 {
     padding: 0 10px ;
 }
 
@@ -386,6 +386,12 @@ div.series {
             color: $color-pink !important;
             border-bottom: 1px solid $color-pink !important ;
         }
+    }
+    a:first-child {
+        margin-left: 0px !important;
+    }
+    a:last-child {
+        margin-right: 0px !important;
     }
 }
 
