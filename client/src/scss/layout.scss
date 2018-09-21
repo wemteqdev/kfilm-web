@@ -342,12 +342,6 @@ div.series {
     font-size: 14px ;
 }
 
-.click-here {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .loginPage {
     svg {
         font-size: 2em !important;
@@ -372,4 +366,24 @@ div.series {
 
 .like-heart {
     font-size: 1.5em ;
+}
+
+.genres, .filters {
+    font-size: 1em ;
+    a {
+        font-size: 1em ;
+        text-decoration: none ;
+        color: lightgrey ;
+        text-transform: capitalize !important ;
+
+        height: 1.5em ;
+
+        &:hover, &.active-true {
+            border-bottom: 1px solid $color-pink !important ;
+        }
+    }
+}
+
+.text-pink {
+    color: $color-pink !important;
 }
