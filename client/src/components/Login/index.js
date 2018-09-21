@@ -30,7 +30,7 @@ class Login extends Component {
             if (response.data.data.email_verified) {
                 this.setState({
                     success: 'Login success',
-                    error: '',
+                    errors: '',
                 })
                 setTimeout(() => {
                     this.props.history.push('/')

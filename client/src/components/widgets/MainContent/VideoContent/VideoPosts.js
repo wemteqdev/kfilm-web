@@ -61,7 +61,7 @@ class VideoPosts extends Component {
         if (this.state.posts !== null) {
             return this.state.posts.map( (item, i) => {
                 return (
-                    <div key={i} className="item col-md-3 col-sm-6 col-12 group-item-secondary-button grid-medium">
+                    <div key={i} className="item col-lg-3 col-sm-6 col-12 group-item-secondary-button grid-medium">
                         <div className="post">
                             { this.showThum(item) }
                             { this.showDesc(item) }
