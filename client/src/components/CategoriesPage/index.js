@@ -18,7 +18,7 @@ class CategoriesPage extends Component {
         category: {},
         extra: {
             genre: null,
-            filter: null,
+            filter: 'popular',
         },
         pageCount: 1,
         pageNum: 0,
@@ -108,6 +108,9 @@ class CategoriesPage extends Component {
     }
 
     onTagClick = (event, genre) => {
+        if (genre === this.state.extra.genre) {
+            genre = null;
+        }
         this.setState({
             extra: {
                 genre: genre,
