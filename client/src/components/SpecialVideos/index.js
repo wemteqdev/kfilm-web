@@ -38,7 +38,7 @@ class SpeicalVideos extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <VideoList videos={this.state.videos}/>
+                        <VideoList videos={this.state.videos} size={3}/>
                     </div>
                 </div>
             </div>

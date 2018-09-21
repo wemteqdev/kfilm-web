@@ -5,11 +5,15 @@ import serverURL from '../../variables';
 import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import URL from 'url-parse';
+import querystring from 'querystring';
+
 declare var xs;
 declare var sm;
 declare var md;
 declare var lg;
 declare var xl;
+
 
 class CategoriesPage extends Component {
     
@@ -17,44 +21,31 @@ class CategoriesPage extends Component {
         videos: [],
         category: {},
         extra: {
-            genre: null,
-            filter: 'popular',
+            genres: null,
+            view: 'popular',
         },
         pageCount: 1,
         pageNum: 0,
     }
 
-    initVideos = () => {
+    initVideos = (props) => {
+        var url = new URL(props.location.pathname + props.location.search);
+        let search = querystring.parse(url.query.replace('?', ''));
         this.setState({
             videos: [],
+            extra: {
+                genres: search.genres,
+                view: search.view || 'popular',
+            },
             pageCount: 1,
             pageNum: 0,
         })
     }
 
-    componentWillMount(){
-        this.loadVideos(this.props)
-    }
+    loadVideos(props) {
+        this.initVideos(props);
 
-    loadVideos(props, extra = null) {
-        this.initVideos();
-
-        axios.get(`${serverURL}/api/categories/${props.match.params.slug}`)
-        .then( response => {
-            this.setState({category:response.data.data});
-        })
-        let search = props.location.search || '?';
-        let url = `${serverURL}/api/categories/${props.match.params.slug}/videos${search}`;
-        if (extra === null) {
-            extra = this.state.extra;
-        }
-        if (extra.genre !== null && extra.genre !== undefined) {
-            url += `&genres=${extra.genre}`;
-        }
-        if (extra.filter !== null && extra.filter !== undefined) {
-            url += `&view=${extra.filter}`;
-        }
-        axios.get(url)
+        axios.get(`${serverURL}/api/categories/${props.match.params.slug}/videos${props.location.search}`)
         .then( response => {
             this.setState({
                 videos: response.data.data,
@@ -65,17 +56,23 @@ class CategoriesPage extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.loadVideos(nextProps)
+    componentWillMount(){
+        axios.get(`${serverURL}/api/categories/${this.props.match.params.slug}`)
+        .then( response => {
+            this.setState({category:response.data.data});
+        })
+        this.loadVideos(this.props)
     }
 
-    handlePageClick = (data) => {
-        this.setState({
-            pageNum: data.selected
-        })
-        let search = '?page=' + (data.selected+1);
-        this.props.history.push(this.props.match.params.slug + search);
-    };
+    componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            axios.get(`${serverURL}/api/categories/${nextProps.match.params.slug}`)
+            .then( response => {
+                this.setState({category:response.data.data});
+            })
+            this.loadVideos(nextProps)
+        }
+    }
 
     displayPaginate = () => {
         if (this.state.pageCount > 1) {
@@ -107,54 +104,56 @@ class CategoriesPage extends Component {
         }
     }
 
-    onTagClick = (event, genre) => {
-        if (genre === this.state.extra.genre) {
-            genre = null;
-        }
+    updateSearchParams = (newParams) => {
+        var url = new URL(this.props.location.pathname + this.props.location.search);
+        let search = Object.assign({}, querystring.parse(url.query.replace('?', '')), newParams);
+        url.set('query', querystring.stringify(search));
+        this.props.history.push(url.href.replace(url.origin, ''))
+    }
+
+    handlePageClick = (data) => {
         this.setState({
-            extra: {
-                genre: genre,
-                filter: this.state.extra.filter,
-            }
+            pageNum: data.selected
         })
-        this.loadVideos(this.props, {genre: genre, filter: this.state.extra.filter})
+        this.updateSearchParams({page: data.selected + 1});
+    };
+
+    onTagClick = (event, genres) => {
+        if (genres === this.state.extra.genres) {
+            genres = null;
+        }
+        this.updateSearchParams({genres: genres, page: 1});
     }
 
     displayTags = () => {
         if (this.state.category.genres !== undefined) {
-            return this.state.category.genres.map( (genre, index) => {
-                let ge = genre.replace(/-/g, " ")
+            return this.state.category.genres.map( (genres, index) => {
+                let ge = genres.replace(/-/g, " ")
                 return (
-                    <a key={index} className={`px-1 mx-3 float-left ${genre === this.state.extra.genre ? 'text-pink active-true' : 'active-false' }`}
-                        onClick={(event)=>this.onTagClick(event, genre)}
+                    <a key={index} className={`px-1 mx-3 float-left active-${genres === this.state.extra.genres}`}
+                        onClick={(event)=>this.onTagClick(event, genres)}
                     >{ge}</a>
                 )
             })
         }
     }
 
-    onFilterClick = (event, filter) => {
-        this.setState({
-            extra: {
-                filter: filter,
-                genre: this.state.extra.genre,
-            }
-        })
-        this.loadVideos(this.props, {filter: filter, genre: this.state.extra.genre})
+    onViewClick = (event, view) => {
+        this.updateSearchParams({view: view, page: 1});
     }
 
-    displayFilters = () => {
-        let filters = [
+    displayViews = () => {
+        let views = [
             'hot',
             'popular',
             'trending',
             'recent',
         ]
-        return filters.map( (filter, index) => {
+        return views.map( (view, index) => {
             return (
-                <a key={index} className={`px-1 mx-3 float-left ${filter === this.state.extra.filter ? 'text-pink active-true' : 'active-false' }`}
-                    onClick={(event)=>this.onFilterClick(event, filter)}
-                >{filter}</a>
+                <a key={index} className={`px-1 mx-3 active-${view === this.state.extra.view}`}
+                    onClick={(event)=>this.onViewClick(event, view)}
+                >{view}</a>
             )
         })
 }
@@ -177,14 +176,14 @@ class CategoriesPage extends Component {
                             {this.displayTags()}
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col section-header">
+                    <div className="row mb-3">
+                        <div className="col-6 section-header">
                             <h1 className="title">{this.state.category.name}</h1>
                         </div>
-                    </div>
-                    <div className="row mb-3">
-                        <div className="w-100 filters">
-                            {this.displayFilters()}
+                        <div className="col-6">
+                            <div className="w-100 views d-flex align-items-end justify-content-end">
+                                {this.displayViews()}
+                            </div>
                         </div>
                     </div>
                     <div className="row">

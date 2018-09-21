@@ -60,10 +60,13 @@ class Header extends Component {
     }
 
     render () {
-        let style;
+        let logo, nav;
         if (isMobile || isValid(this.props.login.user)) {
-            style = {
-                marginLeft: '4rem'
+            logo = {marginLeft: '42px'}
+            if (this.props.sidebar.toggleSidebar) {
+                nav = {marginLeft: '140px'}
+            } else {
+                nav = {marginLeft: '42px'}
             }
         }
         return (
@@ -80,7 +83,7 @@ class Header extends Component {
                                 </a>
                             </div>
                         }
-                        <div id="logo" className="col text-center" style={style}>
+                        <div id="logo" className="col text-center" style={logo}>
                             <Link to="/">
                                 <div className="logo d-flex">
                                     <div className="justify-content-center align-self-center mx-auto">
@@ -91,7 +94,7 @@ class Header extends Component {
                             </Link>
                         </div>
                         { isMobile === false && 
-                            <div id='categories-nav' className="col">
+                            <div id='categories-nav' className="col" style={nav}>
                                 <div className="container px-2">
                                     <Nav>
                                         { this.showCategories() }

@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import VideoPosts from './VideoPosts';
 import { Link } from 'react-router-dom';
 
 
-class VideoContent extends Component {
-
-    videoTypes = [
+const VideoContent = () =>{
+    const videoTypes = [
         {
             slug:'hot',
             title:'Hot',
@@ -29,8 +28,9 @@ class VideoContent extends Component {
         },
     ]
 
-    showAllCategories() {
-        return this.videoTypes.map((item, index) => {
+    return (
+        <div>
+        { videoTypes.map((item, index) => {
             return (
                 <div className='container-fluid' key={index}>
                     <div className="row stripe">
@@ -60,15 +60,9 @@ class VideoContent extends Component {
                     </div>
                 </div>
             )
-        })
-    }
-    render() {
-        return (
-            <div>
-                { this.showAllCategories() }
-            </div>
-        );
-    }
+        })}
+        </div>
+    );
 }
 
 export default VideoContent;

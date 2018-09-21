@@ -8,6 +8,7 @@ import CategoriesPage from './components/CategoriesPage';
 import HotPage from './components/HotPage';
 import PopularPage from './components/PopularPage';
 import TrendingPage from './components/TrendingPage';
+import RecentPage from './components/RecentPage';
 import VideoPage from './components/VideoPage';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
@@ -29,6 +30,7 @@ const Routes = () => {
                 <Route path="/hot" exact component={HotPage}/>
                 <Route path="/popular" exact component={PopularPage}/>
                 <Route path="/trending" exact component={TrendingPage}/>
+                <Route path="/recent" exact component={RecentPage}/>
                 <Route path="/categories/:slug" exact component={CategoriesPage}/>
                 <Route path="/videos/:slug" exact component={VideoPage}/>
                 <Route path="/login" exact component={Login}/>

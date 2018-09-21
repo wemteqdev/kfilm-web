@@ -4,7 +4,6 @@ import axios from 'axios';
 import serverURL from '../../../variables';
 
 export default class Histories extends Component {
-
     state = {
         histories: null,
     }
