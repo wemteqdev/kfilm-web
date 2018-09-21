@@ -96,7 +96,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 
 		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
-		$meta_tags = $video->meta_tags.','.$video->tag_names;
+		$meta_tags = $video->meta_tags;
 		
 		ob_start();
 		include public_path() . '/client.html';
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::any('{all}', function () {
 		$og_title = "KORFILM";
 		$og_image = "https://korfilm.co/images/og-image.jpg";
-		$meta_tags = "korfilm, film, tv-series, animiation, festival, korean, english, subtitle, max quality, free videos, free films, free animations";
+		$meta_tags = "north korea, films, tv-series, animiations, festival, korean, english, subtitles, free";
 
 		ob_start();
 		include public_path() . '/client.html';
