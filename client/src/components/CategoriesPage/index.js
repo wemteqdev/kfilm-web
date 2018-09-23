@@ -151,7 +151,7 @@ class CategoriesPage extends Component {
         ]
         return views.map( (view, index) => {
             return (
-                <a key={index} className={`px-1 mx-3 active-${view === this.state.extra.view}`}
+                <a key={index} className={`mx-3 active-${view === this.state.extra.view}`}
                     onClick={(event)=>this.onViewClick(event, view)}
                 >{view}</a>
             )
@@ -172,16 +172,16 @@ class CategoriesPage extends Component {
             <div className="page-padding">
                 <div className="container">
                     <div className="row mb-5">
-                        <div className="w-100 genres">
+                        <div className="col w-100 genres">
                             {this.displayTags()}
                         </div>
                     </div>
                     <div className="row mb-3">
-                        <div className="col-6 section-header">
+                        <div className="col section-header category-header">
                             <h1 className="title">{this.state.category.name}</h1>
                         </div>
-                        <div className="col-6">
-                            <div className="w-100 views d-flex align-items-end justify-content-end">
+                        <div className="col-md-12 col-lg-6">
+                            <div className="w-100 views d-flex align-items-end justify-content-lg-end">
                                 {this.displayViews()}
                             </div>
                         </div>

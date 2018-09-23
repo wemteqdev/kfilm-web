@@ -4,6 +4,8 @@ import serverURL from '../../variables';
 import RegisterForm from './registerForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+declare var $;
+
 export default class Register extends Component {
 
     state = {
@@ -11,6 +13,8 @@ export default class Register extends Component {
     }
 
     handleRegister = (values) => {
+        $('.page-loading').removeClass('d-none')
+
         axios.post(`${serverURL}/api/user/register?email=${values.email}&password=${values.password}&name=${values.firstname} ${values.lastname}&confirm_password=${values.confirm}`)
         .then( response => {
             this.setState({
@@ -18,7 +22,7 @@ export default class Register extends Component {
             })
             setTimeout(() => {
                 this.props.history.push('/login')
-            }, 1000)
+            }, 2000)
         })
         .catch(error => {
             this.setState({

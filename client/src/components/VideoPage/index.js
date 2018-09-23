@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import serverURL from '../../variables';
 import { isValid } from '../../functions';
 
+declare var $;
+
 class VideoPage extends Component {
     
     state = {

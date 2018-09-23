@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 
 import { isValid } from '../../functions';
 
+declare var $;
+
 class EmailVerification extends Component {
 
     state = {
@@ -29,6 +31,8 @@ class EmailVerification extends Component {
     }
 
     handleResend = (values) => {
+        $('.page-loading').removeClass('d-none')
+        
         axios.post(`${serverURL}/api/user/verification/resend?email=${values.email}`)
         .then( (response) => {
             if (response.data.data.email_verified) {
