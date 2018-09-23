@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Request;
+use Response;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
+
 use App\Http\Requests\Admin\CreateSlideRequest;
 use App\Http\Requests\Admin\UpdateSlideRequest;
 use App\Repositories\Admin\SlideRepository;
 use App\Http\Controllers\AdminBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
-use App\Http\Resources\Slide as Resource;
-use App\Enums\SlideStatus;
 
 class SlideController extends AdminBaseController
 {
-    /** @var  slideRepository */
     private $slideRepository;
 
     public function __construct(slideRepository $slideRepo)

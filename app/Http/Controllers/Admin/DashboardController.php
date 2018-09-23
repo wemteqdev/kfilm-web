@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
-use Illuminate\Http\Request;
+
+use Request;
 use Vimeo\Laravel\Facades\Vimeo;
 use App\Http\Controllers\AdminBaseController;
 

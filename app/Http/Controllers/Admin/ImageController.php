@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\CreateImageRequest;
-use App\Http\Requests\Admin\UpdateImageRequest;
-use App\Repositories\Admin\ImageRepository;
-use App\Http\Controllers\AdminBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use Request;
 use Response;
 use Storage;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
+
+use App\Http\Requests\Admin\CreateImageRequest;
+use App\Http\Requests\Admin\UpdateImageRequest;
+use App\Http\Controllers\AdminBaseController;
+use App\Repositories\Admin\ImageRepository;
 
 class ImageController extends AdminBaseController
 {
-    /** @var  ImageRepository */
     private $imageRepository;
 
     public function __construct(ImageRepository $imageRepo)
@@ -22,12 +23,6 @@ class ImageController extends AdminBaseController
         $this->imageRepository = $imageRepo;
     }
 
-    /**
-     * Display a listing of the Image.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->imageRepository->pushCriteria(new RequestCriteria($request));
@@ -37,23 +32,11 @@ class ImageController extends AdminBaseController
             ->with('images', $images);
     }
 
-    /**
-     * Show the form for creating a new Image.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('admin.images.create');
     }
 
-    /**
-     * Store a newly created Image in storage.
-     *
-     * @param CreateImageRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateImageRequest $request)
     {
         $input = $request->all();
@@ -72,13 +55,6 @@ class ImageController extends AdminBaseController
         return redirect(route('admin.images.index'));
     }
 
-    /**
-     * Display the specified Image.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show($id)
     {
         $image = $this->imageRepository->findWithoutFail($id);
@@ -92,13 +68,6 @@ class ImageController extends AdminBaseController
         return view('admin.images.show')->with('image', $image);
     }
 
-    /**
-     * Show the form for editing the specified Image.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $image = $this->imageRepository->findWithoutFail($id);
@@ -112,14 +81,6 @@ class ImageController extends AdminBaseController
         return view('admin.images.edit')->with('image', $image);
     }
 
-    /**
-     * Update the specified Image in storage.
-     *
-     * @param  int              $id
-     * @param UpdateImageRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateImageRequest $request)
     {
         $image = $this->imageRepository->findWithoutFail($id);
@@ -137,13 +98,6 @@ class ImageController extends AdminBaseController
         return redirect(route('admin.images.index'));
     }
 
-    /**
-     * Remove the specified Image from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy($id)
     {
         $image = $this->imageRepository->findWithoutFail($id);

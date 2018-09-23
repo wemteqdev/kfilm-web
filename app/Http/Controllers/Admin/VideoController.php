@@ -1,17 +1,18 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
+
+use Request;
+use Response;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
+use Vimeo\Laravel\Facades\Vimeo;
 
 use App\Http\Requests\Admin\CreateVideoRequest;
 use App\Http\Requests\Admin\UpdateVideoRequest;
-use App\Repositories\Admin\VideoRepository;
 use App\Http\Controllers\AdminBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use App\Repositories\Admin\VideoRepository;
 use App\Models\Video;
-use Vimeo\Laravel\Facades\Vimeo;
 use App\Enums\VideoType;
 
 class VideoController extends AdminBaseController

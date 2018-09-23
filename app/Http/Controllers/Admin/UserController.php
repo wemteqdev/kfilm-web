@@ -1,19 +1,20 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
+
+use Request;
+use Response;
+use Redirect;
+use Validator;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
 
 use App\Http\Requests\Admin\CreateuserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
-use App\Repositories\Admin\UserRepository;
 use App\Http\Controllers\AdminBaseController;
-use Illuminate\Http\Request;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Http\Resources\User as Resource;
+use App\Repositories\Admin\UserRepository;
 use App\Enums\UserRole;
-use Validator;
-use Flash;
-use Response;
-use Redirect;
 use App\User;
 
 class UserController extends AdminBaseController
@@ -30,8 +31,7 @@ class UserController extends AdminBaseController
         $this->userRepository->pushCriteria(new RequestCriteria($request));
         $users = $this->userRepository->paginate(24);
 
-        return view('admin.users.index')
-            ->with('users', $users);
+        return view('admin.users.index')->with('users', $users);
     }
 
     public function create()

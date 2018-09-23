@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Request;
+use Response;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
+
 use App\Http\Requests\Admin\CreateSeriesRequest;
 use App\Http\Requests\Admin\UpdateSeriesRequest;
 use App\Repositories\Admin\SeriesRepository;
 use App\Http\Controllers\AdminBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 
 class SeriesController extends AdminBaseController
 {
@@ -25,8 +27,7 @@ class SeriesController extends AdminBaseController
         $this->seriesRepository->pushCriteria(new RequestCriteria($request));
         $series = $this->seriesRepository->all();
 
-        return view('admin.series.index')
-            ->with('series', $series);
+        return view('admin.series.index')->with('series', $series);
     }
 
     public function create()

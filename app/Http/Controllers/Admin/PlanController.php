@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Request;
+
 use App\Http\Controllers\AdminBaseController;
 use App\Models\Plan;
 use App\Models\Product;
