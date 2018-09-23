@@ -22,7 +22,7 @@ class SendNewVideosArrivedNotification extends Command
 
     public function handle()
     {
-        $videos = Video::published()->where('notification_sent', false);
+        $videos = Video::published()->normal()->where('notification_sent', false);
 
         if($videos->count() > 0)
         {
