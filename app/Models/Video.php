@@ -13,6 +13,10 @@ use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Spatie\Tags\HasTags;
+use App\Notifications\VideoPublished;
+use Notification;
+use Watson\Validating\ValidatingTrait;
+
 class Video extends Model implements LikeableContract
 {
     use SoftDeletes;
@@ -20,6 +24,7 @@ class Video extends Model implements LikeableContract
     use Viewable;
     use Likeable;
     use HasTags;
+    use ValidatingTrait;
 
     public $table = 'videos';
     
@@ -75,10 +80,8 @@ class Video extends Model implements LikeableContract
         'published_at' => 'datetime',
         'series_number' => 'integer'
     ];
-
-    public static $rules = [
-
-    ];
+    
+    protected $rules = [];
 
     public function sluggable()
     {
@@ -205,6 +208,22 @@ class Video extends Model implements LikeableContract
     {
         $this->status = VideoStatus::published;
         $this->published_at = \Carbon\Carbon::now()->toDateTimeString();
+
+        if ($this->category==null)
+        {
+            $errorMessages = new \Illuminate\Support\MessageBag;
+            $errorMessages->add('category', 'should not be empty');
+            $this->setErrors($errorMessages);
+
+            return false;
+        }
+
+        // if ($this->type == VideoType::normal)
+        // {
+        //     $users = \App\User::all();
+        //     Notification::send($users, new VideoPublished($this));
+        // }
+
         return $this->save();
     }
     

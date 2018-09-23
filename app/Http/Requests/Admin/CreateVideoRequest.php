@@ -25,6 +25,6 @@ class CreateVideoRequest extends FormRequest
      */
     public function rules()
     {
-        return Video::$rules;
+        return [];
     }
 }
