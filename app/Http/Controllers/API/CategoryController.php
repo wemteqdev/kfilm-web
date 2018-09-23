@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers\API;
 
-use Request;
-use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Validator;
 
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\Category as CategoryResource;

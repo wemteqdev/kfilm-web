@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers\API;
 
-use Request;
 use Validator;
 use DB;
 
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 use App\Http\Controllers\Controller;
