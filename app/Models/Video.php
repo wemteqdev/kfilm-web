@@ -3,20 +3,20 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Notification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Vimeo\Laravel\Facades\Vimeo;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Viewable;
-use App\Enums\VideoScope;
-use App\Enums\VideoType;
-use App\Enums\VideoStatus;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Spatie\Tags\HasTags;
-use App\Notifications\VideoPublished;
-use Notification;
 use Watson\Validating\ValidatingTrait;
 
+use App\Enums\VideoScope;
+use App\Enums\VideoType;
+use App\Enums\VideoStatus;
+use App\Notifications\VideoPublished;
 class Video extends Model implements LikeableContract
 {
     use SoftDeletes;
@@ -30,6 +30,7 @@ class Video extends Model implements LikeableContract
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
     protected $dates = ['deleted_at'];
     protected $appends = ['featured_image_url', 'featured_video', 'groups', 'series', 'tags', 'status_name', 'type_name', 'scope_name'];
 
@@ -207,7 +208,7 @@ class Video extends Model implements LikeableContract
     public function publish()
     {
         $this->status = VideoStatus::published;
-        $this->published_at = \Carbon\Carbon::now()->toDateTimeString();
+        $this->published_at = \Carbon\Carbon::now();
 
         if ($this->category==null)
         {
@@ -217,12 +218,6 @@ class Video extends Model implements LikeableContract
 
             return false;
         }
-
-        // if ($this->type == VideoType::normal)
-        // {
-        //     $users = \App\User::all();
-        //     Notification::send($users, new VideoPublished($this));
-        // }
 
         return $this->save();
     }

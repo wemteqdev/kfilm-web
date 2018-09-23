@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Eloquent as Model;
@@ -32,12 +31,9 @@ class Slide extends Model
         'status'
     ];
 
-    protected $casts = [
-    ];
+    protected $casts = [];
 
-    public static $rules = [
-        
-    ];
+    public static $rules = [];
 
     public function scopeActive($query)
     {

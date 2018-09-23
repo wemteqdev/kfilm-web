@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Eloquent as Model;
@@ -7,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use CyrildeWit\EloquentViewable\Viewable;
 use Spatie\ModelStatus\HasStatuses;
+
 use App\Enums\CategoryStatus;
 class Category extends Model
 {
