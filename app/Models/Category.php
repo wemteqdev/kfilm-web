@@ -109,5 +109,4 @@ class Category extends Model
             $category->save();
         }
     }
-    
 }

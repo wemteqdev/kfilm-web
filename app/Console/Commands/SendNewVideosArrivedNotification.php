@@ -22,15 +22,15 @@ class SendNewVideosArrivedNotification extends Command
 
     public function handle()
     {
-        $users = User::all();
-     
         $videos = Video::published()->where('notification_sent', false);
 
         if($videos->count() > 0)
         {
             $video_ids = $videos->take(3)->pluck('id');
 
-            Notification::send($users, new NewVideosArrived($video_ids));
+            User::chunk(100, function ($users)  use ($video_ids) {
+                Notification::send($users, new NewVideosArrived($video_ids)); 
+            });
             
             $videos = Video::published()->where('notification_sent', false);
             $videos->update(['notification_sent' => true]);
