@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Request;
-use Response;
+use Illuminate\Http\Request;
 use View;
 use Flash;
 

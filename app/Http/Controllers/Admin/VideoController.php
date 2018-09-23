@@ -1,8 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use Request;
-use Response;
+use Illuminate\Http\Request;
 use Flash;
 
 use Prettus\Repository\Criteria\RequestCriteria;
