@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
+use Auth;
+
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Plan;
-use Auth;
 class PlanController extends Controller
 {
 	public function subscribe($id, Request $request)
@@ -15,6 +16,7 @@ class PlanController extends Controller
 
 		\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		$user = Auth::user();
+
 		try {
 			$user->cancelSubscriptions();
 		} catch(\Exception $ex){}
@@ -41,8 +43,8 @@ class PlanController extends Controller
 
 		try {
 			\Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-	
 			$user = Auth::user();
+			
 			$user->subscription($product_id)->cancelNow();
 			$user->removeRole($product->name);
 	

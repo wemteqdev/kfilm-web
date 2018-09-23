@@ -12,12 +12,14 @@ class TagController extends Controller
 	public function index(Request $request)
 	{
 		$tags = Tag::all();
+
 		return new TagCollection($tags);
 	}
 
 	public function popular(Request $request)
 	{
 		$tags = Tag::suggested()->get();
+		
 		return new TagCollection($tags);
 	}
 }

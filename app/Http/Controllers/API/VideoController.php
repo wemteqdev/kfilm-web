@@ -1,21 +1,22 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
+use Validator;
+use DB;
+
+use Illuminate\Validation\Rule;
+
 use App\Http\Controllers\Controller;
+use App\Http\Resources\VideoCollection;
+use App\Http\Resources\VideoShort as VideoShortResource;
+use App\Http\Resources\Video as VideoResource;
+use App\Enums\VideoType;
+use App\Enums\VideoScope;
 use App\Models\Video;
 use App\Models\Category;
 use App\Models\History;
 use App\Models\Group;
-use App\Http\Resources\VideoCollection;
-use App\Http\Resources\VideoShort as VideoShortResource;
-use App\Http\Resources\Video as VideoResource;
-use Illuminate\Support\Facades\DB;
-use App\Enums\VideoType;
-use App\Enums\VideoScope;
-use Validator;
-use Illuminate\Validation\Rule;
 class VideoController extends Controller
 {
 	protected function rules()
@@ -50,7 +51,6 @@ class VideoController extends Controller
 		$order_direction = $request->order_direction ?: 'asc';
 
 		$user = auth('api')->user();
-
 		$videos = Video::published();
 
 		if(isset($category))

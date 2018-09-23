@@ -1,12 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
+
 use App\Http\Controllers\Controller;
-use App\Models\Series;
 use App\Http\Resources\SeriesCollection;
 use App\Http\Resources\Series as SeriesResource;
+use App\Models\Series;
 
 class SeriesController extends Controller
 {
@@ -24,6 +24,7 @@ class SeriesController extends Controller
 		}
 		
 		$series->addView();
+		
 		return new SeriesResource($series);
 	}
 }

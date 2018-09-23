@@ -1,8 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
+use Auth;
+use Validator;
+
+use Laravel\Passport\Passport;
+
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\SubscriptionCollection;
@@ -10,11 +14,9 @@ use App\Http\Resources\InoviceCollection;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\HistoryCollection;
 use App\Http\Resources\VideoShort as VideoShortResource;
-use Auth;
-use Validator;
-use App\User;
-use Laravel\Passport\Passport;
 use App\Models\Video;
+use App\User;
+
 class UserController extends Controller
 {
 	public function __construct()
@@ -30,7 +32,6 @@ class UserController extends Controller
     public function login(Request $request)
 	{
 	 	$params = $request->only('email', 'password');
-
 	 	$username = $params['email'];
 	 	$password = $params['password'];
 
@@ -38,8 +39,8 @@ class UserController extends Controller
 			$user =	Auth::user();
 
 			$user->tokens()->delete();
-
 			$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken; 
+
 			return (new UserResource($user))->additional(['access_token' => $token]);
 	 	}
 
@@ -57,12 +58,12 @@ class UserController extends Controller
 				'email' => $user->email,
 				'password' => $data['old_password']
 			]);
+
 			if($check && isset($data['new_password']) && !empty($data['new_password']) && $data['new_password'] !== "" && $data['new_password'] !=='undefined') {
 				$user->password = bcrypt($data['new_password']);
+
 				$user->token()->revoke();
 				$token = $user->createToken('newToken')->accessToken;
-   
-				//Changing the type
 				$user->save();
    
 				return json_encode(array('access_token' => $token)); //sending the new token
@@ -77,7 +78,8 @@ class UserController extends Controller
 
 	public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+		$request->user()->token()->revoke();
+		
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
@@ -90,16 +92,17 @@ class UserController extends Controller
             'email' => 'required|email|unique:users|max:50', 
             'password' => 'required|max:50',
             'confirm_password' => 'required|same:password',
-        ]);
+		]);
+
 		if ($validator->fails()) { 
 			return response()->json(['error'=>$validator->errors()], 401);            
 		}
+
 		$input = $request->all();
 		$input['password'] = bcrypt($input['password']); 
 		
 		$user = User::create($input);
 		$user->sendEmailVerificationNotification();
-
 		$user->assignRole('free');
 		$token =  $user->createToken('user', $user->getRoleNames()->toArray())->accessToken;
 
@@ -116,6 +119,7 @@ class UserController extends Controller
 	public function favorite_videos(Request $request)
 	{
 		$videos = Video::published()->whereLikedBy($request->user()->id)->with('likesCounter')->get();
+
 		return VideoShortResource::collection($videos);
 	}
 
@@ -136,6 +140,7 @@ class UserController extends Controller
 	public function histories(Request $request)
 	{
 		$histories = $request->user()->histories()->orderBy('created_at', 'desc')->paginate(9);
+		
 		return new HistoryCollection($histories);
 	}
 }

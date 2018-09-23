@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Product;
+use Request;
 use Auth;
+
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use App\Models\Product;
 
 class ProductController extends Controller
 {

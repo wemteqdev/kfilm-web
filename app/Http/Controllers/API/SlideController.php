@@ -1,18 +1,19 @@
 <?php
-
 namespace App\Http\Controllers\API;
+
+use Request;
+use Response;
+use Flash;
+
+use Prettus\Repository\Criteria\RequestCriteria;
 
 use App\Http\Requests\Admin\CreateSlideRequest;
 use App\Http\Requests\Admin\UpdateslideRequest;
-use App\Repositories\Admin\SlideRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 use App\Http\Resources\Slide as SlideResource;
-use App\Models\Slide;
 use App\Http\Resources\SlideCollection;
+use App\Repositories\Admin\SlideRepository;
+use App\Models\Slide;
 
 class SlideController extends Controller
 {
@@ -48,6 +49,7 @@ class SlideController extends Controller
 	public function remove_tag($id, Request $request)
     {
         $slide = Slide::findOrFail($id);
+        
         $tag = \Spatie\Tags\Tag::findOrCreate($request->tag, 'slide');
         $slide->detachTags($tag);
 

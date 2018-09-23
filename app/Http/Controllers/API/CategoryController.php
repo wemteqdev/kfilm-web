@@ -1,18 +1,18 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Video;
+use Request;
+use Validator;
+use Illuminate\Validation\Rule;
+
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\VideoCollection;
 use App\Http\Resources\Video as VideoResource;
-use Validator;
-use Illuminate\Validation\Rule;
 use App\Http\Resources\VideoShort as VideoShortResource;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Video;
 
 class CategoryController extends Controller
 {

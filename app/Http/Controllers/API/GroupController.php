@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
-use App\Models\Group;
 use App\Http\Resources\GroupCollection;
 use App\Http\Resources\Group as GroupResource;
+use App\Models\Group;
 
 class GroupController extends Controller
 {
@@ -18,7 +17,9 @@ class GroupController extends Controller
 	public function show($id)
 	{
 		$group = Group::find($id);
+		
 		$group->addView();
+		
 		return new GroupResource($group);
 	}
 }
