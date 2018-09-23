@@ -8,12 +8,12 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        //
     ];
 
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('korfilm:update_video_views_count')->hourly();
+        $schedule->command('korfilm:send_new_videos_arrived_notification')->daily();
     }
 
     protected function commands()
