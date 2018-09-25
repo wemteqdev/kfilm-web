@@ -124,7 +124,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::any('{all}', function () {
 		$og_title = "KORFILM";
 		$og_image = "https://korfilm.co/images/og-image.jpg";
-		$meta_tags = "north korea, films, tv-series, animiations, festival, korean, english, subtitles, free";
+		$meta_tags = "";
 
 		ob_start();
 		include public_path() . '/client.html';
