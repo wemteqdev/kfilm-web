@@ -34,7 +34,7 @@
 
     "repositories": [
         {
-          "url": "https://github.com/avasiliev87/laravel-tags",
+          "url": "https://github.com/wemteqdev/laravel-tags",
            "type": "git"
          }
       ],
