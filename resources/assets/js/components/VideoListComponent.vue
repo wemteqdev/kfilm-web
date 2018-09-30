@@ -2,7 +2,7 @@
     <div class="video-list">
 				<b-container fluid class="p-4 bg-light clearfix">
 
-				    <b-col v-for="video in videos" class="col-sm-4 float-left">
+				    <b-col v-for="video in videos" class="col-sm-4 float-left" v-bind:key="video.id">
 				      <b-img thumbnail fluid :src="video.featured_image_url" alt="" v-on:click="onSelectVideo(video)"/>
 				      <div> {{ video.name }}</div>
 				    </b-col>

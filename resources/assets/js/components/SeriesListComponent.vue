@@ -1,7 +1,7 @@
 <template>
     <div class="series-list">
 				<b-container fluid class="p-4 bg-light clearfix">
-				    <b-col v-for="aseries in series" class="col-sm-4 float-left">
+				    <b-col v-for="aseries in series" class="col-sm-4 float-left" v-bind:key="aseries.id">
 				      <b-img thumbnail fluid :src="aseries.featured_image_url" alt="" v-on:click="onSelectSeries(aseries)"/>
 				      <div> {{ aseries.name }}</div>
 				    </b-col>

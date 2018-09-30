@@ -2,7 +2,7 @@
     <div class="image-list">
     		<b-container fluid class="p-4 bg-light clearfix">
 
-				    <b-col v-for="(image, index) in images" class="col-sm-4 float-left">
+				    <b-col v-for="(image) in images" class="col-sm-4 float-left" v-bind:key="image.id">
 				      <b-img thumbnail fluid :src="image.src" alt="" v-on:click="onSelectImage(image)"/>
 				      <div> {{ image.name }}</div>
 				    </b-col>
