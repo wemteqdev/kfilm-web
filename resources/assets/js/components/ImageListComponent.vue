@@ -17,18 +17,18 @@
 
 <script>
     export default {
-    	  data: function(){
-			  	return {
-			  			last_page: 1,
-			  			totalRows: 0,
-			  			currentPage: 1,
-			  			perPage: 9,
-			  			images:[]
-					}
-			  },
-    		created(){
-    			this.load_page(1);
-    		},
+    	data: function() {
+			return {
+				last_page: 1,
+				totalRows: 0,
+				currentPage: 1,
+				perPage: 9,
+				images:[]
+			}
+		},
+		created(){
+			this.load_page(1);
+		},
         mounted() {
         	
         },
