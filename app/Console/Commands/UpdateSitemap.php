@@ -22,7 +22,9 @@ class UpdateSitemap extends Command
     public function handle()
     {
 
-        $sitemap = Sitemap::create();
+        $sitemap = Sitemap::create('https://korfilm.co')->configureCrawler(function (Crawler $crawler) {
+            $crawler->setMaximumDepth(3);
+        });
 
         $categories = \App\Models\Category::all();
         foreach ($categories as $category) {
