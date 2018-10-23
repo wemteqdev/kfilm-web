@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('korfilm:update_video_views_count')->hourly();
+        $schedule->command('korfilm:update_video_views_count')->daily();
         $schedule->command('korfilm:send_new_videos_arrived_notification')->daily();
     }
 
