@@ -98,7 +98,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
 
-		$meta_tags = $video->name . ",north korea";
+		$meta_tags = $video->name . ",north korea movie film";
 
 		if($category!=null)
 		{
@@ -110,6 +110,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 			$meta_tags = $meta_tags . "," . $video->meta_tags;
 		}
 		
+		$meta_tags = strtolower($meta_tags);
 		
 		ob_start();
 		include public_path() . '/client.html';
@@ -124,8 +125,8 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 
 		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
-		$meta_tags = $video->name . ",north korea," . $video->meta_tags;
-		
+		$meta_tags = $video->name . ",north korea movie film," . $video->meta_tags;
+		$meta_tags = strtolower($meta_tags);
 		ob_start();
 		include public_path() . '/client.html';
 		$var = ob_get_contents();
@@ -140,6 +141,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 		$og_title = 'KORFILM: ' . $category->name;
 		$og_image = "https://korfilm.co/images/og-image.jpg";
 		$meta_tags = $category->name . ",north korea," . $category->meta_tags;
+		$meta_tags = strtolower($meta_tags);
 
 		ob_start();
 		include public_path() . '/client.html';
