@@ -86,17 +86,32 @@ Route::get('verification/verify', 'Auth\VerificationController@verify')->name('v
 
 
 /* IMPORTANT FROM HERE - FOR REACT APP */
-Route::group(['middleware' => ['cacheResponse']], function(){
-	Route::get('user/password/reset/{token}', function(){
-		return File::get(public_path() . '/client.html');	
-	})->name('password.reset');
+Route::get('user/password/reset/{token}', function(){
+	return File::get(public_path() . '/client.html');	
+})->name('password.reset');
 
+Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('videos/{slug}', function ($slug) {
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
 
 		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
-		$meta_tags = $video->meta_tags;
+		$meta_tags = $video->name . ",north korea," . $video->meta_tags;
+		
+		ob_start();
+		include public_path() . '/client.html';
+		$var = ob_get_contents();
+		ob_end_clean();
+		
+		return $var;
+	});
+
+	Route::get('user/videos/{slug}', function ($slug) {
+		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
+
+		$og_title = 'KORFILM: ' . $video->name;
+		$og_image = $video->featured_image_url;
+		$meta_tags = $video->name . ",north korea," . $video->meta_tags;
 		
 		ob_start();
 		include public_path() . '/client.html';
@@ -111,7 +126,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 		
 		$og_title = 'KORFILM: ' . $category->name;
 		$og_image = "https://korfilm.co/images/og-image.jpg";
-		$meta_tags = $category->meta_tags;
+		$meta_tags = $category->name . ",north korea," . $category->meta_tags;
 
 		ob_start();
 		include public_path() . '/client.html';
@@ -124,7 +139,7 @@ Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::any('{all}', function () {
 		$og_title = "KORFILM";
 		$og_image = "https://korfilm.co/images/og-image.jpg";
-		$meta_tags = "";
+		$meta_tags = "korfilm, feature film, tv series, animation, festival, north korea";
 
 		ob_start();
 		include public_path() . '/client.html';
