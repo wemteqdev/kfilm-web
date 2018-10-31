@@ -93,10 +93,23 @@ Route::get('user/password/reset/{token}', function(){
 Route::group(['middleware' => ['cacheResponse']], function(){
 	Route::get('videos/{slug}', function ($slug) {
 		$video = \App\Models\Video::where('slug', $slug)->firstorfail();
+		$category = $video->category;
 
 		$og_title = 'KORFILM: ' . $video->name;
 		$og_image = $video->featured_image_url;
-		$meta_tags = $video->name . ",north korea," . $video->meta_tags;
+
+		$meta_tags = $video->name . ",north korea";
+
+		if($category!=null)
+		{
+			$meta_tags = $meta_tags . "," . $category->name;
+		}
+
+		if(!empty($video->meta_tags))
+		{
+			$meta_tags = $meta_tags . "," . $video->meta_tags;
+		}
+		
 		
 		ob_start();
 		include public_path() . '/client.html';
